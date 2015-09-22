@@ -20,7 +20,7 @@
         <Button x:Name="button" HorizontalAlignment="Left" Margin="165,126,0,0" VerticalAlignment="Top" Width="45" Click="button_Click" Height="34">
             <Image x:Name="Ok_png" Height="24" Source="pack://siteoforigin:,,,/Resources/Ok.png" Stretch="Fill" Width="25"/>
         </Button>
-        <Image x:Name="Log_png" Margin="10,10,272,127" Source="/Resources/Log.png" Stretch="Fill"/>
+        <Image x:Name="Log_png" Margin="10,10,272,127" Source="pack://siteoforigin:,,,/Resources/Log.png" Stretch="Fill"/>
         <Button x:Name="AceptarBtn" HorizontalAlignment="Left" Margin="165,125,0,0" VerticalAlignment="Top" Width="45" Click="button_Click" Height="34">
             <Image x:Name="Ok_png1" Height="24" Source="pack://siteoforigin:,,,/Resources/Ok.png" Stretch="Fill" Width="25"/>
         </Button>

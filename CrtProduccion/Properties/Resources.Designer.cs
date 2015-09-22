@@ -141,12 +141,42 @@ namespace CrtProduccion.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Chofer {
+            get {
+                object obj = ResourceManager.GetObject("Chofer", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Combustible {
+            get {
+                object obj = ResourceManager.GetObject("Combustible", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Conductor {
             get {
                 object obj = ResourceManager.GetObject("Conductor", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Control {
+            get {
+                object obj = ResourceManager.GetObject("Control", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -207,6 +237,16 @@ namespace CrtProduccion.Properties {
             get {
                 object obj = ResourceManager.GetObject("Edituser", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon empleado {
+            get {
+                object obj = ResourceManager.GetObject("empleado", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -291,6 +331,16 @@ namespace CrtProduccion.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Grupo {
+            get {
+                object obj = ResourceManager.GetObject("Grupo", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Guardar {
@@ -307,6 +357,16 @@ namespace CrtProduccion.Properties {
             get {
                 object obj = ResourceManager.GetObject("Limpiar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon LLAVE {
+            get {
+                object obj = ResourceManager.GetObject("LLAVE", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -357,6 +417,16 @@ namespace CrtProduccion.Properties {
             get {
                 object obj = ResourceManager.GetObject("Modificar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Modulos {
+            get {
+                object obj = ResourceManager.GetObject("Modulos", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -497,6 +567,16 @@ namespace CrtProduccion.Properties {
             get {
                 object obj = ResourceManager.GetObject("UserP", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon View {
+            get {
+                object obj = ResourceManager.GetObject("View", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         

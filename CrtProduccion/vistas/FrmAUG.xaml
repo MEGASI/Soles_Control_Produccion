@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CrtProduccion"
         mc:Ignorable="d"
-        Title="Grupo Usuario" Height="351" Width="519" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" Closed="Window_Closed" Icon="Image/Grupo.ico">
+        Title="Grupo Usuario" Height="351" Width="519" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" Closed="Window_Closed" Icon="pack://siteoforigin:,,,/Resources/Grupo.ico">
     <Grid RenderTransformOrigin="0.431,0.484">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
