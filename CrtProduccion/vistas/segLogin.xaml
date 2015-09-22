@@ -1,4 +1,4 @@
-﻿<Window x:Class="CrtProduccion.FrmLogin"
+﻿<Window x:Class="CrtProduccion.segLogin"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:CrtProduccion"
         mc:Ignorable="d"
         Title="Login" Height="226" Width="354" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
+    
     <Grid RenderTransformOrigin="0.365,0.566" Margin="0,-1,0,1">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -13,18 +14,21 @@
                 <GradientStop Color="#FF1FABE0"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <TextBox x:Name="UsuarioT" HorizontalAlignment="Left" Height="23" Margin="162,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <PasswordBox x:Name="passwordT" HorizontalAlignment="Left" Margin="162,83,0,0" VerticalAlignment="Top" Width="120"/>
+
+        <Image x:Name="Log_png" Margin="10,10,272,127" Source="pack://siteoforigin:,,,/Resources/Log.png" Stretch="Fill"/>
+
         <Label x:Name="label" Content="Usuario" HorizontalAlignment="Left" Margin="92,33,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBox x:Name="UsuarioT" HorizontalAlignment="Left" Height="23" Margin="162,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
         <Label x:Name="label_Copy" Content="Clave" HorizontalAlignment="Left" Margin="98,85,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Button x:Name="button" HorizontalAlignment="Left" Margin="165,126,0,0" VerticalAlignment="Top" Width="45" Click="button_Click" Height="34">
+        <PasswordBox x:Name="passwordT" HorizontalAlignment="Left" Margin="162,83,0,0" VerticalAlignment="Top" Width="120"/>
+        
+       
+        <Button x:Name="btnAceptar" HorizontalAlignment="Left" Margin="165,126,0,0" VerticalAlignment="Top" Width="45" Height="34" Click="btnAceptar_Click">
             <Image x:Name="Ok_png" Height="24" Source="pack://siteoforigin:,,,/Resources/Ok.png" Stretch="Fill" Width="25"/>
         </Button>
-        <Image x:Name="Log_png" Margin="10,10,272,127" Source="pack://siteoforigin:,,,/Resources/Log.png" Stretch="Fill"/>
-        <Button x:Name="AceptarBtn" HorizontalAlignment="Left" Margin="165,125,0,0" VerticalAlignment="Top" Width="45" Click="button_Click" Height="34">
-            <Image x:Name="Ok_png1" Height="24" Source="pack://siteoforigin:,,,/Resources/Ok.png" Stretch="Fill" Width="25"/>
-        </Button>
-        <Button x:Name="CancelBtn" HorizontalAlignment="Left" Margin="217,125,0,0" VerticalAlignment="Top" Width="45" Click="button1_Click" Height="34">
+
+        <Button x:Name="btnCancelar" HorizontalAlignment="Left" Margin="217,125,0,0" VerticalAlignment="Top" Width="45" Height="34" Click="btnCancelar_Click_1">
             <Image x:Name="Delete_png" Height="32" Source="pack://siteoforigin:,,,/Resources/Delete.png" Stretch="Fill" Width="32"/>
         </Button>
 
