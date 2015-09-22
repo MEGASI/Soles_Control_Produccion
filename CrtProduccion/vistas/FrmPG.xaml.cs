@@ -1,0 +1,165 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using System.Data.SqlClient;
+using System.Data;
+
+namespace CrtProduccion
+{
+    /// <summary>
+    /// Interaction logic for FrmPG.xaml
+    /// </summary>
+    public partial class FrmPG : Window
+    {
+        public FrmPG()
+        {
+            SqlCommand Cmd = new SqlCommand();
+            SqlConnection Cnn = new SqlConnection();
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            DataSet ds = new DataSet();
+            DataSet dsGrid1 = new DataSet();
+
+            InitializeComponent();
+        }
+
+        private void frame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+        }
+
+        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.llenaGridPG();
+        }
+
+        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+        }
+        private void AceptarBtn_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.guardarPG();
+        }
+        private void CbGrupo_Loaded(object sender, RoutedEventArgs e)
+        {
+            SqlDataReader reader =
+           datamanager.ConsultaLeer("select nombre, idGrupo from segGrupo");
+
+            while (reader != null && reader.Read())
+            {
+                CbGrupo.Items.Add(new ComboBoxItem(reader.GetString(0), reader.GetInt32(1)));
+            }
+
+            CbGrupo.SelectedIndex = 0;
+            datamanager.ConexionCerrar();
+        }
+        public void llenaGridPG()
+        {
+
+            DataSet dsGrid = new DataSet();
+            dsGrid.Clear();
+
+            if (CbGrupo.SelectedValue != null)
+            {
+
+                int selectedValue = ((ComboBoxItem)CbGrupo.SelectedItem).intValue;
+
+                dsGrid = datamanager.ConsultaDatos("exec[segPerfilGrupo] " + selectedValue.ToString());
+
+                DgPermisos.ItemsSource = dsGrid.Tables[0].DefaultView;
+                DgPermisos.Columns[0].Visibility = System.Windows.Visibility.Hidden;
+                DgPermisos.Columns[6].Visibility = System.Windows.Visibility.Hidden;
+                DgPermisos.Columns[7].Visibility = System.Windows.Visibility.Hidden;
+                DgPermisos.Columns[8].Visibility = System.Windows.Visibility.Hidden;
+                DgPermisos.Columns[9].Visibility = System.Windows.Visibility.Hidden;
+                DgPermisos.CanUserAddRows = false;
+                DgPermisos.Columns[0].Width = 150;
+                DgPermisos.Columns[0].IsReadOnly = true;
+                DgPermisos.Columns[2].Header = "Acceso";
+                DgPermisos.Columns[3].Header = "Crear";
+                DgPermisos.Columns[4].Header = "Modificar";
+                DgPermisos.Columns[5].Header = "Eliminar";
+
+                datamanager.ConexionCerrar();
+            }
+        }
+        private void guardarPG()
+        {
+
+            try
+            {
+                // Recorriendo el DgGrid y  Guardando
+                if (datamanager.ConexionAbrir())
+                {
+                    SqlCommand Cmd1 = new SqlCommand();
+
+                    // Conectar a SQL y preparar la ejecuci'on del procedimiento SQL
+                    Cmd1.Connection = datamanager.ConexionSQL;
+                    Cmd1.CommandText = "dbo.segPerfilGrupoRUD";
+                    Cmd1.CommandType = CommandType.StoredProcedure;
+
+                    // Creando los parametros en el mismo orden que estan en el procedure
+                    Cmd1.Parameters.Add("@idGrupo", SqlDbType.Int).Value = 0;
+                    Cmd1.Parameters.Add("@idSegItem", SqlDbType.VarChar).Value = "";
+                    Cmd1.Parameters.Add("@acceso", SqlDbType.Bit).Value = false;
+                    Cmd1.Parameters.Add("@crear", SqlDbType.Bit).Value = false;
+                    Cmd1.Parameters.Add("@modificar", SqlDbType.Bit).Value = false;
+                    Cmd1.Parameters.Add("@borrar", SqlDbType.Bit).Value = false;
+
+                    //El Grupo Seleccionado en el ComboBox
+                    int idGrupo = ((ComboBoxItem)CbGrupo.SelectedItem).intValue;
+
+                    // Recorrer el DataGrid por completo
+                    for (int i = 0; i < DgPermisos.Items.Count; i++)
+                    {
+
+                        // Extrarer valor de cada fila (celda) del datagrid y ponerlo en una variable
+                        var idSegitem = (DgPermisos.Items[i] as System.Data.DataRowView).Row.ItemArray[0];
+                        var acceso = (DgPermisos.Items[i] as System.Data.DataRowView).Row.ItemArray[2];
+                        var crear = (DgPermisos.Items[i] as System.Data.DataRowView).Row.ItemArray[3];
+                        var modificar = (DgPermisos.Items[i] as System.Data.DataRowView).Row.ItemArray[4];
+                        var borrar = (DgPermisos.Items[i] as System.Data.DataRowView).Row.ItemArray[5];
+
+                        // Asignar los valores de las variables a los parametros del procedure SQL
+                        Cmd1.Parameters["@idGrupo"].Value = idGrupo;
+                        Cmd1.Parameters["@idSegitem"].Value = idSegitem;
+                        Cmd1.Parameters["@acceso"].Value = acceso;
+                        Cmd1.Parameters["@crear"].Value = crear;
+                        Cmd1.Parameters["@modificar"].Value = modificar;
+                        Cmd1.Parameters["@borrar"].Value = borrar;
+
+                        // Ejecutar el procedure SQL
+                        Cmd1.ExecuteNonQuery();
+
+                    }
+                    datamanager.ConexionCerrar();
+                    MessageBox.Show(" Guardado", "Guardando", MessageBoxButton.OK, MessageBoxImage.Information);
+                    this.llenaGridPG();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Error");
+            }
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+        }
+    }
+}

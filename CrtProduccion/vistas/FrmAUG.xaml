@@ -1,0 +1,32 @@
+﻿<Window x:Class="CrtProduccion.FrmAUG"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CrtProduccion"
+        mc:Ignorable="d"
+        Title="Grupo Usuario" Height="351" Width="519" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" Closed="Window_Closed" Icon="Image/Grupo.ico">
+    <Grid RenderTransformOrigin="0.431,0.484">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black" Offset="1"/>
+                <GradientStop Color="#FF51FFF7"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <DataGrid x:Name="dataGrid" Margin="32,88,63,64" SelectionChanged="dataGrid_SelectionChanged"/>
+        <Button x:Name="button" Content="Cargar" 
+                HorizontalAlignment="Left" 
+                Margin="486,48,0,0" 
+                VerticalAlignment="Top" Width="80" Height="30" Click="button_Click_1" RenderTransformOrigin="-0.975,1.2" Visibility="Hidden"/>
+        <ComboBox x:Name="cbGrupo" Margin="144,56,63,0" VerticalAlignment="Top" RenderTransformOrigin="0.501,0.447" Height="27" SelectionChanged="comboBox_SelectionChanged" Loaded="cbGrupo_Loaded"/>
+        <Button x:Name="guardarBtn" HorizontalAlignment="Left" Margin="183,0,0,21" VerticalAlignment="Bottom" Width="50" Click="btnGuardar_Click" Height="38" ToolTip="Aceptar">
+            <Image x:Name="Guardar_png" Height="32" Source="pack://siteoforigin:,,,/Resources/Guardar.png" Stretch="Fill" Width="32"/>
+        </Button>
+        <Label x:Name="label" Content="Grupo Usuario" HorizontalAlignment="Left" Margin="28,56,0,0" VerticalAlignment="Top" Width="117" FontFamily="Verdana" FontSize="13" FontWeight="Black"/>
+        <Button x:Name="button1" HorizontalAlignment="Left" Margin="242,0,0,21" VerticalAlignment="Bottom" Width="50" Click="button1_Click" Height="38" ToolTip="Salir">
+            <Image x:Name="Exi_png" Height="32" Source="pack://siteoforigin:,,,/Resources/Exi.png" Stretch="Fill" Width="32" VerticalAlignment="Bottom"/>
+        </Button>
+        <Image x:Name="GroupU_png" Margin="12,8,0,0" Source="pack://siteoforigin:,,,/Resources/GroupU.png" Stretch="Fill" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="65"/>
+
+    </Grid>
+</Window>

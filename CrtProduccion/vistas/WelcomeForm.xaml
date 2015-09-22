@@ -1,0 +1,63 @@
+﻿<Window x:Class="CrtProduccion.WelcomeForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CrtProduccion"
+        mc:Ignorable="d"
+        Title="WelcomeForm" Height="700" Width="900" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" WindowState="Maximized" Icon="Image/Control.ico" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <DockPanel>
+            <DockPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="1"/>
+                    <GradientStop Color="#FF95B0BF"/>
+                </LinearGradientBrush>
+            </DockPanel.Background>
+            <Menu  Name="MainMenu"  VerticalAlignment="Top" Height="30" FontSize="14" >
+                <MenuItem Header="Consulta" FontFamily="Verdana" FontSize="14" Click="MenuItem_Click_11">
+                    <MenuItem Header="Opcion 1" FontSize="14"/>
+                    <MenuItem Header="Opcion 2" Click="MenuItem_Click_5"/>
+                    <Separator/>
+                    <MenuItem Header="Opcion 3"/>
+                </MenuItem>
+
+                <MenuItem Header="Proceso" FontFamily="Verdana" FontSize="14">
+
+
+                    <MenuItem Header="NominaDieta" FontSize="14" Click="MenuItem_Click_10"/>
+                    <MenuItem Header="Entrada Combustible" FontSize="14"/>
+                    <MenuItem Header="Salida Combustible" FontSize="14"/>
+                    <MenuItem Header="Entrada Taller" FontSize="14"/>
+                    <MenuItem Header="Salida Taller" FontSize="14"/>
+                    <MenuItem Header="ActividadesEjecutadas" FontSize="14"/>
+
+
+
+                </MenuItem>
+
+                <MenuItem Header="Herramientas" Click="MenuItem_Click" FontFamily="Verdana" FontSize="14">
+                    <MenuItem Header="Seguridad" Click="MenuItem_Click_1"/>
+
+                    <MenuItem Header="Usuario" Click="MenuItem_Click_2" FontSize="14"/>
+                    <MenuItem Header="GrupoUsuario" Click="MenuItem_Click_4" FontSize="14"/>
+                    <MenuItem Header="Asignacion de Grupo" Click="MenuItem_Click_7" FontSize="14"/>
+                    <MenuItem Header="PerfilGrupo" Click="MenuItem_Click_6" FontSize="14"/>
+                    <MenuItem Header="Perfil Usuario" FontSize="14" Click="MenuItem_Click_9"/>
+
+                </MenuItem>
+                <MenuItem Header="Reportes" FontFamily="Verdana" FontSize="14" Click="MenuItem_Click_8"/>
+                <MenuItem Header="Salir" Click="MenuItem_Click_3" FontFamily="Verdana" FontSize="14"/>
+
+
+
+
+            </Menu>
+        </DockPanel>
+
+
+    </Grid>
+</Window>

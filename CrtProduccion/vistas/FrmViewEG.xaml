@@ -1,0 +1,19 @@
+﻿<Window x:Class="CrtProduccion.FrmViewEG"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CrtProduccion"
+        mc:Ignorable="d"
+        Title="View" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" Height="246" Width="319">
+    <Grid>
+        <DataGrid x:Name="dataGrid" Height="145" VerticalAlignment="Top" SelectionChanged="dataGrid_SelectionChanged" Margin="10,10,0,0" HorizontalAlignment="Left" Width="284"/>
+        <Button x:Name="SalirBtn" Margin="240,160,17,0" Click="CerrarBtn_Click" ToolTip="Salir" Height="41" VerticalAlignment="Top">
+            <Image x:Name="run_exit_2_128_png" Height="21" Source="pack://siteoforigin:,,,/Resources/run_exit_2-128.png" Stretch="Fill" Width="30"/>
+        </Button>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="30,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="textBox_TextChanged" Visibility="Hidden"/>
+        <Button x:Name="btnAceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="30,167,0,0" VerticalAlignment="Top" Width="75" Click="btnAceptar_Click"/>
+        <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Left" Margin="140,167,0,0" VerticalAlignment="Top" Width="75"/>
+
+    </Grid>
+</Window>

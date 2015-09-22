@@ -1,0 +1,34 @@
+﻿<Window x:Class="CrtProduccion.FrmPU"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CrtProduccion"
+        mc:Ignorable="d"
+        Title="Permisos User" Height="481" Width="464" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen">
+    <Grid ToolTip="Salir">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150*"/>
+            <RowDefinition Height="217*"/>
+            <RowDefinition Height="89*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black" Offset="1"/>
+                <GradientStop Color="#FF08E1EC"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Image x:Name="UserP_png" Margin="10,0,321,29" Source="pack://siteoforigin:,,,/Resources/UserP.png" Stretch="Fill"/>
+
+        <ComboBox x:Name="CbUsuario" HorizontalAlignment="Left" Margin="142,102,0,0" VerticalAlignment="Top" Width="194" Height="22" SelectionChanged="CbUsuario_SelectionChanged" Loaded="CbUsuario_Loaded"/>
+        <Label x:Name="label" Content="Permisos Usuarios" HorizontalAlignment="Left" Margin="145,49,0,0" VerticalAlignment="Top" FontFamily="Verdana" FontWeight="Bold" Height="25" Width="170" FontSize="14.667"/>
+        <DataGrid x:Name="DgGrupo" SelectionChanged="dataGrid_SelectionChanged" Grid.Row="1"/>
+        <Button x:Name="BtnAceptar" HorizontalAlignment="Left" Margin="161,6,0,0" Grid.Row="2" VerticalAlignment="Top" Width="54" Height="41" Click="BtnAceptar_Click">
+            <Image x:Name="Ok_png" Source="pack://siteoforigin:,,,/Resources/Ok.png" Stretch="Fill" ToolTip="Aceptar" Height="25" Width="35"/>
+        </Button>
+        <Button x:Name="BtnSalir" HorizontalAlignment="Left" Margin="220,6,0,0" Grid.Row="2" VerticalAlignment="Top" Width="54" Height="41" Click="BtnSalir_Click_1">
+            <Image x:Name="Exi_png" Height="32" Source="pack://siteoforigin:,,,/Resources/Exi.png" Stretch="Fill" Width="32"/>
+        </Button>
+
+    </Grid>
+</Window>
