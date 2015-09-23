@@ -77,37 +77,36 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="comunes\AUG.cs" />
+    <Compile Include="comunes\libreria.cs" />
+    <Compile Include="entidades\dmUsuario.cs" />
     <Compile Include="comunes\datamanager.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="vistas\FmrGroup.xaml.cs">
-      <DependentUpon>FmrGroup.xaml</DependentUpon>
+    <Compile Include="vistas\segGrupoAgregarfrm.xaml.cs">
+      <DependentUpon>segGrupoAgregarfrm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="vistas\FrmAUG.xaml.cs">
-      <DependentUpon>FrmAUG.xaml</DependentUpon>
+    <Compile Include="vistas\segGrupoAsignafrm.xaml.cs">
+      <DependentUpon>segGrupoAsignafrm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="vistas\FrmEditGroup.xaml.cs">
-      <DependentUpon>FrmEditGroup.xaml</DependentUpon>
+    <Compile Include="vistas\segGrupofrm.xaml.cs">
+      <DependentUpon>segGrupofrm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="vistas\FrmEditUsuarios.xaml.cs">
-      <DependentUpon>FrmEditUsuarios.xaml</DependentUpon>
+    <Compile Include="vistas\segUsuarioBRWfrm.xaml.cs">
+      <DependentUpon>segUsuarioBRWfrm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="vistas\segLogin.xaml.cs">
-      <DependentUpon>segLogin.xaml</DependentUpon>
+    <Compile Include="vistas\segUsuariofrm.xaml.cs">
+      <DependentUpon>segUsuariofrm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="vistas\FrmPG.xaml.cs">
-      <DependentUpon>FrmPG.xaml</DependentUpon>
+    <Compile Include="vistas\segLoginfrm.xaml.cs">
+      <DependentUpon>segLoginfrm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="vistas\FrmPrueba.xaml.cs">
-      <DependentUpon>FrmPrueba.xaml</DependentUpon>
+    <Compile Include="vistas\segGrupoPerfilfrm.xaml.cs">
+      <DependentUpon>segGrupoPerfilfrm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="vistas\FrmPU.xaml.cs">
-      <DependentUpon>FrmPU.xaml</DependentUpon>
+    <Compile Include="vistas\segUsuarioPerfilfrm.xaml.cs">
+      <DependentUpon>segUsuarioPerfilfrm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="vistas\FrmUsuario.xaml.cs">
-      <DependentUpon>FrmUsuario.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="vistas\FrmViewEG.xaml.cs">
-      <DependentUpon>FrmViewEG.xaml</DependentUpon>
+    <Compile Include="vistas\segGrupoBRWfrm.xaml.cs">
+      <DependentUpon>segGrupoBRWfrm.xaml</DependentUpon>
     </Compile>
     <Compile Include="comunes\IAUG.cs" />
     <Compile Include="comunes\IGrupo.cs" />
@@ -115,8 +114,8 @@
     <Compile Include="comunes\Permiso.cs" />
     <Compile Include="comunes\Usuario.cs" />
     <Compile Include="comunes\utilclass.cs" />
-    <Compile Include="vistas\WelcomeForm.xaml.cs">
-      <DependentUpon>WelcomeForm.xaml</DependentUpon>
+    <Compile Include="vistas\iniciofrm.xaml.cs">
+      <DependentUpon>iniciofrm.xaml</DependentUpon>
     </Compile>
     <Compile Include="vistas\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -129,47 +128,43 @@
       <DependentUpon>dbCtrlServiciosDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="comunes\Group.cs" />
-    <Page Include="vistas\FmrGroup.xaml">
+    <Page Include="vistas\segGrupoAgregarfrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="vistas\FrmAUG.xaml">
+    <Page Include="vistas\segGrupoAsignafrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="vistas\FrmEditGroup.xaml">
+    <Page Include="vistas\segGrupofrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="vistas\FrmEditUsuarios.xaml">
+    <Page Include="vistas\segUsuarioBRWfrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="vistas\segLogin.xaml">
+    <Page Include="vistas\segUsuariofrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="vistas\FrmPG.xaml">
+    <Page Include="vistas\segLoginfrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="vistas\FrmPrueba.xaml">
+    <Page Include="vistas\segGrupoPerfilfrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="vistas\FrmPU.xaml">
+    <Page Include="vistas\segUsuarioPerfilfrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="vistas\FrmUsuario.xaml">
+    <Page Include="vistas\segGrupoBRWfrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="vistas\FrmViewEG.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="vistas\WelcomeForm.xaml">
+    <Page Include="vistas\iniciofrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

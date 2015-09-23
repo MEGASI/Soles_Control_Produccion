@@ -14,8 +14,13 @@ namespace CrtProduccion
 {
     public static class datamanager
     {
-        
-         public static string cadenadeconexion
+        public static SqlConnection ConexionSQL;
+        public static Dictionary<string, tpermiso> permisos = new Dictionary<string, tpermiso>();
+
+        /// <summary>
+        /// <para>Cadena de conexión a la base de datos extraida del archivo App.config.</para>
+        /// </summary>
+        public static string cadenadeconexion
         {
             get
             {
@@ -24,16 +29,13 @@ namespace CrtProduccion
             private set { }
         }
 
-        public static SqlConnection ConexionSQL;
+        public static string loginName { get; private set; }
+        public static int idUsuario { get; private set; }
 
-        public static Dictionary<string, tpermiso> permisos = new Dictionary<string, tpermiso>();
 
-        public static String loginName { get; private set; }
-        public static int IdUsuario { get; private set; }
-
-        public static Boolean ConexionAbrir()
+        public static bool ConexionAbrir()
         {
-            Boolean ret = true;
+            bool ret = true;
             try
             {
                 ConexionSQL = new SqlConnection(cadenadeconexion);
@@ -46,16 +48,16 @@ namespace CrtProduccion
             }
             return ret;
         }
-        // Fin ConexionCerrar
+        // Fin ConexionAbrir
 
-        public static Boolean ConexionCerrar()
+        public static bool ConexionCerrar()
         {
-            Boolean ret = true;
+            bool ret = true;
             try
             {
-                ConexionSQL = new SqlConnection(cadenadeconexion);
-                ConexionSQL.Open();
-            }
+                if (ConexionSQL.State == System.Data.ConnectionState.Open)
+                ConexionSQL.Close();
+             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -84,7 +86,7 @@ namespace CrtProduccion
                     MessageBox.Show(ex.Message);
                     reader = null;
                 }
-                ConexionCerrar();
+                //ConexionCerrar();
             }
             return reader;
         }
@@ -116,20 +118,50 @@ namespace CrtProduccion
         }
         // Fin ConsultaDatos
 
-        public static Boolean ValidarUsuario(String pnombre, String pclave)
-        {
-            Boolean lRet = false;
-            String lpassword = "";
-            int lidUsuario = 0;
 
-            // debe encriptar la clave para eso  concatenar pnombre y pclave
+        public static bool ConsultaNodata(string cmdSQL)
+        {
+            int lret = 0;
 
             if (ConexionAbrir())
             {
-                
+                SqlCommand cmd = new SqlCommand();
+                try
+                {
+                    cmd.Connection = ConexionSQL;
+                    cmd.CommandText = cmdSQL;
+
+                    lret = cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+              
+                }
+                ConexionCerrar();
+            }
+            return (lret>0);
+        }
+        // Fin ConsultaDatos
 
 
 
+        /// <summary>
+        /// <para>Valida el nombre de usuario y la clave, método usado durante el login.</para>
+        /// </summary>
+        /// <param name="pnombre">Es el nombre del usuario utilizado para iniciar seccion en el sistema.</param>
+        /// <param name="pclave">Es la clave del usuario sin encriptar, utilizada para iniciar seccion.</param>
+        /// <returns>retorna un true si el nombre y la clave son correctos.</returns>
+        public static bool ValidarUsuario(string pnombre, string pclave)
+        {
+            bool lRet = false;
+            string lpassword = "";
+            int lidUsuario = 0;
+            string lEncriptPsw = md5(pnombre.Trim() + pclave.Trim());
+            //System.Windows.Clipboard.SetText(lEncriptPsw);
+
+            if (ConexionAbrir())
+            {
                 var dr = ConsultaLeer("Select idUsuario, Clave  from segUsuario where  Nombre='" + pnombre + "'");
                 if (dr != null)
                 {
@@ -138,14 +170,16 @@ namespace CrtProduccion
                         lidUsuario = dr.GetInt32(0);
                         lpassword = dr.GetString(1);
 
-                        // Comparar  con la clave encriptada
-                        if (pclave.Equals(lpassword))
+
+                        if (lEncriptPsw.Equals(lpassword))
                         {
                             lRet = true;
                             // Asigno valor a propiedades de la clase.
                             loginName = pnombre;
-                            IdUsuario = lidUsuario;
-                            cargaPermisos(IdUsuario);
+                            idUsuario = lidUsuario;
+
+                            // Cargo los permisos
+                            cargaPermisos(idUsuario);
                         }
                     }
                 }
@@ -153,7 +187,6 @@ namespace CrtProduccion
             return lRet;
         }
         // Fin validarUsuario 
-
 
         /// <summary>
         /// <para>Carga los permisos a una coleccion de datos para tenerlo disponible de forma local en memoria.</para>
@@ -163,9 +196,9 @@ namespace CrtProduccion
         /// </summary>
         /// <param name="idUsuario">Es el id del usuario que extraemos de la tabla seguridadItem en el login.</param>
         /// <returns>retorna un true si se pudieron cargar los permisos y falso en caso contrario.</returns>
-        public static Boolean cargaPermisos(int idUsuario)
+        public static bool cargaPermisos(int idUsuario)
         {
-            Boolean lret = false;
+            bool lret = false;
             // Asegurarno que hay conexion a SQL y que se puede abrir
             if (ConexionAbrir())
             {
@@ -183,10 +216,10 @@ namespace CrtProduccion
                         // Asigno los valores que trae la consulta a cada uno de los elementos del Diccionario
                         permisos.Add(dr.GetString(4).Trim(),
                                 new tpermiso(dr.GetString(4).Trim(),
-                                             (Boolean)dr.GetSqlBoolean(0),
-                                             (Boolean)dr.GetSqlBoolean(1),
-                                             (Boolean)dr.GetSqlBoolean(2),
-                                             (Boolean)dr.GetSqlBoolean(3)));
+                                             (bool)dr.GetSqlBoolean(0),
+                                             (bool)dr.GetSqlBoolean(1),
+                                             (bool)dr.GetSqlBoolean(2),
+                                             (bool)dr.GetSqlBoolean(3)));
 
                     } //  if (dr.Read())
 
@@ -206,9 +239,9 @@ namespace CrtProduccion
         /// estos estan definidos en la base de datos en la tabla seguridadItem</param>
         /// <param name="tipoPermiso"> puede ser "acceso", "crear","modificar","borrar". </param>         
         /// <returns>retorna un true si es permitido o false cuando es denegado el permiso.</returns>
-        public static Boolean probarPermiso(String idItem, String tipoPermiso)
+        public static bool probarPermiso(string idItem, string tipoPermiso)
         {
-            Boolean lret = false;
+            bool lret = false;
             tpermiso lpermiso = new tpermiso(idItem, false, false, false, false);
 
             if (permisos.ContainsKey(idItem))
@@ -236,6 +269,30 @@ namespace CrtProduccion
             }
 
             return lret;
+        }
+
+
+
+        /// <summary>
+        /// <para>Encripta una cadena de caracteres al formato MD5.</para>
+        /// </summary>
+        /// <param name="Value">Cadena de cualquier longitud que se quiera encriptar.</param>         
+        /// <returns>Cadena de caracteres encriptada en formato MD5</returns>
+        public static string md5(string Value)
+        {
+            System.Security.Cryptography.MD5CryptoServiceProvider x = new System.Security.Cryptography.MD5CryptoServiceProvider();
+            byte[] data = System.Text.Encoding.ASCII.GetBytes(Value);
+            data = x.ComputeHash(data);
+            string ret = "";
+            for (int i = 0; i < data.Length; i++)
+                ret += data[i].ToString("x2").ToLower();
+
+            // Invertir el md5
+            String ret2 = "";
+            for (int i = ret.Length - 1; i >= 0; i--)
+                ret2 = ret2 + ret.Substring(i, 1);
+
+            return ret2;
         }
 
     }

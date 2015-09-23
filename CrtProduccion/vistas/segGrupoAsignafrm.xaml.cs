@@ -17,9 +17,9 @@ using System.Data;
 namespace CrtProduccion
 {
     /// <summary>
-    /// Interaction logic for FrmAUG.xaml
+    /// Interaction logic for segGrupoAsignafrm.xaml
     /// </summary>
-    public partial class FrmAUG : Window
+    public partial class segGrupoAsignafrm : Window
     {
         SqlCommand Cmd = new SqlCommand();
         SqlConnection Cnn = new SqlConnection();
@@ -27,7 +27,7 @@ namespace CrtProduccion
         DataSet ds = new DataSet();
         DataSet dsGrid = new DataSet();
 
-        public FrmAUG()
+        public segGrupoAsignafrm()
         {
             InitializeComponent();
 

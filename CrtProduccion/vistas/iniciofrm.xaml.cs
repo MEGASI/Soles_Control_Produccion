@@ -4,16 +4,16 @@
 namespace CrtProduccion
 {
     /// <summary>
-    /// Interaction logic for WelcomeForm.xaml
+    /// Interaction logic for iniciofrm.xaml
     /// </summary>
-    public partial class WelcomeForm : Window
+    public partial class iniciofrm : Window
     {
 
-        public WelcomeForm()
+        public iniciofrm()
         {
 
             // Controla el acceso al sistema.
-            segLogin dlg = new segLogin();
+            segLoginfrm dlg = new segLoginfrm();
             dlg.ShowDialog();
             if (dlg.DialogResult.HasValue == false)
                 Application.Current.Shutdown();
@@ -60,32 +60,32 @@ namespace CrtProduccion
         #region Opciones de Seguridad
         private void segUsuario_Click(object sender, RoutedEventArgs e)
         {
-            FrmUsuario dlg = new FrmUsuario();
+            segUsuariofrm dlg = new segUsuariofrm();
             dlg.ShowDialog();
         }
 
 
         private void segGrupo_Click(object sender, RoutedEventArgs e)
         {
-            FrmEditGroup dlg = new FrmEditGroup();
+            segGrupofrm dlg = new segGrupofrm();
             dlg.ShowDialog();
         }
 
         private void segAsignaGrupo_Click(object sender, RoutedEventArgs e)
         {
-            FrmAUG dlg = new FrmAUG();
+            segGrupoAsignafrm dlg = new segGrupoAsignafrm();
             dlg.ShowDialog();
         }
 
         private void segPerfilGrupo_Click(object sender, RoutedEventArgs e)
         {
-            FrmPG dlg = new FrmPG();
+            segGrupoPerfilfrm dlg = new segGrupoPerfilfrm();
             dlg.ShowDialog();
         }
 
         private void segPerfilUsuario_Click(object sender, RoutedEventArgs e)
         {
-            FrmPU dlg = new FrmPU();
+            segUsuarioPerfilfrm dlg = new segUsuarioPerfilfrm();
             dlg.ShowDialog();
         }
 

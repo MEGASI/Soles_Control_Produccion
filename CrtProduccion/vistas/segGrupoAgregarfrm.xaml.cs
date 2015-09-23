@@ -15,13 +15,13 @@ using System.Windows.Shapes;
 namespace CrtProduccion
 {
     /// <summary>
-    /// Interaction logic for FmrGroup.xaml
+    /// Interaction logic for segGrupoAgregarfrm.xaml
     /// </summary>
-    public partial class FmrGroup : Window
+    public partial class segGrupoAgregarfrm : Window
     {
         public Permiso sgPermiso;
 
-        public FmrGroup()
+        public segGrupoAgregarfrm()
         {
             InitializeComponent();
 
@@ -62,7 +62,7 @@ namespace CrtProduccion
 
         private void button_Copy_Click_1(object sender, RoutedEventArgs e)
         {
-            FrmEditGroup FG = new FrmEditGroup();
+            segGrupofrm FG = new segGrupofrm();
             FG.Show();
             this.Close();
         }

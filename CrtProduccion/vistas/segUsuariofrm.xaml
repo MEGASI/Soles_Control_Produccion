@@ -1,0 +1,71 @@
+﻿<Window x:Name="FrmEditUsuarios1" x:Class="CrtProduccion.segUsuariofrm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CrtProduccion"
+        mc:Ignorable="d"
+        Title="Usuarios" Height="261" Width="368" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" HorizontalAlignment="Left">
+
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+            <GradientStop Color="Black" Offset="1"/>
+            <GradientStop Color="#FF0BC0C9"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Window.Resources>
+        <Style x:Key="ImageEnabled" TargetType="Image">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.25"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="2,0,0,0" RenderTransformOrigin="0.688,0.486" HorizontalAlignment="Left" Width="356">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="142"/>
+            <ColumnDefinition Width="23*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label x:Name="label1" Content="Editar Usuarios" Margin="21,16,100,0" VerticalAlignment="Top" Grid.ColumnSpan="3" FontFamily="Ve" FontSize="16" FontWeight="Black" Height="29"/>
+
+        <Label x:Name="label_Copy" Content="Nombre" HorizontalAlignment="Left" Margin="4,72,0,0" VerticalAlignment="Top" Width="70" VerticalContentAlignment="Stretch" Height="26" Grid.Column="1"/>
+        <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Height="23" Margin="73,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" Grid.ColumnSpan="2" Grid.Column="1" KeyDown="txtNombre_KeyDown" LostFocus="txtNombre_LostFocus"/>
+        <Button x:Name="btnBuscar" Content="..." Grid.Column="2" HorizontalAlignment="Right" Margin="0,75,69,0" VerticalAlignment="Top" Width="33" Height="25" FontSize="18" Click="btnBuscar_Click" FontWeight="Black" Padding="1,-5,1,0"/>
+
+        <Label x:Name="label_Copy1" Content="Clave" HorizontalAlignment="Left" Margin="5,103,0,0" VerticalAlignment="Top" Width="59" VerticalContentAlignment="Stretch" Height="26" Grid.Column="1"/>
+        <PasswordBox x:Name="txtClave" Height="23" Margin="73,105,65,0" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2" PasswordChanged="txtClave_PasswordChanged" IsEnabled="False"/>
+
+
+        <Button x:Name="btnCancelar" HorizontalAlignment="Left" Margin="1,0,0,27" VerticalAlignment="Bottom" Width="50" RenderTransformOrigin="-0.333,0.727" Height="40" VerticalContentAlignment="Center" FontFamily="Verdana" ToolTip="Cancelar" Grid.Column="1" Click="btnCancelar_Click">
+            <Image x:Name="Cancelar_png" Height="32" Source="../Resources/Cancel.png" Stretch="Fill" Width="32" ToolTip="Cancelar" Style="{StaticResource ImageEnabled}"/>
+        </Button>
+        <Button x:Name="btnNuevo" HorizontalAlignment="Left" Margin="1,0,0,27" VerticalAlignment="Bottom" Width="50" RenderTransformOrigin="-0.333,0.727" Height="40" VerticalContentAlignment="Center" FontFamily="Verdana" ToolTip="Nuevo" Grid.Column="1" Click="btnNuevo_Click">
+            <Image x:Name="nuevo_png" Height="32" Source="../Resources/Create.png" Stretch="Fill" Width="32" ToolTip="Nuevo" Style="{StaticResource ImageEnabled}"/>
+        </Button>
+
+
+        <Button x:Name="btnGuardar" HorizontalAlignment="Left" Margin="56,0,0,27" VerticalAlignment="Bottom" Width="50" RenderTransformOrigin="-0.333,0.727" Height="40" Click="btnGuardar_Click" VerticalContentAlignment="Center" FontFamily="Verdana" ToolTip="Guardar" Grid.Column="1">
+            <Image x:Name="Guardar_png" Height="32" Source="pack://siteoforigin:,,,/Resources/Guardar.png" Stretch="Fill" Width="32" ToolTip="Guardar" Style="{StaticResource ImageEnabled}"/>
+        </Button>
+        <Button x:Name="btnModificar" HorizontalAlignment="Left" Margin="56,0,0,27" VerticalAlignment="Bottom" Width="50" RenderTransformOrigin="-0.333,0.727" Height="40" VerticalContentAlignment="Center" FontFamily="Verdana" ToolTip="Modificar" Grid.Column="1" Click="btnModificar_Click">
+            <Image x:Name="Modificar_png" Height="32" Source="../Resources/EditNote.png" Stretch="Fill" Width="32" ToolTip="Modificar" Style="{StaticResource ImageEnabled}"/>
+        </Button>
+
+
+        <Button x:Name="btnBorrar" Grid.Column="1" HorizontalAlignment="Left" Margin="111,0,0,27" VerticalAlignment="Bottom" Width="50" Click="btnBorrar_Click" VerticalContentAlignment="Center" Height="40" FontFamily="Verdana" Grid.ColumnSpan="2" ToolTip="Borrar">
+            <Image x:Name="Borrar_png" Height="32" Source="pack://siteoforigin:,,,/Resources/Borrar.png" Stretch="Fill" Width="32" ToolTip="Borrar" Style="{StaticResource ImageEnabled}"/>
+        </Button>
+
+
+        <Button x:Name="btnSalir" Grid.Column="2" HorizontalAlignment="Left" Margin="39,0,0,27" VerticalAlignment="Bottom" Width="50" VerticalContentAlignment="Center" Height="40" FontFamily="Verdana" ToolTip="Salir" Click="btnSalir_Click">
+            <Image x:Name="Salir_png" Height="32" Source="../Resources/Salir.png" Stretch="Fill" Width="32" ToolTip="Salir" Style="{StaticResource ImageEnabled}" RenderTransformOrigin="0.688,0.562"/>
+        </Button>
+
+
+    </Grid>
+</Window>

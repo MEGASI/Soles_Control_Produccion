@@ -17,9 +17,9 @@ using System.Windows.Forms;
 namespace CrtProduccion
 {
     /// <summary>
-    /// Interaction logic for FrmViewEG.xaml
+    /// Interaction logic for segGrupoBRWfrm.xaml
     /// </summary>
-    public partial class FrmViewEG : Window
+    public partial class segGrupoBRWfrm : Window
     {
 
         public string Nombre { get; set; }
@@ -33,7 +33,7 @@ namespace CrtProduccion
 
 
 
-        public FrmViewEG()
+        public segGrupoBRWfrm()
         {
             InitializeComponent();
         }

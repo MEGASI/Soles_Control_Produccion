@@ -17,9 +17,9 @@ using System.Data;
 namespace CrtProduccion
 {
     /// <summary>
-    /// Interaction logic for FrmEditGroup.xaml
+    /// Interaction logic for segGrupofrm.xaml
     /// </summary>
-    public partial class FrmEditGroup : Window
+    public partial class segGrupofrm : Window
     {
 
 
@@ -32,11 +32,12 @@ namespace CrtProduccion
         DataSet dsGrid = new DataSet();
         SqlDataReader reader;
 
-        public FrmEditGroup()
+        public segGrupofrm()
         {
 
 
             InitializeComponent();
+            
         }
 
 
@@ -188,7 +189,7 @@ namespace CrtProduccion
 
         private void CargarFormBtn(object sender, RoutedEventArgs e)
         {
-            FrmViewEG f = new FrmViewEG();
+            segGrupoBRWfrm f = new segGrupoBRWfrm();
             if (f.ShowDialog() == DialogResult.HasValue)
             {
                 this.findcodigo(f.ID.ToString());
