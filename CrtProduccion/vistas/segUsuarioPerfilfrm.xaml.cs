@@ -22,28 +22,29 @@ namespace CrtProduccion
     /// </summary>
     public partial class segUsuarioPerfilfrm : Window
     {
-        public segUsuarioPerfilfrm()
+        string idSegItem = "HS0105";
 
-       
+        bool permiteModificar = false;
+        bool permiteCrear = false;
+        bool permiteBorrar = false;
+
+        public segUsuarioPerfilfrm()
         {
+            // Cargar los permisos del usuario para este formulario.
+            permiteModificar = datamanager.probarPermiso(idSegItem, "modificar");
+            permiteCrear = datamanager.probarPermiso(idSegItem, "crear");
+            permiteBorrar = datamanager.probarPermiso(idSegItem, "borrar");
+
             InitializeComponent();
-            SqlCommand Cmd = new SqlCommand();
-            SqlConnection Cnn = new SqlConnection();
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            DataSet ds = new DataSet();
-            DataSet dsGrid1 = new DataSet();
+
+
         }
-        private void BtnSalir_Click(object sender, RoutedEventArgs e)
-        {
-        }
-        private void BtnSalir_Click_1(object sender, RoutedEventArgs e)
-        {
-            this.Hide();
-        }
+
         private void CbUsuario_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             this.llenaGridPU();
         }
+
         private void CbUsuario_Loaded(object sender, RoutedEventArgs e)
         {
             SqlDataReader reader =
@@ -67,26 +68,33 @@ namespace CrtProduccion
 
             if (CbUsuario.SelectedValue != null)
             {
+                
                 int selectedValue = ((ComboBoxItem)CbUsuario.SelectedItem).intValue;
-
                 dsGrid = datamanager.ConsultaDatos(" exec segPerfilUsuario " + selectedValue.ToString());
 
-                DgGrupo.ItemsSource = dsGrid.Tables[0].DefaultView;
-                DgGrupo.ItemsSource = dsGrid.Tables[0].DefaultView;
-                DgGrupo.Columns[0].Visibility = System.Windows.Visibility.Hidden;
-                DgGrupo.Columns[6].Visibility = System.Windows.Visibility.Hidden;
-                DgGrupo.Columns[7].Visibility = System.Windows.Visibility.Hidden;
-                DgGrupo.Columns[8].Visibility = System.Windows.Visibility.Hidden;
-                DgGrupo.Columns[9].Visibility = System.Windows.Visibility.Hidden;
-                DgGrupo.CanUserAddRows = false;
-                DgGrupo.Columns[0].Width = 150;
-                DgGrupo.Columns[0].IsReadOnly = true;
-                DgGrupo.Columns[2].Header = "Acceso";
-                DgGrupo.Columns[3].Header = "Crear";
-                DgGrupo.Columns[4].Header = "Modificar";
-                DgGrupo.Columns[5].Header = "Eliminar";
+                DgPermisos.IsReadOnly = !permiteModificar;
+
+                DgPermisos.ItemsSource = dsGrid.Tables[0].DefaultView;
+                DgPermisos.Columns[0].Visibility = System.Windows.Visibility.Hidden;
+                DgPermisos.Columns[6].Visibility = System.Windows.Visibility.Hidden;
+                DgPermisos.Columns[7].Visibility = System.Windows.Visibility.Hidden;
+                DgPermisos.Columns[8].Visibility = System.Windows.Visibility.Hidden;
+                DgPermisos.Columns[9].Visibility = System.Windows.Visibility.Hidden;
+                DgPermisos.Columns[1].Width = 193;
+                DgPermisos.Columns[1].IsReadOnly = true;
+                DgPermisos.Columns[2].Header = "Acceso";
+                DgPermisos.Columns[2].Width = 60;
+                DgPermisos.Columns[3].Header = "Crear";
+                DgPermisos.Columns[3].Width = 60;
+                DgPermisos.Columns[4].Header = "Modificar";
+                DgPermisos.Columns[4].Width = 60;
+                DgPermisos.Columns[5].Header = "Eliminar";
+                DgPermisos.Columns[5].Width = 60;
 
                 datamanager.ConexionCerrar();
+
+                btnAceptar.IsEnabled = false;
+                btnAceptar_png.IsEnabled = false;
             }
         }
         private void guardarPU()
@@ -118,15 +126,15 @@ namespace CrtProduccion
                     int IdUsuario = ((ComboBoxItem)CbUsuario.SelectedItem).intValue;
 
                     // Recorrer el DataGrid por completo
-                    for (int i = 0; i < DgGrupo.Items.Count; i++)
+                    for (int i = 0; i < DgPermisos.Items.Count; i++)
                     {
 
                         // Extrarer valor de cada fila (celda) del datagrid y ponerlo en una variable
-                        var idSegitem = (DgGrupo.Items[i] as System.Data.DataRowView).Row.ItemArray[0];
-                        var acceso = (DgGrupo.Items[i] as System.Data.DataRowView).Row.ItemArray[2];
-                        var crear = (DgGrupo.Items[i] as System.Data.DataRowView).Row.ItemArray[3];
-                        var modificar = (DgGrupo.Items[i] as System.Data.DataRowView).Row.ItemArray[4];
-                        var borrar = (DgGrupo.Items[i] as System.Data.DataRowView).Row.ItemArray[5];
+                        var idSegitem = (DgPermisos.Items[i] as System.Data.DataRowView).Row.ItemArray[0];
+                        var acceso = (DgPermisos.Items[i] as System.Data.DataRowView).Row.ItemArray[2];
+                        var crear = (DgPermisos.Items[i] as System.Data.DataRowView).Row.ItemArray[3];
+                        var modificar = (DgPermisos.Items[i] as System.Data.DataRowView).Row.ItemArray[4];
+                        var borrar = (DgPermisos.Items[i] as System.Data.DataRowView).Row.ItemArray[5];
 
                         // Asignar los valores de las variables a los parametros del procedure SQL
                         Cmd1.Parameters["@idUsuario"].Value = IdUsuario;
@@ -138,6 +146,11 @@ namespace CrtProduccion
 
                         // Ejecutar el procedure SQL
                         Cmd1.ExecuteNonQuery();
+
+                        // Actualizar los permisos actuales del usuario
+                        if (IdUsuario == datamanager.idUsuario) {
+                            datamanager.cargaPermisos(IdUsuario);
+                        }
                     }
 
                     datamanager.ConexionCerrar();
@@ -151,15 +164,23 @@ namespace CrtProduccion
             }
 
         }
-        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
 
-        private void BtnAceptar_Click(object sender, RoutedEventArgs e)
+
+        private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
             this.guardarPU();
         }
+
+        private void btnSalir_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void DgPermisos_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            btnAceptar.IsEnabled = permiteModificar;
+            btnAceptar_png.IsEnabled = btnAceptar.IsEnabled;
+        }
     }
-}
+ }
 

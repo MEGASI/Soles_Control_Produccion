@@ -26,7 +26,7 @@ namespace CrtProduccion
                     if (dlg.DialogResult.Value != false)
                         MessageBox.Show("No tiene acceso al sistema.", "Seguridad", MessageBoxButton.OK, MessageBoxImage.Error);
 
-                    Close();
+                    Application.Current.Shutdown();
                 }
 
                 // Iniciar todos los componentes del menu principal
@@ -81,19 +81,25 @@ namespace CrtProduccion
         {
             segGrupoPerfilfrm dlg = new segGrupoPerfilfrm();
             dlg.ShowDialog();
+
+            // Actualiza los estados de las opciones por si cambian los permisos.
+            opcionesEstado();
         }
 
         private void segPerfilUsuario_Click(object sender, RoutedEventArgs e)
         {
             segUsuarioPerfilfrm dlg = new segUsuarioPerfilfrm();
             dlg.ShowDialog();
+
+            // Actualiza los estados de las opciones por si cambian los permisos.
+            opcionesEstado();
         }
 
         private void mainSalir_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Seguro que Desea Salir ?", "Salir",
                 MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.No)
-                Close();
+                Application.Current.Shutdown();
         } 
         #endregion
 

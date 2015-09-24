@@ -34,10 +34,10 @@ namespace CrtProduccion
             }
         }
 
-        private void btnCancelar_Click_1(object sender, RoutedEventArgs e)
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Seguro que Desea Salir ?", "Salir", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.No)
-             {
+            {
                 DialogResult = false;
                 //Application.Current.Shutdown();
             }

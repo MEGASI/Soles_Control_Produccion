@@ -4,29 +4,86 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CrtProduccion"
-        mc:Ignorable="d"
-        Title="Grupo Usuario" Height="351" Width="519" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" Closed="Window_Closed" Icon="pack://siteoforigin:,,,/Resources/Grupo.ico">
-    <Grid RenderTransformOrigin="0.431,0.484">
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black" Offset="1"/>
-                <GradientStop Color="#FF51FFF7"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-        <DataGrid x:Name="dataGrid" Margin="32,88,63,64" SelectionChanged="dataGrid_SelectionChanged"/>
-        <Button x:Name="button" Content="Cargar" 
-                HorizontalAlignment="Left" 
-                Margin="486,48,0,0" 
-                VerticalAlignment="Top" Width="80" Height="30" Click="button_Click_1" RenderTransformOrigin="-0.975,1.2" Visibility="Hidden"/>
-        <ComboBox x:Name="cbGrupo" Margin="144,56,63,0" VerticalAlignment="Top" RenderTransformOrigin="0.501,0.447" Height="27" SelectionChanged="comboBox_SelectionChanged" Loaded="cbGrupo_Loaded"/>
-        <Button x:Name="guardarBtn" HorizontalAlignment="Left" Margin="183,0,0,21" VerticalAlignment="Bottom" Width="50" Click="btnGuardar_Click" Height="38" ToolTip="Aceptar">
-            <Image x:Name="Guardar_png" Height="32" Source="pack://siteoforigin:,,,/Resources/Guardar.png" Stretch="Fill" Width="32"/>
-        </Button>
-        <Label x:Name="label" Content="Grupo Usuario" HorizontalAlignment="Left" Margin="28,56,0,0" VerticalAlignment="Top" Width="117" FontFamily="Verdana" FontSize="13" FontWeight="Black"/>
-        <Button x:Name="button1" HorizontalAlignment="Left" Margin="242,0,0,21" VerticalAlignment="Bottom" Width="50" Click="button1_Click" Height="38" ToolTip="Salir">
-            <Image x:Name="Exi_png" Height="32" Source="pack://siteoforigin:,,,/Resources/Exi.png" Stretch="Fill" Width="32" VerticalAlignment="Bottom"/>
-        </Button>
-        <Image x:Name="GroupU_png" Margin="12,8,0,0" Source="pack://siteoforigin:,,,/Resources/GroupU.png" Stretch="Fill" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="65"/>
+        mc:Ignorable="d" Height="469"  Width="474" 
+        Title="Asignar Usuario a Grupo"
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="ToolWindow" >
 
-    </Grid>
+    <Window.Background>
+        <RadialGradientBrush>
+            <GradientStop Color="Black" Offset="0"/>
+            <GradientStop Color="#FF14DABF" Offset="1"/>
+        </RadialGradientBrush>
+    </Window.Background>
+    
+    <Window.Resources>
+        <Style x:Key="ImageEnabled" TargetType="Image">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.25"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <StackPanel Orientation="Vertical">
+
+        <StackPanel  Orientation="Horizontal" Height="100" Margin="8,8,8,0">
+            <Image x:Name="GroupU_png" 
+               Source="pack://siteoforigin:,,,/Resources/GroupU.png"/>
+
+            <Label x:Name="lblTitulo" 
+        		Content="Asignación de Grupo" 
+        		VerticalAlignment="Center"
+        		FontFamily="Verdana" FontSize="16" FontWeight="Bold"
+                Margin="45,0,0,0"/>
+        </StackPanel>
+
+        <StackPanel  Orientation="Horizontal" Height="28" Margin="70,0,8,0">
+            <Label x:Name="label" Content="Grupo Usuario" 
+                    Width="117" FontFamily="Verdana" 
+                   FontSize="13" />
+            
+            <ComboBox x:Name="cbGrupo"  
+                      Loaded="cbGrupo_Loaded"
+                      SelectionChanged="comboBox_SelectionChanged" 
+                      FontFamily="Verdana" ForceCursor="True"
+                      Height="24" Width="200" FontSize="13"/>
+        </StackPanel>
+
+        <DockPanel  Height="228" Margin="8,10,8,0">
+            <DataGrid x:Name="dataGrid"
+                      CanUserResizeColumns="False" 
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      CanUserResizeRows="False"
+                      CanUserSortColumns="False"
+                       Margin="0" CellEditEnding="dataGrid_CellEditEnding" />
+        </DockPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="8">
+
+            <Button x:Name="btnAceptar" 
+                    Height="38" Width="100" 
+                    Margin="0,0,4,0"
+                    ToolTip="Aceptar"
+                    Click="btnAceptar_Click" >
+
+                <Image x:Name="btnAceptar_png"
+                       Source="pack://siteoforigin:,,,/Resources/ok.png" 
+                       Width="38"
+                       Style="{StaticResource ImageEnabled}"/>
+            </Button>
+
+            <Button x:Name="btnSalir"  ToolTip="Salir" 
+                    Height="38" Width="100" 
+                    Margin="4,0,0,0" Click="btnSalir_Click">
+                <Image x:Name="btnSalir_png"
+                       Source="pack://siteoforigin:,,,/Resources/Salir.png" 
+                       Width="38" VerticalAlignment="Bottom"/>
+            </Button>
+            
+        </StackPanel>
+
+    </StackPanel>
 </Window>

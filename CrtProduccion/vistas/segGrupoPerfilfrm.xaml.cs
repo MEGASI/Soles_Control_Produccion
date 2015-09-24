@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
 
@@ -21,44 +11,45 @@ namespace CrtProduccion
     /// </summary>
     public partial class segGrupoPerfilfrm : Window
     {
+        string idSegItem = "HS0104";
+
+        bool permiteModificar = false;
+        bool permiteCrear = false;
+        bool permiteBorrar = false;
+
         public segGrupoPerfilfrm()
         {
-            SqlCommand Cmd = new SqlCommand();
-            SqlConnection Cnn = new SqlConnection();
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            DataSet ds = new DataSet();
-            DataSet dsGrid1 = new DataSet();
+
+            // Cargar los permisos del usuario para este formulario.
+            permiteModificar = datamanager.probarPermiso(idSegItem, "modificar");
+            permiteCrear = datamanager.probarPermiso(idSegItem, "crear");
+            permiteBorrar = datamanager.probarPermiso(idSegItem, "borrar");
 
             InitializeComponent();
         }
 
-        private void frame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
-        {
-        }
-
+ 
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             this.llenaGridPG();
         }
 
-        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        private void btnSalir_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
+        
 
-
-
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Hide();
-        }
-        private void AceptarBtn_Click_1(object sender, RoutedEventArgs e)
+        private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
             this.guardarPG();
         }
+        
+
         private void CbGrupo_Loaded(object sender, RoutedEventArgs e)
         {
-            SqlDataReader reader =
+           SqlDataReader reader =
            datamanager.ConsultaLeer("select nombre, idGrupo from segGrupo");
 
             while (reader != null && reader.Read())
@@ -69,6 +60,9 @@ namespace CrtProduccion
             CbGrupo.SelectedIndex = 0;
             datamanager.ConexionCerrar();
         }
+
+
+
         public void llenaGridPG()
         {
 
@@ -79,8 +73,9 @@ namespace CrtProduccion
             {
 
                 int selectedValue = ((ComboBoxItem)CbGrupo.SelectedItem).intValue;
-
                 dsGrid = datamanager.ConsultaDatos("exec[segPerfilGrupo] " + selectedValue.ToString());
+
+                DgPermisos.IsReadOnly = !permiteModificar;
 
                 DgPermisos.ItemsSource = dsGrid.Tables[0].DefaultView;
                 DgPermisos.Columns[0].Visibility = System.Windows.Visibility.Hidden;
@@ -88,20 +83,25 @@ namespace CrtProduccion
                 DgPermisos.Columns[7].Visibility = System.Windows.Visibility.Hidden;
                 DgPermisos.Columns[8].Visibility = System.Windows.Visibility.Hidden;
                 DgPermisos.Columns[9].Visibility = System.Windows.Visibility.Hidden;
-                DgPermisos.CanUserAddRows = false;
-                DgPermisos.Columns[0].Width = 150;
-                DgPermisos.Columns[0].IsReadOnly = true;
+                DgPermisos.Columns[1].Width = 193;
+                DgPermisos.Columns[1].IsReadOnly = true;
                 DgPermisos.Columns[2].Header = "Acceso";
+                DgPermisos.Columns[2].Width = 60;
                 DgPermisos.Columns[3].Header = "Crear";
+                DgPermisos.Columns[3].Width = 60;
                 DgPermisos.Columns[4].Header = "Modificar";
+                DgPermisos.Columns[4].Width = 60;
                 DgPermisos.Columns[5].Header = "Eliminar";
+                DgPermisos.Columns[5].Width = 60;
 
                 datamanager.ConexionCerrar();
+
+                btnAceptar.IsEnabled = false;
+                btnAceptar_png.IsEnabled = false;
             }
         }
         private void guardarPG()
         {
-
             try
             {
                 // Recorriendo el DgGrid y  Guardando
@@ -131,6 +131,7 @@ namespace CrtProduccion
 
                         // Extrarer valor de cada fila (celda) del datagrid y ponerlo en una variable
                         var idSegitem = (DgPermisos.Items[i] as System.Data.DataRowView).Row.ItemArray[0];
+
                         var acceso = (DgPermisos.Items[i] as System.Data.DataRowView).Row.ItemArray[2];
                         var crear = (DgPermisos.Items[i] as System.Data.DataRowView).Row.ItemArray[3];
                         var modificar = (DgPermisos.Items[i] as System.Data.DataRowView).Row.ItemArray[4];
@@ -147,10 +148,14 @@ namespace CrtProduccion
                         // Ejecutar el procedure SQL
                         Cmd1.ExecuteNonQuery();
 
+                        // Cagar los permisos del usuario actual
+                        // Actualizar los permisos actuales del usuario
                     }
                     datamanager.ConexionCerrar();
                     MessageBox.Show(" Guardado", "Guardando", MessageBoxButton.OK, MessageBoxImage.Information);
                     this.llenaGridPG();
+                    datamanager.cargaPermisos(datamanager.idUsuario);
+
                 }
             }
             catch (Exception ex)
@@ -158,8 +163,14 @@ namespace CrtProduccion
                 MessageBox.Show(ex.Message.ToString(), "Error");
             }
         }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+
+       
+        private void DgPermisos_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
+            btnAceptar.IsEnabled = permiteModificar;
+            btnAceptar_png.IsEnabled = btnAceptar.IsEnabled;
         }
+
+       
     }
 }

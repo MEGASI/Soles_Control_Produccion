@@ -10,6 +10,11 @@ namespace CrtProduccion
     {
 
         entidades.dmUsuario regUsuario = new entidades.dmUsuario();
+        string idSegItem = "HS0101";
+
+        bool permiteModificar=false; 
+        bool permiteCrear=false;
+        bool permiteBorrar=false;
 
         private string _modalidad = "";
 
@@ -21,9 +26,12 @@ namespace CrtProduccion
                 if (_modalidad != value) {
                     if (value == "CREAR" || value == "MODIFICAR") {
                         btnBorrar.IsEnabled = false;
+                        btnBorrar_png.IsEnabled = false;
                         btnSalir.IsEnabled = false;
+                        btnSalir_png.IsEnabled = false;
                         btnBuscar.IsEnabled = false;
 
+                        
                         btnNuevo.Visibility = Visibility.Hidden;
                         btnModificar.Visibility = Visibility.Hidden;
                         
@@ -39,8 +47,11 @@ namespace CrtProduccion
 
                     if (value == "CONSULTAR")
                     {
-                        btnBorrar.IsEnabled = true;
+                        btnBorrar.IsEnabled = true && permiteBorrar;
+                        btnBorrar_png.IsEnabled = btnBorrar.IsEnabled;
+
                         btnSalir.IsEnabled = true;
+                        btnSalir_png.IsEnabled = true;
                         btnBuscar.IsEnabled = true;
 
                         btnNuevo.Visibility = Visibility.Visible;
@@ -57,16 +68,32 @@ namespace CrtProduccion
             }
         }
 
+
         public segUsuariofrm()
         {
+
+            // Cargar los permisos del usuario para este formulario.
+            permiteModificar = datamanager.probarPermiso(idSegItem, "modificar");
+            permiteCrear = datamanager.probarPermiso(idSegItem, "crear");
+            permiteBorrar = datamanager.probarPermiso(idSegItem, "borrar");
+
             InitializeComponent();
-
-
+            
             regUsuario.buscarUltimo();
             mostrar();
 
+            // Operaciones permitidas en este formulario.
+            // Crear
+            btnNuevo.IsEnabled = permiteCrear;
+            btnNuevo_png.IsEnabled = btnNuevo.IsEnabled;
+            // Modificar
+            btnModificar.IsEnabled = permiteModificar;
+            btnModificar_png.IsEnabled = btnModificar.IsEnabled;
+            // Borrar
+            btnBorrar.IsEnabled = permiteBorrar;
+            btnBorrar_png.IsEnabled = btnBorrar.IsEnabled;
 
-            if (regUsuario.fld_idusuario == 0)
+            if (regUsuario.fld_idusuario == 0 && permiteCrear)
                 modalidad = "CREAR";
             else
                 modalidad = "CONSULTAR";
@@ -117,8 +144,7 @@ namespace CrtProduccion
                MessageBox.Show("Información del usuario fue almacenada.", "Guardar", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
-
-        
+                
 
         private void btnBorrar_Click(object sender, RoutedEventArgs e)
         {
@@ -140,7 +166,6 @@ namespace CrtProduccion
 
             }
         }
-
 
 
         private void btnSalir_Click(object sender, RoutedEventArgs e)
@@ -174,8 +199,6 @@ namespace CrtProduccion
                 regUsuario.fld_cambiopsw = true;
             }
         }
-
-   
 
         private void txtNombre_LostFocus(object sender, RoutedEventArgs e)
         {

@@ -41,9 +41,9 @@
                         <MenuItem x:Name="segUsuario" Header="Usuario" FontSize="14" Click="segUsuario_Click"/>
                         <MenuItem x:Name="segGrupo" Header="GrupoUsuario" FontSize="14" Click="segGrupo_Click"/>
                         <Separator/>
-                        <MenuItem x:Name="segAsignaGrupo" Header="Asignacion de Grupo" FontSize="14" Click="segAsignaGrupo_Click"/>
+                        <MenuItem x:Name="segAsignaGrupo" Header="Asignar Usuario a Grupo" FontSize="14" Click="segAsignaGrupo_Click"/>
                         <Separator/>
-                        <MenuItem x:Name="segPerfilGrupo" Header="PerfilGrupo" FontSize="14" Click="segPerfilGrupo_Click"/>
+                        <MenuItem x:Name="segPerfilGrupo" Header="Perfil Grupo de Usuarios" FontSize="14" Click="segPerfilGrupo_Click"/>
                         <MenuItem x:Name="segPerfilUsuario" Header="Perfil Usuario" FontSize="14" Click="segPerfilUsuario_Click"/>
                     </MenuItem>
                 </MenuItem>

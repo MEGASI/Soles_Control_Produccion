@@ -208,6 +208,7 @@ namespace CrtProduccion
                 // Si el datareader se creo
                 if (dr != null)
                 {
+                    permisos.Clear();
                     lret = dr.HasRows;
 
                     // Si el dataReader tiene un registro

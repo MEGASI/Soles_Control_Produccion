@@ -45,25 +45,23 @@
             <Image x:Name="Cancelar_png" Height="32" Source="../Resources/Cancel.png" Stretch="Fill" Width="32" ToolTip="Cancelar" Style="{StaticResource ImageEnabled}"/>
         </Button>
         <Button x:Name="btnNuevo" HorizontalAlignment="Left" Margin="1,0,0,27" VerticalAlignment="Bottom" Width="50" RenderTransformOrigin="-0.333,0.727" Height="40" VerticalContentAlignment="Center" FontFamily="Verdana" ToolTip="Nuevo" Grid.Column="1" Click="btnNuevo_Click">
-            <Image x:Name="nuevo_png" Height="32" Source="../Resources/Create.png" Stretch="Fill" Width="32" ToolTip="Nuevo" Style="{StaticResource ImageEnabled}"/>
+            <Image x:Name="btnNuevo_png" Height="32" Source="../Resources/Create.png" Stretch="Fill" Width="32" ToolTip="Nuevo" Style="{StaticResource ImageEnabled}"/>
         </Button>
 
 
         <Button x:Name="btnGuardar" HorizontalAlignment="Left" Margin="56,0,0,27" VerticalAlignment="Bottom" Width="50" RenderTransformOrigin="-0.333,0.727" Height="40" Click="btnGuardar_Click" VerticalContentAlignment="Center" FontFamily="Verdana" ToolTip="Guardar" Grid.Column="1">
-            <Image x:Name="Guardar_png" Height="32" Source="pack://siteoforigin:,,,/Resources/Guardar.png" Stretch="Fill" Width="32" ToolTip="Guardar" Style="{StaticResource ImageEnabled}"/>
+            <Image x:Name="btnGuardar_png" Height="32" Source="pack://siteoforigin:,,,/Resources/Guardar.png" Stretch="Fill" Width="32" ToolTip="Guardar" Style="{StaticResource ImageEnabled}"/>
         </Button>
         <Button x:Name="btnModificar" HorizontalAlignment="Left" Margin="56,0,0,27" VerticalAlignment="Bottom" Width="50" RenderTransformOrigin="-0.333,0.727" Height="40" VerticalContentAlignment="Center" FontFamily="Verdana" ToolTip="Modificar" Grid.Column="1" Click="btnModificar_Click">
-            <Image x:Name="Modificar_png" Height="32" Source="../Resources/EditNote.png" Stretch="Fill" Width="32" ToolTip="Modificar" Style="{StaticResource ImageEnabled}"/>
+            <Image x:Name="btnModificar_png" Height="32" Source="../Resources/EditNote.png" Stretch="Fill" Width="32" ToolTip="Modificar" Style="{StaticResource ImageEnabled}"/>
         </Button>
 
 
         <Button x:Name="btnBorrar" Grid.Column="1" HorizontalAlignment="Left" Margin="111,0,0,27" VerticalAlignment="Bottom" Width="50" Click="btnBorrar_Click" VerticalContentAlignment="Center" Height="40" FontFamily="Verdana" Grid.ColumnSpan="2" ToolTip="Borrar">
-            <Image x:Name="Borrar_png" Height="32" Source="pack://siteoforigin:,,,/Resources/Borrar.png" Stretch="Fill" Width="32" ToolTip="Borrar" Style="{StaticResource ImageEnabled}"/>
+            <Image x:Name="btnBorrar_png" Height="32" Source="pack://siteoforigin:,,,/Resources/Borrar.png" Stretch="Fill" Width="32" ToolTip="Borrar" Style="{StaticResource ImageEnabled}"/>
         </Button>
-
-
         <Button x:Name="btnSalir" Grid.Column="2" HorizontalAlignment="Left" Margin="39,0,0,27" VerticalAlignment="Bottom" Width="50" VerticalContentAlignment="Center" Height="40" FontFamily="Verdana" ToolTip="Salir" Click="btnSalir_Click">
-            <Image x:Name="Salir_png" Height="32" Source="../Resources/Salir.png" Stretch="Fill" Width="32" ToolTip="Salir" Style="{StaticResource ImageEnabled}" RenderTransformOrigin="0.688,0.562"/>
+            <Image x:Name="btnSalir_png" Height="32" Source="../Resources/Salir.png" Stretch="Fill" Width="32" ToolTip="Salir" Style="{StaticResource ImageEnabled}" RenderTransformOrigin="0.688,0.562"/>
         </Button>
 
 

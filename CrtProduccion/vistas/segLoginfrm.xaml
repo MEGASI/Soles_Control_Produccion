@@ -5,32 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CrtProduccion"
         mc:Ignorable="d"
-        Title="Login" Height="226" Width="354" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
-    
-    <Grid RenderTransformOrigin="0.365,0.566" Margin="0,-1,0,1">
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black" Offset="1"/>
-                <GradientStop Color="#FF1FABE0"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+        Title="Login" Height="226" Width="374" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
 
-        <Image x:Name="Log_png" Margin="10,10,272,127" Source="pack://siteoforigin:,,,/Resources/Log.png" Stretch="Fill"/>
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="DarkBlue"  Offset="1"/>
+            <GradientStop Color="White"  />
+        </LinearGradientBrush>
+    </Window.Background>
 
-        <Label x:Name="label" Content="Usuario" HorizontalAlignment="Left" Margin="92,33,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <TextBox x:Name="UsuarioT" HorizontalAlignment="Left" Height="23" Margin="162,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
-        <Label x:Name="label_Copy" Content="Clave" HorizontalAlignment="Left" Margin="98,85,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <PasswordBox x:Name="passwordT" HorizontalAlignment="Left" Height="23" Margin="162,83,0,0" VerticalAlignment="Top" Width="120"/>
-        
-       
-        <Button x:Name="btnAceptar" HorizontalAlignment="Left" Margin="165,126,0,0" VerticalAlignment="Top" Width="45" Height="34" Click="btnAceptar_Click">
-            <Image x:Name="Ok_png" Height="24" Source="pack://siteoforigin:,,,/Resources/Ok.png" Stretch="Fill" Width="25"/>
-        </Button>
+    <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" >
 
-        <Button x:Name="btnCancelar" HorizontalAlignment="Left" Margin="217,125,0,0" VerticalAlignment="Top" Width="45" Height="34" Click="btnCancelar_Click_1">
-            <Image x:Name="Delete_png" Height="32" Source="pack://siteoforigin:,,,/Resources/Delete.png" Stretch="Fill" Width="32"/>
-        </Button>
+        <StackPanel Width="70" Margin="10">
+            <Image x:Name="Log_png"  Source="pack://siteoforigin:,,,/Resources/Log.png" />
+        </StackPanel>
 
-    </Grid>
+        <StackPanel Margin="20,40,0,10">
+            <StackPanel  Orientation="Horizontal">
+                <Label x:Name="lblUsuario" Content="Usuario"  FontWeight="Bold" Width="70"/>
+                <TextBox x:Name="UsuarioT" Height="23" Width="150"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,8,0,25">
+                <Label x:Name="lblClave" Content="Clave"  FontWeight="Bold" Width="70" />
+                <PasswordBox x:Name="passwordT"  Height="23" Width="120"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                
+                <Button x:Name="btnAceptar" Margin="0,0,10,0" 
+                        Width="60" Height="45" Click="btnAceptar_Click">
+                    
+                    <Image x:Name="Ok_png"  Source="pack://siteoforigin:,,,/Resources/Ok.png" 
+                           Height="38" Width="38"/>
+                </Button>
+
+                <Button x:Name="btnCancelar" Margin="10,0,0,0" 
+                        Width="60" Height="45" Click="btnCancelar_Click">
+                    
+                    <Image x:Name="Delete_png" Source="pack://siteoforigin:,,,/Resources/Delete.png"
+                            Height="38" Width="38"/>
+                </Button>
+            </StackPanel>
+            
+        </StackPanel>
+
+    </StackPanel>
 </Window>

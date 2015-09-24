@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
 
@@ -21,63 +11,31 @@ namespace CrtProduccion
     /// </summary>
     public partial class segGrupoAsignafrm : Window
     {
-        SqlCommand Cmd = new SqlCommand();
-        SqlConnection Cnn = new SqlConnection();
-        SqlDataAdapter adapter = new SqlDataAdapter();
-        DataSet ds = new DataSet();
-        DataSet dsGrid = new DataSet();
+
+        string idSegItem = "HS0103";
+
+        bool permiteModificar = false;
+        bool permiteCrear = false;
+        bool permiteBorrar = false;
 
         public segGrupoAsignafrm()
         {
+
+            // Cargar los permisos del usuario para este formulario.
+            permiteModificar = datamanager.probarPermiso(idSegItem, "modificar");
+            permiteCrear = datamanager.probarPermiso(idSegItem, "crear");
+            permiteBorrar = datamanager.probarPermiso(idSegItem, "borrar");
+
             InitializeComponent();
 
         }
-
-        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-        }
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-            this.llenaGrid();
-
-        }
-        private void btnGuardar_Click(object sender, RoutedEventArgs e)
+ 
+       private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
 
             this.guardar();     
         }
 
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            this.Hide();
-        }
-
-
-        private void idUT_TextChanged(object sender, TextChangedEventArgs e)
-        {
-        }
-
-
-        private void Miembro_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, RoutedEventArgs e)
-        {
-          
-        }
-
-        private void button3_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
 
         private void cbGrupo_Loaded(object sender, RoutedEventArgs e)
         {
@@ -102,11 +60,9 @@ namespace CrtProduccion
         public void llenaGrid()
         {
 
-
-
-
+            DataSet dsGrid = new DataSet();
             dsGrid.Clear();
-
+       
             if (cbGrupo.SelectedValue != null)
             {
 
@@ -114,12 +70,14 @@ namespace CrtProduccion
 
                 dsGrid = datamanager.ConsultaDatos("exec dbo.[segGrupoMiembro] " + selectedValue.ToString());
 
+                dataGrid.IsReadOnly = !permiteModificar;
+
                 dataGrid.ItemsSource = dsGrid.Tables[0].DefaultView;
                 dataGrid.Columns[2].Visibility = System.Windows.Visibility.Hidden;
                 dataGrid.Columns[3].Visibility = System.Windows.Visibility.Hidden;
                 dataGrid.Columns[4].Visibility = System.Windows.Visibility.Hidden;
-                dataGrid.CanUserAddRows = false;
-                dataGrid.Columns[0].Width = 150;
+             
+                dataGrid.Columns[0].Width = 250;
                 dataGrid.Columns[0].IsReadOnly = true;
                 dataGrid.Columns[0].Header = "Usuario";
                 dataGrid.Columns[1].Header = "Miembro";
@@ -127,6 +85,8 @@ namespace CrtProduccion
                 datamanager.ConexionCerrar();
             }
 
+            btnAceptar.IsEnabled = false;
+            btnAceptar_png.IsEnabled = false;
         }
 
         private void guardar()
@@ -138,9 +98,7 @@ namespace CrtProduccion
                 if (datamanager.ConexionAbrir())
 
                 {
-                
-
-                    SqlCommand Cmd1 = new SqlCommand();
+                   SqlCommand Cmd1 = new SqlCommand();
 
                     Cmd1.Connection = datamanager.ConexionSQL;
                     Cmd1.CommandText = "dbo.segMiembroRUD";
@@ -181,24 +139,19 @@ namespace CrtProduccion
                 ex.Message.ToString();
                 MessageBox.Show("Error Al Guargar", "Error");
             }
-
             
         }
 
-        private void idGT_TextChanged(object sender, TextChangedEventArgs e)
-        {
 
+        private void btnSalir_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
 
-        private void Salirbtn_Click(object sender, RoutedEventArgs e)
+        private void dataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-
-            this.Hide();
-        }
-
-        private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            this.Hide();
+            btnAceptar.IsEnabled = permiteModificar;
+            btnAceptar_png.IsEnabled = btnAceptar.IsEnabled;
         }
     }
 }
