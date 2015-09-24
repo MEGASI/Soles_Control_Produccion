@@ -186,6 +186,8 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </Content>
+    <Resource Include="bin\Debug\Resources\Cancelar02.png" />
+    <Resource Include="Resources\Cancelar02.png" />
     <Content Include="Resources\LLAVE.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -285,11 +287,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Create.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\Delete.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

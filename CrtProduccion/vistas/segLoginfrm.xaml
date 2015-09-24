@@ -44,7 +44,7 @@
                 <Button x:Name="btnCancelar" Margin="10,0,0,0" 
                         Width="60" Height="45" Click="btnCancelar_Click">
                     
-                    <Image x:Name="Delete_png" Source="pack://siteoforigin:,,,/Resources/Delete.png"
+                    <Image x:Name="Delete_png" Source="pack://siteoforigin:,,,/Resources/Cancelar02.png"
                             Height="38" Width="38"/>
                 </Button>
             </StackPanel>
