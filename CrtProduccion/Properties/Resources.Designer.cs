@@ -73,16 +73,6 @@ namespace CrtProduccion.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Back {
-            get {
-                object obj = ResourceManager.GetObject("Back", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Borrar {
             get {
                 object obj = ResourceManager.GetObject("Borrar", resourceCulture);
@@ -183,16 +173,6 @@ namespace CrtProduccion.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Crear {
-            get {
-                object obj = ResourceManager.GetObject("Crear", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Create {
             get {
                 object obj = ResourceManager.GetObject("Create", resourceCulture);
@@ -247,26 +227,6 @@ namespace CrtProduccion.Properties {
             get {
                 object obj = ResourceManager.GetObject("empleado", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Exi {
-            get {
-                object obj = ResourceManager.GetObject("Exi", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap exit {
-            get {
-                object obj = ResourceManager.GetObject("exit", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -463,16 +423,6 @@ namespace CrtProduccion.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap run_exit_2_128 {
-            get {
-                object obj = ResourceManager.GetObject("run_exit_2_128", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Salir {
             get {
                 object obj = ResourceManager.GetObject("Salir", resourceCulture);
@@ -577,16 +527,6 @@ namespace CrtProduccion.Properties {
             get {
                 object obj = ResourceManager.GetObject("View", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Vista {
-            get {
-                object obj = ResourceManager.GetObject("Vista", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

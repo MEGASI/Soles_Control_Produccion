@@ -80,6 +80,11 @@
     <Compile Include="comunes\libreria.cs" />
     <Compile Include="entidades\dmUsuario.cs" />
     <Compile Include="comunes\datamanager.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="vistas\segGrupoAgregarfrm.xaml.cs">
       <DependentUpon>segGrupoAgregarfrm.xaml</DependentUpon>
@@ -110,9 +115,6 @@
     </Compile>
     <Compile Include="comunes\IAUG.cs" />
     <Compile Include="comunes\IGrupo.cs" />
-    <Compile Include="comunes\IUsuario.cs" />
-    <Compile Include="comunes\Permiso.cs" />
-    <Compile Include="comunes\Usuario.cs" />
     <Compile Include="comunes\utilclass.cs" />
     <Compile Include="vistas\iniciofrm.xaml.cs">
       <DependentUpon>iniciofrm.xaml</DependentUpon>
@@ -173,12 +175,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -186,9 +182,9 @@
     </Compile>
     <Content Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </Content>
     <Content Include="Resources\LLAVE.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -244,11 +240,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\AdG.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\Back.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -403,11 +394,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\run_exit_2-128.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Resources\Salir.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -454,11 +440,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\UserP.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\Vista.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
