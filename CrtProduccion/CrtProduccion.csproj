@@ -76,8 +76,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="comunes\AUG.cs" />
     <Compile Include="comunes\libreria.cs" />
+    <Compile Include="entidades\dmGrupo.cs" />
     <Compile Include="entidades\dmUsuario.cs" />
     <Compile Include="comunes\datamanager.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -86,9 +86,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
-    <Compile Include="vistas\segGrupoAgregarfrm.xaml.cs">
-      <DependentUpon>segGrupoAgregarfrm.xaml</DependentUpon>
-    </Compile>
     <Compile Include="vistas\segGrupoAsignafrm.xaml.cs">
       <DependentUpon>segGrupoAsignafrm.xaml</DependentUpon>
     </Compile>
@@ -113,8 +110,6 @@
     <Compile Include="vistas\segGrupoBRWfrm.xaml.cs">
       <DependentUpon>segGrupoBRWfrm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="comunes\IAUG.cs" />
-    <Compile Include="comunes\IGrupo.cs" />
     <Compile Include="comunes\utilclass.cs" />
     <Compile Include="vistas\iniciofrm.xaml.cs">
       <DependentUpon>iniciofrm.xaml</DependentUpon>
@@ -123,17 +118,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="comunes\Conexion.cs" />
     <Compile Include="dbCtrlServiciosDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dbCtrlServiciosDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="comunes\Group.cs" />
-    <Page Include="vistas\segGrupoAgregarfrm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="vistas\segGrupoAsignafrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -143,8 +132,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="vistas\segUsuarioBRWfrm.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="vistas\segUsuariofrm.xaml">
       <SubType>Designer</SubType>
@@ -186,7 +175,6 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </Content>
-    <Resource Include="bin\Debug\Resources\Cancelar02.png" />
     <Resource Include="Resources\Cancelar02.png" />
     <Content Include="Resources\LLAVE.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -233,6 +221,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin\Debug\Resources\" />
     <Folder Include="Reportes\" />
   </ItemGroup>
   <ItemGroup>

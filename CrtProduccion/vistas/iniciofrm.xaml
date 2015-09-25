@@ -35,7 +35,7 @@
                     <MenuItem Header="ActividadesEjecutadas" FontSize="14"/>
                 </MenuItem>
 
-                <MenuItem x:Name="mainHerramientas" Header="Herramientas" FontFamily="Verdana" FontSize="14">
+                <MenuItem x:Name="mainHerramientas" Header="Herramientas" FontFamily="Verdana" FontSize="14" Click="mainHerramientas_Click">
                     <MenuItem x:Name="herCambioClave" Header="Cambiar Contraseña" FontSize="14"/>
                     <MenuItem x:Name="herSeguridad" Header="Seguridad">
                         <MenuItem x:Name="segUsuario" Header="Usuario" FontSize="14" Click="segUsuario_Click"/>
