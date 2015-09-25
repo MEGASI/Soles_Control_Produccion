@@ -43,6 +43,9 @@ namespace CrtProduccion.entidades
         }
 
 
+        /// <summary>
+        /// <para>Inicializa cada una de las propiedades de la clase.</para>
+        /// </summary>
         public void limpiar() {
             fld_idusuario  = 0;
             fld_nombre = "";
