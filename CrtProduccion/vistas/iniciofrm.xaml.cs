@@ -103,6 +103,11 @@ namespace CrtProduccion
         } 
         #endregion
 
+        private void mainHerramientas_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
 
     }
 }

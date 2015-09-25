@@ -12,34 +12,38 @@ namespace CrtProduccion
         entidades.dmUsuario regUsuario = new entidades.dmUsuario();
         string idSegItem = "HS0101";
 
-        bool permiteModificar=false; 
-        bool permiteCrear=false;
-        bool permiteBorrar=false;
+        bool permiteModificar = false;
+        bool permiteCrear = false;
+        bool permiteBorrar = false;
 
         private string _modalidad = "";
 
         public string modalidad
         {
             get { return _modalidad; }
-            set {
+            set
+            {
 
-                if (_modalidad != value) {
-                    if (value == "CREAR" || value == "MODIFICAR") {
+                if (_modalidad != value)
+                {
+                    if (value == "CREAR" || value == "MODIFICAR")
+                    {
                         btnBorrar.IsEnabled = false;
                         btnBorrar_png.IsEnabled = false;
                         btnSalir.IsEnabled = false;
                         btnSalir_png.IsEnabled = false;
                         btnBuscar.IsEnabled = false;
 
-                        
+
                         btnNuevo.Visibility = Visibility.Hidden;
                         btnModificar.Visibility = Visibility.Hidden;
-                        
+
                         btnCancelar.Visibility = Visibility.Visible;
                         btnGuardar.Visibility = Visibility.Visible;
 
                         comunes.libreria.estadoControles(this, true);
-                        if (value == "MODIFICAR") {
+                        if (value == "MODIFICAR")
+                        {
                             txtNombre.IsEnabled = false;
                         }
 
@@ -78,7 +82,7 @@ namespace CrtProduccion
             permiteBorrar = datamanager.probarPermiso(idSegItem, "borrar");
 
             InitializeComponent();
-            
+
             regUsuario.buscarUltimo();
             mostrar();
 
@@ -116,7 +120,7 @@ namespace CrtProduccion
             txtNombre.Focus();
         }
 
-        
+
         private void btnModificar_Click(object sender, RoutedEventArgs e)
         {
             regUsuario.fld_oldIDUsuario = regUsuario.fld_idusuario;
@@ -129,8 +133,9 @@ namespace CrtProduccion
         {
             bool lret = false;
 
-            if (this.modalidad == "CREAR") {
-                lret = regUsuario.crearDatos()>0;
+            if (this.modalidad == "CREAR")
+            {
+                lret = regUsuario.crearDatos() > 0;
             }
 
             if (this.modalidad == "MODIFICAR")
@@ -141,10 +146,10 @@ namespace CrtProduccion
             if (lret)
             {
                 modalidad = "CONSULTAR";
-               MessageBox.Show("Información del usuario fue almacenada.", "Guardar", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Información del usuario fue almacenada.", "Guardar", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
-                
+
 
         private void btnBorrar_Click(object sender, RoutedEventArgs e)
         {
@@ -152,8 +157,8 @@ namespace CrtProduccion
             bool lret = false;
             if (MessageBox.Show("Seguro que quieres eliminar este usuario?", "Borrar", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                        
-                if (this.modalidad == "CONSULTAR" && regUsuario.fld_idusuario!=0)
+
+                if (this.modalidad == "CONSULTAR" && regUsuario.fld_idusuario != 0)
                 {
                     lret = regUsuario.borrarDatos(regUsuario.fld_idusuario);
                 }
@@ -167,14 +172,14 @@ namespace CrtProduccion
             }
         }
 
-
         private void btnSalir_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
 
-        private void mostrar() {
+        private void mostrar()
+        {
             txtNombre.Text = regUsuario.fld_nombre;
             txtClave.Password = regUsuario.fld_clave;
         }
@@ -182,7 +187,7 @@ namespace CrtProduccion
 
         private void txtNombre_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == System.Windows.Input.Key.Enter )
+            if (e.Key == System.Windows.Input.Key.Enter)
             {
                 txtNombre_LostFocus(sender, e);
             }
@@ -193,8 +198,8 @@ namespace CrtProduccion
         {
             bool fromtxt = ((System.Windows.Controls.PasswordBox)sender).IsFocused;
 
-            
-            if (fromtxt==true)
+
+            if (fromtxt == true)
             {
                 regUsuario.fld_cambiopsw = true;
             }
@@ -202,7 +207,8 @@ namespace CrtProduccion
 
         private void txtNombre_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!txtNombre.Text.Equals(regUsuario.fld_nombre)) {
+            if (!txtNombre.Text.Equals(regUsuario.fld_nombre))
+            {
                 if (!regUsuario.buscar(txtNombre.Text))
                     MessageBox.Show("Nombre de usuario no existe", "Usuario", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -216,19 +222,23 @@ namespace CrtProduccion
             vistas.segUsuarioBRWfrm dlgfrm = new vistas.segUsuarioBRWfrm();
             dlgfrm.ShowDialog();
 
-            if (dlgfrm.DialogResult.HasValue && dlgfrm.DialogResult.Value) {
+            if (dlgfrm.DialogResult.HasValue && dlgfrm.DialogResult.Value)
+            {
                 // Si el suario presiona Aceptar
-                if (!regUsuario.buscar(dlgfrm.idUsuario)){
+                if (!regUsuario.buscar(dlgfrm.idUsuario))
+                {
                     MessageBox.Show("Nombre de usuario no existe", "Usuario", MessageBoxButton.OK, MessageBoxImage.Information);
-                } else
+                }
+                else
                 {
                     mostrar();
                     txtNombre.Focus();
                 }
             }
 
-            
+
         }
     }
-    
+
+
 }
