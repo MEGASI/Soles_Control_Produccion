@@ -7,6 +7,7 @@ namespace CrtProduccion.entidades
     {
         public int fld_oldIDUsuario = 0;
         public bool fld_cambiopsw = false;
+        public string errormsg="";
 
         private int IDUsuario;
         public int fld_idusuario
@@ -53,8 +54,29 @@ namespace CrtProduccion.entidades
             fld_cambiopsw = false;
         }
 
+        /// <summary>
+        /// <para>Validar las propiedades antes de guardarla.</para>
+        /// </summary>
+        public bool validar()
+        {
+            bool lret = true;
+            fld_idusuario = 0;
 
-        
+            if (lret && fld_nombre.Equals("")) {
+                errormsg = "Nombre de usuario no puede estar vacío.";
+                lret = false;
+            }
+
+            if (lret && fld_clave.Equals(""))
+            {
+                errormsg = "Clave de usuario no puede estar vacía.";
+                lret = false;
+            }
+            return lret; 
+        }
+
+
+
         // CRUD  -- C = Create
         public int crearDatos() {
             fld_idusuario = 0;

@@ -77,7 +77,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="comunes\libreria.cs" />
-    <Compile Include="entidades\dmGrupo.cs" />
     <Compile Include="entidades\dmUsuario.cs" />
     <Compile Include="comunes\datamanager.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -221,7 +220,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bin\Debug\Resources\" />
     <Folder Include="Reportes\" />
   </ItemGroup>
   <ItemGroup>
