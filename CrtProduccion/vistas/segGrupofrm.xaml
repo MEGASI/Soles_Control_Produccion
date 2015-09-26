@@ -44,7 +44,7 @@
         <Button x:Name="btnBorrar" Grid.Column="1" HorizontalAlignment="Left" Margin="180,0,0,53" VerticalAlignment="Bottom" Width="50" VerticalContentAlignment="Center" Height="40" FontFamily="Verdana" ToolTip="Borrar" Click="btnBorrar_Click">
             <Image x:Name="btnBorrar_png" Height="32" Source="pack://siteoforigin:,,,/Resources/Borrar.png" Stretch="Fill" Width="32" ToolTip="Borrar"/>
         </Button>
-        <Button x:Name="btnSalir" Grid.Column="1" HorizontalAlignment="Left" Margin="249,0,0,53" VerticalAlignment="Bottom" Width="50" VerticalContentAlignment="Center" Height="40" FontFamily="Verdana" ToolTip="Salir" Click="btnSalir_Click">
+        <Button x:Name="btnSalir" Grid.Column="1" HorizontalAlignment="Left" Margin="253,0,0,53" VerticalAlignment="Bottom" Width="50" VerticalContentAlignment="Center" Height="40" FontFamily="Verdana" ToolTip="Salir" Click="btnSalir_Click">
             <Image x:Name="btnSalir_png" Height="32" Source="../Resources/Salir.png" Stretch="Fill" Width="32" ToolTip="Salir"/>
         </Button>
     </Grid>
