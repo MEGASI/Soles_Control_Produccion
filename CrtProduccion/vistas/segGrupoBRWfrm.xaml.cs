@@ -23,7 +23,7 @@ namespace CrtProduccion
     {
 
         public string Nombre { get; set; }
-        public int ID { get; set; }
+        public int _idGrupo { get; set; }
 
         SqlCommand Cmd = new SqlCommand();
         SqlConnection Cnn = new SqlConnection();
@@ -57,9 +57,8 @@ namespace CrtProduccion
         //this.Hide();
         private void CerrarBtn_Click(object sender, RoutedEventArgs e)
         {
-            
-
-            DialogResult = DialogResult.HasValue;
+           
+           DialogResult = DialogResult.HasValue;
             this.Close();
         }
         //this.Hide();
@@ -67,14 +66,8 @@ namespace CrtProduccion
         {
             this.CargarForm();
         }
-
-
-
         private void DataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-
-
-
 
             }
         //Obteniendo valor de la grid   y añadiendolo al TextBox
@@ -84,13 +77,9 @@ namespace CrtProduccion
             object item = dataGrid.SelectedItem;
             object item1 = dataGrid.SelectedItem;
 
-            string ID = (dataGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+            string ID = (dataGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+
             textBox.Text = ID.ToString();
-
-            //string ID1 = (dataGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-            //textBox.Text = ID1.ToString();
-
-
 
         }
 
@@ -101,7 +90,13 @@ namespace CrtProduccion
 
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
-          
+            this.DialogResult = true;
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            this._idGrupo = 0;
+            this.DialogResult = false;
         }
     }
     }
