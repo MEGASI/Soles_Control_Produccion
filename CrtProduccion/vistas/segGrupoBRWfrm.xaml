@@ -11,7 +11,7 @@
         <Button x:Name="SalirBtn" Margin="240,160,17,0" Click="CerrarBtn_Click" ToolTip="Salir" Height="41" VerticalAlignment="Top"/>
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="30,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="textBox_TextChanged" Visibility="Hidden"/>
         <Button x:Name="btnAceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="30,167,0,0" VerticalAlignment="Top" Width="75" Click="btnAceptar_Click"/>
-        <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Left" Margin="140,167,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Left" Margin="140,167,0,0" VerticalAlignment="Top" Width="75" Click="btnCancelar_Click"/>
 
     </Grid>
 </Window>

@@ -23,7 +23,6 @@ namespace CrtProduccion
             get { return _modalidad; }
             set
             {
-
                 if (_modalidad != value)
                 {
                     if (value == "CREAR" || value == "MODIFICAR")
@@ -71,7 +70,6 @@ namespace CrtProduccion
                 _modalidad = value;
             }
         }
-
 
         public segUsuariofrm()
         {
@@ -149,7 +147,6 @@ namespace CrtProduccion
                 MessageBox.Show("Información del usuario fue almacenada.", "Guardar", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
-
 
         private void btnBorrar_Click(object sender, RoutedEventArgs e)
         {

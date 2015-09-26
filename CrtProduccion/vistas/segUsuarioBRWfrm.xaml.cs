@@ -69,8 +69,6 @@ namespace CrtProduccion.vistas
             llenaGrid();
         }
 
-
-
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -79,15 +77,11 @@ namespace CrtProduccion.vistas
 
             string sidUsuario = (dataGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
 
-
             if (!Int32.TryParse(sidUsuario, out idUsuario))
             {
                 idUsuario = 0;
             }
-
         }
-
-
         private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (sender != null)

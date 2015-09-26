@@ -52,7 +52,7 @@
         <Button x:Name="btnGuardar" HorizontalAlignment="Left" Margin="56,0,0,27" VerticalAlignment="Bottom" Width="50" RenderTransformOrigin="-0.333,0.727" Height="40" Click="btnGuardar_Click" VerticalContentAlignment="Center" FontFamily="Verdana" ToolTip="Guardar" Grid.Column="1">
             <Image x:Name="btnGuardar_png" Height="32" Source="pack://siteoforigin:,,,/Resources/Guardar.png" Stretch="Fill" Width="32" ToolTip="Guardar" Style="{StaticResource ImageEnabled}"/>
         </Button>
-        <Button x:Name="btnModificar" HorizontalAlignment="Left" Margin="56,0,0,27" VerticalAlignment="Bottom" Width="50" RenderTransformOrigin="-0.333,0.727" Height="40" VerticalContentAlignment="Center" FontFamily="Verdana" ToolTip="Modificar" Grid.Column="1" Click="btnModificar_Click">
+        <Button x:Name="btnModificar" HorizontalAlignment="Left" Margin="56,0,0,28" VerticalAlignment="Bottom" Width="50" RenderTransformOrigin="-0.333,0.727" Height="40" VerticalContentAlignment="Center" FontFamily="Verdana" ToolTip="Modificar" Grid.Column="1" Click="btnModificar_Click">
             <Image x:Name="btnModificar_png" Height="32" Source="../Resources/EditNote.png" Stretch="Fill" Width="32" ToolTip="Modificar" Style="{StaticResource ImageEnabled}"/>
         </Button>
 

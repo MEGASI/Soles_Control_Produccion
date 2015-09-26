@@ -53,8 +53,6 @@ namespace CrtProduccion.entidades
             fld_cambiopsw = false;
         }
 
-
-        
         // CRUD  -- C = Create
         public int crearDatos() {
             fld_idusuario = 0;
