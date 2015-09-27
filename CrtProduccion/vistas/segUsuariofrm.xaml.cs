@@ -12,9 +12,7 @@ namespace CrtProduccion
         #region Declaración de Variables y Propiedades
 
         private entidades.dmUsuario registro { get; set; }
-
-        //entidades.dmUsuario registro = new entidades.dmUsuario();
-
+              
         string idSegItem = "HS0101";
 
         bool permiteModificar = false;

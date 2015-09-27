@@ -46,7 +46,7 @@
                  Width="120" Height="23"
                  KeyDown="txtNombre_KeyDown" 
                  LostFocus="txtNombre_LostFocus" 
-                 Canvas.Left="156" Canvas.Top="99"/>
+                 Canvas.Left="156" Canvas.Top="100"/>
 
         <Button x:Name="btnBuscar" Content="..." 
                 HorizontalAlignment="Right" 
