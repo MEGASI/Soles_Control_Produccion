@@ -10,7 +10,11 @@ namespace CrtProduccion
     {
 
         #region Declaración de Variables y Propiedades
-        entidades.dmUsuario registro = new entidades.dmUsuario();
+
+        private entidades.dmUsuario registro { get; set; }
+
+        //entidades.dmUsuario registro = new entidades.dmUsuario();
+
         string idSegItem = "HS0101";
 
         bool permiteModificar = false;
@@ -70,20 +74,25 @@ namespace CrtProduccion
             permiteBorrar = datamanager.probarPermiso(idSegItem, "borrar");
 
             InitializeComponent();
+           
+        }
 
+        private void segUsuariofrm_Loaded(object sender, RoutedEventArgs e)
+        {
+            registro = new entidades.dmUsuario();
             registro.buscarUltimo();
+
+            //DataContext = registro;
             mostrar();
 
             // Operaciones permitidas en este formulario.
+            // Implementación de la seguridad del formulario.
             // Crear
             btnNuevo.IsEnabled = permiteCrear;
-          
             // Modificar
             btnModificar.IsEnabled = permiteModificar;
-    
             // Borrar
             btnBorrar.IsEnabled = permiteBorrar;
-          
 
             if (registro.fld_idusuario == 0 && permiteCrear)
                 modalidad = "CREAR";
@@ -91,21 +100,22 @@ namespace CrtProduccion
                 modalidad = "CONSULTAR";
         }
 
-
         #region Funcionalidades de los botones
-              
+
         // Click del Boton Nuevo
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
+            registro.fld_oldIDUsuario = registro.fld_idusuario;
             registro.limpiar();
             mostrar();
             modalidad = "CREAR";
+            txtNombre.Focus();
         }
 
         // Click del Boton Cancelar
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            registro.buscar(registro.fld_oldIDUsuario);
+            registro.buscar(registro.fld_oldIDUsuario,true);
             mostrar();
             modalidad = "CONSULTAR";
             txtNombre.Focus();
@@ -122,6 +132,8 @@ namespace CrtProduccion
         // Click Boton Guardar
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
+
+            registro.fld_clave = txtClave.Password;
 
             // Validamos que los datos estan correcto, conforme a las reglas establecidas.
             bool lret = registro.validar();
@@ -160,6 +172,7 @@ namespace CrtProduccion
                     mostrar();
                 }
             }
+            txtNombre.Focus();
         }
 
         // Click Boton Salir
@@ -177,7 +190,7 @@ namespace CrtProduccion
             if (dlgfrm.DialogResult.HasValue && dlgfrm.DialogResult.Value)
             {
                 // Si el suario presiona Aceptar
-                if (!registro.buscar(dlgfrm.idUsuario))
+                if (!registro.buscar(dlgfrm.idUsuario,true))
                 {
                     MessageBox.Show("Nombre de usuario no existe", "Usuario", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
@@ -212,14 +225,30 @@ namespace CrtProduccion
 
         private void txtNombre_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!txtNombre.Text.Equals(registro.fld_nombre))
-            {
-                if (!registro.buscar(txtNombre.Text))
-                    MessageBox.Show("Nombre de usuario no existe", "Usuario", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                mostrar();
-                txtNombre.Focus();
-            }
+           if (!txtNombre.Text.Equals(registro.fld_nombre))
+            {
+                registro.fld_nombre = txtNombre.Text;
+
+                bool found = registro.buscar(txtNombre.Text,false);
+                if (modalidad.Equals("CONSULTAR"))
+                {
+                    if (!found)
+                        MessageBox.Show("Nombre de usuario no existe", "Usuario", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    mostrar();
+                    txtNombre.Focus();
+                }
+                else {
+                    if (found)
+                    {
+                        MessageBox.Show("Usuario ya existe.", "Usuario", MessageBoxButton.OK, MessageBoxImage.Information);
+                        txtNombre.Text = "";
+                        txtNombre.Focus();
+                    }
+                }
+
+           }
         }
 
         #endregion
@@ -230,8 +259,14 @@ namespace CrtProduccion
         /// </summary>
         private void mostrar()
         {
+
+            //DataContext = null;
+            //DataContext = registro;
+
             txtNombre.Text = registro.fld_nombre;
             txtClave.Password = registro.fld_clave;
+            
+
         }
 
 

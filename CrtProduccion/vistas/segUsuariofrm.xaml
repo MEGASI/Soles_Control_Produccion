@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CrtProduccion"
         mc:Ignorable="d"
-        Title="Usuarios" Height="310" Width="424" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" HorizontalAlignment="Left">
+        Title="Usuarios" Height="310" Width="424" 
+        WindowStyle="ToolWindow" 
+        WindowStartupLocation="CenterScreen" 
+        HorizontalAlignment="Left" Loaded="segUsuariofrm_Loaded">
 
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -25,7 +28,7 @@
     </Window.Resources>
 
     <Canvas>
-
+    
         <Label x:Name="lblTitulo" Content="Usuarios" 
                VerticalAlignment="Top" 
                FontFamily="Ve" 
@@ -36,15 +39,19 @@
                Width="70" Height="23" 
                Canvas.Left="81" Canvas.Top="99"/>
 
+        <!-- Text="{Binding fld_nombre, UpdateSourceTrigger=PropertyChanged}" -->
+        
         <TextBox x:Name="txtNombre" 
                  HorizontalAlignment="Left" 
                  Width="120" Height="23"
-                 KeyDown="txtNombre_KeyDown" LostFocus="txtNombre_LostFocus" 
+                 KeyDown="txtNombre_KeyDown" 
+                 LostFocus="txtNombre_LostFocus" 
                  Canvas.Left="156" Canvas.Top="99"/>
 
         <Button x:Name="btnBuscar" Content="..." 
                 HorizontalAlignment="Right" 
-                Width="33" Height="24" FontSize="18" Click="btnBuscar_Click" 
+                Width="33" Height="24" FontSize="18" 
+                Click="btnBuscar_Click" 
                 FontWeight="Black" Padding="1,-5,1,0" 
                 Canvas.Left="278" Canvas.Top="99"/>
 
@@ -57,8 +64,9 @@
                      PasswordChanged="txtClave_PasswordChanged" 
                      IsEnabled="False" 
                      Canvas.Left="156" Canvas.Top="137"/>
+              
         
-        
+        <!-- Botones de Mantenimiento o CRUD -->
         <Button x:Name="btnCancelar" 
                  Width="50" Height="40" 
                  ToolTip="Cancelar" Click="btnCancelar_Click" 
@@ -118,6 +126,7 @@
                    IsEnabled="{Binding IsEnabled, ElementName=btnBorrar}"/>
         </Button>
 
+         <!-- Boton Salir -->   
         <Button x:Name="btnSalir" 
                  Width="50" Height="40" 
                 ToolTip="Salir" Click="btnSalir_Click"
