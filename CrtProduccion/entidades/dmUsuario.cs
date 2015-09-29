@@ -143,9 +143,6 @@ namespace CrtProduccion.entidades
             // si no logra insertar nada el idUsuiario Retornado es Cero
             return fld_idusuario;
         }
-
-
-     
         /// <summary>
         /// <para>CRUD  -- R = Read</para>
         ///  Lee los datos extraido de la tabla segUsuario.
@@ -188,8 +185,6 @@ namespace CrtProduccion.entidades
                                                " where Nombre = '" + pNombre + "'");
             return leerDatos(dr, asignar);
         }
-
-
         /// <summary>
         ///  Buscar en la tabla de segUsuario por el idUsuario
         /// </summary>

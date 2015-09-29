@@ -25,30 +25,25 @@ namespace CrtProduccion.vistas
         public segUsuarioBRWfrm()
         {
             InitializeComponent();
-           
         }
-
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             this.idUsuario = 0;
             this.DialogResult = false;
         }
-
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = true;
-        }  
-
-
+        }
         public void llenaGrid()
         {
-            
+
             dsGrid.Clear();
-            
+
             dsGrid = datamanager.ConsultaDatos("select nombre, idUsuario from segUsuario");
 
             dataGrid.ItemsSource = dsGrid.Tables[0].DefaultView;
-        
+
             dataGrid.CanUserAddRows = false;
             dataGrid.Columns[0].Width = 152;
             dataGrid.Columns[0].IsReadOnly = true;
@@ -61,19 +56,13 @@ namespace CrtProduccion.vistas
             dataGrid.Columns[1].CanUserResize = false;
 
             datamanager.ConexionCerrar();
-
         }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             llenaGrid();
         }
-
-
-
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
             object item = dataGrid.SelectedItem;
             object item1 = dataGrid.SelectedItem;
 
@@ -84,14 +73,12 @@ namespace CrtProduccion.vistas
             {
                 idUsuario = 0;
             }
-            else {
+            else
+            {
                 btnAceptar.IsEnabled = true;
                 btnAceptar_png.IsEnabled = true;
             }
-
         }
-
-
         private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (sender != null)
@@ -100,6 +87,6 @@ namespace CrtProduccion.vistas
                 this.DialogResult = true;
             }
         }
-
     }
 }
+

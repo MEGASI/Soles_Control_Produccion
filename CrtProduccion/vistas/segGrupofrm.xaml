@@ -5,47 +5,150 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CrtProduccion"
         mc:Ignorable="d"
-        Title="Grupo de Seguridad" Height="296" Width="424" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen">
+        Title="Grupo de Seguridad" Height="296" Width="424" WindowStyle="ToolWindow" 
+        WindowStartupLocation="CenterScreen" 
+        Loaded="Window_Loaded">
+
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+            <GradientStop Color="Black" Offset="1"/>
+            <GradientStop Color="#FF0BC0C9"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Window.Resources>
+        <Style x:Key="ImageEnabled" TargetType="Image">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.25"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
     <Grid Height="271" VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black" Offset="1"/>
-                <GradientStop Color="#FF22A9C7"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-        <Grid.ColumnDefinitions>
+         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="90*"/>
             <ColumnDefinition Width="601*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="btnGuardar" HorizontalAlignment="Left" Margin="125,0,0,53" VerticalAlignment="Bottom" Width="50" RenderTransformOrigin="-0.333,0.727" Height="40" VerticalContentAlignment="Center" FontFamily="Verdana" ToolTip="Guardar" Grid.Column="1" Click="btnGuardar_Click">
-            <Image x:Name="btnGuardar_png" Height="32" Source="pack://siteoforigin:,,,/Resources/Guardar.png" Stretch="Fill" Width="32" ToolTip="Guardar" />
-        </Button>
-        <TextBox x:Name="ID_Group" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" Margin="86,85,0,0" Grid.Column="1"/>
-        <Button x:Name="btnbuscar" Grid.Column="1" Margin="0,0,151,163" Height="23" HorizontalAlignment="Right" Width="31" VerticalAlignment="Bottom" ToolTip="Consultar Grupos" Content="..." Click="btnbuscar_Click"/>
 
-        <Label x:Name="label" Content="Código" HorizontalAlignment="Left" Margin="8,83,0,0" VerticalAlignment="Top" Width="68" Grid.Column="1"/>
-        <Label x:Name="label_Copy" Content="Descripción" HorizontalAlignment="Left" Margin="4,114,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <Button x:Name="CargarBtn" Content="Cargar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Grid.Column="1" Margin="359,110,-48,0" Visibility="Hidden"/>
-        <TextBox x:Name="NameGroup" Grid.Column="1" Height="23" Margin="86,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="228" KeyDown="NameGroup_KeyDown" LostFocus="NameGroup_LostFocus"/>
-        <Label x:Name="label1" Content="Editar Grupo" HorizontalAlignment="Left" Margin="42,36,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="132" FontFamily="Verdana" FontSize="14" FontWeight="Black"/>
-        <Button x:Name="btnCancelar" HorizontalAlignment="Left" Margin="70,0,0,53" VerticalAlignment="Bottom" Width="50" RenderTransformOrigin="-0.333,0.727" Height="40" VerticalContentAlignment="Center" FontFamily="Verdana" ToolTip="Cancelar" Grid.Column="1">
-            <Image x:Name="Cancelar_png" Height="32" Source="../Resources/Cancel.png" Stretch="Fill" Width="32" ToolTip="Cancelar"/>
+        
+        <Label x:Name="label1" Content="Grupo de Usario"
+               HorizontalAlignment="Left" Margin="42,36,0,0"
+               VerticalAlignment="Top" Grid.ColumnSpan="2"
+               Width="152" FontFamily="Verdana" FontSize="14"
+               FontWeight="Black"/>
+
+        <Label x:Name="lblCodigo" Content="Código"
+               HorizontalAlignment="Left"
+               Margin="8,83,0,0"
+               VerticalAlignment="Top" Width="68"
+               Grid.Column="1"/>
+        <TextBox x:Name="txtIdGrupo" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" Margin="86,85,0,0" Grid.Column="1" LostFocus="txtIdGrupo_LostFocus" KeyDown="txtIdGrupo_KeyDown"/>
+        <Button x:Name="btnbuscar" Grid.Column="1" Margin="0,0,157,163" Height="23" HorizontalAlignment="Right" Width="31" 
+                VerticalAlignment="Bottom" ToolTip="Consultar Grupos" Content="..." Click="btnbuscar_Click"/>
+
+   
+        <Label x:Name="lblDescripcion" 
+               Content="Descripción"
+               HorizontalAlignment="Left" Margin="4,114,0,0"
+               VerticalAlignment="Top" Grid.Column="1"/>
+        <TextBox x:Name="txtNombre"
+                 Grid.Column="1" Height="23" 
+                 Margin="86,119,0,0"
+                 TextWrapping="Wrap" VerticalAlignment="Top" 
+                 HorizontalAlignment="Left" Width="228" 
+                 KeyDown="NameGroup_KeyDown"
+                 IsEnabled="False"/>
+ 
+
+
+        <!-- Botons de funcionalidades  -->
+      
+        <!-- Cancelar y nuevo -->
+        <Button x:Name="btnCancelar" 
+    		Width="50" Height="40" 
+    		ToolTip="Cancelar" Click="btnCancelar_Click" 
+    		Canvas.Left="93" Canvas.Top="205"
+    		IsEnabled="{Binding !Visibility, ElementName=btnNuevo}" Grid.Column="1"
+    		Margin="70,191,0,40" HorizontalAlignment="Left">
+            <Image x:Name="Cancelar_png" Height="32" 
+    			Source="pack://siteoforigin:,,,/Resources/Cancel.png" Width="32" 
+    			ToolTip="Cancelar"
+                Style="{StaticResource ImageEnabled}"
+                IsEnabled="{Binding IsEnabled, ElementName=btnCancelar}"/>
         </Button>
-        <Button x:Name="btnModificar" HorizontalAlignment="Left" Margin="125,0,0,53" VerticalAlignment="Bottom" Width="50" RenderTransformOrigin="-0.333,0.727" Height="40" VerticalContentAlignment="Center" FontFamily="Verdana" ToolTip="Modificar" Grid.Column="1" Click="btnModificar_Click">
-            <Image x:Name="btnModificar_png" Height="32" Source="../Resources/EditNote.png" Stretch="Fill" Width="32" ToolTip="Modificar" />
-        </Button>
-        <Button x:Name="btnNuevo" HorizontalAlignment="Left" Margin="70,0,0,53" VerticalAlignment="Bottom" Width="50" RenderTransformOrigin="-0.333,0.727" Height="40" VerticalContentAlignment="Center" FontFamily="Verdana" ToolTip="Nuevo" Grid.Column="1" Click="btnNuevo_Click">
-            <Image x:Name="btnNuevo_png" Height="32" Source="../Resources/Create.png" Stretch="Fill" Width="32" ToolTip="Nuevo" />
+        <Button x:Name="btnNuevo" 
+    		HorizontalAlignment="Left" Margin="70,0,0,40"
+    		VerticalAlignment="Bottom" 
+            Width="50"  Height="40"
+            RenderTransformOrigin="-0.333,0.727"
+            VerticalContentAlignment="Center" 
+    		FontFamily="Verdana" ToolTip="Nuevo" Grid.Column="1"
+    		Click="btnNuevo_Click">
+            <Image x:Name="btnNuevo_png" Height="32" 
+    			Source="../Resources/Create.png" Stretch="Fill" Width="32" ToolTip="Nuevo"
+                Style="{StaticResource ImageEnabled}"
+                IsEnabled="{Binding IsEnabled, ElementName=btnNuevo}"/>
         </Button>
 
-        <Button x:Name="btnBorrar" Grid.Column="1" HorizontalAlignment="Left" Margin="180,0,0,53" VerticalAlignment="Bottom" Width="50" VerticalContentAlignment="Center" Height="40" FontFamily="Verdana" ToolTip="Borrar" Click="btnBorrar_Click">
-            <Image x:Name="btnBorrar_png" Height="32" Source="pack://siteoforigin:,,,/Resources/Borrar.png" Stretch="Fill" Width="32" ToolTip="Borrar"/>
+        
+        <!-- Guardar y Modificar -->
+        <Button x:Name="btnGuardar" 
+            Width="50" Height="40" 
+    		Click="btnGuardar_Click" 
+    		ToolTip="Guardar" 
+    		Canvas.Left="148" Canvas.Top="205"
+    		IsEnabled="{Binding !Visibility, ElementName=btnModificar}" 
+            Grid.Column="1" Margin="123,192,189,39">
+            <Image x:Name="btnGuardar_png" ToolTip="Guardar" 
+    			Width="32" Height="32" 
+    			Source="pack://siteoforigin:,,,/Resources/Guardar.png"
+                Style="{StaticResource ImageEnabled}"
+                IsEnabled="{Binding IsEnabled, ElementName=btnGuardar}"/>
         </Button>
-        <Button x:Name="btnSalir" Grid.Column="1" HorizontalAlignment="Left" Margin="253,0,0,53" VerticalAlignment="Bottom" Width="50" VerticalContentAlignment="Center" Height="40" FontFamily="Verdana" ToolTip="Salir" Click="btnSalir_Click">
-            <Image x:Name="btnSalir_png" Height="32" Source="../Resources/Salir.png" Stretch="Fill" Width="32" ToolTip="Salir"/>
+        <Button x:Name="btnModificar" 
+    		Width="50" Height="40" 
+    		ToolTip="Modificar" 
+    		Click="btnModificar_Click" 
+    		Canvas.Left="148" Canvas.Top="180"
+             Grid.Column="1" Margin="123,192,0,39" HorizontalAlignment="Left">
+            <Image x:Name="btnModificar_png" 
+                   ToolTip="Modificar" 
+    			Width="32"  Height="32"
+    			Source="pack://siteoforigin:,,,/Resources/EditNote.png" 
+                Style="{StaticResource ImageEnabled}"   
+                IsEnabled="{Binding IsEnabled, ElementName=btnGuardar}" />
         </Button>
+
+            <!-- Borrar -->
+        <Button x:Name="btnBorrar" Click="btnBorrar_Click" 
+                 Width="50" Height="40" 
+                ToolTip="Borrar" Canvas.Left="202" Canvas.Top="205" Grid.Column="1" Margin="180,192,0,39" HorizontalAlignment="Left">
+            <Image x:Name="btnBorrar_png"  
+                   Source="pack://siteoforigin:,,,/Resources/Borrar.png" 
+                   Height="32" Width="32" 
+                   ToolTip="Borrar" 
+                   Style="{StaticResource ImageEnabled}"
+                   IsEnabled="{Binding IsEnabled, ElementName=btnBorrar}"/>
+        </Button>
+        
+        <!-- Salir -->
+        <Button x:Name="btnSalir" 
+                 Width="50" Height="40" 
+                ToolTip="Salir" Click="btnSalir_Click"
+                Canvas.Left="267" Canvas.Top="205" Grid.Column="1" Margin="0,191,48,40" HorizontalAlignment="Right" >
+
+            <Image x:Name="btnSalir_png" ToolTip="Salir" 
+                   Source="pack://siteoforigin:,,,/Resources/Salir.png" 
+                   Height="32" Width="32" 
+                   Style="{StaticResource ImageEnabled}"
+                   IsEnabled="{Binding IsEnabled, ElementName=btnSalir}"/>
+        </Button>
+
+
     </Grid>
 </Window>

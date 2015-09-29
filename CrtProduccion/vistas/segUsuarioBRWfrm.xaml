@@ -55,6 +55,7 @@
                        Stretch="Fill" Width="32" />
             </Button>
         </StackPanel>
+        <DataGrid/>
 
     </StackPanel>
 
