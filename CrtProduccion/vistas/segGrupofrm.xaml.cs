@@ -163,7 +163,6 @@ namespace CrtProduccion
         // Click Boton Borrar
         private void btnBorrar_Click(object sender, RoutedEventArgs e)
         {
-
             bool lret = false;
             if (MessageBox.Show("Seguro que quieres eliminar este Grupo de Usuario?", "Borrar", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
@@ -252,7 +251,10 @@ namespace CrtProduccion
 
         }
 
-
+        /// <summary>
+        /// Muestra los Grupos Existentes y no permite agregarlos si ya existen 
+        /// Parte de la validacion.
+        /// </summary>
 
         private void NameGroup_LostFocus(object sender, RoutedEventArgs e)
         {
@@ -282,7 +284,10 @@ namespace CrtProduccion
             }
 
         }
-
+        /// <summary>
+        ///  Consiste en Recuperar el Foco , ya sea que se pierda por accion del usuario.
+        /// Parte de la validacion.
+        /// </summary>
 
         private void NameGroup_KeyDown(object sender, KeyEventArgs e)
         {
@@ -295,9 +300,9 @@ namespace CrtProduccion
 
         #endregion
 
-
+        #region Valores extraidos de la BD
         /// <summary>
-        /// Muestra los valores que se traen desde la base de datos
+        /// Muestra los valores que se traen desde la base de datos.
         /// Asignando el campo equivalente de cada control en el formulario.
         /// </summary>
         private void mostrar()
@@ -305,7 +310,7 @@ namespace CrtProduccion
             txtNombre.Text = registro.Fld_NombreGrupo;
             txtIdGrupo.Text = Convert.ToInt16(registro.Fld_idGrupo).ToString();
         }
-
+        #endregion
     }
 }
 
