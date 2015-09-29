@@ -187,7 +187,7 @@ namespace CrtProduccion
 
             if (dlgfrm.DialogResult.HasValue && dlgfrm.DialogResult.Value)
             {
-                // Si el suario presiona Aceptar
+                // Si el usuario presiona Aceptar
                 if (!registro.buscar(dlgfrm.idUsuario,true))
                 {
                     MessageBox.Show("Nombre de usuario no existe", "Usuario", MessageBoxButton.OK, MessageBoxImage.Information);

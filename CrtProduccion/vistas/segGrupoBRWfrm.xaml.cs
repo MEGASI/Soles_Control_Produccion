@@ -22,15 +22,8 @@ namespace CrtProduccion
     public partial class segGrupoBRWfrm : Window
     {
 
-        public string Nombre { get; set; }
-        public int _idGrupo { get; set; }
-
-        SqlCommand Cmd = new SqlCommand();
-        SqlConnection Cnn = new SqlConnection();
-        SqlDataAdapter adapter = new SqlDataAdapter();
-        DataSet ds = new DataSet();
-        DataSet dsGrid = new DataSet();
-
+        public int idGrupo = 0;
+        System.Data.DataSet dsGrid = new System.Data.DataSet();
 
 
         public segGrupoBRWfrm()
@@ -38,54 +31,9 @@ namespace CrtProduccion
             InitializeComponent();
         }
 
-
-        //Cargar Form
-        public void CargarForm()
-        {
-
-            {
-                Cmd.CommandText = " Select * from segGrupo";
-                Cnn.ConnectionString = "Data Source=Server;Initial Catalog=dbCtrlServicios;User ID=Tech;Password=Soles2015";
-                Cmd.Connection = Cnn;
-                adapter.SelectCommand = Cmd;
-                adapter.Fill(ds);
-                dataGrid.ItemsSource = ds.Tables[0].DefaultView;
-
-                Cnn.Close();
-            }
-        }
-        //this.Hide();
-        private void CerrarBtn_Click(object sender, RoutedEventArgs e)
-        {
-           
-           DialogResult = DialogResult.HasValue;
-            this.Close();
-        }
-        //this.Hide();
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.CargarForm();
-        }
-        private void DataGridView1_SelectionChanged(object sender, EventArgs e)
-        {
-
-            }
-        //Obteniendo valor de la grid   y añadiendolo al TextBox
-        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-            object item = dataGrid.SelectedItem;
-            object item1 = dataGrid.SelectedItem;
-
-            string ID = (dataGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
-
-            textBox.Text = ID.ToString();
-
-        }
-
-        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            Nombre = textBox.Text;
+            llenaGrid();
         }
 
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
@@ -95,8 +43,61 @@ namespace CrtProduccion
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            this._idGrupo = 0;
+            this.idGrupo = 0;
             this.DialogResult = false;
         }
+
+        public void llenaGrid()
+        {
+
+            dsGrid.Clear();
+
+            dsGrid = datamanager.ConsultaDatos("select Nombre, idGrupo from segGrupo");
+
+            DataG.ItemsSource = dsGrid.Tables[0].DefaultView;
+
+            DataG.CanUserAddRows = false;
+            DataG.Columns[0].Width = 152;
+            DataG.Columns[0].IsReadOnly = true;
+            DataG.Columns[0].Header = "Grupo";
+            DataG.Columns[0].CanUserResize = false;
+
+            DataG.Columns[1].IsReadOnly = true;
+            DataG.Columns[1].Width = 48;
+            DataG.Columns[1].Header = "Número";
+            DataG.Columns[1].CanUserResize = false;
+
+            datamanager.ConexionCerrar();
+
+        }
+
+        private void DataG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            object item = DataG.SelectedItem;
+            object item1 = DataG.SelectedItem;
+
+            string sidUGrupo= (DataG.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+
+
+            if (!Int32.TryParse(sidUGrupo, out idGrupo))
+            {
+                idGrupo = 0;
+            }
+            else
+            {
+                btnAceptar.IsEnabled = true;
+                btnAceptar_png.IsEnabled = true;
+            }
+        }
+
+        private void DataG_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender != null)
+            {
+                DataGridRow dgr = sender as DataGridRow;
+                this.DialogResult = true;
+            }
+        }
+
     }
-    }
+}

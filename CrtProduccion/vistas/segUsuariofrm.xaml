@@ -70,7 +70,7 @@
         <Button x:Name="btnCancelar" 
                  Width="50" Height="40" 
                  ToolTip="Cancelar" Click="btnCancelar_Click" 
-                Canvas.Left="94" Canvas.Top="205"
+                Canvas.Left="93" Canvas.Top="205"
                 IsEnabled="{Binding !Visibility, ElementName=btnNuevo}">
             <Image x:Name="Cancelar_png" Height="32" 
         		Source="pack://siteoforigin:,,,/Resources/Cancel.png" Width="32" 
@@ -81,7 +81,7 @@
         <Button x:Name="btnNuevo" 
         	Width="50" Height="40" 
         	ToolTip="Nuevo" Click="btnNuevo_Click" 
-        	Canvas.Left="94" Canvas.Top="205">
+        	Canvas.Left="93" Canvas.Top="205">
             <Image x:Name="btnNuevo_png" ToolTip="Nuevo" 
         		Width="32" Height="32" 
         		Source="pack://siteoforigin:,,,/Resources/Create.png"  

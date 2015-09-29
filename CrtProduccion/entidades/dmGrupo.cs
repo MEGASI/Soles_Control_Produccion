@@ -5,10 +5,19 @@ namespace CrtProduccion.entidades
 {
     class dmGrupo
     {
+        #region Atributos
+
+        public int fld_oldIdGrupo = 0;
         public int Fld_idGrupo { get; set; }
         public string Fld_NombreGrupo { get; set; }
+        public string errormsg = "";
 
-        public dmGrupo() { }
+        #endregion
+
+        #region Constructores
+        public dmGrupo() {
+            limpiar();
+        }
 
         public dmGrupo(int Pfld_idGrupo, String PFld_NombreGrupo)
 
@@ -17,12 +26,42 @@ namespace CrtProduccion.entidades
             Fld_NombreGrupo = PFld_NombreGrupo;
         }
 
+        #endregion
+
+        #region Métodos y funciones
+
+        /// <summary>
+        /// <para>Inicializa cada una de las propiedades de la clase.</para>
+        /// </summary>
         public void limpiar()
         {
             Fld_idGrupo = 0;
             Fld_NombreGrupo = "";
             
         }
+
+        /// <summary>
+        /// <para>Validar las propiedades antes de guardarla, si se detecta algun error
+        /// El mensage del error es retornado en la propiedad errormsg.</para>
+        /// </summary>
+        /// <returns>true : cuando no se encuentran errores y false cuando se encuentran errores.</returns>
+        public bool validar()
+        {
+            bool lret = true;
+
+            if (lret && Fld_NombreGrupo.Equals(""))
+            {
+                errormsg = "Nombre de Grupo no puede estar vacío.";
+                lret = false;
+            }
+            return lret;
+        }
+
+        /// <summary>
+        /// <para>CRUD  -- C = Create</para> 
+        /// <para>Método que inserta los datos en la tabla segGrupo</para>
+        /// </summary>
+        /// <returns>El Numero de identificación generado, cero cuando no logra insertar el registro.</returns>
         public int crearDatos()
         {
             Fld_idGrupo = 0;
@@ -31,14 +70,13 @@ namespace CrtProduccion.entidades
             {
 
                 // Preparamos consulta pra la actualización
-                SqlCommand cmd = new SqlCommand("Insert into segGrupo(idGrupo, Nombre)" +
-                                                 " output INSERTED.idGrupo" +
-                                                 " Values(@idGrupo, @Nombre)", datamanager.ConexionSQL);
+                SqlCommand cmd = new SqlCommand("Insert into segGrupo(Nombre)" +
+                                                " output INSERTED.idGrupo" +
+                                                " Values(@Nombre)", datamanager.ConexionSQL);
+
 
                 // Ponemos valores a los Parametros incluidos en la consulta de actualización
-                cmd.Parameters.AddWithValue("@idGrupo", Fld_idGrupo);
                 cmd.Parameters.AddWithValue("@Nombre", Fld_NombreGrupo);
-
 
                 // Ejecutamos consulta de Actualización
                 // y Retornamos el idGrupo Insertado.
@@ -53,48 +91,81 @@ namespace CrtProduccion.entidades
         }
 
 
-        // CRUD  -- R = Read
-        public bool leerDatos(SqlDataReader dr)
+        /// <summary>
+        /// <para>CRUD  -- R = Read</para>
+        ///  Lee los datos extraido de la tabla segGrupo.
+        /// </summary>
+        /// <param name="dr">Objeto SqlDataReader que contiene los datos extraido de la tabla.</param>
+        /// <param name="asignar">true para asignar los campos del registro leido a las propiedades.</param>
+        /// <returns>True : cuando el dato existe, false cuando no existe.</returns>
+        public bool leerDatos(SqlDataReader dr, bool asignar)
         {
 
             bool encontrado = false;
             if (dr.Read())
             {
-                Fld_idGrupo = (int)dr["idGrupo"];
-                Fld_NombreGrupo = dr["Nombre"].ToString();
-                
                 encontrado = true;
+                if (asignar)
+                {
+                    Fld_idGrupo = (int)dr["idGrupo"];
+                    Fld_NombreGrupo = dr["Nombre"].ToString();
+                }
             }
-            else limpiar();
+            else
+            {
+                if (asignar) limpiar();
+            }
 
             return encontrado;
         }
 
-        public bool buscar(String pNombre)
+        /// <summary>
+        ///  Buscar en la tabla de segGrupo por el Nombre del usuario.
+        /// </summary>
+        /// <param name="pNombre"> Nombre único que identifica el grupo.</param>
+        /// <param name="asignar"> true = Asigna los campos de la tabla a las propiedadades, false = no los asigna.</param>
+        /// <returns>true : si lo encuentra y false cuando no lo encuentra.</returns>
+        public bool buscar(String pNombre, bool asignar)
         {
             var dr = datamanager.ConsultaLeer("select idGrupo, Nombre" +
                                                " from segGrupo" +
                                                " where Nombre = '" + pNombre + "'");
-            return leerDatos(dr);
+            return leerDatos(dr, asignar);
         }
 
-        public bool buscar(int idGrupo)
+
+        /// <summary>
+        ///  Buscar en la tabla de segGrupo por el idGrupo
+        /// </summary>
+        /// <param name="idGrupo"> código único que identifica el grupo.</param>
+        /// <param name="asignar"> true = Asigna los campos de la tabla a las propiedadades, false = no los asigna.</param>
+        /// <returns>true : si lo encuentra y false cuando no lo encuentra.</returns>
+        public bool buscar(int idGrupo, bool asignar)
         {
             var dr = datamanager.ConsultaLeer("select idGrupo, Nombre" +
                                                " from segGrupo" +
                                                " where idGrupo = " + idGrupo.ToString());
-            return leerDatos(dr);
+            return leerDatos(dr, asignar);
         }
 
+        /// <summary>
+        /// Lee el último registro insertado en la tabla segGrupo.
+        /// </summary>
+        /// <returns>true cuando existe por lo menos un registro en la tabla segGrupo</returns>
         public bool buscarUltimo()
         {
             var dr = datamanager.ConsultaLeer("select top 1 idGrupo, Nombre" +
                                                " from segGrupo" +
                                                " order by idGrupo desc ");
-            return leerDatos(dr);
+            return leerDatos(dr,true);
         }
 
-        public bool actualizarDatos()
+        /// <summary>
+        /// <para>CRUD  -- U = Update</para> 
+        /// <para>Método que actualiza los datos de la tabla segGrupo</para>
+        /// </summary>
+        /// <returns>True cuando logra actualizar los datos.</returns>
+         public bool actualizarDatos()
         {
             int lRet = 0;
 
@@ -109,7 +180,7 @@ namespace CrtProduccion.entidades
                 // Ponemos valores a los Parametros incluidos en la consulta de actualización
                 cmd.Parameters.AddWithValue("@idGrupo", Fld_idGrupo);
                 cmd.Parameters.AddWithValue("@Nombre", Fld_NombreGrupo);
-                ;
+                
 
                 // Ejecutamos consulta de Actualización
                 lRet = cmd.ExecuteNonQuery();
@@ -121,6 +192,11 @@ namespace CrtProduccion.entidades
             return lRet > 0;
         }
 
+         /// <summary>
+         /// <para>CRUD -- D = Delete</para> 
+         /// <para>Método que elimina un registro de la tabla segGrupo</para>
+         /// </summary>
+         /// <returns>True cuando logra eliminar el registro.</returns>
         public bool borrarDatos(int pidGrupo)
         {
             // Intentamos Borrarlo
@@ -130,12 +206,11 @@ namespace CrtProduccion.entidades
 
             // Si logramos borrarlo limpiamos 
             if (lret) limpiar();
-
             // Retornamos true si lo Borra y false de No poder hacerlo.
             return lret;
         }
 
-    
+        #endregion
     }
 }
 
