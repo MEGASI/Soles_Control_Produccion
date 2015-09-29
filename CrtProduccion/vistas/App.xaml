@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:CrtProduccion"
              StartupUri="vistas/iniciofrm.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary Source="..\Resources\estiloBase.xaml"></ResourceDictionary>
     </Application.Resources>
 </Application>
