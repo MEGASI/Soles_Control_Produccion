@@ -5,28 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CrtProduccion"
         mc:Ignorable="d" Height="469"  Width="474" 
+        Background="{StaticResource fondoOscuro}"
         Title="Asignar Usuario a Grupo"
         WindowStartupLocation="CenterScreen" 
         WindowStyle="ToolWindow" >
 
-    <Window.Background>
-        <RadialGradientBrush>
-            <GradientStop Color="Black" Offset="0"/>
-            <GradientStop Color="#FF14DABF" Offset="1"/>
-        </RadialGradientBrush>
-    </Window.Background>
-    
-    <Window.Resources>
-        <Style x:Key="ImageEnabled" TargetType="Image">
-            <Style.Triggers>
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter Property="Opacity" Value="0.25"></Setter>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-    </Window.Resources>
-
-    <StackPanel Orientation="Vertical">
+       <StackPanel Orientation="Vertical">
 
         <StackPanel  Orientation="Horizontal" Height="100" Margin="8,8,8,0">
             <Image x:Name="GroupU_png" 

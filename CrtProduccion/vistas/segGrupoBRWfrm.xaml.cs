@@ -52,18 +52,18 @@ namespace CrtProduccion
 
             dsGrid.Clear();
 
-            dsGrid = datamanager.ConsultaDatos("select Nombre, idGrupo from segGrupo");
+            dsGrid = datamanager.ConsultaDatos("select Nombre, idGrupo from segGrupo order by nombre");
 
             DataG.ItemsSource = dsGrid.Tables[0].DefaultView;
 
             DataG.CanUserAddRows = false;
-            DataG.Columns[0].Width = 152;
+            DataG.Columns[0].Width = 175;
             DataG.Columns[0].IsReadOnly = true;
             DataG.Columns[0].Header = "Grupo";
             DataG.Columns[0].CanUserResize = false;
 
             DataG.Columns[1].IsReadOnly = true;
-            DataG.Columns[1].Width = 48;
+            DataG.Columns[1].Width = 58;
             DataG.Columns[1].Header = "Número";
             DataG.Columns[1].CanUserResize = false;
 

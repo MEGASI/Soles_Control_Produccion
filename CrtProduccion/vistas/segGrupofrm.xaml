@@ -5,27 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CrtProduccion"
         mc:Ignorable="d"
-        Title="Grupo de Seguridad" Height="296" Width="424" WindowStyle="ToolWindow" 
+        Background="{StaticResource fondoOscuro}"
+        Title="Grupo de Seguridad" Height="296" 
+        Width="424" WindowStyle="ToolWindow" 
         WindowStartupLocation="CenterScreen" 
         Loaded="Window_Loaded">
 
-    <Window.Background>
-        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-            <GradientStop Color="Black" Offset="1"/>
-            <GradientStop Color="#FF0BC0C9"/>
-        </LinearGradientBrush>
-    </Window.Background>
-
-    <Window.Resources>
-        <Style x:Key="ImageEnabled" TargetType="Image">
-            <Style.Triggers>
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter Property="Opacity" Value="0.25"></Setter>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-    </Window.Resources>
-
+   
     <Grid Height="271" VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -36,7 +22,7 @@
         </Grid.ColumnDefinitions>
 
         
-        <Label x:Name="label1" Content="Grupo de Usario"
+        <Label x:Name="label1" Content="Grupo de Usuario"
                HorizontalAlignment="Left" Margin="42,36,0,0"
                VerticalAlignment="Top" Grid.ColumnSpan="2"
                Width="152" FontFamily="Verdana" FontSize="14"

@@ -5,25 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CrtProduccion"
         mc:Ignorable="d"
-        Title="Consultar Grupos" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" Height="278.427" Width="319">
+        Title="Consultar Grupos" 
+        Loaded="Window_Loaded" 
+        ShowInTaskbar="False" 
+        WindowStartupLocation="CenterScreen" 
+        Background="{StaticResource fondoClaro}"
+        WindowStyle="ToolWindow" Height="266.629" Width="278.834">
 
 
+    <StackPanel x:Name="main" Orientation="Vertical" Height="237"  >
 
+        <StackPanel  x:Name="sp1" Orientation="Vertical"
+                     Margin="10,10,10,0">
+            
+            <DataGrid x:Name="DataG" 
+                  Height="167" 
+                  SelectionChanged="DataG_SelectionChanged"
+                  MouseDoubleClick="DataG_MouseDoubleClick"
+                   IsReadOnly="True" />
+        </StackPanel>
 
-
-
-
-
-    <Grid>
-        <DataGrid x:Name="DataG" HorizontalAlignment="Left" Margin="26,22,0,0" VerticalAlignment="Top" Height="147" Width="259" SelectionChanged="DataG_SelectionChanged" MouseDoubleClick="DataG_MouseDoubleClick"/>
-        <Button x:Name="btnCancelar" Margin="171,191,0,0" Width="100"  Height="38" ToolTip="Cancelar" Click="btnCancelar_Click" VerticalAlignment="Top" HorizontalAlignment="Left">
-            <Image x:Name="Cancelar_png" Height="32" Source="../Resources/Cancelar02.png" 
+        <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Center" Margin="10">
+            <Button x:Name="btnAceptar" Margin="2,0,2,0" Width="100"  
+                    Height="38" ToolTip="Aceptar" Click="btnAceptar_Click" IsEnabled="False">
+                <Image x:Name="btnAceptar_png" Height="32" 
+                       Source="../Resources/Check.png" 
+                       Stretch="Fill" Width="32" IsEnabled="False"
+                       Style="{StaticResource ImageEnabled}"/>
+            </Button>
+            
+            <Button x:Name="btnCancelar" Margin="2,0,2,0" Width="100"  Height="38" ToolTip="Cancelar" Click="btnCancelar_Click">
+                <Image x:Name="Cancelar_png" Height="32" Source="../Resources/Cancelar02.png" 
                        Stretch="Fill" Width="32" />
-        </Button>
-        <Button x:Name="btnAceptar" Margin="42,191,0,0" Width="100"  Height="38" ToolTip="Aceptar" Click="btnAceptar_Click" IsEnabled="False" VerticalAlignment="Top" HorizontalAlignment="Left">
-            <Image x:Name="btnAceptar_png" Height="32" Source="../Resources/Check.png" 
-                       Stretch="Fill" Width="32" IsEnabled="False"/>
-        </Button>
-
-    </Grid>
+            </Button>
+        </StackPanel>
+    </StackPanel>
+ 
 </Window>
