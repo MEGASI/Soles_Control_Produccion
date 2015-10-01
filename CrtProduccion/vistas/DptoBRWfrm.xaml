@@ -1,0 +1,43 @@
+﻿<Window x:Class="CrtProduccion.vistas.DptoBRWfrm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CrtProduccion.vistas"
+        mc:Ignorable="d"
+        Title="Consultar Departamentos" Height="315" Width="319" Loaded="Window_Loaded" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black"/>
+            <GradientStop Color="#FF10E2C5" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <StackPanel x:Name="main" Orientation="Vertical" Margin="0,19,0,0"  >
+
+        <StackPanel  x:Name="sp1" Orientation="Vertical"
+                     Margin="23,10,0,0" HorizontalAlignment="Left" Width="250">
+            <DataGrid x:Name="DataG" 
+                  Height="167" 
+                  SelectionChanged="DataG_SelectionChanged"
+                  MouseDoubleClick="DataG_MouseDoubleClick"
+                   IsReadOnly="True" />
+            <DataGrid x:Name="dataGrid"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Center" Margin="75,10,63,10">
+            <Button x:Name="btnAceptar" Margin="2,0,2,0" Width="75"  
+                    Height="38" ToolTip="Aceptar" IsEnabled="False" Click="btnAceptar_Click_1">
+                <Image x:Name="btnAceptar_png" Height="32" 
+                       Source="../Resources/Check.png" 
+                       Stretch="Fill" Width="32" IsEnabled="False"
+                       Style="{StaticResource ImageEnabled}"/>
+            </Button>
+            <Button x:Name="btnCancelar" Margin="2,0,2,0" Width="75"  Height="38" ToolTip="Cancelar" Click="btnCancelar_Click">
+                <Image x:Name="Cancelar_png" Height="32" Source="../Resources/Cancelar02.png" 
+            		Stretch="Fill" Width="32" />
+            </Button>
+        </StackPanel>
+    </StackPanel>
+
+</Window>

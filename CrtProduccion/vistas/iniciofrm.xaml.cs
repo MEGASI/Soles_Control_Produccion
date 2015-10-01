@@ -52,6 +52,9 @@ namespace CrtProduccion
             segAsignaGrupo.IsEnabled = datamanager.probarPermiso("HS0103", "acceso");
             segPerfilGrupo.IsEnabled = datamanager.probarPermiso("HS0104", "acceso");
             segPerfilUsuario.IsEnabled = datamanager.probarPermiso("HS0105", "acceso");
+
+
+            
             #endregion
 
         }
@@ -100,15 +103,23 @@ namespace CrtProduccion
             if (MessageBox.Show("Seguro que Desea Salir ?", "Salir",
                 MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.No)
                 Application.Current.Shutdown();
-        } 
+        }
         #endregion
 
-        private void mainHerramientas_Click(object sender, RoutedEventArgs e)
-        {
+       
 
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            vistas.dptofrm dlg = new vistas.dptofrm();
+
+            dlg.ShowDialog();
         }
 
-
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            vistas.Cargofrm dlg = new vistas.Cargofrm();
+            dlg.ShowDialog();
+        }
     }
 }
 

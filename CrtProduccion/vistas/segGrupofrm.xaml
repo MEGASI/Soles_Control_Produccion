@@ -14,7 +14,7 @@
     <Canvas>
 
         <Grid Canvas.Left="42">
-        <Grid.RowDefinitions>
+        <Grid.RowDefinitions>   
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -23,7 +23,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <Label x:Name="label1" Content="Grupo de Usuario"
+        <Label x:Name="lblTitle" Content="Grupo de Usuario"
                HorizontalAlignment="Left" Margin="42,36,0,0"
                VerticalAlignment="Top" Grid.ColumnSpan="2"
                Width="152" FontFamily="Verdana" FontSize="14"

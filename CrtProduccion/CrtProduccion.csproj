@@ -77,6 +77,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="comunes\libreria.cs" />
+    <Compile Include="entidades\dmCargo.cs" />
+    <Compile Include="entidades\dmDpto.cs" />
     <Compile Include="entidades\dmGrupo.cs" />
     <Compile Include="entidades\dmUsuario.cs" />
     <Compile Include="comunes\datamanager.cs" />
@@ -86,6 +88,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="vistas\CargoBRWf.xaml.cs">
+      <DependentUpon>CargoBRWf.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\DptoBRWfrm.xaml.cs">
+      <DependentUpon>DptoBRWfrm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\dptofrm.xaml.cs">
+      <DependentUpon>dptofrm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="vistas\segGrupoAsignafrm.xaml.cs">
       <DependentUpon>segGrupoAsignafrm.xaml</DependentUpon>
     </Compile>
@@ -123,7 +134,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbCtrlServiciosDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="vistas\cargofrm.xaml.cs">
+      <DependentUpon>cargofrm.xaml</DependentUpon>
+    </Compile>
     <Page Include="Resources\estiloBase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\CargoBRWf.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\DptoBRWfrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\dptofrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -160,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="vistas\iniciofrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\cargofrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

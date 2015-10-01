@@ -1,20 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
-using System.Data.SqlClient;
-using System.Data;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
-namespace CrtProduccion
+namespace CrtProduccion.vistas
 {
     /// <summary>
-    /// Interaction logic for segGrupofrm.xaml
+    /// Interaction logic for dptofrm.xaml
     /// </summary>
-    public partial class segGrupofrm : Window
+    public partial class dptofrm : Window
     {
 
         #region Declaraciones de variables y Propiedades
 
-        private entidades.dmGrupo registro { get; set; }
+        private entidades.dmDpto registro { get; set; }
 
         string idSegItem = "HS0102";
 
@@ -42,8 +50,8 @@ namespace CrtProduccion
                         btnModificar.Visibility = Visibility.Hidden;
 
                         comunes.libreria.estadoControles(this, true);
-                        txtIdGrupo.IsEnabled = false;
-                       
+                        TxtIdDpto.IsEnabled = false;
+
 
                     }
 
@@ -57,7 +65,7 @@ namespace CrtProduccion
                         btnModificar.Visibility = Visibility.Visible;
 
                         comunes.libreria.estadoControles(this, false);
-                        txtIdGrupo.IsEnabled = true;
+                        TxtIdDpto.IsEnabled = true;
                     }
                 }
                 _modalidad = value;
@@ -69,7 +77,7 @@ namespace CrtProduccion
 
         #region Constructor y Loader
         //   Constructor del Fromulario
-        public segGrupofrm()
+        public dptofrm()
         {
             // Cargar los permisos del grupo para este formulario.
             permiteModificar = datamanager.probarPermiso(idSegItem, "modificar");
@@ -77,11 +85,11 @@ namespace CrtProduccion
             permiteBorrar = datamanager.probarPermiso(idSegItem, "borrar");
 
             InitializeComponent();
-       }
+        }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            registro = new entidades.dmGrupo();
+            registro = new entidades.dmDpto();
             registro.buscarUltimo();
 
             //DataContext = registro;
@@ -96,7 +104,7 @@ namespace CrtProduccion
             // Borrar
             btnBorrar.IsEnabled = permiteBorrar;
 
-            if (registro.Fld_idGrupo == 0 && permiteCrear)
+            if (registro.fld_idDpto == 0 && permiteCrear)
                 modalidad = "CREAR";
             else
                 modalidad = "CONSULTAR";
@@ -109,28 +117,28 @@ namespace CrtProduccion
         // Click del boton Nuevo
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
-            registro.fld_oldIdGrupo = registro.Fld_idGrupo;
+            registro.fld_oldidDpto = registro.fld_idDpto;
             registro.limpiar();
             mostrar();
             modalidad = "CREAR";
-            txtNombre.Focus();
+            TxtNombre.Focus();
         }
 
         // Click del Boton Cancelar
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            registro.buscar(registro.Fld_idGrupo, true);
+            registro.buscar(registro.fld_idDpto, true);
             mostrar();
             modalidad = "CONSULTAR";
-            txtNombre.Focus();
+            TxtNombre.Focus();
         }
 
         // Click Boton Modificar
         private void btnModificar_Click(object sender, RoutedEventArgs e)
         {
-            registro.fld_oldIdGrupo = registro.Fld_idGrupo;
+            registro.fld_oldidDpto = registro.fld_idDpto;
             modalidad = "MODIFICAR";
-            txtIdGrupo.Focus();
+            TxtIdDpto.Focus();
         }
 
         // Click Boton Gurdar
@@ -138,12 +146,12 @@ namespace CrtProduccion
         {
 
             // Asignar los valores de los conroles del formulario a los campos.
-            registro.Fld_NombreGrupo = txtNombre.Text;
+            registro.fld_NombreDpto = TxtNombre.Text;
 
             // Validar los valores asignados.
             bool lret = registro.validar();
 
-            
+
             if (lret && this.modalidad == "CREAR")
                 lret = registro.crearDatos() > 0;
 
@@ -167,9 +175,9 @@ namespace CrtProduccion
             if (MessageBox.Show("Seguro que quieres eliminar este Grupo de Usuario?", "Borrar", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
 
-                if (this.modalidad == "CONSULTAR" && registro.Fld_idGrupo != 0)
+                if (this.modalidad == "CONSULTAR" && registro.fld_idDpto != 0)
                 {
-                    lret = registro.borrarDatos(registro.Fld_idGrupo);
+                    lret = registro.borrarDatos(registro.fld_idDpto);
                 }
 
                 if (lret)
@@ -178,7 +186,7 @@ namespace CrtProduccion
                     mostrar();
                 }
             }
-            txtNombre.Focus();
+            TxtNombre.Focus();
         }
 
 
@@ -188,24 +196,24 @@ namespace CrtProduccion
             this.Close();
         }
 
-      
+
         // Click Boton Buscar
         private void btnbuscar_Click(object sender, RoutedEventArgs e)
         {
-            segGrupoBRWfrm dlgfrm = new segGrupoBRWfrm();
+            vistas.DptoBRWfrm dlgfrm = new vistas.DptoBRWfrm();
             dlgfrm.ShowDialog();
 
             if (dlgfrm.DialogResult.HasValue && dlgfrm.DialogResult.Value)
             {
                 // Si el Usuario presiona Aceptar
-                if (!registro.buscar(dlgfrm.idGrupo,true))
+                if (!registro.buscar(dlgfrm.idDpto, true))
                 {
                     MessageBox.Show("Nombre de Grupo no existe", "Grupo", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
                     mostrar();
-                    txtNombre.Focus();
+                    TxtNombre.Focus();
                 }
             }
         }
@@ -214,7 +222,7 @@ namespace CrtProduccion
 
         #region Validaciones
 
-      
+
         private void txtIdGrupo_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Enter)
@@ -227,14 +235,14 @@ namespace CrtProduccion
         {
             int idGrupo = 0;
 
-            if (!Int32.TryParse(txtIdGrupo.Text, out idGrupo))
+            if (!Int32.TryParse(TxtIdDpto.Text, out idGrupo))
             {
                 idGrupo = 0;
             }
 
-            if (idGrupo!=registro.Fld_idGrupo)
+            if (idGrupo != registro.fld_idDpto)
             {
-                registro.Fld_idGrupo = idGrupo;
+                registro.fld_idDpto = idGrupo;
                 bool found = registro.buscar(idGrupo, false);
                 if (modalidad.Equals("CONSULTAR"))
                 {
@@ -243,9 +251,9 @@ namespace CrtProduccion
                     else registro.buscar(idGrupo, true);
 
                     mostrar();
-                    txtIdGrupo.Focus();
+                    TxtIdDpto.Focus();
                 }
-                
+
             }
 
 
@@ -258,11 +266,11 @@ namespace CrtProduccion
 
         private void NameGroup_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!txtNombre.Text.Equals(registro.Fld_NombreGrupo))
+            if (!TxtNombre.Text.Equals(registro.fld_NombreDpto))
             {
-                registro.Fld_NombreGrupo = txtNombre.Text;
+                registro.fld_NombreDpto = TxtNombre.Text;
 
-                bool found = registro.buscar(txtNombre.Text, false);
+                bool found = registro.buscar(TxtNombre.Text, false);
 
                 if (modalidad.Equals("CONSULTAR"))
                 {
@@ -270,15 +278,15 @@ namespace CrtProduccion
                         MessageBox.Show("Nombre de Grupo no existe", "Grupo", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     mostrar();
-                    txtNombre.Focus();
+                    TxtNombre.Focus();
                 }
                 else
                 {
                     if (found)
                     {
                         MessageBox.Show("Grupo ya existe.", "Grupo", MessageBoxButton.OK, MessageBoxImage.Information);
-                        txtNombre.Text = "";
-                        txtNombre.Focus();
+                        TxtNombre.Text = "";
+                        TxtNombre.Focus();
                     }
                 }
             }
@@ -307,10 +315,15 @@ namespace CrtProduccion
         /// </summary>
         private void mostrar()
         {
-            txtNombre.Text = registro.Fld_NombreGrupo;
-            txtIdGrupo.Text = Convert.ToInt16(registro.Fld_idGrupo).ToString();
+            TxtNombre.Text = registro.fld_NombreDpto;
+//            TxtIdDpto = Convert.ToInt16(registro.fld_NombreDpto).ToString();
         }
         #endregion
+
+        private void TxtIdDpto_TextChanged(object sender, TextChangedEventArgs e)
+        {
+        
+        }
     }
 }
 

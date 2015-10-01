@@ -1,29 +1,32 @@
 ﻿using System;
 using System.Data.SqlClient;
 
+
 namespace CrtProduccion.entidades
 {
-    class dmGrupo
+    class dmCargo
     {
+
         #region Atributos
 
-        public int fld_oldIdGrupo = 0;
-        public int Fld_idGrupo { get; set; }
-        public string Fld_NombreGrupo { get; set; }
+        public int fld_oldidCargo = 0;
+        public int fld_idCargo { get; set; }
+        public string fld_NombreCargo { get; set; }
         public string errormsg = "";
 
         #endregion
 
         #region Constructores
-        public dmGrupo() {
+        public dmCargo()
+        {
             limpiar();
         }
 
-        public dmGrupo(int Pfld_idGrupo, String PFld_NombreGrupo)
+        public dmCargo(int Pfld_idCargo, String Pfld_NombreCargo)
 
         {
-            Fld_idGrupo = Pfld_idGrupo;
-            Fld_NombreGrupo = PFld_NombreGrupo;
+            fld_idCargo = Pfld_idCargo;
+            fld_NombreCargo = Pfld_NombreCargo;
         }
 
         #endregion
@@ -35,9 +38,9 @@ namespace CrtProduccion.entidades
         /// </summary>
         public void limpiar()
         {
-            Fld_idGrupo = 0;
-            Fld_NombreGrupo = "";
-            
+            fld_idCargo = 0;
+            fld_NombreCargo = "";
+
         }
 
         /// <summary>
@@ -49,9 +52,9 @@ namespace CrtProduccion.entidades
         {
             bool lret = true;
 
-            if (lret && Fld_NombreGrupo.Equals(""))
+            if (lret && fld_NombreCargo.Equals(""))
             {
-                errormsg = "Nombre de Grupo no puede estar vacío.";
+                errormsg = "Nombre de cargo no puede estar vacío.";
                 lret = false;
             }
             return lret;
@@ -64,30 +67,30 @@ namespace CrtProduccion.entidades
         /// <returns>El Numero de identificación generado, cero cuando no logra insertar el registro.</returns>
         public int crearDatos()
         {
-            Fld_idGrupo = 0;
+            fld_idCargo = 0;
 
             if (datamanager.ConexionAbrir())
             {
 
                 // Preparamos consulta pra la actualización
-                SqlCommand cmd = new SqlCommand("Insert into segGrupo(Nombre)" +
-                                                " output INSERTED.idGrupo" +
-                                                " Values(@Nombre)", datamanager.ConexionSQL);
+                SqlCommand cmd = new SqlCommand("Insert into cargo(Descripcion)" +
+                                                " output INSERTED.idCargo" +
+                                                " Values(@Descripcion)", datamanager.ConexionSQL);
 
 
                 // Ponemos valores a los Parametros incluidos en la consulta de actualización
-                cmd.Parameters.AddWithValue("@Nombre", Fld_NombreGrupo);
+                cmd.Parameters.AddWithValue("@Descripcion", fld_NombreCargo);
 
                 // Ejecutamos consulta de Actualización
-                // y Retornamos el idGrupo Insertado.
-                Fld_idGrupo = (int)cmd.ExecuteScalar();
+                // y Retornamos el idCargo Insertado.
+                fld_idCargo = (int)cmd.ExecuteScalar();
 
                 // Cerramos conexión.
                 datamanager.ConexionCerrar();
 
             }
-            // si no logra insertar nada el idGrupo Retornado es Cero
-            return Fld_idGrupo;
+            // si no logra insertar nada el idCargo Retornado es Cero
+            return fld_idCargo;
         }
 
 
@@ -107,8 +110,8 @@ namespace CrtProduccion.entidades
                 encontrado = true;
                 if (asignar)
                 {
-                    Fld_idGrupo = (int)dr["idGrupo"];
-                    Fld_NombreGrupo = dr["Nombre"].ToString();
+                    fld_idCargo = (int)dr["idCargo"];
+                    fld_NombreCargo = dr["Descripcion"].ToString();
                 }
             }
             else
@@ -127,22 +130,22 @@ namespace CrtProduccion.entidades
         /// <returns>true : si lo encuentra y false cuando no lo encuentra.</returns>
         public bool buscar(String pNombre, bool asignar)
         {
-            var dr = datamanager.ConsultaLeer("select idGrupo, Nombre" +
-                                               " from segGrupo" +
-                                               " where Nombre = '" + pNombre + "'");
+            var dr = datamanager.ConsultaLeer("select idCargo, Descripcion" +
+                                               " from cargo" +
+                                               " where Descripcion = '" + pNombre + "'");
             return leerDatos(dr, asignar);
         }
         /// <summary>
-        ///  Buscar en la tabla de segGrupo por el idGrupo
+        ///  Buscar en la tabla de segGrupo por el idCargo
         /// </summary>
-        /// <param name="idGrupo"> código único que identifica el grupo.</param>
+        /// <param name="idCargo"> código único que identifica el grupo.</param>
         /// <param name="asignar"> true = Asigna los campos de la tabla a las propiedadades, false = no los asigna.</param>
         /// <returns>true : si lo encuentra y false cuando no lo encuentra.</returns>
-        public bool buscar(int idGrupo, bool asignar)
+        public bool buscar(int idCargo, bool asignar)
         {
-            var dr = datamanager.ConsultaLeer("select idGrupo, Nombre" +
-                                               " from segGrupo" +
-                                               " where idGrupo = " + idGrupo.ToString());
+            var dr = datamanager.ConsultaLeer("select idCargo, Descripcion" +
+                                               " from cargo" +
+                                               " where idCargo = " + idCargo.ToString());
             return leerDatos(dr, asignar);
         }
 
@@ -152,10 +155,10 @@ namespace CrtProduccion.entidades
         /// <returns>true cuando existe por lo menos un registro en la tabla segGrupo</returns>
         public bool buscarUltimo()
         {
-            var dr = datamanager.ConsultaLeer("select top 1 idGrupo, Nombre" +
-                                               " from segGrupo" +
-                                               " order by idGrupo desc ");
-            return leerDatos(dr,true);
+            var dr = datamanager.ConsultaLeer("select top 1 idCargo, Descripcion" +
+                                               " from cargo" +
+                                               " order by idCargo desc ");
+            return leerDatos(dr, true);
         }
 
         /// <summary>
@@ -163,22 +166,22 @@ namespace CrtProduccion.entidades
         /// <para>Método que actualiza los datos de la tabla segGrupo</para>
         /// </summary>
         /// <returns>True cuando logra actualizar los datos.</returns>
-         public bool actualizarDatos()
+        public bool actualizarDatos()
         {
             int lRet = 0;
 
             if (datamanager.ConexionAbrir())
             {
-             
+
                 // Preparamos consulta pra la actualización
-                SqlCommand cmd = new SqlCommand("update segGrupo" +
-                                                " Set Nombre = @Nombre" +
-                                                " Where idGrupo = @idGrupo ", datamanager.ConexionSQL);
+                SqlCommand cmd = new SqlCommand("update cargo" +
+                                                " Set Descripcion = @Descripcion" +
+                                                " Where idCargo = @idCargo ", datamanager.ConexionSQL);
 
                 // Ponemos valores a los Parametros incluidos en la consulta de actualización
-                cmd.Parameters.AddWithValue("@idGrupo", Fld_idGrupo);
-                cmd.Parameters.AddWithValue("@Nombre", Fld_NombreGrupo);
-                
+                cmd.Parameters.AddWithValue("@idCargo", fld_idCargo);
+                cmd.Parameters.AddWithValue("@Descripcion", fld_NombreCargo);
+
 
                 // Ejecutamos consulta de Actualización
                 lRet = cmd.ExecuteNonQuery();
@@ -190,17 +193,17 @@ namespace CrtProduccion.entidades
             return lRet > 0;
         }
 
-         /// <summary>
-         /// <para>CRUD -- D = Delete</para> 
-         /// <para>Método que elimina un registro de la tabla segGrupo</para>
-         /// </summary>
-         /// <returns>True cuando logra eliminar el registro.</returns>
-        public bool borrarDatos(int pidGrupo)
+        /// <summary>
+        /// <para>CRUD -- D = Delete</para> 
+        /// <para>Método que elimina un registro de la tabla segGrupo</para>
+        /// </summary>
+        /// <returns>True cuando logra eliminar el registro.</returns>
+        public bool borrarDatos(int pidCargo)
         {
             // Intentamos Borrarlo
             bool lret = datamanager.ConsultaNodata("delete " +
-                                               " from segGrupo" +
-                                               " where idGrupo = " + pidGrupo.ToString());
+                                               " from cargo" +
+                                               " where idCargo = " + pidCargo.ToString());
 
             // Si logramos borrarlo limpiamos 
             if (lret) limpiar();
@@ -212,6 +215,6 @@ namespace CrtProduccion.entidades
     }
 }
 
-    
+
 
 
