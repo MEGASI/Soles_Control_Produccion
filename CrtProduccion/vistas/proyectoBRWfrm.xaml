@@ -1,0 +1,44 @@
+﻿<Window x:Class="CrtProduccion.vistas.proyectoBRWfrm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CrtProduccion.vistas"
+        mc:Ignorable="d"
+        Title="Consultar Proyecto"  
+        ShowInTaskbar="False" 
+        WindowStartupLocation="CenterScreen" 
+        Background="{StaticResource fondoClaro}"
+        WindowStyle="ToolWindow" Height="266.629" Width="278.834" Loaded="Window_Loaded">
+
+
+    <StackPanel x:Name="main" Orientation="Vertical" Height="237"  >
+
+        <StackPanel  x:Name="sp1" Orientation="Vertical"
+                     Margin="10,10,10,0">
+
+            <DataGrid x:Name="DataG" 
+                  Height="167" 
+                  
+                  
+                   IsReadOnly="True" SelectionChanged="DataG_SelectionChanged" MouseDoubleClick="DataG_MouseDoubleClick" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Center" Margin="10">
+            <Button x:Name="btnAceptar" Margin="2,0,2,0" Width="100"  
+                    Height="38" ToolTip="Aceptar" IsEnabled="False" Click="btnAceptar_Click">
+                <Image x:Name="btnAceptar_png" Height="32" 
+                       Source="../Resources/Check.png" 
+                       Stretch="Fill" Width="32" IsEnabled="False"
+                       Style="{StaticResource ImageEnabled}"/>
+            </Button>
+
+            <Button x:Name="btnCancelar" Margin="2,0,2,0" Width="100"  Height="38" ToolTip="Cancelar" Click="btnCancelar_Click">
+                <Image x:Name="Cancelar_png" Height="32" Source="../Resources/Cancelar02.png" 
+                       Stretch="Fill" Width="32" />
+            </Button>
+        </StackPanel>
+    </StackPanel>
+
+</Window>

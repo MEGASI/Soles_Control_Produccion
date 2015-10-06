@@ -120,6 +120,12 @@ namespace CrtProduccion
             vistas.Cargofrm dlg = new vistas.Cargofrm();
             dlg.ShowDialog();
         }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            vistas.Proyectofrm dlg = new vistas.Proyectofrm();
+            dlg.ShowDialog();
+        }
     }
 }
 
