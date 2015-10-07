@@ -80,6 +80,7 @@
     <Compile Include="entidades\dmCargo.cs" />
     <Compile Include="entidades\dmDpto.cs" />
     <Compile Include="entidades\dmGrupo.cs" />
+    <Compile Include="entidades\dmproyecto.cs" />
     <Compile Include="entidades\dmUsuario.cs" />
     <Compile Include="comunes\datamanager.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -96,6 +97,12 @@
     </Compile>
     <Compile Include="vistas\dptofrm.xaml.cs">
       <DependentUpon>dptofrm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\proyectoBRWfrm.xaml.cs">
+      <DependentUpon>proyectoBRWfrm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\Proyectofrm.xaml.cs">
+      <DependentUpon>Proyectofrm.xaml</DependentUpon>
     </Compile>
     <Compile Include="vistas\segGrupoAsignafrm.xaml.cs">
       <DependentUpon>segGrupoAsignafrm.xaml</DependentUpon>
@@ -145,6 +152,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="vistas\dptofrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\proyectoBRWfrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\Proyectofrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

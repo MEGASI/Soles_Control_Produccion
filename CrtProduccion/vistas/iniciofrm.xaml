@@ -24,7 +24,8 @@
                     <MenuItem Header="Departamento " FontSize="14" Click="MenuItem_Click"/>
                     <MenuItem Header="Cargo" Click="MenuItem_Click_1"/>
                     <Separator/>
-                    <MenuItem Header="Opcion 3"/>
+                    <MenuItem Header="Proyectos" Click="MenuItem_Click_2"/>
+                    <MenuItem Header="Opcion 4"/>
                 </MenuItem>
 
                 <MenuItem Header="Proceso" FontFamily="Verdana" FontSize="14">
