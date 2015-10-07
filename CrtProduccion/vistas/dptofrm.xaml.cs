@@ -153,7 +153,13 @@ namespace CrtProduccion.vistas
 
 
             if (lret && this.modalidad == "CREAR")
+            {
                 lret = registro.crearDatos() > 0;
+                if (lret) {
+                    TxtIdDpto.Text = registro.fld_idDpto.ToString(); 
+                }
+               
+            }
 
             if (lret && this.modalidad == "MODIFICAR")
                 lret = registro.actualizarDatos();
