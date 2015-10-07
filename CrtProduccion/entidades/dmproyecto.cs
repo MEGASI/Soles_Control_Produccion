@@ -25,11 +25,12 @@ namespace CrtProduccion.entidades
             limpiar();
         }
 
-        public dmproyecto(int Pfld_idProyecto, String Pfld_Descripcion)
+        public dmproyecto(int Pfld_idProyecto, String Pfld_Descripcion, int pfld_idProyectoCRTL)
 
         {
             fld_idProyecto = Pfld_idProyecto;
             fld_Descripcion = Pfld_Descripcion;
+            fld_idProyectoCRTL = pfld_idProyectoCRTL;
         }
 
         #endregion
@@ -43,6 +44,7 @@ namespace CrtProduccion.entidades
         {
             fld_idProyecto = 0;
             fld_Descripcion = "";
+            fld_idProyectoCRTL = 0;
 
         }
 
@@ -113,7 +115,7 @@ namespace CrtProduccion.entidades
                 {
                     fld_idProyecto = (int)dr["idProyecto"];
                     fld_Descripcion = dr["Descripcion"].ToString();
-                   //fld_idProyectoCRTL = (int)dr["idProyectoCRTL"];
+                   fld_idProyectoCRTL = (int)dr["idProyectoCRTL"];
                 }
             }
             else
@@ -145,7 +147,7 @@ namespace CrtProduccion.entidades
         /// <returns>true : si lo encuentra y false cuando no lo encuentra.</returns>
         public bool buscar(int idProyecto, bool asignar)
         {
-            var dr = datamanager.ConsultaLeer("select idProyecto, Descripcion" +
+            var dr = datamanager.ConsultaLeer("select idProyecto, Descripcion,idProdectoCTRL" +
                                                " from Proyecto" +
                                                " where idProyecto = " + idProyecto.ToString());
             return leerDatos(dr, asignar);
@@ -167,14 +169,14 @@ namespace CrtProduccion.entidades
         /// </summary>
         /// <returns></returns>
 
-        //public bool BuscarCRTL()
-        //{
-        //    var dr = datamanager.ConsultaLeer("select Descripcion, idProyecto from proyectounion " +
-        //                                                        "all select 'N/A' as descripcion, " +
-        //                                                        "null as idProyectoorder by descripcion");
-        //    return leerDatos(dr, true);
-        //}
-       
+        public bool BuscarCRTL()
+        {
+            var dr = datamanager.ConsultaLeer("select Descripcion, idProdectoCTRL from proyecto union " +
+                                                                "all select 'N/A' as descripcion, " +
+                                                                "null as idProyecto order by descripcion");
+            return leerDatos(dr, true);
+        }
+
 
         /// <summary>
         /// <para>CRUD  -- U = Update</para> 

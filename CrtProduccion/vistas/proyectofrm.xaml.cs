@@ -85,8 +85,8 @@ namespace CrtProduccion.vistas
         {
             registro = new entidades.dmproyecto();
             registro.buscarUltimo();
-            
-            
+            registro.BuscarCRTL();
+
 
             //DataContext = registro;
             mostrar();
@@ -111,7 +111,7 @@ namespace CrtProduccion.vistas
         private void btnNuevo_Click_1(object sender, RoutedEventArgs e)
         {
             registro.fld_oldidProyecto = registro.fld_idProyecto;
-            //registro.fld_oldidProyectoCrtl = registro.fld_idProyectoCRTL;
+            registro.fld_oldidProyectoCrtl = registro.fld_idProyectoCRTL;
             registro.limpiar();
             mostrar();
             modalidad = "CREAR";
@@ -122,6 +122,8 @@ namespace CrtProduccion.vistas
         private void btnCancelar_Click_1(object sender, RoutedEventArgs e)
         {
             registro.buscar(registro.fld_idProyecto, true);
+            registro.buscar(registro.fld_idProyectoCRTL, true);
+
             mostrar();
             modalidad = "CONSULTAR";
             txtNombre.Focus();
@@ -130,6 +132,7 @@ namespace CrtProduccion.vistas
         private void btnModificar_Click(object sender, RoutedEventArgs e)
         {
             registro.fld_oldidProyecto = registro.fld_idProyecto;
+            registro.fld_oldidProyectoCrtl = registro.fld_idProyectoCRTL;
             modalidad = "MODIFICAR";
             txtidProyecto.Focus();
         }
@@ -138,6 +141,7 @@ namespace CrtProduccion.vistas
         {
             // Asignar los valores de los conroles del formulario a los campos.
             registro.fld_Descripcion = txtNombre.Text;
+            
 
             // Validar los valores asignados.
             bool lret = registro.validar();
@@ -161,9 +165,10 @@ namespace CrtProduccion.vistas
             if (MessageBox.Show("Seguro que quieres eliminar este Proyecto ?", "Borrar", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
 
-                if (this.modalidad == "CONSULTAR" && registro.fld_idProyecto != 0)
+                if (this.modalidad == "CONSULTAR" && registro.fld_idProyecto != 0 || this.modalidad == "CONSULTAR" && registro.fld_idProyectoCRTL!= 0)
                 {
                     lret = registro.borrarDatos(registro.fld_idProyecto);
+                    lret = registro.borrarDatos(registro.fld_idProyectoCRTL);
                 }
 
                 if (lret)
@@ -241,7 +246,7 @@ namespace CrtProduccion.vistas
                 registro.fld_Descripcion = txtNombre.Text;
 
                 bool found = registro.buscar(txtNombre.Text, false);
-                
+
 
                 if (modalidad.Equals("CONSULTAR"))
                 {
@@ -285,6 +290,27 @@ namespace CrtProduccion.vistas
         }
 
         #endregion
+
+        private void cbCTRL_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            /* SqlDataReader reader =
+         datamanager.ConsultaLeer("select idProyecto from Proyecto");
+
+             while (reader != null && reader.Read())
+             {
+                 cbCTRL.Items.Add(reader.GetInt32(0));
+             }
+
+             cbCTRL.SelectedIndex = 0;
+             datamanager.ConexionCerrar();*/
+
+
+            registro.BuscarCRTL();
+
+        }
+
        
+
     }
 }
