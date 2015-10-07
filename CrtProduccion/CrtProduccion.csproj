@@ -129,11 +129,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="dbCtrlServiciosDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbCtrlServiciosDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="vistas\cargofrm.xaml.cs">
       <DependentUpon>cargofrm.xaml</DependentUpon>
     </Compile>
@@ -235,17 +230,6 @@
     <Content Include="Resources\View.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="dbCtrlServiciosDataSet.xsc">
-      <DependentUpon>dbCtrlServiciosDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="dbCtrlServiciosDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dbCtrlServiciosDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="dbCtrlServiciosDataSet.xss">
-      <DependentUpon>dbCtrlServiciosDataSet.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
