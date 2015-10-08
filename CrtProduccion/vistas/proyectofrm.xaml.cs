@@ -70,6 +70,8 @@ namespace CrtProduccion.vistas
 
         }
         #endregion
+
+
         #region Constructor y Loader
         //   Constructor del Fromulario
         public Proyectofrm()
@@ -81,11 +83,12 @@ namespace CrtProduccion.vistas
 
             InitializeComponent();
         }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             registro = new entidades.dmproyecto();
             registro.buscarUltimo();
-            registro.BuscarCRTL();
+            //registro.BuscarCRTL();
 
 
             //DataContext = registro;
@@ -111,7 +114,6 @@ namespace CrtProduccion.vistas
         private void btnNuevo_Click_1(object sender, RoutedEventArgs e)
         {
             registro.fld_oldidProyecto = registro.fld_idProyecto;
-            registro.fld_oldidProyectoCrtl = registro.fld_idProyectoCRTL;
             registro.limpiar();
             mostrar();
             modalidad = "CREAR";
@@ -122,8 +124,6 @@ namespace CrtProduccion.vistas
         private void btnCancelar_Click_1(object sender, RoutedEventArgs e)
         {
             registro.buscar(registro.fld_idProyecto, true);
-            registro.buscar(registro.fld_idProyectoCRTL, true);
-
             mostrar();
             modalidad = "CONSULTAR";
             txtNombre.Focus();
@@ -132,7 +132,6 @@ namespace CrtProduccion.vistas
         private void btnModificar_Click(object sender, RoutedEventArgs e)
         {
             registro.fld_oldidProyecto = registro.fld_idProyecto;
-            registro.fld_oldidProyectoCrtl = registro.fld_idProyectoCRTL;
             modalidad = "MODIFICAR";
             txtidProyecto.Focus();
         }
@@ -152,8 +151,14 @@ namespace CrtProduccion.vistas
 
             if (lret)
             {
+                llenaCbIdProyectoCTRL();
                 modalidad = "CONSULTAR";
+                // Busca y asigna.               
+                registro.buscar(registro.fld_idProyecto, true);
+                mostrar();
+
                 MessageBox.Show("Información del Proyecto fue almacenada.", "Guardar", MessageBoxButton.OK, MessageBoxImage.Information);
+
             }
             else
                 MessageBox.Show(registro.errormsg, "Error", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -168,7 +173,6 @@ namespace CrtProduccion.vistas
                 if (this.modalidad == "CONSULTAR" && registro.fld_idProyecto != 0 || this.modalidad == "CONSULTAR" && registro.fld_idProyectoCRTL!= 0)
                 {
                     lret = registro.borrarDatos(registro.fld_idProyecto);
-                    lret = registro.borrarDatos(registro.fld_idProyectoCRTL);
                 }
 
                 if (lret)
@@ -210,7 +214,8 @@ namespace CrtProduccion.vistas
         #endregion
 
         #region Validaciones
-        private void txtidProyecto_KeyDown(object sender, KeyEventArgs e)
+
+     private void txtidProyecto_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Enter)
             {
@@ -279,7 +284,17 @@ namespace CrtProduccion.vistas
         {
             txtNombre.Text = registro.fld_Descripcion;
             txtidProyecto.Text = Convert.ToInt16(registro.fld_idProyecto).ToString();
-            //txtCTRL.Text = Convert.ToInt16(registro.fld_idProyectoCRTL).ToString();
+            
+            // Deberia de haber una forma mas facil de hacer esto
+            // para poder ubicar el item al que corresponde un codigo de proyecto.
+            foreach (CBoxNullItem lobj in CbidProyectoCTRL.Items)
+              if ((int?)lobj.Value == registro.fld_idProyectoCRTL) {
+                    CbidProyectoCTRL.SelectedValue = lobj;
+                    break;
+                }
+          
+            // hasta qui
+
         }
         private void Canvas_KeyDown(object sender, KeyEventArgs e)
         {
@@ -291,26 +306,49 @@ namespace CrtProduccion.vistas
 
         #endregion
 
-        private void cbCTRL_Loaded(object sender, RoutedEventArgs e)
+
+        private void CbidProyectoCTRL_Loaded(object sender, RoutedEventArgs e)
         {
-
-            /* SqlDataReader reader =
-         datamanager.ConsultaLeer("select idProyecto from Proyecto");
-
-             while (reader != null && reader.Read())
-             {
-                 cbCTRL.Items.Add(reader.GetInt32(0));
-             }
-
-             cbCTRL.SelectedIndex = 0;
-             datamanager.ConexionCerrar();*/
-
-
-            registro.BuscarCRTL();
-
+            llenaCbIdProyectoCTRL();
         }
 
-       
+
+        private void llenaCbIdProyectoCTRL() {
+
+            CbidProyectoCTRL.Items.Clear();
+
+            SqlDataReader dr =
+            datamanager.ConsultaLeer("select Descripcion, idProyecto from proyecto" +
+                         " Union  " +
+                         "Select 'N/A' as Descripcion, cast(null  as int) as idProyecto ");
+
+            string col1 = "";
+            int? col2 = null;
+            while (dr != null && dr.Read())
+            {
+                col1 = dr["Descripcion"].ToString();
+
+                // Estamos usando valores nulos, por eso en la 
+                // conversión a entero lanza una excepcion 
+                // la aprovechamos para asignar el valor nulo.
+                try { col2 = (int?)dr["idProyecto"]; }
+                catch (Exception) { col2 = null; }
+
+                CbidProyectoCTRL.Items.Add(new CBoxNullItem(col1, col2));
+            }
+
+            CbidProyectoCTRL.SelectedIndex = 0;
+            datamanager.ConexionCerrar();
+        }
+
+        private void CbidProyectoCTRL_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CbidProyectoCTRL.SelectedValue != null)
+            {
+                int? selectedValue = (int?)((CBoxNullItem)CbidProyectoCTRL.SelectedItem).Value;
+                registro.fld_idProyectoCRTL = selectedValue;
+            }
+        }
 
     }
 }

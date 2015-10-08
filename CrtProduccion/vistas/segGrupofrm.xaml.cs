@@ -96,7 +96,7 @@ namespace CrtProduccion
             // Borrar
             btnBorrar.IsEnabled = permiteBorrar;
 
-            if (registro.Fld_idGrupo == 0 && permiteCrear)
+            if (registro.fld_idGrupo == 0 && permiteCrear)
                 modalidad = "CREAR";
             else
                 modalidad = "CONSULTAR";
@@ -109,7 +109,7 @@ namespace CrtProduccion
         // Click del boton Nuevo
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
-            registro.fld_oldIdGrupo = registro.Fld_idGrupo;
+            registro.fld_oldIdGrupo = registro.fld_idGrupo;
             registro.limpiar();
             mostrar();
             modalidad = "CREAR";
@@ -119,7 +119,7 @@ namespace CrtProduccion
         // Click del Boton Cancelar
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            registro.buscar(registro.Fld_idGrupo, true);
+            registro.buscar(registro.fld_idGrupo, true);
             mostrar();
             modalidad = "CONSULTAR";
             txtNombre.Focus();
@@ -128,7 +128,7 @@ namespace CrtProduccion
         // Click Boton Modificar
         private void btnModificar_Click(object sender, RoutedEventArgs e)
         {
-            registro.fld_oldIdGrupo = registro.Fld_idGrupo;
+            registro.fld_oldIdGrupo = registro.fld_idGrupo;
             modalidad = "MODIFICAR";
             txtIdGrupo.Focus();
         }
@@ -138,7 +138,7 @@ namespace CrtProduccion
         {
 
             // Asignar los valores de los conroles del formulario a los campos.
-            registro.Fld_NombreGrupo = txtNombre.Text;
+            registro.fld_NombreGrupo = txtNombre.Text;
 
             // Validar los valores asignados.
             bool lret = registro.validar();
@@ -167,9 +167,9 @@ namespace CrtProduccion
             if (MessageBox.Show("Seguro que quieres eliminar este Grupo de Usuario?", "Borrar", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
 
-                if (this.modalidad == "CONSULTAR" && registro.Fld_idGrupo != 0)
+                if (this.modalidad == "CONSULTAR" && registro.fld_idGrupo != 0)
                 {
-                    lret = registro.borrarDatos(registro.Fld_idGrupo);
+                    lret = registro.borrarDatos(registro.fld_idGrupo);
                 }
 
                 if (lret)
@@ -232,9 +232,9 @@ namespace CrtProduccion
                 idGrupo = 0;
             }
 
-            if (idGrupo!=registro.Fld_idGrupo)
+            if (idGrupo!=registro.fld_idGrupo)
             {
-                registro.Fld_idGrupo = idGrupo;
+                registro.fld_idGrupo = idGrupo;
                 bool found = registro.buscar(idGrupo, false);
                 if (modalidad.Equals("CONSULTAR"))
                 {
@@ -258,9 +258,9 @@ namespace CrtProduccion
 
         private void NameGroup_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!txtNombre.Text.Equals(registro.Fld_NombreGrupo))
+            if (!txtNombre.Text.Equals(registro.fld_NombreGrupo))
             {
-                registro.Fld_NombreGrupo = txtNombre.Text;
+                registro.fld_NombreGrupo = txtNombre.Text;
 
                 bool found = registro.buscar(txtNombre.Text, false);
 
@@ -307,8 +307,8 @@ namespace CrtProduccion
         /// </summary>
         private void mostrar()
         {
-            txtNombre.Text = registro.Fld_NombreGrupo;
-            txtIdGrupo.Text = Convert.ToInt16(registro.Fld_idGrupo).ToString();
+            txtNombre.Text = registro.fld_NombreGrupo;
+            txtIdGrupo.Text = Convert.ToInt16(registro.fld_idGrupo).ToString();
         }
         #endregion
     }

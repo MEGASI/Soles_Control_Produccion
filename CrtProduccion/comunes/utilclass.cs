@@ -34,6 +34,38 @@ namespace CrtProduccion
     }
     // fin ComboBoxItem
 
+    /// <summary>
+    /// Clase CBox donde el valor entero puede ser nulo.
+    /// </summary>
+    public class CBoxNullItem
+    {
+        public string Name;
+        public object Value;
+
+        //public int? intValue { get; set; }
+
+        public CBoxNullItem(string Name, object Value)
+        {
+            this.Name = Name;
+            this.Value = Value;
+        }
+
+        public CBoxNullItem(string Name, int? intValue)
+        {
+            this.Name = Name;
+           // this.intValue = intValue;
+            this.Value = intValue; 
+        }
+
+        // override ToString() function
+        public override string ToString()
+        {
+            return this.Name;
+        }
+
+    }
+    // fin CBoxNullItem
+
     public class Permiso
     {
         // Definir atributos de la clase permiso.
@@ -79,5 +111,5 @@ namespace CrtProduccion
     }
     // Fin Permiso
 
-    
+
 }

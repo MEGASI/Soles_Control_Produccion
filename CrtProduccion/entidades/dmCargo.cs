@@ -22,11 +22,11 @@ namespace CrtProduccion.entidades
             limpiar();
         }
 
-        public dmCargo(int Pfld_idCargo, String Pfld_NombreCargo)
+        public dmCargo(int pidCargo, String pNombreCargo)
 
         {
-            fld_idCargo = Pfld_idCargo;
-            fld_NombreCargo = Pfld_NombreCargo;
+            fld_idCargo = pidCargo;
+            fld_NombreCargo = pNombreCargo;
         }
 
         #endregion

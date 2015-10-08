@@ -20,11 +20,11 @@ namespace CrtProduccion.entidades
             limpiar();
         }
 
-        public dmDpto(int Pfld_idDpto, String Pfld_NombreDptp)
+        public dmDpto(int pidDpto, String pNombreDptp)
 
         {
-            fld_idDpto = Pfld_idDpto;
-            fld_NombreDpto = Pfld_NombreDptp;
+            fld_idDpto = pidDpto;
+            fld_NombreDpto = pNombreDptp;
         }
 
         #endregion

@@ -8,8 +8,8 @@ namespace CrtProduccion.entidades
         #region Atributos
 
         public int fld_oldIdGrupo = 0;
-        public int Fld_idGrupo { get; set; }
-        public string Fld_NombreGrupo { get; set; }
+        public int fld_idGrupo { get; set; }
+        public string fld_NombreGrupo { get; set; }
         public string errormsg = "";
 
         #endregion
@@ -19,11 +19,11 @@ namespace CrtProduccion.entidades
             limpiar();
         }
 
-        public dmGrupo(int Pfld_idGrupo, String PFld_NombreGrupo)
+        public dmGrupo(int pidGrupo, String pNombreGrupo)
 
         {
-            Fld_idGrupo = Pfld_idGrupo;
-            Fld_NombreGrupo = PFld_NombreGrupo;
+            fld_idGrupo = pidGrupo;
+            fld_NombreGrupo = pNombreGrupo;
         }
 
         #endregion
@@ -35,8 +35,8 @@ namespace CrtProduccion.entidades
         /// </summary>
         public void limpiar()
         {
-            Fld_idGrupo = 0;
-            Fld_NombreGrupo = "";
+            fld_idGrupo = 0;
+            fld_NombreGrupo = "";
             
         }
 
@@ -49,7 +49,7 @@ namespace CrtProduccion.entidades
         {
             bool lret = true;
 
-            if (lret && Fld_NombreGrupo.Equals(""))
+            if (lret && fld_NombreGrupo.Equals(""))
             {
                 errormsg = "Nombre de Grupo no puede estar vacío.";
                 lret = false;
@@ -64,7 +64,7 @@ namespace CrtProduccion.entidades
         /// <returns>El Numero de identificación generado, cero cuando no logra insertar el registro.</returns>
         public int crearDatos()
         {
-            Fld_idGrupo = 0;
+            fld_idGrupo = 0;
 
             if (datamanager.ConexionAbrir())
             {
@@ -76,18 +76,18 @@ namespace CrtProduccion.entidades
 
 
                 // Ponemos valores a los Parametros incluidos en la consulta de actualización
-                cmd.Parameters.AddWithValue("@Nombre", Fld_NombreGrupo);
+                cmd.Parameters.AddWithValue("@Nombre", fld_NombreGrupo);
 
                 // Ejecutamos consulta de Actualización
                 // y Retornamos el idGrupo Insertado.
-                Fld_idGrupo = (int)cmd.ExecuteScalar();
+                fld_idGrupo = (int)cmd.ExecuteScalar();
 
                 // Cerramos conexión.
                 datamanager.ConexionCerrar();
 
             }
             // si no logra insertar nada el idGrupo Retornado es Cero
-            return Fld_idGrupo;
+            return fld_idGrupo;
         }
 
 
@@ -107,8 +107,8 @@ namespace CrtProduccion.entidades
                 encontrado = true;
                 if (asignar)
                 {
-                    Fld_idGrupo = (int)dr["idGrupo"];
-                    Fld_NombreGrupo = dr["Nombre"].ToString();
+                    fld_idGrupo = (int)dr["idGrupo"];
+                    fld_NombreGrupo = dr["Nombre"].ToString();
                 }
             }
             else
@@ -176,8 +176,8 @@ namespace CrtProduccion.entidades
                                                 " Where idGrupo = @idGrupo ", datamanager.ConexionSQL);
 
                 // Ponemos valores a los Parametros incluidos en la consulta de actualización
-                cmd.Parameters.AddWithValue("@idGrupo", Fld_idGrupo);
-                cmd.Parameters.AddWithValue("@Nombre", Fld_NombreGrupo);
+                cmd.Parameters.AddWithValue("@idGrupo", fld_idGrupo);
+                cmd.Parameters.AddWithValue("@Nombre", fld_NombreGrupo);
                 
 
                 // Ejecutamos consulta de Actualización

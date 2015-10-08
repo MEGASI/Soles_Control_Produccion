@@ -10,12 +10,12 @@ namespace CrtProduccion.entidades
         #region Atributos
 
         public int fld_oldidProyecto = 0;
-        public int fld_oldidProyectoCrtl = 0;
+
         public int fld_idProyecto { get; set; }
-        public int fld_idProyectoCRTL { get; set; }
+        public int? fld_idProyectoCRTL { get; set; }
         public string fld_Descripcion { get; set; }
         public string errormsg = "";
-       
+
 
         #endregion
 
@@ -25,12 +25,12 @@ namespace CrtProduccion.entidades
             limpiar();
         }
 
-        public dmproyecto(int Pfld_idProyecto, String Pfld_Descripcion, int pfld_idProyectoCRTL)
+        public dmproyecto(int pidProyecto, String pDescripcion, int? pidProyectoCRTL)
 
         {
-            fld_idProyecto = Pfld_idProyecto;
-            fld_Descripcion = Pfld_Descripcion;
-            fld_idProyectoCRTL = pfld_idProyectoCRTL;
+            fld_idProyecto = pidProyecto;
+            fld_Descripcion = pDescripcion;
+            fld_idProyectoCRTL = pidProyectoCRTL;
         }
 
         #endregion
@@ -44,7 +44,7 @@ namespace CrtProduccion.entidades
         {
             fld_idProyecto = 0;
             fld_Descripcion = "";
-            fld_idProyectoCRTL = 0;
+            fld_idProyectoCRTL = null;
 
         }
 
@@ -60,6 +60,12 @@ namespace CrtProduccion.entidades
             if (lret && fld_Descripcion.Equals(""))
             {
                 errormsg = "Nombre de Proyecto no puede estar vacío.";
+                lret = false;
+            }
+
+            if (fld_idProyectoCRTL == fld_idProyecto)
+            {
+                errormsg = "El proyecto control no puede ser el mismo que el código del proyecto.";
                 lret = false;
             }
             return lret;
@@ -78,13 +84,14 @@ namespace CrtProduccion.entidades
             {
 
                 // Preparamos consulta pra la actualización
-                SqlCommand cmd = new SqlCommand("Insert into Proyecto(Descripcion)" +
+                SqlCommand cmd = new SqlCommand("Insert into Proyecto(Descripcion, idProyectoCTRL)" +
                                                 " output INSERTED.idProyecto" +
-                                                " Values(@Descripcion)", datamanager.ConexionSQL);
+                                                " Values(@Descripcion,@idProyectoCTRL)", datamanager.ConexionSQL);
 
 
                 // Ponemos valores a los Parametros incluidos en la consulta de actualización
                 cmd.Parameters.AddWithValue("@Descripcion", fld_Descripcion);
+                cmd.Parameters.AddWithValue("@idProyectoCTRL", fld_idProyectoCRTL);
 
                 // Ejecutamos consulta de Actualización
                 // y Retornamos el idProyecto Insertado.
@@ -95,8 +102,9 @@ namespace CrtProduccion.entidades
 
             }
             // si no logra insertar nada el idProyecto Retornado es Cero
-        return fld_idProyecto;
+            return fld_idProyecto;
         }
+
         /// <summary>
         /// <para>CRUD  -- R = Read</para>
         ///  Lee los datos extraido de la tabla segGrupo.
@@ -115,7 +123,11 @@ namespace CrtProduccion.entidades
                 {
                     fld_idProyecto = (int)dr["idProyecto"];
                     fld_Descripcion = dr["Descripcion"].ToString();
-                   fld_idProyectoCRTL = (int)dr["idProyectoCRTL"];
+
+                    //fld_idProyectoCRTL = (int?)dr["idProyectoCTRL"];
+                    try { fld_idProyectoCRTL = (int?)dr["idProyectoCTRL"]; }
+                    catch (Exception) { fld_idProyectoCRTL = null; }
+
                 }
             }
             else
@@ -134,7 +146,7 @@ namespace CrtProduccion.entidades
         /// <returns>true : si lo encuentra y false cuando no lo encuentra.</returns>
         public bool buscar(String pNombre, bool asignar)
         {
-            var dr = datamanager.ConsultaLeer("select idProyecto, Descripcion" +
+            var dr = datamanager.ConsultaLeer("select idProyecto, Descripcion, idProyectoCTRL" +
                                                " from Proyecto" +
                                                " where Descripcion = '" + pNombre + "'");
             return leerDatos(dr, asignar);
@@ -147,7 +159,7 @@ namespace CrtProduccion.entidades
         /// <returns>true : si lo encuentra y false cuando no lo encuentra.</returns>
         public bool buscar(int idProyecto, bool asignar)
         {
-            var dr = datamanager.ConsultaLeer("select idProyecto, Descripcion,idProdectoCTRL" +
+            var dr = datamanager.ConsultaLeer("select idProyecto, Descripcion, idProyectoCTRL" +
                                                " from Proyecto" +
                                                " where idProyecto = " + idProyecto.ToString());
             return leerDatos(dr, asignar);
@@ -159,7 +171,7 @@ namespace CrtProduccion.entidades
         /// <returns>true cuando existe por lo menos un registro en la tabla segGrupo</returns>
         public bool buscarUltimo()
         {
-            var dr = datamanager.ConsultaLeer("select top 1 idProyecto, Descripcion" +
+            var dr = datamanager.ConsultaLeer("select top 1 idProyecto, Descripcion, idProyectoCTRL " +
                                                " from Proyecto" +
                                                " order by idProyecto desc ");
             return leerDatos(dr, true);
@@ -168,14 +180,6 @@ namespace CrtProduccion.entidades
         /// 
         /// </summary>
         /// <returns></returns>
-
-        public bool BuscarCRTL()
-        {
-            var dr = datamanager.ConsultaLeer("select Descripcion, idProdectoCTRL from proyecto union " +
-                                                                "all select 'N/A' as descripcion, " +
-                                                                "null as idProyecto order by descripcion");
-            return leerDatos(dr, true);
-        }
 
 
         /// <summary>
@@ -192,13 +196,17 @@ namespace CrtProduccion.entidades
 
                 // Preparamos consulta pra la actualización
                 SqlCommand cmd = new SqlCommand("update Proyecto" +
-                                                " Set Descripcion = @Descripcion" +
+                                                " Set Descripcion = @Descripcion," +
+                                                "     idProyectoCTRL = @idProyectoCTRL" +
                                                 " Where idProyecto = @idProyecto ", datamanager.ConexionSQL);
 
                 // Ponemos valores a los Parametros incluidos en la consulta de actualización
                 cmd.Parameters.AddWithValue("@idProyecto", fld_idProyecto);
                 cmd.Parameters.AddWithValue("@Descripcion", fld_Descripcion);
-
+                if (fld_idProyectoCRTL != null)
+                  cmd.Parameters.AddWithValue("@idProyectoCTRL", fld_idProyectoCRTL);
+                else
+                    cmd.Parameters.AddWithValue("@idProyectoCTRL", DBNull.Value);
 
                 // Ejecutamos consulta de Actualización
                 lRet = cmd.ExecuteNonQuery();
