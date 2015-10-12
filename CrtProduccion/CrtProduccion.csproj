@@ -80,6 +80,7 @@
     <Compile Include="entidades\dmCargo.cs" />
     <Compile Include="entidades\dmDpto.cs" />
     <Compile Include="entidades\dmGrupo.cs" />
+    <Compile Include="entidades\dmLibroDirecciones.cs" />
     <Compile Include="entidades\dmproyecto.cs" />
     <Compile Include="entidades\dmUsuario.cs" />
     <Compile Include="comunes\datamanager.cs" />
@@ -97,6 +98,12 @@
     </Compile>
     <Compile Include="vistas\dptofrm.xaml.cs">
       <DependentUpon>dptofrm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\LibroDBRWfrm.xaml.cs">
+      <DependentUpon>LibroDBRWfrm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\LibroDfrm.xaml.cs">
+      <DependentUpon>LibroDfrm.xaml</DependentUpon>
     </Compile>
     <Compile Include="vistas\proyectoBRWfrm.xaml.cs">
       <DependentUpon>proyectoBRWfrm.xaml</DependentUpon>
@@ -152,6 +159,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="vistas\dptofrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\LibroDBRWfrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\LibroDfrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

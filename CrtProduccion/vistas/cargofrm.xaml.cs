@@ -23,7 +23,7 @@ namespace CrtProduccion.vistas
 
         private entidades.dmCargo registro { get; set; }
 
-        string idSegItem = "HS0102";
+        string idSegItem = "AD0103";
 
         bool permiteModificar = false;
         bool permiteCrear = false;
@@ -274,7 +274,7 @@ namespace CrtProduccion.vistas
         {
             if (e.Key == System.Windows.Input.Key.Enter)
             {
-                NameGroup_LostFocus(sender, e);
+                txtidCargo_LostFocus(sender, e);
             }
         }
         #endregion    

@@ -60,7 +60,7 @@ namespace CrtProduccion.entidades
 
         /// <summary>
         /// <para>CRUD  -- C = Create</para> 
-        /// <para>Método que inserta los datos en la tabla segGrupo</para>
+        /// <para>Método que inserta los datos en la tabla departamento</para>
         /// </summary>
         /// <returns>El Numero de identificación generado, cero cuando no logra insertar el registro.</returns>
         public int crearDatos()
@@ -94,7 +94,7 @@ namespace CrtProduccion.entidades
 
         /// <summary>
         /// <para>CRUD  -- R = Read</para>
-        ///  Lee los datos extraido de la tabla segGrupo.
+        ///  Lee los datos extraido de la tabla departamento.
         /// </summary>
         /// <param name="dr">Objeto SqlDataReader que contiene los datos extraido de la tabla.</param>
         /// <param name="asignar">true para asignar los campos del registro leido a las propiedades.</param>
@@ -121,7 +121,7 @@ namespace CrtProduccion.entidades
         }
 
         /// <summary>
-        ///  Buscar en la tabla de segGrupo por el Nombre del usuario.
+        ///  Buscar en la tabla de departamento por el Nombre del usuario.
         /// </summary>
         /// <param name="pNombre"> Nombre único que identifica el grupo.</param>
         /// <param name="asignar"> true = Asigna los campos de la tabla a las propiedadades, false = no los asigna.</param>
@@ -134,7 +134,7 @@ namespace CrtProduccion.entidades
             return leerDatos(dr, asignar);
         }
         /// <summary>
-        ///  Buscar en la tabla de segGrupo por el idGrupo
+        ///  Buscar en la tabla de departamento por el idGrupo
         /// </summary>
         /// <param name="idGrupo"> código único que identifica el grupo.</param>
         /// <param name="asignar"> true = Asigna los campos de la tabla a las propiedadades, false = no los asigna.</param>
@@ -148,9 +148,9 @@ namespace CrtProduccion.entidades
         }
 
         /// <summary>
-        /// Lee el último registro insertado en la tabla segGrupo.
+        /// Lee el último registro insertado en la tabla departamento.
         /// </summary>
-        /// <returns>true cuando existe por lo menos un registro en la tabla segGrupo</returns>
+        /// <returns>true cuando existe por lo menos un registro en la tabla departamento</returns>
         public bool buscarUltimo()
         {
             var dr = datamanager.ConsultaLeer("select top 1 idDpto, Descripcion" +
@@ -161,7 +161,7 @@ namespace CrtProduccion.entidades
 
         /// <summary>
         /// <para>CRUD  -- U = Update</para> 
-        /// <para>Método que actualiza los datos de la tabla segGrupo</para>
+        /// <para>Método que actualiza los datos de la tabla departamento</para>
         /// </summary>
         /// <returns>True cuando logra actualizar los datos.</returns>
         public bool actualizarDatos()
@@ -193,7 +193,7 @@ namespace CrtProduccion.entidades
 
         /// <summary>
         /// <para>CRUD -- D = Delete</para> 
-        /// <para>Método que elimina un registro de la tabla segGrupo</para>
+        /// <para>Método que elimina un registro de la tabla departamento</para>
         /// </summary>
         /// <returns>True cuando logra eliminar el registro.</returns>
         public bool borrarDatos(int pidDpto)

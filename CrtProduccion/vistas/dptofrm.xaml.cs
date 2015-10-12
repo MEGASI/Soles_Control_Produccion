@@ -24,7 +24,7 @@ namespace CrtProduccion.vistas
 
         private entidades.dmDpto registro { get; set; }
 
-        string idSegItem = "HS0102";
+        string idSegItem = "AD0102";
 
         bool permiteModificar = false;
         bool permiteCrear = false;
@@ -79,7 +79,7 @@ namespace CrtProduccion.vistas
         //   Constructor del Fromulario
         public dptofrm()
         {
-            // Cargar los permisos del grupo para este formulario.
+            // Cargar los permisos del departamento para este formulario.
             permiteModificar = datamanager.probarPermiso(idSegItem, "modificar");
             permiteCrear = datamanager.probarPermiso(idSegItem, "crear");
             permiteBorrar = datamanager.probarPermiso(idSegItem, "borrar");
@@ -167,7 +167,7 @@ namespace CrtProduccion.vistas
             if (lret)
             {
                 modalidad = "CONSULTAR";
-                MessageBox.Show("Información del Grupo fue almacenada.", "Guardar", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Información del Departamento fue almacenada.", "Guardar", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
                 MessageBox.Show(registro.errormsg, "Error", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -178,7 +178,7 @@ namespace CrtProduccion.vistas
         private void btnBorrar_Click(object sender, RoutedEventArgs e)
         {
             bool lret = false;
-            if (MessageBox.Show("Seguro que quieres eliminar este Grupo de Usuario?", "Borrar", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Seguro que quieres eliminar este Departamento?", "Borrar", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
 
                 if (this.modalidad == "CONSULTAR" && registro.fld_idDpto != 0)
@@ -214,7 +214,7 @@ namespace CrtProduccion.vistas
                 // Si el Usuario presiona Aceptar
                 if (!registro.buscar(dlgfrm.idDpto, true))
                 {
-                    MessageBox.Show("Nombre de Grupo no existe", "Grupo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Nombre de departamento no existe", "departamento", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
@@ -229,32 +229,31 @@ namespace CrtProduccion.vistas
         #region Validaciones
 
 
-        private void txtIdGrupo_KeyDown(object sender, KeyEventArgs e)
+        private void TxtIdDpto_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Enter)
             {
-                txtIdGrupo_LostFocus(sender, e);
+                TxtIdDpto_LostFocus(sender, e);
             }
         }
-
-        private void txtIdGrupo_LostFocus(object sender, RoutedEventArgs e)
+        private void TxtIdDpto_LostFocus(object sender, RoutedEventArgs e)
         {
-            int idGrupo = 0;
+            int idDpto = 0;
 
-            if (!Int32.TryParse(TxtIdDpto.Text, out idGrupo))
+            if (!Int32.TryParse(TxtIdDpto.Text, out idDpto))
             {
-                idGrupo = 0;
+                idDpto = 0;
             }
 
-            if (idGrupo != registro.fld_idDpto)
+            if (idDpto != registro.fld_idDpto)
             {
-                registro.fld_idDpto = idGrupo;
-                bool found = registro.buscar(idGrupo, false);
+                registro.fld_idDpto = idDpto;
+                bool found = registro.buscar(idDpto, false);
                 if (modalidad.Equals("CONSULTAR"))
                 {
                     if (!found)
-                        MessageBox.Show("Id del Grupo no existe", "Grupo", MessageBoxButton.OK, MessageBoxImage.Information);
-                    else registro.buscar(idGrupo, true);
+                        MessageBox.Show("Id del Departamento no existe", "departamento", MessageBoxButton.OK, MessageBoxImage.Information);
+                    else registro.buscar(idDpto, true);
 
                     mostrar();
                     TxtIdDpto.Focus();
@@ -266,7 +265,7 @@ namespace CrtProduccion.vistas
         }
 
         /// <summary>
-        /// Muestra los Grupos Existentes y no permite agregarlos si ya existen. 
+        /// Muestra los departamentos Existentes y no permite agregarlos si ya existen. 
         /// Parte de la validacion.
         /// </summary>
 
@@ -281,7 +280,7 @@ namespace CrtProduccion.vistas
                 if (modalidad.Equals("CONSULTAR"))
                 {
                     if (!found)
-                        MessageBox.Show("Nombre de Grupo no existe", "Grupo", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Nombre de departamento no existe", "departamento", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     mostrar();
                     TxtNombre.Focus();
@@ -290,7 +289,7 @@ namespace CrtProduccion.vistas
                 {
                     if (found)
                     {
-                        MessageBox.Show("Grupo ya existe.", "Grupo", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("departamento ya existe.", "departamento", MessageBoxButton.OK, MessageBoxImage.Information);
                         TxtNombre.Text = "";
                         TxtNombre.Focus();
                     }
@@ -325,9 +324,10 @@ namespace CrtProduccion.vistas
             TxtIdDpto.Text = Convert.ToInt16(registro.fld_idDpto).ToString();
         }
 
+
         #endregion
 
-        
+       
     }
 }
 

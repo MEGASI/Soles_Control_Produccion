@@ -20,7 +20,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Label x:Name="lblTitulo" Content="Departamento" HorizontalAlignment="Left" Margin="73,112,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="TxtIdDpto" Height="23" Margin="170,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalAlignment="Left"/>
+            <TextBox x:Name="TxtIdDpto" Height="23" Margin="170,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalAlignment="Left" KeyDown="TxtIdDpto_KeyDown"/>
             <Label x:Name="lblidDpto" Content="Código" HorizontalAlignment="Left" Margin="73,76,0,0" VerticalAlignment="Top"/>
             <!-- Botons de funcionalidades  -->
             <!-- Cancelar y nuevo -->

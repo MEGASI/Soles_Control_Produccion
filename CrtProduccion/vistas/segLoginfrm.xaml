@@ -20,7 +20,6 @@
         <StackPanel Width="70" Margin="10">
             <Image x:Name="Log_png"  Source="pack://siteoforigin:,,,/Resources/Log.png" />
         </StackPanel>
-
         <StackPanel Margin="20,40,0,10">
             <StackPanel  Orientation="Horizontal">
                 <Label x:Name="lblUsuario" Content="Usuario"  FontWeight="Bold" Width="70"/>
@@ -33,22 +32,22 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                
+
                 <Button x:Name="btnAceptar" Margin="0,0,10,0" 
-                        Width="60" Height="45" Click="btnAceptar_Click">
-                    
+        			Width="50" Height="43" Click="btnAceptar_Click">
+
                     <Image x:Name="Ok_png"  Source="pack://siteoforigin:,,,/Resources/Ok.png" 
-                           Height="38" Width="38"/>
+        				Height="38" Width="38"/>
                 </Button>
 
                 <Button x:Name="btnCancelar" Margin="10,0,0,0" 
-                        Width="60" Height="45" Click="btnCancelar_Click">
-                    
+        			Width="50" Height="43" Click="btnCancelar_Click">
+
                     <Image x:Name="Delete_png" Source="pack://siteoforigin:,,,/Resources/Cancelar02.png"
-                            Height="38" Width="38"/>
+        				Height="38" Width="38"/>
                 </Button>
             </StackPanel>
-            
+
         </StackPanel>
 
     </StackPanel>

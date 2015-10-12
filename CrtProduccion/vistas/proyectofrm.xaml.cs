@@ -24,7 +24,7 @@ namespace CrtProduccion.vistas
 
         private entidades.dmproyecto registro { get; set; }
 
-        string idSegItem = "HS0102";
+        string idSegItem = "AP0101";
 
         bool permiteModificar = false;
         bool permiteCrear = false;
@@ -67,11 +67,8 @@ namespace CrtProduccion.vistas
                 }
                 _modalidad = value;
             }
-
         }
         #endregion
-
-
         #region Constructor y Loader
         //   Constructor del Fromulario
         public Proyectofrm()
@@ -83,7 +80,6 @@ namespace CrtProduccion.vistas
 
             InitializeComponent();
         }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             registro = new entidades.dmproyecto();
@@ -119,7 +115,6 @@ namespace CrtProduccion.vistas
             modalidad = "CREAR";
             txtNombre.Focus();
         }
-
         // Click del Boton Cancelar
         private void btnCancelar_Click_1(object sender, RoutedEventArgs e)
         {
@@ -140,8 +135,7 @@ namespace CrtProduccion.vistas
         {
             // Asignar los valores de los conroles del formulario a los campos.
             registro.fld_Descripcion = txtNombre.Text;
-            
-
+          
             // Validar los valores asignados.
             bool lret = registro.validar();
             if (lret && this.modalidad == "CREAR")
@@ -252,12 +246,11 @@ namespace CrtProduccion.vistas
 
                 bool found = registro.buscar(txtNombre.Text, false);
 
-
                 if (modalidad.Equals("CONSULTAR"))
                 {
                     if (!found)
                         MessageBox.Show("Nombre de Proyecto no existe", "Proyecto", MessageBoxButton.OK, MessageBoxImage.Information);
-
+            
                     mostrar();
                     txtNombre.Focus();
                 }
@@ -294,7 +287,6 @@ namespace CrtProduccion.vistas
                 }
           
             // hasta qui
-
         }
         private void Canvas_KeyDown(object sender, KeyEventArgs e)
         {
@@ -303,25 +295,18 @@ namespace CrtProduccion.vistas
                 NameGroup_LostFocus(sender, e);
             }
         }
-
         #endregion
-
-
         private void CbidProyectoCTRL_Loaded(object sender, RoutedEventArgs e)
         {
             llenaCbIdProyectoCTRL();
         }
-
-
         private void llenaCbIdProyectoCTRL() {
 
             CbidProyectoCTRL.Items.Clear();
-
             SqlDataReader dr =
             datamanager.ConsultaLeer("select Descripcion, idProyecto from proyecto" +
                          " Union  " +
                          "Select 'N/A' as Descripcion, cast(null  as int) as idProyecto ");
-
             string col1 = "";
             int? col2 = null;
             while (dr != null && dr.Read())
@@ -336,11 +321,9 @@ namespace CrtProduccion.vistas
 
                 CbidProyectoCTRL.Items.Add(new CBoxNullItem(col1, col2));
             }
-
             CbidProyectoCTRL.SelectedIndex = 0;
             datamanager.ConexionCerrar();
         }
-
         private void CbidProyectoCTRL_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CbidProyectoCTRL.SelectedValue != null)
