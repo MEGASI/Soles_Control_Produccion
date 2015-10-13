@@ -130,10 +130,9 @@
                    Height="32" Width="32" 
                    Style="{StaticResource ImageEnabled}"
                    IsEnabled="{Binding IsEnabled, ElementName=btnSalir}"/>
-                <!--Prueba BTn-->
+
 
             </Button>
-            <Button x:Name="button" Content="Button" Canvas.Left="270" Canvas.Top="419" Width="75" Click="button_Click"/>
 
 
 
