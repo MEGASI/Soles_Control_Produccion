@@ -135,6 +135,24 @@ namespace CrtProduccion
             vistas.LibroDfrm dlg = new vistas.LibroDfrm();
             dlg.ShowDialog();
         }
+
+        private void MenuItem_Click_4(object sender, RoutedEventArgs e)
+        {
+            vistas.Vehiculo_Tipofrm dlg = new vistas.Vehiculo_Tipofrm();
+            dlg.ShowDialog();
+        }
+
+        private void MenuItem_Click_5(object sender, RoutedEventArgs e)
+        {
+            vistas.Vehiculo_Marcafrm dlg = new vistas.Vehiculo_Marcafrm();
+            dlg.ShowDialog();
+        }
+
+        private void MenuItem_Click_6(object sender, RoutedEventArgs e)
+        {
+            vistas.Vehiculo_Partesfrm dlg = new vistas.Vehiculo_Partesfrm();
+            dlg.ShowDialog();
+        }
     }
 }
 
