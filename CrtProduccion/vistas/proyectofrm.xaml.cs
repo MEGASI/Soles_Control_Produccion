@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Data.SqlClient;
+using System.Collections.Generic;
 
 namespace CrtProduccion.vistas
 {
@@ -20,6 +12,7 @@ namespace CrtProduccion.vistas
     /// </summary>
     public partial class Proyectofrm : Window
     {
+    
         #region Declaraciones de variables y Propiedades
 
         private entidades.dmproyecto registro { get; set; }
@@ -108,6 +101,8 @@ namespace CrtProduccion.vistas
                 modalidad = "CONSULTAR";
         }
         #endregion
+
+
         #region Funcionalidades de los Botones
 
         // Click del boton Nuevo
@@ -135,6 +130,7 @@ namespace CrtProduccion.vistas
             modalidad = "MODIFICAR";
             txtidProyecto.Focus();
         }
+     
         // Click Boton Gurdar
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
@@ -164,6 +160,7 @@ namespace CrtProduccion.vistas
                 MessageBox.Show(registro.errormsg, "Error", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         // Click Boton Borrar
+
         private void btnBorrar_Click_(object sender, RoutedEventArgs e)
         {
             bool lret = false;
@@ -183,11 +180,13 @@ namespace CrtProduccion.vistas
             }
             txtNombre.Focus();
         }
+      
         // Click boton Salir
         private void btnSalir_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
+     
         /// <summary>
         ///  la funcion que realiza es buscar de la tabla Proyecto el nombre 
         /// </summary>
@@ -292,8 +291,8 @@ namespace CrtProduccion.vistas
                     CbidProyectoCTRL.SelectedValue = lobj;
                     break;
                 }
-          
             // hasta qui
+           
 
         }
         private void Canvas_KeyDown(object sender, KeyEventArgs e)
@@ -315,9 +314,10 @@ namespace CrtProduccion.vistas
 
         private void llenaCbIdProyectoCTRL() {
 
-            CbidProyectoCTRL.Items.Clear();
+           CbidProyectoCTRL.Items.Clear();
+           
 
-            SqlDataReader dr =
+           SqlDataReader dr =
             datamanager.ConsultaLeer("select Descripcion, idProyecto from proyecto" +
                          " Union  " +
                          "Select 'N/A' as Descripcion, cast(null  as int) as idProyecto ");
@@ -335,7 +335,7 @@ namespace CrtProduccion.vistas
                 catch (Exception) { col2 = null; }
 
                 CbidProyectoCTRL.Items.Add(new CBoxNullItem(col1, col2));
-            }
+              }
 
             CbidProyectoCTRL.SelectedIndex = 0;
             datamanager.ConexionCerrar();

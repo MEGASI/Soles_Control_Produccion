@@ -1,0 +1,18 @@
+﻿<Window x:Class="CrtProduccion.vistas.testwin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CrtProduccion.vistas"
+        mc:Ignorable="d"
+        Title="testwin" Height="300" Width="300">
+    <Grid x:Name="e1">
+        <StackPanel x:Name="stackPanelEmpl">
+            <TextBox x:Name="txtIDEmpleado" Text="{Binding IDEmpleado}"></TextBox>
+            <TextBox x:Name="txtDNI" Text="{Binding DNI}"></TextBox>
+            <TextBox x:Name="txtApellidos" Text="{Binding Apellidos}"></TextBox>
+            <TextBox x:Name="txtNombres" Text="{Binding Nombres, UpdateSourceTrigger=PropertyChanged }"></TextBox>
+            <Button x:Name="button" Content="Button" Click="button_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

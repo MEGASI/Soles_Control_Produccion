@@ -4,21 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CrtProduccion.vistas"
+        Background="{StaticResource fondoOscuro}"
         mc:Ignorable="d"
         
         
     Title="Departamento" Height="321" Width="444" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Canvas>
         <Grid Height="299" Width="436" Canvas.Left="-1">
-            <Grid.Background>
-                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="1"/>
-                    <GradientStop Color="#FF17BED8"/>
-                </LinearGradientBrush>
-            </Grid.Background>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+            
             <Label x:Name="lblTitulo" Content="Departamento" HorizontalAlignment="Left" Margin="73,112,0,0" VerticalAlignment="Top"/>
             <TextBox x:Name="TxtIdDpto" Height="23" Margin="170,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalAlignment="Left"/>
             <Label x:Name="lblidDpto" Content="Código" HorizontalAlignment="Left" Margin="73,76,0,0" VerticalAlignment="Top"/>
@@ -97,10 +90,7 @@
             <!--  Buscar-->
             <Button x:Name="btnbuscar" Margin="0,0,110,198" Height="23" HorizontalAlignment="Right" Width="31" 
                 VerticalAlignment="Bottom" ToolTip="Consultar  Departamentos" Content="..." Click="btnbuscar_Click"/>
-
-
-
-        </Grid>
+          </Grid>
         <TextBox x:Name="TxtNombre" Height="23" TextWrapping="Wrap" Width="224" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left"/>
     </Canvas>
 </Window>

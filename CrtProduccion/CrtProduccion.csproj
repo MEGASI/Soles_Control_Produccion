@@ -77,6 +77,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="comunes\libreria.cs" />
+    <Compile Include="entidades\dmTest.cs" />
     <Compile Include="entidades\dmCargo.cs" />
     <Compile Include="entidades\dmDpto.cs" />
     <Compile Include="entidades\dmGrupo.cs" />
@@ -139,6 +140,9 @@
     <Compile Include="vistas\cargofrm.xaml.cs">
       <DependentUpon>cargofrm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="vistas\testwin.xaml.cs">
+      <DependentUpon>testwin.xaml</DependentUpon>
+    </Compile>
     <Page Include="Resources\estiloBase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -200,6 +204,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="vistas\cargofrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\testwin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

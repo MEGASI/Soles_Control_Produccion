@@ -126,6 +126,12 @@ namespace CrtProduccion
             vistas.Proyectofrm dlg = new vistas.Proyectofrm();
             dlg.ShowDialog();
         }
+
+        private void testW_Click(object sender, RoutedEventArgs e)
+        {
+            vistas.testwin dlg = new vistas.testwin();
+            dlg.ShowDialog();
+        }
     }
 }
 
