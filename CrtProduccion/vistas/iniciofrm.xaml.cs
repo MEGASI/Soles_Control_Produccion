@@ -35,16 +35,18 @@ namespace CrtProduccion
             }
 
         }
-
-
         private void opcionesEstado()
         {
+
+
+            mainArchivo.IsEnabled = datamanager.probarPermiso("A", "acceso");
             mainHerramientas.IsEnabled = datamanager.probarPermiso("H", "acceso");
             herCambioClave.IsEnabled = datamanager.probarPermiso("H00", "acceso");
 
             #region Heramientas de Seguridad
             // Opcion de Herramienta - Seguridad
             herSeguridad.IsEnabled = datamanager.probarPermiso("HS01", "acceso");
+                
 
             // Opciones de Seguridad
             segUsuario.IsEnabled = datamanager.probarPermiso("HS0101", "acceso");
@@ -52,11 +54,12 @@ namespace CrtProduccion
             segAsignaGrupo.IsEnabled = datamanager.probarPermiso("HS0103", "acceso");
             segPerfilGrupo.IsEnabled = datamanager.probarPermiso("HS0104", "acceso");
             segPerfilUsuario.IsEnabled = datamanager.probarPermiso("HS0105", "acceso");
-
-
+            SegLibrodirecciones.IsEnabled = datamanager.probarPermiso("AD0101", "acceso");
+            SegDepartemento.IsEnabled = datamanager.probarPermiso("AD0102", "acceso");
+            SegCargo.IsEnabled = datamanager.probarPermiso ("AD0103", "acceso");           
             
-            #endregion
 
+            #endregion
         }
 
 
@@ -127,9 +130,27 @@ namespace CrtProduccion
             dlg.ShowDialog();
         }
 
-        private void testW_Click(object sender, RoutedEventArgs e)
+        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
         {
-            vistas.testwin dlg = new vistas.testwin();
+            vistas.LibroDfrm dlg = new vistas.LibroDfrm();
+            dlg.ShowDialog();
+        }
+
+        private void MenuItem_Click_4(object sender, RoutedEventArgs e)
+        {
+            vistas.Vehiculo_Tipofrm dlg = new vistas.Vehiculo_Tipofrm();
+            dlg.ShowDialog();
+        }
+
+        private void MenuItem_Click_5(object sender, RoutedEventArgs e)
+        {
+            vistas.Vehiculo_Marcafrm dlg = new vistas.Vehiculo_Marcafrm();
+            dlg.ShowDialog();
+        }
+
+        private void MenuItem_Click_6(object sender, RoutedEventArgs e)
+        {
+            vistas.Vehiculo_Partesfrm dlg = new vistas.Vehiculo_Partesfrm();
             dlg.ShowDialog();
         }
     }

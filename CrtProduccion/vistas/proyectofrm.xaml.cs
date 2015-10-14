@@ -1,9 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 using System.Data.SqlClient;
-using System.Collections.Generic;
 
 namespace CrtProduccion.vistas
 {
@@ -12,12 +20,11 @@ namespace CrtProduccion.vistas
     /// </summary>
     public partial class Proyectofrm : Window
     {
-    
         #region Declaraciones de variables y Propiedades
 
         private entidades.dmproyecto registro { get; set; }
 
-        string idSegItem = "HS0102";
+        string idSegItem = "AP0101";
 
         bool permiteModificar = false;
         bool permiteCrear = false;
@@ -60,11 +67,8 @@ namespace CrtProduccion.vistas
                 }
                 _modalidad = value;
             }
-
         }
         #endregion
-
-
         #region Constructor y Loader
         //   Constructor del Fromulario
         public Proyectofrm()
@@ -76,7 +80,6 @@ namespace CrtProduccion.vistas
 
             InitializeComponent();
         }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             registro = new entidades.dmproyecto();
@@ -101,8 +104,6 @@ namespace CrtProduccion.vistas
                 modalidad = "CONSULTAR";
         }
         #endregion
-
-
         #region Funcionalidades de los Botones
 
         // Click del boton Nuevo
@@ -114,7 +115,6 @@ namespace CrtProduccion.vistas
             modalidad = "CREAR";
             txtNombre.Focus();
         }
-
         // Click del Boton Cancelar
         private void btnCancelar_Click_1(object sender, RoutedEventArgs e)
         {
@@ -130,14 +130,12 @@ namespace CrtProduccion.vistas
             modalidad = "MODIFICAR";
             txtidProyecto.Focus();
         }
-     
         // Click Boton Gurdar
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             // Asignar los valores de los conroles del formulario a los campos.
             registro.fld_Descripcion = txtNombre.Text;
-            
-
+          
             // Validar los valores asignados.
             bool lret = registro.validar();
             if (lret && this.modalidad == "CREAR")
@@ -160,7 +158,6 @@ namespace CrtProduccion.vistas
                 MessageBox.Show(registro.errormsg, "Error", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         // Click Boton Borrar
-
         private void btnBorrar_Click_(object sender, RoutedEventArgs e)
         {
             bool lret = false;
@@ -180,13 +177,11 @@ namespace CrtProduccion.vistas
             }
             txtNombre.Focus();
         }
-      
         // Click boton Salir
         private void btnSalir_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-     
         /// <summary>
         ///  la funcion que realiza es buscar de la tabla Proyecto el nombre 
         /// </summary>
@@ -251,12 +246,11 @@ namespace CrtProduccion.vistas
 
                 bool found = registro.buscar(txtNombre.Text, false);
 
-
                 if (modalidad.Equals("CONSULTAR"))
                 {
                     if (!found)
                         MessageBox.Show("Nombre de Proyecto no existe", "Proyecto", MessageBoxButton.OK, MessageBoxImage.Information);
-
+            
                     mostrar();
                     txtNombre.Focus();
                 }
@@ -291,9 +285,8 @@ namespace CrtProduccion.vistas
                     CbidProyectoCTRL.SelectedValue = lobj;
                     break;
                 }
+          
             // hasta qui
-           
-
         }
         private void Canvas_KeyDown(object sender, KeyEventArgs e)
         {
@@ -302,26 +295,18 @@ namespace CrtProduccion.vistas
                 NameGroup_LostFocus(sender, e);
             }
         }
-
         #endregion
-
-
         private void CbidProyectoCTRL_Loaded(object sender, RoutedEventArgs e)
         {
             llenaCbIdProyectoCTRL();
         }
-
-
         private void llenaCbIdProyectoCTRL() {
 
-           CbidProyectoCTRL.Items.Clear();
-           
-
-           SqlDataReader dr =
+            CbidProyectoCTRL.Items.Clear();
+            SqlDataReader dr =
             datamanager.ConsultaLeer("select Descripcion, idProyecto from proyecto" +
                          " Union  " +
                          "Select 'N/A' as Descripcion, cast(null  as int) as idProyecto ");
-
             string col1 = "";
             int? col2 = null;
             while (dr != null && dr.Read())
@@ -335,12 +320,10 @@ namespace CrtProduccion.vistas
                 catch (Exception) { col2 = null; }
 
                 CbidProyectoCTRL.Items.Add(new CBoxNullItem(col1, col2));
-              }
-
+            }
             CbidProyectoCTRL.SelectedIndex = 0;
             datamanager.ConexionCerrar();
         }
-
         private void CbidProyectoCTRL_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CbidProyectoCTRL.SelectedValue != null)

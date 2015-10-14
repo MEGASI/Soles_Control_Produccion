@@ -3,28 +3,28 @@ using System.Data.SqlClient;
 
 namespace CrtProduccion.entidades
 {
-    class dmDpto
+    class dmVehiculo_tipo
     {
         #region Atributos
 
-        public int fld_oldidDpto = 0;
-        public int fld_idDpto { get; set; }
-        public string fld_NombreDpto { get; set; }
+        public int fld_oldidTipoV = 0;
+        public int fld_idTipoV { get; set; }
+        public string fld_Descripcion { get; set; }
         public string errormsg = "";
 
         #endregion
 
         #region Constructores
-        public dmDpto()
+        public dmVehiculo_tipo()
         {
             limpiar();
         }
 
-        public dmDpto(int pidDpto, String pNombreDptp)
+        public dmVehiculo_tipo(int pidTipoV, String pDescripcion)
 
         {
-            fld_idDpto = pidDpto;
-            fld_NombreDpto = pNombreDptp;
+            fld_idTipoV = pidTipoV;
+            fld_Descripcion = pDescripcion;
         }
 
         #endregion
@@ -36,8 +36,8 @@ namespace CrtProduccion.entidades
         /// </summary>
         public void limpiar()
         {
-            fld_idDpto = 0;
-            fld_NombreDpto = "";
+            fld_idTipoV = 0;
+            fld_Descripcion = "";
 
         }
 
@@ -50,9 +50,9 @@ namespace CrtProduccion.entidades
         {
             bool lret = true;
 
-            if (lret && fld_NombreDpto.Equals(""))
+            if (lret && fld_Descripcion.Equals(""))
             {
-                errormsg = "Nombre de Departamento no puede estar vacío.";
+                errormsg = "Descripcion no puede estar vacío.";
                 lret = false;
             }
             return lret;
@@ -60,56 +60,56 @@ namespace CrtProduccion.entidades
 
         /// <summary>
         /// <para>CRUD  -- C = Create</para> 
-        /// <para>Método que inserta los datos en la tabla departamento</para>
+        /// <para>Método que inserta los datos en la tabla Vehiculo_Tipo</para>
         /// </summary>
         /// <returns>El Numero de identificación generado, cero cuando no logra insertar el registro.</returns>
         public int crearDatos()
         {
-            fld_idDpto = 0;
+            fld_idTipoV = 0;
 
             if (datamanager.ConexionAbrir())
             {
 
                 // Preparamos consulta pra la actualización
-                SqlCommand cmd = new SqlCommand("Insert into departamento(Descripcion)" +
-                                                " output INSERTED.idDpto" +
+                SqlCommand cmd = new SqlCommand("Insert into Vehiculo_Tipo(Descripcion)" +
+                                                " output INSERTED.idTipoVehiculo" +
                                                 " Values(@Descripcion)", datamanager.ConexionSQL);
 
 
                 // Ponemos valores a los Parametros incluidos en la consulta de actualización
-                cmd.Parameters.AddWithValue("@Descripcion", fld_NombreDpto);
+                cmd.Parameters.AddWithValue("@Descripcion", fld_Descripcion);
 
                 // Ejecutamos consulta de Actualización
-                // y Retornamos el idGrupo Insertado.
-                fld_idDpto = (int)cmd.ExecuteScalar();
+                // y Retornamos el idTipoVehiculo Insertado.
+                fld_idTipoV = Convert.ToByte(cmd.ExecuteScalar());
 
                 // Cerramos conexión.
                 datamanager.ConexionCerrar();
 
             }
-            // si no logra insertar nada el idGrupo Retornado es Cero
-            return fld_idDpto;
+            // si no logra insertar nada el idTipoVehiculo Retornado es Cero
+            return fld_idTipoV;
         }
 
 
         /// <summary>
         /// <para>CRUD  -- R = Read</para>
-        ///  Lee los datos extraido de la tabla departamento.
+        ///  Lee los datos extraido de la tabla Vehiculo_tipo.
         /// </summary>
         /// <param name="dr">Objeto SqlDataReader que contiene los datos extraido de la tabla.</param>
         /// <param name="asignar">true para asignar los campos del registro leido a las propiedades.</param>
         /// <returns>True : cuando el dato existe, false cuando no existe.</returns>
         public bool leerDatos(SqlDataReader dr, bool asignar)
         {
-
+            
             bool encontrado = false;
             if (dr.Read())
             {
                 encontrado = true;
                 if (asignar)
                 {
-                    fld_idDpto = (int)dr["idDpto"];
-                    fld_NombreDpto = dr["Descripcion"].ToString();
+                    fld_idTipoV =Convert.ToByte (dr["idTipoVehiculo"]);
+                    fld_Descripcion = dr["Descripcion"].ToString();
                 }
             }
             else
@@ -121,47 +121,47 @@ namespace CrtProduccion.entidades
         }
 
         /// <summary>
-        ///  Buscar en la tabla de departamento por el Nombre del usuario.
+        ///  Buscar en la tabla de Vehiculo_Tipo por el Descripcion del Vehiculo.
         /// </summary>
-        /// <param name="pNombre"> Nombre único que identifica el grupo.</param>
+        /// <param name="pNombre"> Descripcion único que identifica el Vehiculo.</param>
         /// <param name="asignar"> true = Asigna los campos de la tabla a las propiedadades, false = no los asigna.</param>
         /// <returns>true : si lo encuentra y false cuando no lo encuentra.</returns>
-        public bool buscar(String pNombre, bool asignar)
+        public bool buscar(String pVehiculo, bool asignar)
         {
-            var dr = datamanager.ConsultaLeer("select idDpto, Descripcion" +
-                                               " from departamento" +
-                                               " where Descripcion = '" + pNombre + "'");
+            var dr = datamanager.ConsultaLeer("select idTipoVehiculo, Descripcion" +
+                                               " from Vehiculo_Tipo" +
+                                               " where Descripcion = '" + pVehiculo + "'");
             return leerDatos(dr, asignar);
         }
         /// <summary>
-        ///  Buscar en la tabla de departamento por el idGrupo
+        ///  Buscar en la tabla de Vehiculo_Tipo por el idTipoVehiculo
         /// </summary>
-        /// <param name="idGrupo"> código único que identifica el grupo.</param>
+        /// <param name="idTipoVehiculo"> código único que identifica el Vehiculo_Tipo.</param>
         /// <param name="asignar"> true = Asigna los campos de la tabla a las propiedadades, false = no los asigna.</param>
         /// <returns>true : si lo encuentra y false cuando no lo encuentra.</returns>
-        public bool buscar(int idDpto, bool asignar)
+        public bool buscar(int idTipoVehiculo, bool asignar)
         {
-            var dr = datamanager.ConsultaLeer("select idDpto, Descripcion" +
-                                               " from departamento" +
-                                               " where idDpto = " + idDpto.ToString());
+            var dr = datamanager.ConsultaLeer("select idTipoVehiculo, Descripcion" +
+                                               " from Vehiculo_Tipo" +
+                                               " where idTipoVehiculo = " + idTipoVehiculo.ToString());
             return leerDatos(dr, asignar);
         }
 
         /// <summary>
-        /// Lee el último registro insertado en la tabla departamento.
+        /// Lee el último registro insertado en la tabla Vehiculo_Tipo.
         /// </summary>
-        /// <returns>true cuando existe por lo menos un registro en la tabla departamento</returns>
+        /// <returns>true cuando existe por lo menos un registro en la tabla Vehiculo_Tipo</returns>
         public bool buscarUltimo()
         {
-            var dr = datamanager.ConsultaLeer("select top 1 idDpto, Descripcion" +
-                                               " from departamento" +
-                                               " order by idDpto desc ");
+            var dr = datamanager.ConsultaLeer("select top 1 idTipoVehiculo, Descripcion" +
+                                               " from Vehiculo_Tipo" +
+                                               " order by idTipoVehiculo desc ");
             return leerDatos(dr, true);
         }
 
         /// <summary>
         /// <para>CRUD  -- U = Update</para> 
-        /// <para>Método que actualiza los datos de la tabla departamento</para>
+        /// <para>Método que actualiza los datos de la tabla Vehiculo_Tipo</para>
         /// </summary>
         /// <returns>True cuando logra actualizar los datos.</returns>
         public bool actualizarDatos()
@@ -172,13 +172,13 @@ namespace CrtProduccion.entidades
             {
 
                 // Preparamos consulta pra la actualización
-                SqlCommand cmd = new SqlCommand("update departamento" +
+                SqlCommand cmd = new SqlCommand("update Vehiculo_Tipo" +
                                                 " Set Descripcion = @Descripcion" +
-                                                " Where idDpto = @idDpto ", datamanager.ConexionSQL);
+                                                " Where idTipoVehiculo = @idTipoVehiculo ", datamanager.ConexionSQL);
 
                 // Ponemos valores a los Parametros incluidos en la consulta de actualización
-                cmd.Parameters.AddWithValue("@idDpto", fld_idDpto);
-                cmd.Parameters.AddWithValue("@Descripcion", fld_NombreDpto);
+                cmd.Parameters.AddWithValue("@idTipoVehiculo", fld_idTipoV);
+                cmd.Parameters.AddWithValue("@Descripcion", fld_Descripcion);
 
 
                 // Ejecutamos consulta de Actualización
@@ -193,15 +193,15 @@ namespace CrtProduccion.entidades
 
         /// <summary>
         /// <para>CRUD -- D = Delete</para> 
-        /// <para>Método que elimina un registro de la tabla departamento</para>
+        /// <para>Método que elimina un registro de la tabla Vehiculo_Tipo</para>
         /// </summary>
         /// <returns>True cuando logra eliminar el registro.</returns>
-        public bool borrarDatos(int pidDpto)
+        public bool borrarDatos(int pidTipoV)
         {
             // Intentamos Borrarlo
             bool lret = datamanager.ConsultaNodata("delete " +
-                                               " from departamento" +
-                                               " where idDpto = " + pidDpto.ToString());
+                                               " from Vehiculo_Tipo" +
+                                               " where idTipoVehiculo = " + pidTipoV.ToString());
 
             // Si logramos borrarlo limpiamos 
             if (lret) limpiar();
@@ -212,6 +212,7 @@ namespace CrtProduccion.entidades
         #endregion
     }
 }
+
 
 
 

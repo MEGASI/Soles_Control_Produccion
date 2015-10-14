@@ -77,10 +77,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="comunes\libreria.cs" />
-    <Compile Include="entidades\dmTest.cs" />
+    <Compile Include="entidades\dmColor.cs" />
+    <Compile Include="entidades\dmVehiculoMarca.cs" />
+    <Compile Include="entidades\dmVehiculoP.cs" />
+    <Compile Include="entidades\dmVehiculo_tipo.cs" />
     <Compile Include="entidades\dmCargo.cs" />
     <Compile Include="entidades\dmDpto.cs" />
     <Compile Include="entidades\dmGrupo.cs" />
+    <Compile Include="entidades\dmLibroDirecciones.cs" />
     <Compile Include="entidades\dmproyecto.cs" />
     <Compile Include="entidades\dmUsuario.cs" />
     <Compile Include="comunes\datamanager.cs" />
@@ -93,11 +97,23 @@
     <Compile Include="vistas\CargoBRWf.xaml.cs">
       <DependentUpon>CargoBRWf.xaml</DependentUpon>
     </Compile>
+    <Compile Include="vistas\ColorBRWfrm.xaml.cs">
+      <DependentUpon>ColorBRWfrm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\Colorfrm.xaml.cs">
+      <DependentUpon>Colorfrm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="vistas\DptoBRWfrm.xaml.cs">
       <DependentUpon>DptoBRWfrm.xaml</DependentUpon>
     </Compile>
     <Compile Include="vistas\dptofrm.xaml.cs">
       <DependentUpon>dptofrm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\LibroDBRWfrm.xaml.cs">
+      <DependentUpon>LibroDBRWfrm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\LibroDfrm.xaml.cs">
+      <DependentUpon>LibroDfrm.xaml</DependentUpon>
     </Compile>
     <Compile Include="vistas\proyectoBRWfrm.xaml.cs">
       <DependentUpon>proyectoBRWfrm.xaml</DependentUpon>
@@ -140,8 +156,23 @@
     <Compile Include="vistas\cargofrm.xaml.cs">
       <DependentUpon>cargofrm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="vistas\testwin.xaml.cs">
-      <DependentUpon>testwin.xaml</DependentUpon>
+    <Compile Include="vistas\VehiculoPartesBRWfrm.xaml.cs">
+      <DependentUpon>VehiculoPartesBRWfrm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\VehiculoTBRWfrm.xaml.cs">
+      <DependentUpon>VehiculoTBRWfrm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\Vehiculo_MarcaBRWfrm.xaml.cs">
+      <DependentUpon>Vehiculo_MarcaBRWfrm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\Vehiculo_Marcafrm.xaml.cs">
+      <DependentUpon>Vehiculo_Marcafrm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\Vehiculo_Partesfrm.xaml.cs">
+      <DependentUpon>Vehiculo_Partesfrm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\Vehiculo_Tipofrm.xaml.cs">
+      <DependentUpon>Vehiculo_Tipofrm.xaml</DependentUpon>
     </Compile>
     <Page Include="Resources\estiloBase.xaml">
       <SubType>Designer</SubType>
@@ -151,11 +182,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="vistas\ColorBRWfrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\Colorfrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="vistas\DptoBRWfrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="vistas\dptofrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\LibroDBRWfrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\LibroDfrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -207,7 +254,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="vistas\testwin.xaml">
+    <Page Include="vistas\VehiculoPartesBRWfrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\VehiculoTBRWfrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\Vehiculo_MarcaBRWfrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\Vehiculo_Marcafrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\Vehiculo_Partesfrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\Vehiculo_Tipofrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

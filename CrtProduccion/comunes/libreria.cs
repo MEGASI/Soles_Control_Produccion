@@ -13,10 +13,12 @@ namespace CrtProduccion.comunes
             TextBox tb = obj as TextBox;
             RadioButton rb = obj as RadioButton;
             PasswordBox pb = obj as PasswordBox;
+            CheckBox ch = obj as CheckBox;
             
             if (tb != null) tb.Text = "";
             if (rb != null) rb.IsChecked = false;
             if (pb != null) pb.Password = "";
+            if (ch != null) ch.IsEnabled = false;
             
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj as DependencyObject); i++)
                 limpiaControles(VisualTreeHelper.GetChild(obj, i));
@@ -29,11 +31,13 @@ namespace CrtProduccion.comunes
             RadioButton rb = obj as RadioButton;
             PasswordBox pb = obj as PasswordBox;
             ComboBox cb = obj as ComboBox;
+            CheckBox ch = obj as CheckBox;
 
             if (tb != null) tb.IsEnabled = isenabled;
             if (rb != null) rb.IsEnabled = isenabled;
             if (pb != null) pb.IsEnabled = isenabled;
             if (cb != null) cb.IsEnabled = isenabled;
+            if (ch != null) ch.IsEnabled = isenabled;
 
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj as DependencyObject); i++)
                 estadoControles(VisualTreeHelper.GetChild(obj, i), isenabled);
