@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CrtProduccion.vistas"
         mc:Ignorable="d"
-        Title="Libro Direcciones" Height="491" Width="499" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+        Title="Libro Direcciones" Height="491" Width="499" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Activated="Window_Activated">
     <Grid>
         <Canvas Margin="0,1,0,-1">
             <!--Codigo -->

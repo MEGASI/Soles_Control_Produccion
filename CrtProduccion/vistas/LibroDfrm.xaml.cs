@@ -81,15 +81,19 @@ namespace CrtProduccion.vistas
             permiteBorrar = datamanager.probarPermiso(idSegItem, "borrar");
 
             InitializeComponent();
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
+
             registro = new entidades.dmLibroDirecciones();
             registro.buscarUltimo();
 
             //DataContext = registro;
             mostrar();
+
 
             // Operaciones permitidas en este formulario.
             // Implementación de la seguridad del formulario.
@@ -144,8 +148,8 @@ namespace CrtProduccion.vistas
             registro.fld_escliente = checkCliente.IsEnabled;
             registro.fld_esEmpleado = checkEmpleado.IsEnabled;
             registro.fld_esProovedor = checkProveedor.IsEnabled;
-            registro.fld_idCargo = Convert.ToInt32(cbidCargo.Text);
-            registro.fld_idDpto = Convert.ToInt32(cbidDpto.Text);
+            //registro.fld_idCargo = Convert.ToInt32(cbidCargo.Text);
+            // registro.fld_idDpto = Convert.ToInt32(cbidDpto.Text);
             registro.fld_estado = cbestado.Text;
 
 
@@ -304,7 +308,7 @@ namespace CrtProduccion.vistas
             txtsueldo.Text = Convert.ToString(registro.fld_sueldo).ToString();
 
 
-            foreach (CBoxNullItem lobj in cbidCargo.Items)
+             foreach (CBoxNullItem lobj in cbidCargo.Items)
                 if ((int?)lobj.Value == registro.fld_idCargo)
                 {
                     cbidCargo.SelectedValue = lobj;
@@ -327,18 +331,24 @@ namespace CrtProduccion.vistas
         {
             llenaCbidCargo();
         }
+
         private void llenaCbidCargo()
         {
             cbidCargo.Items.Clear();
 
             SqlDataReader dr =
-            datamanager.ConsultaLeer("select  estado, idCargo from LibroDirecciones union  select'N/A' as Prueba,cast(null as int ) as idCargo ");
+            datamanager.ConsultaLeer("select idCargo, Descripcion from cargo " +
+                                     "union " +
+                                     "select cast(null as int), 'N/A' as descripcion " +
+                                     "order by descripcion");
             string col1 = "";
             int? col2 = null;
             while (dr != null && dr.Read())
             {
-                col1 = dr["idCargo"].ToString();
+                // Esta es la descripción que mostrará el combobox.
+                col1 = dr["Descripcion"].ToString();
 
+                // col2 es entero y es lo que se almacenará
                 // Estamos usando valores nulos, por eso en la 
                 // conversión a entero lanza una excepcion 
                 // la aprovechamos para asignar el valor nulo.
@@ -350,6 +360,7 @@ namespace CrtProduccion.vistas
             cbidCargo.SelectedIndex = 0;
             datamanager.ConexionCerrar();
         }
+
         private void cbidCargo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbidCargo.SelectedValue != null)
@@ -358,6 +369,9 @@ namespace CrtProduccion.vistas
                 registro.fld_idCargo = selectedValue;
             }
         }
+
+
+
         // combobox Estado
         private void cbestado_Loaded(object sender, RoutedEventArgs e)
         {
@@ -440,6 +454,11 @@ namespace CrtProduccion.vistas
                 }
             }
             txtCedRNC.Focus();
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            
         }
     }
 }
