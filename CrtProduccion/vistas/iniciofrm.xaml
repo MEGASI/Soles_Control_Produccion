@@ -72,7 +72,7 @@
                         <MenuItem x:Name="segPerfilUsuario" Header="Perfil Usuario" FontSize="14" Click="segPerfilUsuario_Click"/>
                     </MenuItem>
                      <Separator/>
-                     <MenuItem x:Name="testW" Header="Formulario de Prueba" FontSize="14" Click="testW_Click"/>
+                     <MenuItem x:Name="testW" Header="Formulario de Prueba" FontSize="14"/>
                 </MenuItem>
 
 
