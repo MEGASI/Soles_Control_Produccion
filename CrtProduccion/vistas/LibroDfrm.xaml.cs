@@ -87,7 +87,10 @@ namespace CrtProduccion.vistas
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
+            // Llenar ComboBox de Cargo.
+            llenaCbidCargo();
 
+            // Buscar el ultimo registro insertado.
             registro = new entidades.dmLibroDirecciones();
             registro.buscarUltimo();
 
@@ -324,13 +327,9 @@ namespace CrtProduccion.vistas
                 }
         }
         #endregion
-        #region  Llenando Los Combobox
 
-        //Combobox CbidCargo
-        private void cbidCargo_Loaded(object sender, RoutedEventArgs e)
-        {
-            llenaCbidCargo();
-        }
+
+        #region  Llenando Los Combobox
 
         private void llenaCbidCargo()
         {
@@ -357,7 +356,9 @@ namespace CrtProduccion.vistas
 
                 cbidCargo.Items.Add(new CBoxNullItem(col1, col2));
             }
-            cbidCargo.SelectedIndex = 0;
+
+            // Cuando se carga del load esta linea genera un error.
+            // cbidCargo.SelectedIndex = 0;
             datamanager.ConexionCerrar();
         }
 
@@ -397,6 +398,8 @@ namespace CrtProduccion.vistas
                 registro.fld_estado = Convert.ToString(selectedValue);
             }
         }
+
+
         //Combobox Departamento
         private void cbidDpto_Loaded(object sender, RoutedEventArgs e)
         {

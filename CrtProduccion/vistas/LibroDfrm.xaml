@@ -38,7 +38,7 @@
 
             <!--Combobox-->
             <Label x:Name="lblidCargo" Content="idCargo" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="107" Canvas.Top="254"/>
-            <ComboBox x:Name="cbidCargo" Canvas.Left="171" Canvas.Top="258" Width="188" Loaded="cbidCargo_Loaded" SelectionChanged="cbidCargo_SelectionChanged" />
+            <ComboBox x:Name="cbidCargo" Canvas.Left="171" Canvas.Top="258" Width="188" SelectionChanged="cbidCargo_SelectionChanged" />
             <Label x:Name="lblidDpto" Content="idDpto" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="107" Canvas.Top="281"/>
             <ComboBox x:Name="cbidDpto" Canvas.Left="171" Canvas.Top="285" Width="188" Loaded="cbidDpto_Loaded" SelectionChanged="cbidDpto_SelectionChanged"/>
 
