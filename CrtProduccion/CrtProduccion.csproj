@@ -78,6 +78,7 @@
     </ApplicationDefinition>
     <Compile Include="comunes\libreria.cs" />
     <Compile Include="entidades\dmColor.cs" />
+    <Compile Include="entidades\dmVehiculo.cs" />
     <Compile Include="entidades\dmVehiculoMarca.cs" />
     <Compile Include="entidades\dmVehiculoP.cs" />
     <Compile Include="entidades\dmVehiculo_tipo.cs" />
@@ -155,6 +156,12 @@
     </Compile>
     <Compile Include="vistas\cargofrm.xaml.cs">
       <DependentUpon>cargofrm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\SuplidorfrmBRW.xaml.cs">
+      <DependentUpon>SuplidorfrmBRW.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\Vehiculofrm.xaml.cs">
+      <DependentUpon>Vehiculofrm.xaml</DependentUpon>
     </Compile>
     <Compile Include="vistas\VehiculoPartesBRWfrm.xaml.cs">
       <DependentUpon>VehiculoPartesBRWfrm.xaml</DependentUpon>
@@ -254,6 +261,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="vistas\SuplidorfrmBRW.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\Vehiculofrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="vistas\VehiculoPartesBRWfrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -294,12 +309,14 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\auto.ico" />
     <Content Include="Resources\Cancelar02.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\LLAVE.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\loginico.ico" />
     <Content Include="Resources\Modulos.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

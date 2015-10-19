@@ -1,5 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Windows.Input.StylusPlugIns;
+using System.Windows.Input;
+
+
+
 
 namespace CrtProduccion.entidades
 {
@@ -31,7 +40,7 @@ namespace CrtProduccion.entidades
             fld_Descripcion = PDescripcion;
         }
         #endregion
-    
+
         #region Métodos y funciones
         /// <summary>
         /// <para>Inicializa cada una de las propiedades de la clase.</para>
@@ -43,7 +52,7 @@ namespace CrtProduccion.entidades
             fld_Descripcion = "";
 
         }
- 
+
         /// <summary>
         /// <para>Validar las propiedades antes de guardarla, si se detecta algun error
         /// El mensage del error es retornado en la propiedad errormsg.</para>
@@ -58,8 +67,21 @@ namespace CrtProduccion.entidades
                 errormsg = "Nombre de Color no puede estar vacío.";
                 lret = false;
             }
+
+
             return lret;
         }
+
+
+        
+
+           
+
+
+
+    
+        
+    
         /// <summary>
         /// <para>CRUD  -- C = Create</para> 
         /// <para>Método que inserta los datos en la tabla segGrupo</para>
@@ -75,11 +97,12 @@ namespace CrtProduccion.entidades
                 // Preparamos consulta pra la actualización
                 SqlCommand cmd = new SqlCommand("Insert into color(Descripcion,valorRGB)" +
                                                 " output INSERTED.idColor" +
-                                                " Values(@Descripcion)", datamanager.ConexionSQL);
+                                                " Values(@Descripcion,@valorRGB)", datamanager.ConexionSQL);
 
 
                 // Ponemos valores a los Parametros incluidos en la consulta de actualización
                 cmd.Parameters.AddWithValue("@Descripcion", fld_Descripcion);
+                cmd.Parameters.AddWithValue("@valorRGB", Convert.ToInt32(fld_ValorRGB));
 
                 // Ejecutamos consulta de Actualización
                 // y Retornamos el idColor Insertado.
@@ -175,7 +198,7 @@ namespace CrtProduccion.entidades
           
                 // Preparamos consulta pra la actualización
                 SqlCommand cmd = new SqlCommand("update color" +
-                                                " Set Descripcion = @Descripcion,valorRGB" +
+                                                " Set Descripcion = @Descripcion,valorRGB=@valorRGB" +
                                                 " Where idColor = @idColor ", datamanager.ConexionSQL);
 
                 // Ponemos valores a los Parametros incluidos en la consulta de actualización

@@ -66,6 +66,28 @@ namespace CrtProduccion
     }
     // fin CBoxNullItem
 
+
+    /// <summary>
+    /// Clase CBox donde valor es string al igula que name.
+    /// </summary>
+    public class CBoxStrItem
+    {
+        public string Name;
+        public string Value;
+        
+        public CBoxStrItem(string Name, string Value)
+        {
+            this.Name = Name;
+            this.Value = Value;
+        }
+
+       // override ToString() function
+        public override string ToString()
+        {
+            return this.Name;
+        }
+
+    }
     public class Permiso
     {
         // Definir atributos de la clase permiso.

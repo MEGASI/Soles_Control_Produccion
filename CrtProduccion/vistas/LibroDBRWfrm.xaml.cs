@@ -23,8 +23,6 @@ namespace CrtProduccion.vistas
        
         System.Data.DataSet dsGrid = new System.Data.DataSet();
 
-
-
         public LibroDBRWfrm()
         {
             InitializeComponent();
@@ -51,7 +49,7 @@ namespace CrtProduccion.vistas
 
             dsGrid.Clear();
 
-           dsGrid = datamanager.ConsultaDatos("select * from  LibroDirecciones");
+           dsGrid = datamanager.ConsultaDatos("select * from  LibroDirecciones order by cedulaRNC");
             //dsGrid = datamanager.ConsultaDatos("select  idLD, cedulaRNC,Nombres,Apellidos,esCliente,esEmpleado,esProveedor,idCargo,idDpto,sueldo,estado from  LibroDirecciones");
 
             DataG.ItemsSource = dsGrid.Tables[0].DefaultView;
@@ -93,12 +91,12 @@ namespace CrtProduccion.vistas
             DataG.Columns[6].CanUserResize = false;
 
             DataG.Columns[7].IsReadOnly = true;
-            DataG.Columns[7].Width = 25;
+            DataG.Columns[7].Width = 55;
             DataG.Columns[7].Header = "idCargo";
             DataG.Columns[7].CanUserResize = false;
 
             DataG.Columns[8].IsReadOnly = true;
-            DataG.Columns[8].Width = 25;
+            DataG.Columns[8].Width = 50;
             DataG.Columns[8].Header = "idDpto";
             DataG.Columns[8].CanUserResize = false;
 
@@ -113,7 +111,6 @@ namespace CrtProduccion.vistas
             DataG.Columns[10].CanUserResize = false;
 
             
-
 
             datamanager.ConexionCerrar();
 

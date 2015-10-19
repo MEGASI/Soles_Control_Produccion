@@ -114,11 +114,11 @@ namespace CrtProduccion.entidades
                 cmd.Parameters.AddWithValue("@Nombres",fld_Nombres);
                 cmd.Parameters.AddWithValue("@Apellidos", fld_Apellidos);
                 cmd.Parameters.AddWithValue("@esCliente", fld_escliente);
-                cmd.Parameters.AddWithValue("@esEmpleado", fld_escliente);
-                cmd.Parameters.AddWithValue("@esProveedor", fld_escliente);
-                cmd.Parameters.AddWithValue("@idCargo", fld_idCargo);
-                cmd.Parameters.AddWithValue("@idDpto", fld_idDpto);
-                cmd.Parameters.AddWithValue("@sueldo", fld_sueldo);
+                cmd.Parameters.AddWithValue("@esEmpleado", fld_esEmpleado);
+                cmd.Parameters.AddWithValue("@esProveedor", fld_esProovedor);
+                cmd.Parameters.AddWithValue("@idCargo", Convert.ToInt32(fld_idCargo));
+                cmd.Parameters.AddWithValue("@idDpto", Convert.ToInt32(fld_idDpto));
+                cmd.Parameters.AddWithValue("@sueldo", Convert.ToDouble(fld_sueldo));
                 //cmd.Parameters.AddWithValue("@estado", fld_estado);
 
                 // Ejecutamos consulta de Actualización
@@ -263,6 +263,9 @@ namespace CrtProduccion.entidades
                     cmd.Parameters.AddWithValue("@idDpto", fld_idDpto);
                 else
                     cmd.Parameters.AddWithValue("@idDpto", DBNull.Value);
+
+
+
 
                 // Ejecutamos consulta de Actualización
                 lRet = cmd.ExecuteNonQuery();

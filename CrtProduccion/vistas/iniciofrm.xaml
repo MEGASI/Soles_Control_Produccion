@@ -21,7 +21,7 @@
 
                 <!---  <MenuItem x:Name="mainHerramientas" Header="Herramientas" FontFamily="Verdana" FontSize="14">-->
 
-                <MenuItem x:Name ="mainArchivo" Header="Archivo" FontFamily="Verdana" FontSize="14">
+                <MenuItem x:Name ="mainArchivo" Header="Archivo" FontFamily="Verdana" FontSize="14" >
                     <MenuItem Header=" Direcciones">
 
 
@@ -43,11 +43,12 @@
                     </MenuItem>
                     <Separator/>
                     <MenuItem Header="Taller">
-                        <MenuItem Header="Vehículo"/>
+                        <MenuItem Header="Vehículo" Click="MenuItem_Click_8"/>
                         <MenuItem Header="iPiezas (Insumos)" Click="MenuItem_Click_6" />
                         <MenuItem Header="Tipo de Vehiculos" Click="MenuItem_Click_4"/>
                         <MenuItem Header="Marcas" Click="MenuItem_Click_5" />
-
+                        <MenuItem Header="Color" Click="MenuItem_Click_7"/>
+                        <MenuItem Header="Vehiculo_estado" Click="MenuItem_Click_9"/>
                     </MenuItem>
                     </MenuItem>
 

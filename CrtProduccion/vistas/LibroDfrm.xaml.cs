@@ -42,7 +42,7 @@ namespace CrtProduccion.vistas
                 {
                     if (value == "CREAR" || value == "MODIFICAR")
                     {
-                        btnBorrar.IsEnabled = true;
+                        btnBorrar.IsEnabled = false;
                         btnSalir.IsEnabled = false;
                         btnbuscar.IsEnabled = false;
 
@@ -87,12 +87,18 @@ namespace CrtProduccion.vistas
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
+
             // Llenar ComboBox de Cargo.
             llenaCbidCargo();
+            //Llenar ComboBox de Departamento
+            llenandoidCbDpto();
+            //Llenar ComboBox de estado
+            llenarcbEstado();
 
             // Buscar el ultimo registro insertado.
             registro = new entidades.dmLibroDirecciones();
             registro.buscarUltimo();
+
 
             //DataContext = registro;
             mostrar();
@@ -143,44 +149,43 @@ namespace CrtProduccion.vistas
         //Boton Guardar
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            // Asignar los valores de los conroles del formulario a los campos.
-            registro.fld_Ced_Rnc = txtCedRNC.Text.Trim();
-            registro.fld_Nombres = txtNombre.Text.Trim();
-            registro.fld_Apellidos = txtApellido.Text.Trim();
-            registro.fld_sueldo = Convert.ToDouble(txtsueldo.Text.Trim());
-            registro.fld_escliente = checkCliente.IsEnabled;
-            registro.fld_esEmpleado = checkEmpleado.IsEnabled;
-            registro.fld_esProovedor = checkProveedor.IsEnabled;
-            //registro.fld_idCargo = Convert.ToInt32(cbidCargo.Text);
-            // registro.fld_idDpto = Convert.ToInt32(cbidDpto.Text);
-            registro.fld_estado = cbestado.Text;
 
+            try {
+                // Asignar los valores de los conroles del formulario a los campos.
+                registro.fld_Ced_Rnc = txtCedRNC.Text.Trim();
+                registro.fld_Nombres = txtNombre.Text.Trim();
+                registro.fld_Apellidos = txtApellido.Text.Trim();
+                registro.fld_sueldo = Convert.ToDouble(txtsueldo.Text.Trim());
+                registro.fld_escliente = checkCliente.IsEnabled;
+                registro.fld_esEmpleado = checkEmpleado.IsEnabled;
+                registro.fld_esProovedor = checkProveedor.IsEnabled;
 
+                // Validar los valores asignados.
+                bool lret = registro.validar();
+                if (lret && this.modalidad == "CREAR")
+                {
+                    lret = registro.crearDatos() > 0;
+                    if (lret)
+                    {
+                        txtidLD.Text = registro.fld_idLD.ToString();
+                    }
+                }
+                if (lret && this.modalidad == "MODIFICAR")
+                    lret = registro.actualizarDatos();
 
-            // Validar los valores asignados.
-            bool lret = registro.validar();
-            if (lret && this.modalidad == "CREAR")
-            {
-                lret = registro.crearDatos() > 0;
                 if (lret)
                 {
-                    txtidLD.Text = registro.fld_idLD.ToString();
+                    modalidad = "CONSULTAR";
+                    MessageBox.Show("Información del  fue almacenada.", "Guardar", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
+                else
+                    MessageBox.Show(registro.errormsg, "Error", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            if (lret && this.modalidad == "MODIFICAR")
-                lret = registro.actualizarDatos();
-
-            if (lret)
-            {
-                modalidad = "CONSULTAR";
-                MessageBox.Show("Información del  fue almacenada.", "Guardar", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else
-                MessageBox.Show(registro.errormsg, "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+            catch { MessageBox.Show(" Solo  Admiten Numeros"); }
         }
+
+
         // Click Boton Borrar
-
-
         private void btnBorrar_Click(object sender, RoutedEventArgs e)
         {
             bool lret = false;
@@ -198,15 +203,16 @@ namespace CrtProduccion.vistas
                 {
                     MessageBox.Show("Datos Elimnados Correctamente", "Eliminando", MessageBoxButton.OK, MessageBoxImage.Information);
                     mostrar();
-                }
-            }
-            txtCedRNC.Focus();
 
-        }
+                }
+                txtCedRNC.Focus();
+            }
+            
+        } 
         private void btnSalir_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
+        }   // Btn Buscar
         private void btnbuscar_Click(object sender, RoutedEventArgs e)
         {
             vistas.LibroDBRWfrm dlgfrm = new vistas.LibroDBRWfrm();
@@ -297,6 +303,7 @@ namespace CrtProduccion.vistas
         }
         #endregion
 
+
         #region Metodo Mostrar
 
         private void mostrar()
@@ -311,22 +318,29 @@ namespace CrtProduccion.vistas
             txtsueldo.Text = Convert.ToString(registro.fld_sueldo).ToString();
 
 
-             foreach (CBoxNullItem lobj in cbidCargo.Items)
+            foreach (CBoxNullItem lobj in cbidCargo.Items)
                 if ((int?)lobj.Value == registro.fld_idCargo)
                 {
                     cbidCargo.SelectedValue = lobj;
                     break;
                 }
-
-
             foreach (CBoxNullItem lobj in cbidDpto.Items)
                 if ((int?)lobj.Value == registro.fld_idDpto)
                 {
                     cbidDpto.SelectedValue = lobj;
                     break;
                 }
+
+            foreach (CBoxStrItem lobj in cbestado.Items)
+                if ((string)lobj.Value == registro.fld_estado)
+                {
+                    cbestado.SelectedValue = lobj;
+                    break;
+                }
+
         }
         #endregion
+
 
 
         #region  Llenando Los Combobox
@@ -345,23 +359,22 @@ namespace CrtProduccion.vistas
             while (dr != null && dr.Read())
             {
                 // Esta es la descripción que mostrará el combobox.
-                col1 = dr["Descripcion"].ToString();
-
                 // col2 es entero y es lo que se almacenará
                 // Estamos usando valores nulos, por eso en la 
                 // conversión a entero lanza una excepcion 
                 // la aprovechamos para asignar el valor nulo.
+                col1 = dr["Descripcion"].ToString();
+
+              
                 try { col2 = (int?)dr["IdCargo"]; }
                 catch (Exception) { col2 = null; }
 
                 cbidCargo.Items.Add(new CBoxNullItem(col1, col2));
             }
-
             // Cuando se carga del load esta linea genera un error.
             // cbidCargo.SelectedIndex = 0;
             datamanager.ConexionCerrar();
         }
-
         private void cbidCargo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbidCargo.SelectedValue != null)
@@ -370,62 +383,33 @@ namespace CrtProduccion.vistas
                 registro.fld_idCargo = selectedValue;
             }
         }
-
-
-
-        // combobox Estado
-        private void cbestado_Loaded(object sender, RoutedEventArgs e)
-        {
-            cbestado.Items.Clear();
-            SqlDataReader dr =
-            datamanager.ConsultaLeer("select  estado from LDEstado union  select'N/A' as Prueba");
-            string col1 = "";
-            //int? col2 = null;
-            while (dr != null && dr.Read())
-            {
-                col1 = dr["estado"].ToString();
-
-                cbestado.Items.Add(col1);
-            }
-            cbestado.SelectedIndex = 0;
-            datamanager.ConexionCerrar();
-        }
-        private void cbestado_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (cbestado.SelectedValue != null)
-            {
-                int? selectedValue = (int?)((CBoxNullItem)cbidCargo.SelectedItem).Value;
-                registro.fld_estado = Convert.ToString(selectedValue);
-            }
-        }
-
-
-        //Combobox Departamento
-        private void cbidDpto_Loaded(object sender, RoutedEventArgs e)
-        {
-            LlenaridDpto();
-        }
-        private void LlenaridDpto()
+        public void llenandoidCbDpto()
         {
             cbidDpto.Items.Clear();
-
             SqlDataReader dr =
-            datamanager.ConsultaLeer("select  Nombres, idDpto from LibroDirecciones union  select'N/A' as Prueba,cast(null as int ) as idCargo ");
+        datamanager.ConsultaLeer("select idDpto, Descripcion from departamento " +
+                                 "union " +
+                                 "select cast(null as int), 'N/A' as descripcion " +
+                                 "order by descripcion");
             string col1 = "";
             int? col2 = null;
             while (dr != null && dr.Read())
             {
-                col1 = dr["idDpto"].ToString();
-
+                // Esta es la descripción que mostrará el combobox.
+                // col2 es entero y es lo que se almacenará
                 // Estamos usando valores nulos, por eso en la 
                 // conversión a entero lanza una excepcion 
                 // la aprovechamos para asignar el valor nulo.
+                col1 = dr["Descripcion"].ToString();
+
+                
                 try { col2 = (int?)dr["idDpto"]; }
                 catch (Exception) { col2 = null; }
 
                 cbidDpto.Items.Add(new CBoxNullItem(col1, col2));
             }
-            cbidDpto.SelectedIndex = 0;
+            // Cuando se carga del load esta linea genera un error.
+            // cbidCargo.SelectedIndex = 0;
             datamanager.ConexionCerrar();
         }
         private void cbidDpto_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -436,33 +420,50 @@ namespace CrtProduccion.vistas
                 registro.fld_idDpto = selectedValue;
             }
         }
-
-        private void button_Click(object sender, RoutedEventArgs e)
+        // ComboBox Estado
+        public void llenarcbEstado()
         {
-            bool lret = false;
-            if (MessageBox.Show("Seguro que quieres eliminar este Registro de LibroDirecciones?", "Borrar", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            cbestado.Items.Clear();
+            SqlDataReader dr =
+            datamanager.ConsultaLeer("select  estado , Descripcion from LDEstado order by Descripcion");
+            string col1 = "";
+            string col2 = "";
+            while (dr.Read())
             {
-
-                if (this.modalidad == "CONSULTAR" && registro.fld_idLD != 0 || this.modalidad == "CONSULTAR" && registro.fld_idCargo != 0 || this.modalidad == "CONSULTAR" && registro.fld_idDpto != 0)
+                // Esta es la descripción que mostrará el combobox.
+                // col2 es entero y es lo que se almacenará
+                // Estamos usando valores nulos, por eso en la 
+                // conversión a entero lanza una excepcion 
+                // la aprovechamos para asignar el valor nulo.
+                col1 = dr["Descripcion"].ToString();
+                col2 = dr["estado"].ToString();
+                cbestado.Items.Add(new CBoxStrItem(col1, col2));
+                
+            }
+            datamanager.ConexionCerrar();
+        }
+        private void cbestado_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+                if (cbestado.SelectedValue != null)
                 {
-                    lret = registro.borrarDatos(registro.fld_idLD);
-                    lret = registro.borrarDatos(Convert.ToInt32(registro.fld_idCargo));
-                    lret = registro.borrarDatos(Convert.ToInt32(registro.fld_idDpto));
-                }
-
-                if (lret)
-                {
-                    MessageBox.Show("Datos Elimnados Correctamente", "Eliminando", MessageBoxButton.OK, MessageBoxImage.Information);
-                    mostrar();
+                    string selectedValue = Convert.ToString(((CBoxStrItem)cbestado.SelectedItem).Value);
+                    registro.fld_estado = selectedValue;
                 }
             }
-            txtCedRNC.Focus();
+
+     
+        private void txtsueldo_KeyUp(object sender, KeyEventArgs e)
+        {
+            //Metodo que reciba el String y el KeyEventsArgs
+            comunes.libreria.soloNumero(txtsueldo.Text, e);
         }
 
-        private void Window_Activated(object sender, EventArgs e)
+        private void txtNombre_KeyUp(object sender, KeyEventArgs e)
         {
-            
+            //Metodo que reciba el String y el KeyEventsArgs
+            comunes.libreria.SoloLetra(txtNombre.Text, e);
         }
     }
-}
+        }   
 #endregion
+

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CrtProduccion"
         mc:Ignorable="d"
-        Title="Login" Height="226" Width="374" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
+        Title="Login" Height="226" Width="374" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" Icon="/CrtProduccion;component/Resources/loginico.ico">
 
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

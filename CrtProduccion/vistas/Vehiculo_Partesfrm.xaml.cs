@@ -69,6 +69,11 @@ namespace CrtProduccion.vistas
 
         }
         #endregion
+       
+        
+
+        
+        
         #region Constructor y Loader
         //   Constructor del Fromulario
         public Vehiculo_Partesfrm()
@@ -101,12 +106,18 @@ namespace CrtProduccion.vistas
                 modalidad = "CONSULTAR";
         }
         #endregion
+        
+        
+        
+        
+                
         #region Funcionalidades de los Botones
 
         // Click del boton Nuevo
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
             registro.fld_oldidPart = registro.fld_idParte;
+            
             
             registro.limpiar();
             mostrar();
@@ -132,11 +143,11 @@ namespace CrtProduccion.vistas
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             // Asignar los valores de los conroles del formulario a los campos.
-            registro.fld_Referencia = txtReferencia.Text;
-            registro.fld_Descripcion = txtDescripcion.Text;
-            registro.fld_idSuplidor = Convert.ToInt32(txtidSuplidor.Text);
-            registro.fld_Precio = Convert.ToDouble(txtPrecio.Text);
-            registro.fld_Existencia = Convert.ToDouble(txtexistencia.Text);
+            registro.fld_Referencia = txtexistencia.Text;
+            //registro.fld_Descripcion = txtDescripcion.Text;
+            //registro.fld_suplidor = txtidSuplidor.Text;
+            //registro.fld_Precio = Convert.ToDouble(txtPrecio.Text);
+            //registro.fld_Existencia = Convert.ToDouble(txtexistencia.Text);
 
             // Validar los valores asignados.
             bool lret = registro.validar();
@@ -153,7 +164,6 @@ namespace CrtProduccion.vistas
             else
                 MessageBox.Show(registro.errormsg, "Error", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-
         private void btnBorrar_Click(object sender, RoutedEventArgs e)
         {
             bool lret = false;
@@ -177,7 +187,6 @@ namespace CrtProduccion.vistas
         {
             this.Close();
         }
-
         private void btnbuscar_Click(object sender, RoutedEventArgs e)
         {
             vistas.VehiculoPartesBRWfrm dlgfrm = new vistas.VehiculoPartesBRWfrm();
@@ -198,6 +207,8 @@ namespace CrtProduccion.vistas
             }
         }
         #endregion
+       
+        
         #region Validaciones
         private void TxtidVehiculo_M_LostFocus(object sender, RoutedEventArgs e)
         {
@@ -242,7 +253,7 @@ namespace CrtProduccion.vistas
                         MessageBox.Show("Nombre de   la Parte  no existe", "Cargo", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     mostrar();
-                    txtReferencia.Focus();
+        txtReferencia.Focus();
                 }
                 else
                 {
@@ -258,6 +269,9 @@ namespace CrtProduccion.vistas
         #endregion
 
 
+
+
+
         #region Valores Extraidos de la BD
 
         /// <summary>
@@ -269,12 +283,38 @@ namespace CrtProduccion.vistas
             TxtidVehiculo_M.Text = Convert.ToInt32(registro.fld_idParte).ToString();
             txtReferencia.Text = registro.fld_Referencia;
             txtDescripcion.Text = registro.fld_Descripcion;
-            txtidSuplidor.Text = Convert.ToInt32(registro.fld_idSuplidor).ToString();
+            txtidSuplidor.Text = registro.fld_suplidor;
             txtPrecio.Text = Convert.ToString(registro.fld_Precio).ToString();
             txtexistencia.Text = Convert.ToString(registro.fld_Existencia).ToString();
             
-
         }
+        private void txtPrecio_KeyUp(object sender, KeyEventArgs e)
+        {
+
+            // Metodo para Validar Solo Numero
+            comunes.libreria.soloNumero(txtPrecio.Text, e);
+        }
+        private void btnSuplidor_Click(object sender, RoutedEventArgs e)
+        {
+            vistas.SuplidorfrmBRW dlgfrm = new vistas.SuplidorfrmBRW();
+            dlgfrm.ShowDialog();
+
+            if (dlgfrm.DialogResult.HasValue && dlgfrm.DialogResult.Value)
+            {
+                // Si el Usuario presiona Aceptar
+                if (!registro.buscar(dlgfrm.idSuplidor, true))
+                {
+                    MessageBox.Show("Descripcion de Parte no existe", "Partes", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    mostrar();
+                    txtReferencia.Focus();
+                }
+            }
+        }
+
+       
     }
-}
+    }
 #endregion

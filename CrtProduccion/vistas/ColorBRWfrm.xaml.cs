@@ -67,7 +67,7 @@ namespace CrtProduccion.vistas
             object item = DataG.SelectedItem;
             object item1 = DataG.SelectedItem;
 
-            string sidUGrupo = (DataG.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+            string sidUGrupo = (DataG.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
 
 
             if (!Int32.TryParse(sidUGrupo, out idColor))

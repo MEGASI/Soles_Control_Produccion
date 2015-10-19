@@ -42,8 +42,6 @@ namespace CrtProduccion.comunes
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj as DependencyObject); i++)
                 estadoControles(VisualTreeHelper.GetChild(obj, i), isenabled);
         }
-
-  
         public static void Next_if_Enter(object sender, KeyEventArgs e)
         {
             // Hace que la tecla enter pase al siguiente control.
@@ -54,6 +52,40 @@ namespace CrtProduccion.comunes
                     s.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
             }
         }
-
-    }
+        //  validar solo Numero
+        public static bool soloNumero(string pValor, System.Windows.Input.KeyEventArgs e)
+        {
+            bool ret = true;
+            if (e.Key != System.Windows.Input.Key.Enter)
+            {
+                if (System.Text.RegularExpressions.Regex.IsMatch(pValor, "[^0-9]"))
+                {
+                    MessageBox.Show("Solo Admiten Numero");
+                }
+                else
+                {
+                    ret = false;
+                }
+            }
+            return ret;
+        }
+        //  validar solo Letras
+        public static bool SoloLetra(string pValor, System.Windows.Input.KeyEventArgs e)
+        {
+            bool ret = true;
+            if (e.Key != System.Windows.Input.Key.Enter)
+            {
+                if (System.Text.RegularExpressions.Regex.IsMatch(pValor, "[^A-Z]"))
+                {
+                    MessageBox.Show("Solo Admiten Letras");
+                }
+                else
+                {
+                    ret = false;
+                }
+            }
+            return ret;
+     }   
+  }
 }
+

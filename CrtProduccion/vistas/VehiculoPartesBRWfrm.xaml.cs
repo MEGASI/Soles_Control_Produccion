@@ -49,12 +49,12 @@ namespace CrtProduccion.vistas
 
             dsGrid.Clear();
 
-            dsGrid = datamanager.ConsultaDatos("select * from  Vehiculo_Partes order By Descripcion");
+            dsGrid = datamanager.ConsultaDatos("SELECT   vp.idParte, vp.referencia, vp.descripcion,  vp.idSuplidor, LD.Nombres as suplidor, vp.precio, vp.existencia FROM  Vehiculo_Partes AS vp INNER JOIN LibroDirecciones AS LD ON vp.idSuplidor = LD.idLD order by vp.idParte desc ");
 
             DataG.ItemsSource = dsGrid.Tables[0].DefaultView;
 
             DataG.CanUserAddRows = false;
-            DataG.Columns[0].Width = 25;
+            DataG.Columns[0].Width = 60;
             DataG.Columns[0].IsReadOnly = true;
             DataG.Columns[0].Header = "idParte";
             DataG.Columns[0].CanUserResize = false;
@@ -71,20 +71,25 @@ namespace CrtProduccion.vistas
             DataG.Columns[2].CanUserResize = false;
 
             DataG.Columns[3].IsReadOnly = true;
-            DataG.Columns[3].Width = 25;
+            DataG.Columns[3].Width = 60;
             DataG.Columns[3].Header = "idSuplidor";
             DataG.Columns[3].CanUserResize = false;
 
             DataG.Columns[4].IsReadOnly = true;
-            DataG.Columns[4].Width = 50;
-            DataG.Columns[4].Header = "Precio";
+            DataG.Columns[4].Width = 175;
+            DataG.Columns[4].Header = "Suplidor";
             DataG.Columns[4].CanUserResize = false;
 
             DataG.Columns[5].IsReadOnly = true;
             DataG.Columns[5].Width = 50;
-            DataG.Columns[5].Header = "Existencia";
+            DataG.Columns[5].Header = "Precio";
             DataG.Columns[5].CanUserResize = false;
 
+            DataG.Columns[6].IsReadOnly = true;
+            DataG.Columns[6].Width = 50;
+            DataG.Columns[6].Header = "Existencia";
+            DataG.Columns[6].CanUserResize = false;
+        
             datamanager.ConexionCerrar();
         }
         private void DataG_SelectionChanged(object sender, SelectionChangedEventArgs e)
