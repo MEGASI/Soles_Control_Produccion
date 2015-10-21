@@ -116,6 +116,9 @@
     <Compile Include="vistas\LibroDfrm.xaml.cs">
       <DependentUpon>LibroDfrm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="vistas\LlantasBRW.xaml.cs">
+      <DependentUpon>LlantasBRW.xaml</DependentUpon>
+    </Compile>
     <Compile Include="vistas\proyectoBRWfrm.xaml.cs">
       <DependentUpon>proyectoBRWfrm.xaml</DependentUpon>
     </Compile>
@@ -159,6 +162,9 @@
     </Compile>
     <Compile Include="vistas\SuplidorfrmBRW.xaml.cs">
       <DependentUpon>SuplidorfrmBRW.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\VehiculoBRW.xaml.cs">
+      <DependentUpon>VehiculoBRW.xaml</DependentUpon>
     </Compile>
     <Compile Include="vistas\Vehiculofrm.xaml.cs">
       <DependentUpon>Vehiculofrm.xaml</DependentUpon>
@@ -213,6 +219,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="vistas\LlantasBRW.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="vistas\proyectoBRWfrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -262,6 +272,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="vistas\SuplidorfrmBRW.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\VehiculoBRW.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

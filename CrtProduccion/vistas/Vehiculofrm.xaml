@@ -62,11 +62,17 @@
             <!--Llantas-->
             <Label x:Name="lblidLlantas" Content="Llantas" VerticalAlignment="Top" Canvas.Left="68" Canvas.Top="318" HorizontalAlignment="Left"/>
             <TextBox x:Name="txtidllantas" Height="23" Canvas.Left="166" TextWrapping="Wrap" Canvas.Top="314" Width="99" TabIndex="10"  ></TextBox>
+            <!--Buscar-->
+            <Button x:Name="btnbuscarllan" Grid.Column="1" Height="23" HorizontalAlignment="Right" Width="31" 
+                VerticalAlignment="Bottom" ToolTip="Consultar Libro Direcciones" Content="..." Canvas.Left="270" Canvas.Top="317" Click="btnbuscarllan_Click" />
 
 
             <!--Aceite-->
             <Label x:Name="lblidAceite" Content="Aceite" VerticalAlignment="Top" Canvas.Left="445" Canvas.Top="40" HorizontalAlignment="Left"/>
             <TextBox x:Name="txtidAceite" Height="23" Canvas.Left="519" TextWrapping="Wrap" Canvas.Top="41" Width="108" TabIndex="11" HorizontalAlignment="Left" ></TextBox>
+            <!--Buscar-->
+            <Button x:Name="btnbuscarAceit" Grid.Column="1" Height="23" HorizontalAlignment="Right" Width="31" 
+                VerticalAlignment="Bottom" ToolTip="Consultar Libro Direcciones" Content="..." Canvas.Left="629" Canvas.Top="40" Click="btnbuscar_Click" />
 
 
             <!--Estado-->
@@ -84,7 +90,7 @@
 
             <!--kilometraje-->
             <Label x:Name="lblkilometraje" Content="kilometraje" VerticalAlignment="Top" Canvas.Left="445" Canvas.Top="187" HorizontalAlignment="Left"/>
-            <TextBox x:Name="txtkilometraj" Height="23" Canvas.Left="519" TextWrapping="Wrap" Canvas.Top="190" Width="108" TabIndex="14" HorizontalAlignment="Left" IsReadOnly="True" />
+            <TextBox x:Name="txtkilometraj" Height="23" Canvas.Left="519" TextWrapping="Wrap" Canvas.Top="190" Width="108" TabIndex="14" HorizontalAlignment="Left" />
 
 
             <!---sueldo-->
@@ -158,7 +164,7 @@
             <!-- Salir -->
             <Button x:Name="btnSalir" 
              Width="50" Height="40" 
-             ToolTip="Salir" Canvas.Left="441" Canvas.Top="368" HorizontalAlignment="Right" Click="btnSalir_Click">
+             ToolTip="Salir" Canvas.Left="440" Canvas.Top="370" HorizontalAlignment="Right" Click="btnSalir_Click">
                 <Image x:Name="btnSalir_png" ToolTip="Salir" 
              Source="pack://siteoforigin:,,,/Resources/Salir.png" 
               Height="32" Width="32"  Style="{StaticResource ImageEnabled}"

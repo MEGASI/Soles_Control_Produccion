@@ -144,10 +144,10 @@ namespace CrtProduccion.vistas
         {
             // Asignar los valores de los conroles del formulario a los campos.
             registro.fld_Referencia = txtexistencia.Text;
-            //registro.fld_Descripcion = txtDescripcion.Text;
-            //registro.fld_suplidor = txtidSuplidor.Text;
-            //registro.fld_Precio = Convert.ToDouble(txtPrecio.Text);
-            //registro.fld_Existencia = Convert.ToDouble(txtexistencia.Text);
+            registro.fld_Descripcion = txtDescripcion.Text;
+            registro.fld_suplidor = txtidSuplidor.Text;
+            registro.fld_Precio = Convert.ToDouble(txtPrecio.Text);
+            registro.fld_Existencia = Convert.ToDouble(txtexistencia.Text);
 
             // Validar los valores asignados.
             bool lret = registro.validar();
@@ -301,16 +301,14 @@ namespace CrtProduccion.vistas
 
             if (dlgfrm.DialogResult.HasValue && dlgfrm.DialogResult.Value)
             {
-                // Si el Usuario presiona Aceptar
-                if (!registro.buscar(dlgfrm.idSuplidor, true))
-                {
-                    MessageBox.Show("Descripcion de Parte no existe", "Partes", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                else
-                {
-                    mostrar();
-                    txtReferencia.Focus();
-                }
+
+                registro.fld_idSuplidor = dlgfrm.idSuplidor;
+                registro.fld_suplidor = dlgfrm.nombre;
+                
+
+                   mostrar();
+                 
+               
             }
         }
 
