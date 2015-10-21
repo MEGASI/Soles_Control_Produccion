@@ -31,8 +31,7 @@
 
             <!---TVehiculo-->
             <Label x:Name="lbltipoVehiculo" Content="TipoVehiculo" VerticalAlignment="Top" Canvas.Left="64" Canvas.Top="173" HorizontalAlignment="Left"/>
-            <ComboBox x:Name="cbTipoVehiculo" HorizontalAlignment="Left" VerticalAlignment="Top" Width="170" Canvas.Left="165" Canvas.Top="173" SelectionChanged="cbTipoVehiculo_SelectionChanged" />
-
+            <ComboBox x:Name="cbidTipoVehiculo" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Canvas.Left="165" Canvas.Top="175" SelectionChanged="comboBox_SelectionChanged"/>
 
 
             <!--Placa-->
@@ -104,7 +103,7 @@
             <Button x:Name="btnCancelar" 
     		Width="50" Height="40" 
     		ToolTip="Cancelar" 
-    		Canvas.Left="267" Canvas.Top="368"
+    		Canvas.Left="274" Canvas.Top="369"
     		IsEnabled="{Binding !Visibility, ElementName=btnNuevo}" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnCancelar_Click" >
                 <Image x:Name="Cancelar_png" Height="32" 
     	    Source="pack://siteoforigin:,,,/Resources/Cancel.png" Width="32" 
@@ -118,7 +117,7 @@
             Width="50"  Height="40"
             RenderTransformOrigin="-0.333,0.727"
             VerticalContentAlignment="Center" 
-    		FontFamily="Verdana" ToolTip="Nuevo"  Canvas.Left="267" Canvas.Top="368" Click="btnNuevo_Click" >
+    		FontFamily="Verdana" ToolTip="Nuevo"  Canvas.Left="274" Canvas.Top="369" Click="btnNuevo_Click" >
                 <Image x:Name="btnNuevo_png" Height="32" 
             Source="../Resources/Create.png" Stretch="Fill" Width="32" ToolTip="Nuevo"
             Style="{StaticResource ImageEnabled}"
@@ -152,7 +151,7 @@
             <!-- Borrar -->
             <Button x:Name="btnBorrar"  
              Width="50" Height="40" 
-             ToolTip="Borrar" Canvas.Left="384" Canvas.Top="368" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="btnBorrar_Click">
+             ToolTip="Borrar" Canvas.Left="381" Canvas.Top="368" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="btnBorrar_Click">
                 <Image x:Name="btnBorrar_png"  Source="pack://siteoforigin:,,,/Resources/Borrar.png" 
               Height="32" Width="32"  ToolTip="Borrar" 
               Style="{StaticResource ImageEnabled}"
@@ -175,6 +174,7 @@
 
 
         </Canvas>
+
 
     </Grid>
 </Window>

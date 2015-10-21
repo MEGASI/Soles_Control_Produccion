@@ -206,10 +206,8 @@ namespace CrtProduccion.entidades
                     fld_idVehiculo = (int)dr["idVehiculo"];
                     fld_Ficha = dr["Ficha"].ToString();
                     fld_Descripcion = dr["Descripcion"].ToString();
-                    
-                   
                     fld_modelo = dr["Modelo"].ToString();
-                    fld_idTipoVehiculo =(byte?)dr["idTipoVehiculo"];
+                    fld_idTipoVehiculo = Convert.ToByte((byte?)dr["idTipoVehiculo"]);
                     fld_placa = dr["placa"].ToString();
                     fld_ano = (int)dr["ano"];
                     fld_idColor =Convert.ToByte( (byte?)dr["idColor"]);
@@ -290,7 +288,7 @@ namespace CrtProduccion.entidades
 
 
 
-            var dr = datamanager.ConsultaLeer("  select  top 1 v.idVehiculo,v.Ficha," +
+            var dr = datamanager.ConsultaLeer("select  top 1 v.idVehiculo,v.Ficha," +
                    " v.descripcion, v.idMarca, v.modelo, v.idTipoVehiculo," +
                    " v.placa, v.ano, v.chasis, v.idColor, v.idllantas," +
                    " v.idFiltAceite, v.idEstado," +
