@@ -11,14 +11,14 @@ namespace CrtProduccion.entidades
         public int fld_idVehiculo = 0;
         public int fld_oldidVehiculo = 0;
         public string fld_Ficha { get; set; }
-        public int? fld_idMarca { get; set; }
+        public int fld_idMarca { get; set; }
         public string fld_modelo { get; set; }
-        public int? fld_idTipoVehiculo { get; set; }
+        public int fld_idTipoVehiculo { get; set; }
         public string fld_placa { get; set; }
         public string fld_Descripcion { get; set; }
         public int fld_ano { get; set; }
         public string fld_chasis { get; set; }
-        public int? fld_idColor { get; set; }
+        public int fld_idColor { get; set; }
         public int fld_idLllantas { get; set; }
         public int fld_idfilAceite { get; set; }
         public string fld_idEstado { get; set; }
@@ -28,6 +28,7 @@ namespace CrtProduccion.entidades
         public byte fld_Photo { get; set; }
         public int fld_idParte { get; set; }
         public string fld_Llantas { get; set; }
+        public string fld_FiltAceite { get; set; }
         public string errormsg = "";
 
 
@@ -40,12 +41,12 @@ namespace CrtProduccion.entidades
 
         public dmVehiculo(
             int pfld_idVehiculo,
-            int? pfld_idMarca,
+            int pfld_idMarca,
             int pfld_ano,
             int pfld_idllantas,
             int pfld_idaceite,
-            int? pfld_idColor,
-            int? pfld_idTipoVehiculo,
+            int pfld_idColor,
+            int pfld_idTipoVehiculo,
             string pfld_Ficha,
             string pfld_Descripcion,
             string pfld_Modelo,
@@ -207,29 +208,25 @@ namespace CrtProduccion.entidades
                     fld_Ficha = dr["Ficha"].ToString();
                     fld_Descripcion = dr["Descripcion"].ToString();
                     fld_modelo = dr["Modelo"].ToString();
-                    fld_idTipoVehiculo = Convert.ToByte((byte?)dr["idTipoVehiculo"]);
                     fld_placa = dr["placa"].ToString();
                     fld_ano = (int)dr["ano"];
-                    fld_idColor =Convert.ToByte( (byte?)dr["idColor"]);
                     fld_chasis = dr["chasis"].ToString();
                     fld_idEstado = dr["idestado"].ToString();
                     fld_SegVence=Convert.ToDateTime(dr["seguroVence"].ToString());
                     fld_ultMant = Convert.ToDateTime(dr["ultMantenim"].ToString());
                     fld_Kilometraje = Convert.ToDouble(dr["kilometraje"].ToString());
                     fld_idLllantas = (int)dr["idLlantas"];
-                    fld_Llantas = dr["DescripcionLlanta"].ToString();
+                    fld_Llantas = dr["Llanta"].ToString();
+                    fld_FiltAceite = dr["filtroAceite"].ToString();
                     fld_idfilAceite = (int)dr["idFiltAceite"];
 
-
-
-                    try
-                    {
-                        fld_idMarca = (int?)dr["idMarca"];
-                    }
-                    catch (Exception)
-                    {
-                        fld_idMarca = null;
-                    }
+                    //  Lo Capturamos Con un try  para poder leer
+                    try { fld_idColor = Convert.ToSByte((int)dr["idColor"]); }
+                    catch (Exception) { fld_idColor = 0; }
+                    try { fld_idTipoVehiculo = (int)dr["idTipoVehiculo"]; }
+                    catch (Exception) { fld_idTipoVehiculo = 0; }
+                    try{ fld_idMarca = (int)dr["idMarca"];}
+                    catch (Exception){fld_idMarca = 0;}
 
 
                 }
@@ -250,10 +247,19 @@ namespace CrtProduccion.entidades
         /// <returns>true : si lo encuentra y false cuando no lo encuentra.</returns>
         public bool buscar(String pNombre, bool asignar)
         {
-            var dr = datamanager.ConsultaLeer("Select  v.* ,vp.descripcion as Despcrionllanta  from Vehiculo v" +
-                  " left join Vehiculo_Partes vp" +
-                  " on v.idllantas = vp.idParte  where v.idVehiculo =" + pNombre.ToString());
 
+            var dr = datamanager.ConsultaLeer(" SELECT  v.idVehiculo, v.Ficha, v.descripcion, v.idMarca, v.modelo, v.idTipoVehiculo,"+ 
+                                              " v.placa, v.ano, v.chasis, v.idColor," +
+                                              " v.idllantas, ll.descripcion AS llanta," +
+                                              " v.idFiltAceite, fa.descripcion AS filtroAceite,v.idEstado," +
+                                              " v.seguroVence, v.ultMantenim, v.kilometraje, v.photo" +
+                                              " FROM  Vehiculo AS v" +
+                                              " LEFT OUTER JOIN Vehiculo_Partes AS fa ON v.idFiltAceite = fa.idParte" +
+                                              " LEFT OUTER JOIN Vehiculo_Partes AS ll ON v.idllantas = ll.idParte " +
+                                              " Where v.idVehiculo =" + pNombre.ToString());
+            
+         
+            
             //var dr = datamanager.ConsultaLeer("select idVehiculo, Ficha,Descripcion,idMarca,Modelo,"+
             //                                  " idTipoVehiculo,Placa,ano,chasis,idColor,idLlantas,"+
             //                                  " idFiltAceite,idEstado,seguroVence,ultMantenim,kilometraje,Photo" +
@@ -268,9 +274,15 @@ namespace CrtProduccion.entidades
         /// <returns>true : si lo encuentra y false cuando no lo encuentra.</returns>
         public bool buscar(int idVehiculo, bool asignar)
         {
-            var dr = datamanager.ConsultaLeer("Select  v.* ,vp.descripcion as Despcrionllanta  from Vehiculo v" +
-                  " left join Vehiculo_Partes vp" +
-                  " on v.idllantas = vp.idParte  where v.idVehiculo =" + idVehiculo.ToString());
+            var dr = datamanager.ConsultaLeer(" SELECT  v.idVehiculo, v.Ficha, v.descripcion, v.idMarca, v.modelo, v.idTipoVehiculo," +
+                                            " v.placa, v.ano, v.chasis, v.idColor," +
+                                            " v.idllantas, ll.descripcion AS llanta," +
+                                            " v.idFiltAceite, fa.descripcion AS filtroAceite,v.idEstado," +
+                                            " v.seguroVence, v.ultMantenim, v.kilometraje, v.photo" +
+                                            " FROM  Vehiculo AS v" +
+                                            " LEFT OUTER JOIN Vehiculo_Partes AS fa ON v.idFiltAceite = fa.idParte" +
+                                            " LEFT OUTER JOIN Vehiculo_Partes AS ll ON v.idllantas = ll.idParte " +
+                                            " Where v.idVehiculo =" + idVehiculo.ToString());
 
             //var dr = datamanager.ConsultaLeer("select idVehiculo, Ficha,Descripcion,idMarca,Modelo,"+
             //                                 " idTipoVehiculo,Placa,ano,chasis,idColor,idLlantas,"+
@@ -287,14 +299,34 @@ namespace CrtProduccion.entidades
         {
 
 
+            var dr = datamanager.ConsultaLeer(" SELECT  v.idVehiculo, v.Ficha, v.descripcion, v.idMarca, v.modelo, v.idTipoVehiculo," +
+                                            " v.placa, v.ano, v.chasis, v.idColor," +
+                                            " v.idllantas, ll.descripcion AS llanta," +
+                                            " v.idFiltAceite, fa.descripcion AS filtroAceite,v.idEstado," +
+                                            " v.seguroVence, v.ultMantenim, v.kilometraje, v.photo" +
+                                            " FROM  Vehiculo AS v" +
+                                            " LEFT OUTER JOIN Vehiculo_Partes AS fa ON v.idFiltAceite = fa.idParte" +
+                                            " LEFT OUTER JOIN Vehiculo_Partes AS ll ON v.idllantas = ll.idParte " +
+                                            " Order by v.idVehiculo desc "); 
 
-            var dr = datamanager.ConsultaLeer("select  top 1 v.idVehiculo,v.Ficha," +
+
+
+
+
+
+
+
+
+
+            /*var dr = datamanager.ConsultaLeer("select  top 1 v.idVehiculo,v.Ficha," +
                    " v.descripcion, v.idMarca, v.modelo, v.idTipoVehiculo," +
                    " v.placa, v.ano, v.chasis, v.idColor, v.idllantas," +
                    " v.idFiltAceite, v.idEstado," +
                    " v.seguroVence, v.ultMantenim, v.kilometraje, vp.Descripcion as DescripcionLlanta   from Vehiculo v" +
-                    " left join Vehiculo_Partes vp on v.idllantas = vp.idParte  ");
+                    " left join Vehiculo_Partes vp on v.idllantas = vp.idParte  order by idvehiculo desc ");
 
+
+    */
             //var dr = datamanager.ConsultaLeer("select top 1 idVehiculo,Ficha, Descripcion,idMarca,Modelo," +
             //                                 " idTipoVehiculo,Placa,ano,chasis,idColor,idLlantas,idFiltAceite," +
             //                                 " idEstado,seguroVence,ultMantenim,kilometraje" +
@@ -316,12 +348,12 @@ namespace CrtProduccion.entidades
 
                 // Preparamos consulta pra la actualización
                 SqlCommand cmd = new SqlCommand(" update Vehiculo" +
-                                                " Set  Ficha=@Ficha, Descripcion = @Descripcion, " +
+                                                " Set Ficha=@Ficha, Descripcion = @Descripcion," +
                                                 " idMarca=@idMarca,Modelo=@Modelo,idTipoVehiculo=@idTipoVehiculo," +
                                                 " Placa=@Placa,ano=@ano,chasis=@chasis,idColor=@idColor,idllantas=@idllantas,"+
                                                 " idFiltAceite=@idFiltAceite,idEstado=@idEstado,seguroVence=@seguroVence,"+
                                                 " ultMantenim=@ultMantenim,kilometraje=@kilometraje" +
-                                                " Where idVehiculo = @idVehiculo ", datamanager.ConexionSQL);
+                                                " Where idVehiculo = @idVehiculo", datamanager.ConexionSQL);
 
                 // Ponemos valores a los Parametros incluidos en la consulta de actualización
                 cmd.Parameters.AddWithValue("@idVehiculo", fld_idVehiculo);

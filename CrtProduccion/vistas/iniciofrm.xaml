@@ -25,7 +25,8 @@
                 <!---  <MenuItem x:Name="mainHerramientas" Header="Herramientas" FontFamily="Verdana" FontSize="14">-->
 
                 <MenuItem x:Name ="mainArchivo" Header="Archivo" FontFamily="Verdana" FontSize="14" >
-                    <MenuItem Header="Direcciones">
+                    <MenuItem Header=" Direcciones">
+
 
                         <MenuItem x:Name="SegLibrodirecciones"  Header="Libro Direcciones" Click="MenuItem_Click_3"/>
                         <MenuItem x:Name="SegDepartemento" Header="Departamento " FontSize="14" Click="MenuItem_Click"/>
@@ -46,7 +47,7 @@
                     <Separator/>
                     <MenuItem Header="Taller">
                         <MenuItem Header="Vehículo" Click="MenuItem_Click_8"/>
-                        <MenuItem Header="Piezas (Insumos)" Click="MenuItem_Click_6" />
+                        <MenuItem Header="iPiezas (Insumos)" Click="MenuItem_Click_6" />
                         <MenuItem Header="Tipo de Vehiculos" Click="MenuItem_Click_4"/>
                         <MenuItem Header="Marcas" Click="MenuItem_Click_5" />
                         <MenuItem Header="Color" Click="MenuItem_Click_7"/>

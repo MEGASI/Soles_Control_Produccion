@@ -302,8 +302,8 @@ namespace CrtProduccion.vistas
             if (dlgfrm.DialogResult.HasValue && dlgfrm.DialogResult.Value)
             {
 
-                //registro.fld_idSuplidor = dlgfrm.idSuplidor;
-                //registro.fld_suplidor = dlgfrm.nombre;
+                registro.fld_idSuplidor = dlgfrm.idSuplidor;
+                registro.fld_suplidor = dlgfrm.nombre;
                 
 
                    mostrar();

@@ -120,6 +120,7 @@ namespace CrtProduccion.vistas
 
 
         #region Funcionalidades de los Botones
+
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
             registro.fld_oldidVehiculo = registro.fld_idVehiculo;
@@ -153,7 +154,7 @@ namespace CrtProduccion.vistas
             registro.fld_ano = Convert.ToInt32(txtaño.Text);
             registro.fld_chasis = txtchasis.Text;
             registro.fld_Llantas = Convert.ToString((txtidllantas.Text));
-            registro.fld_idfilAceite = Convert.ToInt32(txtidAceite.Text);
+            registro.fld_FiltAceite = Convert.ToString(txtidAceite.Text);
             registro.fld_SegVence = Convert.ToDateTime(segVence.Text);
             registro.fld_ultMant = Convert.ToDateTime(ultmant.Text);
             registro.fld_Kilometraje = Convert.ToDouble(txtkilometraj.Text);
@@ -210,20 +211,26 @@ namespace CrtProduccion.vistas
         }
         private void btnbuscarllan_Click(object sender, RoutedEventArgs e)
         {
-            vistas.LlantasBRW dlgfrm = new LlantasBRW();
+            vistas.LlantasBRW dlgfrm = new vistas.LlantasBRW();
             dlgfrm.ShowDialog();
 
             if (dlgfrm.DialogResult.HasValue && dlgfrm.DialogResult.Value)
             {
 
-                registro.fld_idParte = dlgfrm.idLlanta;
-                registro.fld_Llantas = dlgfrm.Llantas;
-
+                registro.fld_idLllantas = dlgfrm.idLlantas;
+                registro.fld_Llantas = dlgfrm.NombreL;
                 mostrar();
-
             }
         }
+        private void btnbuscarAceit_Click(object sender, RoutedEventArgs e)
+        {
+            vistas.LlantasBRW dlgfrm = new vistas.LlantasBRW();
+            dlgfrm.ShowDialog();
 
+            registro.fld_idParte = dlgfrm.idfiltro;
+            registro.fld_FiltAceite = dlgfrm.FiltroN;
+            mostrar();
+        }
         private void btnbuscar_Click(object sender, RoutedEventArgs e)
         {
             vistas.VehiculoBRW dlgfrm = new vistas.VehiculoBRW();
@@ -244,6 +251,9 @@ namespace CrtProduccion.vistas
             }
         }
         #endregion
+
+
+
         #region Validaciones
 
         private void txtidVehiculo_LostFocus(object sender, RoutedEventArgs e)
@@ -271,7 +281,6 @@ namespace CrtProduccion.vistas
 
             }
         }
-
         private void txtidVehiculo_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Enter)
@@ -308,7 +317,6 @@ namespace CrtProduccion.vistas
             }
 
         }
-
         private void txtFicha_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Enter)
@@ -338,11 +346,7 @@ namespace CrtProduccion.vistas
             ultmant.Text = Convert.ToString((registro.fld_ultMant.ToString()));
             txtkilometraj.Text = Convert.ToString(registro.fld_Kilometraje.ToString());
             txtidllantas.Text = Convert.ToString((registro.fld_Llantas).ToString());
-            txtidAceite.Text = Convert.ToInt32(registro.fld_idfilAceite).ToString();
-
-
-
-
+            txtidAceite.Text = Convert.ToString(registro.fld_FiltAceite).ToString();
 
 
 
@@ -357,7 +361,7 @@ namespace CrtProduccion.vistas
 
             // cb Marca
             foreach (CBoxNullItem lobj in cbMarca.Items)
-                if ((int?)lobj.Value == registro.fld_idMarca)
+                if ((int)lobj.Value == registro.fld_idMarca)
                 {
                     cbMarca.SelectedValue = lobj;
                     break;
@@ -366,7 +370,7 @@ namespace CrtProduccion.vistas
 
             //cb Color
             foreach (CBoxNullItem lobj in cbColor.Items)
-                if ((int?)lobj.Value == registro.fld_idColor)
+                if ((int)lobj.Value == registro.fld_idColor)
                 {
                     cbColor.SelectedValue = lobj;
                     break;
@@ -374,7 +378,7 @@ namespace CrtProduccion.vistas
             //fin
                 // CbidTipoVehiculo
             foreach (CBoxNullItem lobj in cbidTipoVehiculo.Items)
-                if ((int?)lobj.Value == registro.fld_idTipoVehiculo)
+                if ((int)lobj.Value == registro.fld_idTipoVehiculo)
                 {
                     cbidTipoVehiculo.SelectedValue = lobj;
                     break;
@@ -427,11 +431,9 @@ namespace CrtProduccion.vistas
         {
          cbMarca.Items.Clear();
          SqlDataReader dr =
-        datamanager.ConsultaLeer("select  idMarca,descripcion from Vehiculo_Marca"+
-        " union select cast(null as int), "+
-        "'N/A' as descripcionorder order by descripcion");
+        datamanager.ConsultaLeer(" select  idMarca ,descripcion from Vehiculo_Marca order by descripcion");
             string col1 = "";
-            int? col2 = null;
+            int col2 = 0;
             while (dr != null && dr.Read())
             {
                 
@@ -439,7 +441,7 @@ namespace CrtProduccion.vistas
 
 
                 try { col2 = (int)dr["idMarca"]; }
-                catch (Exception) { col2 = null; }
+                catch (Exception) { col2 = 0; }
 
                 cbMarca.Items.Add(new CBoxNullItem(col1, col2));
             }
@@ -451,7 +453,7 @@ namespace CrtProduccion.vistas
         {
             if (cbMarca.SelectedValue != null)
             {
-                int? selectedValue = (int?)((CBoxNullItem)cbMarca.SelectedItem).Value;
+                int selectedValue = (int)((CBoxNullItem)cbMarca.SelectedItem).Value;
                 registro.fld_idMarca = Convert.ToInt32(selectedValue);
             }
         }
@@ -460,9 +462,9 @@ namespace CrtProduccion.vistas
         {
             cbidTipoVehiculo.Items.Clear();
             SqlDataReader dr =
-           datamanager.ConsultaLeer("select idTipoVehiculo, descripcion   from Vehiculo_Tipo union  select cast(null as int), 'N/A' order by descripcion");
+           datamanager.ConsultaLeer("select  idTipoVehiculo ,descripcion from Vehiculo_Tipo order by descripcion");
             string col1 = "";
-            int? col2 = null;
+            int col2 = 0;
             while (dr != null && dr.Read())
             {
                 
@@ -470,7 +472,7 @@ namespace CrtProduccion.vistas
 
 
                 try { col2 = (int)dr["idTipoVehiculo"]; }
-                catch (Exception) { col2 = null; }
+                catch (Exception) { col2 = 0; }
 
                 cbidTipoVehiculo.Items.Add(new CBoxNullItem(col1, col2));
             }
@@ -482,7 +484,7 @@ namespace CrtProduccion.vistas
         {
             if (cbidTipoVehiculo.SelectedValue != null)
             {
-                int? selectedValue = (int?)((CBoxNullItem)cbidTipoVehiculo.SelectedItem).Value;
+                int selectedValue = (int)((CBoxNullItem)cbidTipoVehiculo.SelectedItem).Value;
                 registro.fld_idTipoVehiculo = Convert.ToInt32(selectedValue);
             }
 
@@ -492,9 +494,9 @@ namespace CrtProduccion.vistas
         {
             cbColor.Items.Clear();
             SqlDataReader dr =
-           datamanager.ConsultaLeer("select idColor,descripcion from color  union select cast(null as int),'N/A' as descripcionorder order by descripcion");
+           datamanager.ConsultaLeer("select  idColor ,descripcion from color order by descripcion");
             string col1 = "";
-            int? col2 = null;
+            int col2 = 0;
             while (dr != null && dr.Read())
             {
                 
@@ -503,7 +505,7 @@ namespace CrtProduccion.vistas
 
 
                 try { col2 = (int)dr["idColor"]; }
-                catch (Exception) { col2 = null; }
+                catch (Exception) { col2 = 0; }
 
                 cbColor.Items.Add(new CBoxNullItem(col1, col2));
             }
@@ -515,10 +517,18 @@ namespace CrtProduccion.vistas
         {
             if (cbColor.SelectedValue != null)
             {
-                int? selectedValue = (int?)((CBoxNullItem)cbColor.SelectedItem).Value;
+                int selectedValue = (int)((CBoxNullItem)cbColor.SelectedItem).Value;
                 registro.fld_idColor = Convert.ToInt32(selectedValue);
             }
         }
+
+        private void txtaño_KeyUp(object sender, KeyEventArgs e)
+        {
+            //Validando Solo numero
+            comunes.libreria.soloNumero(txtaño.Text,e);
+        }
+
+        
     }
     
 }
