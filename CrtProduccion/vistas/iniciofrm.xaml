@@ -47,7 +47,7 @@
                     <Separator/>
                     <MenuItem Header="Taller">
                         <MenuItem Header="Vehículo" Click="MenuItem_Click_8"/>
-                        <MenuItem Header="iPiezas (Insumos)" Click="MenuItem_Click_6" />
+                        <MenuItem Header="Piezas (Insumos)" Click="MenuItem_Click_6" />
                         <MenuItem Header="Tipo de Vehiculos" Click="MenuItem_Click_4"/>
                         <MenuItem Header="Marcas" Click="MenuItem_Click_5" />
                         <MenuItem Header="Color" Click="MenuItem_Click_7"/>
