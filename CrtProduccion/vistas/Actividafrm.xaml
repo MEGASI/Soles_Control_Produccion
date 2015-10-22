@@ -1,0 +1,125 @@
+﻿<Window x:Class="CrtProduccion.vistas.Actividafrm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CrtProduccion.vistas"
+        mc:Ignorable="d"
+     
+Background="{StaticResource fondoOscuro}"
+
+
+
+Title="Actividades" Height="396" Width="529" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen"  >
+    <Canvas>
+        <Grid Height="370" Width="520" HorizontalAlignment="Left">
+            <!--Titulo y Actividad-->
+
+            <Label x:Name="lblTitulo" Content="Actividades" HorizontalAlignment="Left" Margin="73,25,0,0" VerticalAlignment="Top" FontSize="18.667"/>
+            <Label x:Name="lblidActividad" Content="idActividad" HorizontalAlignment="Left" Margin="85,85,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="TxtidActividad" Height="23" Margin="165,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalAlignment="Left" />
+            <!--  Buscar-->
+            <Button x:Name="btnbuscar" Margin="290,0,0,265" Height="23" HorizontalAlignment="Left" Width="31" 
+                VerticalAlignment="Bottom" ToolTip="Consultar  Departamentos" Content="..." />
+
+            <!--Codigo-->
+
+            <Label x:Name="lblCodigo" Content="Código" HorizontalAlignment="Left" Margin="87,118,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="Txtcodigo" Height="23" Margin="165,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalAlignment="Left"/>
+
+
+            <!--Descripcion-->
+            <Label x:Name="lblDescripcion" Content="Descripcion" HorizontalAlignment="Left" Margin="87,143,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtDescripcion" TextWrapping="Wrap" Width="224" Canvas.Left="171" Canvas.Top="113" Margin="165,147,0,0" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top"/>
+
+            <!--Medida-->
+            <Label x:Name="lblidmedida" Content="Medida" HorizontalAlignment="Left" Margin="92,173,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtmedida" Height="23" TextWrapping="Wrap" Width="224" Canvas.Left="171" Canvas.Top="113" Margin="165,179,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+
+            <!--Precio-->
+            <Label x:Name="lblPrecio" Content="Precio" HorizontalAlignment="Left" Margin="97,204,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtPrecio" Height="23" TextWrapping="Wrap" Width="224" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="165,212,0,0" VerticalAlignment="Top" />
+
+
+
+
+            <!-- Botons de funcionalidades  -->
+            <!-- Cancelar y nuevo -->
+            <Button x:Name="btnCancelar" 
+    		Width="50" Height="40" 
+    		ToolTip="Cancelar" 
+    		Canvas.Left="93" Canvas.Top="205"
+    		IsEnabled="{Binding !Visibility, ElementName=btnNuevo}"
+    		Margin="172,270,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                <Image x:Name="Cancelar_png" Height="32" 
+    		Source="pack://siteoforigin:,,,/Resources/Cancel.png" Width="32" 
+    	    ToolTip="Cancelar"
+            Style="{StaticResource ImageEnabled}"
+            IsEnabled="{Binding IsEnabled, ElementName=btnCancelar}"/>
+            </Button>
+            <Button x:Name="btnNuevo" 
+    		HorizontalAlignment="Left" Margin="172,270,0,0"
+    		VerticalAlignment="Top" 
+            Width="50"  Height="40"
+            RenderTransformOrigin="-0.333,0.727"
+            VerticalContentAlignment="Center" 
+    		FontFamily="Verdana" ToolTip="Nuevo" >
+                <Image x:Name="btnNuevo_png" Height="32" 
+            Source="../Resources/Create.png" Stretch="Fill" Width="32" ToolTip="Nuevo"
+            Style="{StaticResource ImageEnabled}"
+            IsEnabled="{Binding IsEnabled, ElementName=btnNuevo}"/>
+            </Button>
+
+
+
+            <!-- Guardar y Modificar -->
+            <Button x:Name="btnGuardar" Height="40" 
+    		ToolTip="Guardar" 
+    		Canvas.Left="148" Canvas.Top="205"
+    		IsEnabled="{Binding !Visibility, ElementName=btnModificar}" Margin="227,270,0,0" HorizontalAlignment="Left" Width="50" VerticalAlignment="Top" >
+                <Image x:Name="btnGuardar_png" ToolTip="Guardar" 
+    	    Width="32" Height="32" 
+            Source="pack://siteoforigin:,,,/Resources/Guardar.png"
+            Style="{StaticResource ImageEnabled}"
+            IsEnabled="{Binding IsEnabled, ElementName=btnGuardar}"/>
+            </Button>
+            <Button x:Name="btnModificar" 
+    		Width="50" 
+    		ToolTip="Modificar" 
+    		Canvas.Left="148" Canvas.Top="180" Margin="227,270,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" >
+                <Image x:Name="btnModificar_png" 
+            ToolTip="Modificar" 
+    	    Width="32"  Height="32"
+  			Source="pack://siteoforigin:,,,/Resources/EditNote.png" 
+            Style="{StaticResource ImageEnabled}"   
+            IsEnabled="{Binding IsEnabled, ElementName=btnGuardar}" />
+            </Button>
+
+            <!-- Borrar -->
+            <Button x:Name="btnBorrar" 
+            Width="50" Height="40" 
+            ToolTip="Borrar" Canvas.Left="202" Canvas.Top="205" Margin="282,0,0,59" HorizontalAlignment="Left" VerticalAlignment="Bottom" >
+                <Image x:Name="btnBorrar_png"  
+            Source="pack://siteoforigin:,,,/Resources/Borrar.png" 
+            Height="32" Width="32"                  ToolTip="Borrar" 
+            Style="{StaticResource ImageEnabled}"
+            IsEnabled="{Binding IsEnabled, ElementName=btnBorrar}"/>
+            </Button>
+            <!-- Salir -->
+            <Button x:Name="btnSalir" 
+             Width="50" Height="40" 
+             ToolTip="Salir"
+             Canvas.Left="267" Canvas.Top="205" Margin="0,270,133,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Image x:Name="btnSalir_png" ToolTip="Salir" 
+             Source="pack://siteoforigin:,,,/Resources/Salir.png" 
+             Height="32" Width="32" 
+             Style="{StaticResource ImageEnabled}"
+             IsEnabled="{Binding IsEnabled, ElementName=btnSalir}"/>
+            </Button>
+
+
+        </Grid>
+
+    </Canvas>
+
+</Window>
