@@ -10,7 +10,7 @@
         ShowInTaskbar="False" 
         WindowStartupLocation="CenterScreen" 
         Background="{StaticResource fondoClaro}"
-        WindowStyle="ToolWindow" Height="380.954" Width="413.979" Loaded="Window_Loaded">
+        WindowStyle="ToolWindow" Height="380.954" Width="413.979">
 
     <Grid>
         <StackPanel x:Name="main" Orientation="Vertical" Height="237"  >
@@ -22,20 +22,20 @@
                   Height="167" 
                   
                  
-                   IsReadOnly="True" SelectionChanged="DataG_SelectionChanged" MouseDoubleClick="DataG_MouseDoubleClick" />
+                   IsReadOnly="True"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" 
                     HorizontalAlignment="Center" Margin="10">
                 <Button x:Name="btnAceptar" Margin="2,0,2,0" Width="100"  
-                    Height="38" ToolTip="Aceptar" IsEnabled="False" Click="btnAceptar_Click">
+                    Height="38" ToolTip="Aceptar" IsEnabled="False" >
                     <Image x:Name="btnAceptar_png" Height="32" 
                        Source="../Resources/Check.png" 
                        Stretch="Fill" Width="32" IsEnabled="False"
                        Style="{StaticResource ImageEnabled}"/>
                 </Button>
 
-                <Button x:Name="btnCancelar" Margin="2,0,2,0" Width="100"  Height="38" ToolTip="Cancelar" Click="btnCancelar_Click">
+                <Button x:Name="btnCancelar" Margin="2,0,2,0" Width="100"  Height="38" ToolTip="Cancelar">
                     <Image x:Name="Cancelar_png" Height="32" Source="../Resources/Cancelar02.png" 
                        Stretch="Fill" Width="32" />
                 </Button>

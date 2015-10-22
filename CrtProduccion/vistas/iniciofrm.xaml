@@ -25,8 +25,7 @@
                 <!---  <MenuItem x:Name="mainHerramientas" Header="Herramientas" FontFamily="Verdana" FontSize="14">-->
 
                 <MenuItem x:Name ="mainArchivo" Header="Archivo" FontFamily="Verdana" FontSize="14" >
-                    <MenuItem Header=" Direcciones">
-
+                    <MenuItem Header="Direcciones">
 
                         <MenuItem x:Name="SegLibrodirecciones"  Header="Libro Direcciones" Click="MenuItem_Click_3"/>
                         <MenuItem x:Name="SegDepartemento" Header="Departamento " FontSize="14" Click="MenuItem_Click"/>
