@@ -36,10 +36,10 @@ namespace CrtProduccion.vistas
         }
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            this.idColor = 0;
+              this.idColor = 0;
             this.DialogResult = false;
         }
-
+       
         public void llenaGrid()
         {
             dsGrid.Clear();

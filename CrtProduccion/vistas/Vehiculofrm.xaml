@@ -103,7 +103,7 @@
             <Button x:Name="btnCancelar" 
     		Width="50" Height="40" 
     		ToolTip="Cancelar" 
-    		Canvas.Left="177" Canvas.Top="344"
+    		Canvas.Left="179" Canvas.Top="344"
     		IsEnabled="{Binding !Visibility, ElementName=btnNuevo}" Click="btnCancelar_Click" VerticalAlignment="Center" >
                 <Image x:Name="Cancelar_png" Height="32" 
     	    Source="pack://siteoforigin:,,,/Resources/Cancel.png" Width="32" 
@@ -115,7 +115,7 @@
             Width="50"  Height="40"
             RenderTransformOrigin="-0.333,0.727"
             VerticalContentAlignment="Center" 
-    		FontFamily="Verdana" ToolTip="Nuevo"  Canvas.Left="177" Canvas.Top="344" Click="btnNuevo_Click" VerticalAlignment="Center" >
+    		FontFamily="Verdana" ToolTip="Nuevo"  Canvas.Left="179" Canvas.Top="344" Click="btnNuevo_Click" VerticalAlignment="Center" >
                 <Image x:Name="btnNuevo_png" Height="32" 
             Source="../Resources/Create.png" Stretch="Fill" Width="32" ToolTip="Nuevo"
             Style="{StaticResource ImageEnabled}"
@@ -125,7 +125,7 @@
 
             <!-- Guardar y Modificar -->
             <Button x:Name="btnGuardar" Height="40" 
-    		ToolTip="Guardar" Canvas.Left="230" Canvas.Top="343"
+    		ToolTip="Guardar" Canvas.Left="232" Canvas.Top="343"
     		IsEnabled="{Binding !Visibility, ElementName=btnModificar}" Width="50" Click="btnGuardar_Click" VerticalAlignment="Center" >
                 <Image x:Name="btnGuardar_png" ToolTip="Guardar" 
     	     Width="32" Height="32" 
@@ -136,7 +136,7 @@
 
             <Button x:Name="btnModificar" 
     		Width="50" 
-    		ToolTip="Modificar" Canvas.Left="230" Canvas.Top="343" Height="40" Click="btnModificar_Click" VerticalAlignment="Center">
+    		ToolTip="Modificar" Canvas.Left="232" Canvas.Top="343" Height="40" Click="btnModificar_Click" VerticalAlignment="Center">
                 <Image x:Name="btnModificar_png" 
             ToolTip="Modificar" Width="32"  Height="32"
     	    Source="pack://siteoforigin:,,,/Resources/EditNote.png" 
@@ -149,7 +149,7 @@
             <!-- Borrar -->
             <Button x:Name="btnBorrar"  
              Width="50" Height="40" 
-             ToolTip="Borrar" Canvas.Left="284" Canvas.Top="343" Grid.Column="1" Click="btnBorrar_Click" VerticalAlignment="Center">
+             ToolTip="Borrar" Canvas.Left="286" Canvas.Top="343" Grid.Column="1" Click="btnBorrar_Click" VerticalAlignment="Center">
                 <Image x:Name="btnBorrar_png"  Source="pack://siteoforigin:,,,/Resources/Borrar.png" 
               Height="32" Width="32"  ToolTip="Borrar" 
               Style="{StaticResource ImageEnabled}"
@@ -161,7 +161,7 @@
             <!-- Salir -->
             <Button x:Name="btnSalir" 
              Width="50" Height="40" 
-             ToolTip="Salir" Canvas.Left="343" Canvas.Top="343" Click="btnSalir_Click" VerticalAlignment="Center">
+             ToolTip="Salir" Canvas.Left="345" Canvas.Top="343" Click="btnSalir_Click" VerticalAlignment="Center">
                 <Image x:Name="btnSalir_png" ToolTip="Salir" 
              Source="pack://siteoforigin:,,,/Resources/Salir.png" 
               Height="32" Width="32"  Style="{StaticResource ImageEnabled}"
