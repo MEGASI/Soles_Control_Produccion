@@ -77,7 +77,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="comunes\libreria.cs" />
+    <Compile Include="entidades\dmActividad.cs" />
     <Compile Include="entidades\dmColor.cs" />
+    <Compile Include="entidades\dmPartidas.cs" />
     <Compile Include="entidades\dmVehiculo.cs" />
     <Compile Include="entidades\dmVehiculoMarca.cs" />
     <Compile Include="entidades\dmVehiculoP.cs" />
@@ -95,6 +97,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="vistas\ActividadesBRW.xaml.cs">
+      <DependentUpon>ActividadesBRW.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\Actividafrm.xaml.cs">
+      <DependentUpon>Actividafrm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="vistas\CargoBRWf.xaml.cs">
       <DependentUpon>CargoBRWf.xaml</DependentUpon>
     </Compile>
@@ -118,6 +126,9 @@
     </Compile>
     <Compile Include="vistas\LlantasBRW.xaml.cs">
       <DependentUpon>LlantasBRW.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\Partidafrm.xaml.cs">
+      <DependentUpon>Partidafrm.xaml</DependentUpon>
     </Compile>
     <Compile Include="vistas\proyectoBRWfrm.xaml.cs">
       <DependentUpon>proyectoBRWfrm.xaml</DependentUpon>
@@ -191,6 +202,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="vistas\ActividadesBRW.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\Actividafrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="vistas\CargoBRWf.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -220,6 +239,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="vistas\LlantasBRW.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\Partidafrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

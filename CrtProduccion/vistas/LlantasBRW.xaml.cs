@@ -19,8 +19,10 @@ namespace CrtProduccion.vistas
     /// </summary>
     public partial class LlantasBRW : Window
     {
-        public int idLlanta = 0;
-        public string Llantas = "";
+        public int idLlantas = 0;
+        public string NombreL = "";
+        public int idfiltro = 0;
+        public string FiltroN = "";
         System.Data.DataSet dsGrid = new System.Data.DataSet();
 
         public LlantasBRW()
@@ -30,65 +32,84 @@ namespace CrtProduccion.vistas
 
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = true;
+            this.seleccion();
         }
 
         private void seleccion()
         {
-
-
             this.DialogResult = true;
         }
-
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             llenaGrid();
-        }
+          
 
+        }
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            this.idLlanta = 0;
+            this.idLlantas = 0;
+            this.idfiltro = 0;
             this.DialogResult = false;
         }
-
-
         public void llenaGrid()
         {
             dsGrid.Clear();
-            // aqui va la consulta con los leftjoin
-            dsGrid = datamanager.ConsultaDatos(" select  v.idllantas, vp.descripcion as LLanta "+
-                                               " from Vehiculo  v left join "+
-                                               " Vehiculo_Partes vp on v.idllantas = vp.idParte");
+
+            dsGrid = datamanager.ConsultaDatos(" SELECT  v.idllantas, ll.descripcion AS llanta,"+
+                                               " v.idFiltAceite, fa.descripcion AS filtroAceite"+
+                                               " FROM  Vehiculo AS v  LEFT OUTER JOIN Vehiculo_Partes AS"+
+                                               " fa ON v.idFiltAceite = fa.idParte LEFT OUTER JOIN Vehiculo_Partes AS"+ 
+                                               " ll ON v.idllantas = ll.idParte ");
+
 
             DataG.ItemsSource = dsGrid.Tables[0].DefaultView;
 
+
             DataG.CanUserAddRows = false;
-            DataG.Columns[0].Width = 175;
+            DataG.Columns[0].Width = 100;
             DataG.Columns[0].IsReadOnly = true;
-            DataG.Columns[0].Header = "Codigo";
+            DataG.Columns[0].Header = "idLlanta";
             DataG.Columns[0].CanUserResize = false;
 
+
             DataG.Columns[1].IsReadOnly = true;
-            DataG.Columns[1].Width = 58;
-            DataG.Columns[1].Header = "Descripcion";
+            DataG.Columns[1].Width = 125;
+            DataG.Columns[1].Header = "Llanta";
             DataG.Columns[1].CanUserResize = false;
+
+
+
+            DataG.CanUserAddRows = false;
+            DataG.Columns[2].Width = 100;
+            DataG.Columns[2].IsReadOnly = true;
+            DataG.Columns[2].Header = "idFil";
+            DataG.Columns[2].CanUserResize = false;
+
+
+            DataG.Columns[3].IsReadOnly = true;
+            DataG.Columns[3].Width = 125;
+            DataG.Columns[3].Header = "Filtro";
+            DataG.Columns[3].CanUserResize = false;
+
 
             datamanager.ConexionCerrar();
         }
 
         private void DataG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            object item = DataG.SelectedItem;
             object item1 = DataG.SelectedItem;
 
-            string sidLlanta = (DataG.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-            
-            Llantas = (DataG.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+            string sidLlantas = (DataG.SelectedCells[0].Column.GetCellContent(item1) as TextBlock).Text;
+            string sidAceite = (DataG.SelectedCells[2].Column.GetCellContent(item1) as TextBlock).Text;
+            NombreL = (DataG.SelectedCells[1].Column.GetCellContent(item1) as TextBlock).Text;
+           
+            FiltroN = (DataG.SelectedCells[3].Column.GetCellContent(item1) as TextBlock).Text;
 
-            if (!Int32.TryParse(sidLlanta, out idLlanta))
+            if (!Int32.TryParse(sidLlantas, out idLlantas )|| ( !Int32.TryParse(sidAceite, out idfiltro)))
             {
-                idLlanta = 0;
+                idLlantas = 0;
+                idfiltro = 0;
             }
             else
             {
@@ -96,7 +117,6 @@ namespace CrtProduccion.vistas
                 btnAceptar_png.IsEnabled = true;
             }
         }
-
         private void DataG_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (sender != null)
@@ -104,6 +124,6 @@ namespace CrtProduccion.vistas
                 DataGridRow dgr = sender as DataGridRow;
                 this.seleccion();
             }
-        }
+        } 
     }
 }

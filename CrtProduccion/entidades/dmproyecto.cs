@@ -123,8 +123,6 @@ namespace CrtProduccion.entidades
                 {
                     fld_idProyecto = (int)dr["idProyecto"];
                     fld_Descripcion = dr["Descripcion"].ToString();
-
-                    //fld_idProyectoCRTL = (int?)dr["idProyectoCTRL"];
                     try { fld_idProyectoCRTL = (int?)dr["idProyectoCTRL"]; }
                     catch (Exception) { fld_idProyectoCRTL = null; }
 

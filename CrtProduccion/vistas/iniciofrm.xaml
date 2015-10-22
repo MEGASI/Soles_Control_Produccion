@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:CrtProduccion"
         mc:Ignorable="d"
         Title="Sistema de Control de Producción Ver. 1.0.1" Height="700" Width="900" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" WindowState="Maximized" Icon="pack://siteoforigin:,,,/Resources/Control.ico">
-    <Grid>
+    
+   <Grid>
+       
+       
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -58,7 +61,7 @@
                     <MenuItem Header="Salida Combustible" FontSize="14"/>
                     <MenuItem Header="Entrada Taller" FontSize="14"/>
                     <MenuItem Header="Salida Taller" FontSize="14"/>
-                    <MenuItem Header="ActividadesEjecutadas" FontSize="14"/>
+                    <MenuItem Header="ActividadesEjecutadas" FontSize="14" Click="MenuItem_Click_10"/>
                 </MenuItem>
 
                 <MenuItem x:Name="mainHerramientas" Header="Herramientas" FontFamily="Verdana" FontSize="14">

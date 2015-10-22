@@ -463,6 +463,8 @@ namespace CrtProduccion.vistas
             //Metodo que reciba el String y el KeyEventsArgs
             comunes.libreria.SoloLetra(txtNombre.Text, e);
         }
+
+        
     }
         }   
 #endregion

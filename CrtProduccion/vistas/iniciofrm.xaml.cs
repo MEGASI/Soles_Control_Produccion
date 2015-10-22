@@ -170,6 +170,12 @@ namespace CrtProduccion
         {
             
         }
+
+        private void MenuItem_Click_10(object sender, RoutedEventArgs e)
+        {
+            vistas.Actividafrm dlg = new vistas.Actividafrm();
+            dlg.ShowDialog();
+        }
     }
 }
 

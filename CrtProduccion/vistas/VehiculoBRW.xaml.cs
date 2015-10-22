@@ -47,7 +47,7 @@ namespace CrtProduccion.vistas
         {
             dsGrid.Clear();
 
-            dsGrid = datamanager.ConsultaDatos("select * from Vehiculo order by Descripcion");
+            dsGrid = datamanager.ConsultaDatos("select * from Vehiculo order by idVehiculo");
 
             DataG.ItemsSource = dsGrid.Tables[0].DefaultView;
 
