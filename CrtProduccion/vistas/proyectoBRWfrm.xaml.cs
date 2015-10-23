@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace CrtProduccion.vistas
 {
@@ -44,7 +46,6 @@ namespace CrtProduccion.vistas
 
         public void llenaGrid()
         {
-
             dsGrid.Clear();
 
             dsGrid = datamanager.ConsultaDatos("select Descripcion, idProyecto from proyecto order by Descripcion");
@@ -65,7 +66,6 @@ namespace CrtProduccion.vistas
             datamanager.ConexionCerrar();
 
         }
-
         private void DataG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             object item = DataG.SelectedItem;
@@ -93,5 +93,32 @@ namespace CrtProduccion.vistas
                 this.DialogResult = true;
             }
         }
+
+        private void txtCampo_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dsGrid.Clear();
+            if (cbFiltro.Text == "idProyecto")
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter(" select * from Proyecto  where idProyecto Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+
+            }
+
+            else if (cbFiltro.Text == "Proyecto")
+            {
+
+                dsGrid.Clear();
+                SqlDataAdapter adapter = new SqlDataAdapter(" select * from Proyecto  where Descripcion Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+
+            }
+        }
+
     }
 }

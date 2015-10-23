@@ -2,8 +2,10 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Data;
+using System.Data.SqlClient;
 
-namespace CrtProduccion.comunes
+ namespace CrtProduccion.comunes
 {
     class libreria
     {
@@ -14,12 +16,12 @@ namespace CrtProduccion.comunes
             RadioButton rb = obj as RadioButton;
             PasswordBox pb = obj as PasswordBox;
             CheckBox ch = obj as CheckBox;
-            
+
             if (tb != null) tb.Text = "";
             if (rb != null) rb.IsChecked = false;
             if (pb != null) pb.Password = "";
             if (ch != null) ch.IsEnabled = false;
-            
+
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj as DependencyObject); i++)
                 limpiaControles(VisualTreeHelper.GetChild(obj, i));
         }
@@ -85,7 +87,26 @@ namespace CrtProduccion.comunes
                 }
             }
             return ret;
-     }   
-  }
-}
+        }
+
+        public static  DataTable ObtenerItems()
+
+        {
+            SqlConnection cnn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = ("select * from Vehiculo order by idVehiculo");
+            using (cnn)
+
+            {
+                cnn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                DataTable table = new DataTable();
+                table.Load(reader);
+                return table;
+            }
+
+        }
+    }         
+    }
 

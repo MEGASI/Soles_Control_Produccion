@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
+using System.Data;
+
 
 namespace CrtProduccion.vistas
 {
@@ -67,8 +70,6 @@ namespace CrtProduccion.vistas
             datamanager.ConexionCerrar();
 
         }
-
-
         private void DataG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             object item = DataG.SelectedItem;
@@ -87,7 +88,6 @@ namespace CrtProduccion.vistas
                 btnAceptar_png.IsEnabled = true;
             }
         }
-
         private void DataG_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
@@ -99,10 +99,32 @@ namespace CrtProduccion.vistas
 
         }
 
+        #region  Busqueda Incrementada
+
+        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dsGrid.Clear();
+            if (cbFiltro.Text == "Codigo")
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter(" select * from cargo  where idCargo Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+
+            }
+            else    if (cbFiltro.Text == "Cargo")
+                {
+
+                SqlDataAdapter adapter = new SqlDataAdapter(" select * from cargo  where Descripcion Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
 
 
-
-
-
+            }
+        }
     }
 }
+#endregion

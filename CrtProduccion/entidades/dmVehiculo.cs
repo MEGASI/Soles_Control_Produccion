@@ -248,14 +248,18 @@ namespace CrtProduccion.entidades
         public bool buscar(String pNombre, bool asignar)
         {
 
-            var dr = datamanager.ConsultaLeer(" SELECT  v.idVehiculo, v.Ficha, v.descripcion, v.idMarca, v.modelo, v.idTipoVehiculo,"+ 
-                                              " v.placa, v.ano, v.chasis, v.idColor," +
+            var dr = datamanager.ConsultaLeer(" SELECT  v.idVehiculo, v.Ficha, v.descripcion,v.idMarca,vm.Descripcion as Marca,"+
+                                              " v.modelo, v.idTipoVehiculo,vt.descripcion as TipoVehiculo," +
+                                              " v.placa, v.ano, v.chasis, v.idColor,vc.Descripcion as Color," +
                                               " v.idllantas, ll.descripcion AS llanta," +
                                               " v.idFiltAceite, fa.descripcion AS filtroAceite,v.idEstado," +
                                               " v.seguroVence, v.ultMantenim, v.kilometraje, v.photo" +
                                               " FROM  Vehiculo AS v" +
                                               " LEFT OUTER JOIN Vehiculo_Partes AS fa ON v.idFiltAceite = fa.idParte" +
                                               " LEFT OUTER JOIN Vehiculo_Partes AS ll ON v.idllantas = ll.idParte " +
+                                              " LEFT OUTER JOIN Vehiculo_Tipo AS vt ON v.idTipoVehiculo =vt.idTipoVehiculo" +
+                                              " LEFT OUTER JOIN Vehiculo_Marca AS vm ON v.idMarca =vm.idMarca" +
+                                              " LEFT OUTER JOIN color AS vc ON v.idColor =vc.idColor" +
                                               " Where v.idVehiculo =" + pNombre.ToString());
             
          
@@ -274,14 +278,18 @@ namespace CrtProduccion.entidades
         /// <returns>true : si lo encuentra y false cuando no lo encuentra.</returns>
         public bool buscar(int idVehiculo, bool asignar)
         {
-            var dr = datamanager.ConsultaLeer(" SELECT  v.idVehiculo, v.Ficha, v.descripcion, v.idMarca, v.modelo, v.idTipoVehiculo," +
-                                            " v.placa, v.ano, v.chasis, v.idColor," +
+          var dr = datamanager.ConsultaLeer(" SELECT  v.idVehiculo, v.Ficha, v.descripcion, v.idMarca,vm.descripcion as Marca,"+
+                                            " v.modelo, v.idTipoVehiculo,vt.descripcion as TipoVehiculo," +
+                                            " v.placa, v.ano, v.chasis, v.idColor,vc.Descripcion as Color," +
                                             " v.idllantas, ll.descripcion AS llanta," +
                                             " v.idFiltAceite, fa.descripcion AS filtroAceite,v.idEstado," +
                                             " v.seguroVence, v.ultMantenim, v.kilometraje, v.photo" +
                                             " FROM  Vehiculo AS v" +
                                             " LEFT OUTER JOIN Vehiculo_Partes AS fa ON v.idFiltAceite = fa.idParte" +
                                             " LEFT OUTER JOIN Vehiculo_Partes AS ll ON v.idllantas = ll.idParte " +
+                                            " LEFT OUTER JOIN Vehiculo_Tipo AS vt ON v.idTipoVehiculo = vt.idTipoVehiculo" +
+                                            " LEFT OUTER JOIN Vehiculo_Marca AS vm ON v.idMarca = vm.idMarca" +
+                                            " LEFT OUTER JOIN color AS vc ON v.idColor =vc.idColor" +
                                             " Where v.idVehiculo =" + idVehiculo.ToString());
 
             //var dr = datamanager.ConsultaLeer("select idVehiculo, Ficha,Descripcion,idMarca,Modelo,"+
@@ -299,14 +307,18 @@ namespace CrtProduccion.entidades
         {
 
 
-            var dr = datamanager.ConsultaLeer(" SELECT  v.idVehiculo, v.Ficha, v.descripcion, v.idMarca, v.modelo, v.idTipoVehiculo," +
-                                            " v.placa, v.ano, v.chasis, v.idColor," +
+          var dr = datamanager.ConsultaLeer(" SELECT  v.idVehiculo, v.Ficha, v.descripcion, v.idMarca,vm.Descripcion as Marca,"+
+                                            " v.modelo, v.idTipoVehiculo,vt.descripcion as TipoVehiculo," +
+                                            " v.placa, v.ano, v.chasis, v.idColor,vc.Descripcion as Color," +
                                             " v.idllantas, ll.descripcion AS llanta," +
                                             " v.idFiltAceite, fa.descripcion AS filtroAceite,v.idEstado," +
                                             " v.seguroVence, v.ultMantenim, v.kilometraje, v.photo" +
                                             " FROM  Vehiculo AS v" +
                                             " LEFT OUTER JOIN Vehiculo_Partes AS fa ON v.idFiltAceite = fa.idParte" +
                                             " LEFT OUTER JOIN Vehiculo_Partes AS ll ON v.idllantas = ll.idParte " +
+                                            " LEFT OUTER JOIN Vehiculo_Tipo AS vt ON v.idTipoVehiculo =vt.idTipoVehiculo" +
+                                            " LEFT OUTER JOIN Vehiculo_Marca AS vm ON v.idMarca = vm.idMarca" +
+                                            " LEFT OUTER JOIN color AS vc ON v.idColor =vc.idColor" +
                                             " Order by v.idVehiculo desc "); 
 
 

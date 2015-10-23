@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace CrtProduccion.vistas
 {
@@ -124,6 +126,38 @@ namespace CrtProduccion.vistas
                 DataGridRow dgr = sender as DataGridRow;
                 this.seleccion();
             }
-        } 
+        }
+        #region  Busqueda Incrementada
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {     
+            dsGrid.Clear();
+            if (cbFiltro.Text == "Llanta")
+            {   
+                 SqlDataAdapter adapter = new SqlDataAdapter (" SELECT  v.idllantas, ll.descripcion AS llanta," +
+                                               " v.idFiltAceite, fa.descripcion AS filtroAceite" +
+                                               " FROM  Vehiculo AS v  LEFT OUTER JOIN Vehiculo_Partes AS" +
+                                               " fa ON v.idFiltAceite = fa.idParte LEFT OUTER JOIN Vehiculo_Partes AS" +
+                                               " ll ON v.idllantas = ll.idParte  where ll.descripcion Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+
+            }
+            else if (cbFiltro.Text == "FiltroAceite")
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter(" SELECT  v.idllantas, ll.descripcion AS llanta," +
+                                                " v.idFiltAceite, fa.descripcion AS filtroAceite" +
+                                                " FROM  Vehiculo AS v  LEFT OUTER JOIN Vehiculo_Partes AS" +
+                                                " fa ON v.idFiltAceite = fa.idParte LEFT OUTER JOIN Vehiculo_Partes AS" +
+                                                " ll ON v.idllantas = ll.idParte  where ll.descripcion Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+            }    
+        }
     }
 }
+#endregion
