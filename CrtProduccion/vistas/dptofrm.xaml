@@ -10,11 +10,12 @@
         
     Title="Departamento" Height="321" Width="444" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Canvas>
-        <Grid Height="299" Width="436" Canvas.Left="-1">
-            
-            <Label x:Name="lblTitulo" Content="Departamento" HorizontalAlignment="Left" Margin="73,112,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="TxtIdDpto" Height="23" Margin="170,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalAlignment="Left" KeyDown="TxtIdDpto_KeyDown"/>
-            <Label x:Name="lblidDpto" Content="Código" HorizontalAlignment="Left" Margin="73,76,0,0" VerticalAlignment="Top"/>
+        <Grid Height="299" Width="436">
+
+            <Label x:Name="lblTitulo" Content="Código" HorizontalAlignment="Left" Margin="73,107,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="lbldepartamento" Content="Departamento" HorizontalAlignment="Left" Margin="73,133,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="TxtIdDpto" Height="23" Margin="161,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="71" HorizontalAlignment="Left" KeyDown="TxtIdDpto_KeyDown"/>
+            <Label x:Name="lblidDpto" Content="Departamentos" HorizontalAlignment="Left" Margin="70,39,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
             <!-- Botons de funcionalidades  -->
             <!-- Cancelar y nuevo -->
             <Button x:Name="btnCancelar" 
@@ -22,7 +23,7 @@
     		ToolTip="Cancelar" 
     		Canvas.Left="93" Canvas.Top="205"
     		IsEnabled="{Binding !Visibility, ElementName=btnNuevo}"
-    		Margin="108,195,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnCancelar_Click">
+    		Margin="110,195,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnCancelar_Click">
                 <Image x:Name="Cancelar_png" Height="32" 
     			Source="pack://siteoforigin:,,,/Resources/Cancel.png" Width="32" 
     			ToolTip="Cancelar"
@@ -30,7 +31,7 @@
                 IsEnabled="{Binding IsEnabled, ElementName=btnCancelar}"/>
             </Button>
             <Button x:Name="btnNuevo" 
-    		HorizontalAlignment="Left" Margin="108,195,0,0"
+    		HorizontalAlignment="Left" Margin="110,195,0,0"
     		VerticalAlignment="Top" 
             Width="50"  Height="40"
             RenderTransformOrigin="-0.333,0.727"
@@ -67,7 +68,7 @@
             <!-- Borrar -->
             <Button x:Name="btnBorrar" 
                  Width="50" Height="40" 
-                ToolTip="Borrar" Canvas.Left="202" Canvas.Top="205" Margin="215,0,0,65" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="btnBorrar_Click">
+                ToolTip="Borrar" Canvas.Left="202" Canvas.Top="205" Margin="212,0,0,64" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="btnBorrar_Click">
                 <Image x:Name="btnBorrar_png"  
                    Source="pack://siteoforigin:,,,/Resources/Borrar.png" 
                    Height="32" Width="32" 
@@ -79,7 +80,7 @@
             <Button x:Name="btnSalir" 
                  Width="50" Height="40" 
                 ToolTip="Salir"
-                Canvas.Left="267" Canvas.Top="205" Margin="0,194,94,65" HorizontalAlignment="Right" Click="btnSalir_Click" >
+                Canvas.Left="267" Canvas.Top="205" Margin="0,195,109,64" HorizontalAlignment="Right" Click="btnSalir_Click" >
 
                 <Image x:Name="btnSalir_png" ToolTip="Salir" 
                    Source="pack://siteoforigin:,,,/Resources/Salir.png" 
@@ -88,9 +89,9 @@
                    IsEnabled="{Binding IsEnabled, ElementName=btnSalir}"/>
             </Button>
             <!--  Buscar-->
-            <Button x:Name="btnbuscar" Margin="0,0,110,198" Height="23" HorizontalAlignment="Right" Width="31" 
+            <Button x:Name="btnbuscar" Margin="0,0,172,169" Height="23" HorizontalAlignment="Right" Width="31" 
                 VerticalAlignment="Bottom" ToolTip="Consultar  Departamentos" Content="..." Click="btnbuscar_Click"/>
-          </Grid>
-        <TextBox x:Name="TxtNombre" Height="23" TextWrapping="Wrap" Width="224" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left"/>
+        </Grid>
+        <TextBox x:Name="TxtNombre" Height="23" TextWrapping="Wrap" Width="105" Canvas.Left="160" Canvas.Top="132" HorizontalAlignment="Left"/>
     </Canvas>
 </Window>

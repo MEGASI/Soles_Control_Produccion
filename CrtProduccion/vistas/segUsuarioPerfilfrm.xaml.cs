@@ -22,6 +22,10 @@ namespace CrtProduccion
     /// </summary>
     public partial class segUsuarioPerfilfrm : Window
     {
+
+        #region  Cargango ItemsSeg
+
+
         string idSegItem = "HS0105";
 
         bool permiteModificar = false;
@@ -61,6 +65,13 @@ namespace CrtProduccion
             datamanager.ConexionCerrar();
         }
 
+        #endregion
+
+
+
+        #region GuardarGrid
+
+
         public void llenaGridPU()
         {
             DataSet dsGrid = new DataSet();
@@ -97,6 +108,12 @@ namespace CrtProduccion
                 btnAceptar_png.IsEnabled = false;
             }
         }
+        #endregion
+
+
+        #region  RecorriendoGrid
+
+
         private void guardarPU()
         {
 
@@ -184,3 +201,4 @@ namespace CrtProduccion
     }
  }
 
+#endregion 

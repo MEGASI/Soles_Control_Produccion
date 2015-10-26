@@ -22,6 +22,8 @@ namespace CrtProduccion.vistas
     /// </summary>
     public partial class CargoBRWf : Window
     {
+
+        #region Metodos
         public int idCargo = 0;
         System.Data.DataSet dsGrid = new System.Data.DataSet();
 
@@ -46,6 +48,11 @@ namespace CrtProduccion.vistas
             this.idCargo = 0;
             this.DialogResult = false;
         }
+
+        #endregion
+
+
+        #region LlenandoGrid
 
         public void llenaGrid()
         {
@@ -98,6 +105,9 @@ namespace CrtProduccion.vistas
             }
 
         }
+        #endregion
+
+
 
         #region  Busqueda Incrementada
 

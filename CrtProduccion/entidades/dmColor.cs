@@ -17,7 +17,7 @@ namespace CrtProduccion.entidades
         #region Atributos
 
         public int fld_oldidColor = 0;
-        public byte fld_idColor { get; set; }
+        public int fld_idColor { get; set; }
         public int fld_ValorRGB { get; set; }
         public string fld_Descripcion { get; set; }
         public string errormsg = "";
@@ -73,14 +73,7 @@ namespace CrtProduccion.entidades
         }
 
 
-        
-
-           
-
-
-
-    
-        
+      
     
         /// <summary>
         /// <para>CRUD  -- C = Create</para> 
@@ -133,7 +126,7 @@ namespace CrtProduccion.entidades
                 encontrado = true;
                 if (asignar)
                 {
-                    fld_idColor = (byte)dr["idColor"];
+                    fld_idColor = (int)dr["idColor"];
                     fld_Descripcion = dr["Descripcion"].ToString();
                     fld_ValorRGB = (int)dr["valorRGB"];
                 }

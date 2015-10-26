@@ -300,7 +300,10 @@ namespace CrtProduccion
 
         #endregion
 
+
         #region Valores extraidos de la BD
+
+
         /// <summary>
         /// Muestra los valores que se traen desde la base de datos.
         /// Asignando el campo equivalente de cada control en el formulario.
@@ -310,10 +313,17 @@ namespace CrtProduccion
             txtNombre.Text = registro.fld_NombreGrupo;
             txtIdGrupo.Text = Convert.ToInt16(registro.fld_idGrupo).ToString();
         }
-        #endregion
+
+
+
+
+        
+
+        
     }
 }
 
+#endregion
 
 
 

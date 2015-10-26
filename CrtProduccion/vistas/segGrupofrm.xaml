@@ -13,129 +13,128 @@
         Loaded="Window_Loaded">
     <Canvas>
 
-        <Grid Canvas.Left="42">
-        <Grid.RowDefinitions>   
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="90*"/>
-            <ColumnDefinition Width="601*"/>
-        </Grid.ColumnDefinitions>
+        <Grid Width="416" Canvas.Top="-2" Canvas.Left="-1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="90*"/>
+                <ColumnDefinition Width="601*"/>
+            </Grid.ColumnDefinitions>
 
 
-        <Label x:Name="lblTitle" Content="Grupo de Usuario"
+            <Label x:Name="lblTitle" Content="Grupo de Usuario"
                HorizontalAlignment="Left" Margin="42,36,0,0"
                VerticalAlignment="Top" Grid.ColumnSpan="2"
                Width="152" FontFamily="Verdana" FontSize="14"
                FontWeight="Black"/>
 
-        <Label x:Name="lblCodigo" Content="Código"
+            <Label x:Name="lblCodigo" Content="Código"
                HorizontalAlignment="Left"
-               Margin="8,83,0,0"
+               Margin="8,91,0,0"
                VerticalAlignment="Top" Width="68"
                Grid.Column="1"/>
-        <TextBox x:Name="txtIdGrupo" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" Margin="86,85,0,0" Grid.Column="1" LostFocus="txtIdGrupo_LostFocus" KeyDown="txtIdGrupo_KeyDown"/>
-        <Button x:Name="btnbuscar" Grid.Column="1" Margin="0,0,107,162" Height="23" HorizontalAlignment="Right" Width="31" 
+            <TextBox x:Name="txtIdGrupo" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" Margin="86,90,0,0" Grid.Column="1" LostFocus="txtIdGrupo_LostFocus" KeyDown="txtIdGrupo_KeyDown"/>
+            <Button x:Name="btnbuscar" Grid.Column="1" Margin="171,0,0,158" Height="23" HorizontalAlignment="Left" Width="31" 
                 VerticalAlignment="Bottom" ToolTip="Consultar Grupos" Content="..." Click="btnbuscar_Click"/>
 
 
-        <Label x:Name="lblDescripcion" 
+            <Label x:Name="lblDescripcion" 
                Content="Descripción"
                HorizontalAlignment="Left" Margin="4,114,0,0"
                VerticalAlignment="Top" Grid.Column="1"/>
-        <TextBox x:Name="txtNombre"
+            <TextBox x:Name="txtNombre"
                  Grid.Column="1" Height="23" 
-                 Margin="86,119,0,0"
+                 Margin="86,114,160,0"
                  TextWrapping="Wrap" VerticalAlignment="Top" 
-                 HorizontalAlignment="Left" Width="228" 
                  KeyDown="NameGroup_KeyDown"
                  IsEnabled="False"/>
 
 
 
-        <!-- Botons de funcionalidades  -->
+            <!-- Botons de funcionalidades  -->
 
-        <!-- Cancelar y nuevo -->
-        <Button x:Name="btnCancelar" 
+            <!-- Cancelar y nuevo -->
+            <Button x:Name="btnCancelar" 
     		Width="50" Height="40" 
     		ToolTip="Cancelar" Click="btnCancelar_Click" 
     		Canvas.Left="93" Canvas.Top="205"
     		IsEnabled="{Binding !Visibility, ElementName=btnNuevo}" Grid.Column="1"
-    		Margin="70,0,0,39" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-            <Image x:Name="Cancelar_png" Height="32" 
+    		Margin="72,0,0,39" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                <Image x:Name="Cancelar_png" Height="32" 
     			Source="pack://siteoforigin:,,,/Resources/Cancel.png" Width="32" 
     			ToolTip="Cancelar"
                 Style="{StaticResource ImageEnabled}"
                 IsEnabled="{Binding IsEnabled, ElementName=btnCancelar}" VerticalAlignment="Bottom"/>
-        </Button>
-        <Button x:Name="btnNuevo" 
-    		HorizontalAlignment="Left" Margin="70,0,0,39"
+            </Button>
+            <Button x:Name="btnNuevo" 
+    		HorizontalAlignment="Left" Margin="72,0,0,39"
     		VerticalAlignment="Bottom" 
             Width="50"  Height="40"
             RenderTransformOrigin="-0.333,0.727"
             VerticalContentAlignment="Center" 
     		FontFamily="Verdana" ToolTip="Nuevo" Grid.Column="1"
     		Click="btnNuevo_Click">
-            <Image x:Name="btnNuevo_png" Height="32" 
+                <Image x:Name="btnNuevo_png" Height="32" 
     			Source="../Resources/Create.png" Stretch="Fill" Width="32" ToolTip="Nuevo"
                 Style="{StaticResource ImageEnabled}"
                 IsEnabled="{Binding IsEnabled, ElementName=btnNuevo}" VerticalAlignment="Bottom"/>
-        </Button>
+            </Button>
 
 
-        <!-- Guardar y Modificar -->
-        <Button x:Name="btnGuardar" Height="40" 
+            <!-- Guardar y Modificar -->
+            <Button x:Name="btnGuardar" Height="40" 
     		Click="btnGuardar_Click" 
     		ToolTip="Guardar" 
     		Canvas.Left="148" Canvas.Top="205"
     		IsEnabled="{Binding !Visibility, ElementName=btnModificar}" 
             Grid.Column="1" Margin="123,192,0,39" HorizontalAlignment="Left" Width="50" VerticalAlignment="Bottom">
-            <Image x:Name="btnGuardar_png" ToolTip="Guardar" 
+                <Image x:Name="btnGuardar_png" ToolTip="Guardar" 
     			Width="32" Height="32" 
     			Source="pack://siteoforigin:,,,/Resources/Guardar.png"
                 Style="{StaticResource ImageEnabled}"
                 IsEnabled="{Binding IsEnabled, ElementName=btnGuardar}" VerticalAlignment="Bottom"/>
-        </Button>
-        <Button x:Name="btnModificar" 
+            </Button>
+            <Button x:Name="btnModificar" 
     		Width="50" Height="40" 
     		ToolTip="Modificar" 
     		Click="btnModificar_Click" 
     		Canvas.Left="148" Canvas.Top="180"
              Grid.Column="1" Margin="123,192,0,39" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-            <Image x:Name="btnModificar_png" 
+                <Image x:Name="btnModificar_png" 
                    ToolTip="Modificar" 
     			Width="32"  Height="32"
     			Source="pack://siteoforigin:,,,/Resources/EditNote.png" 
                 Style="{StaticResource ImageEnabled}"   
                 IsEnabled="{Binding IsEnabled, ElementName=btnGuardar}" VerticalAlignment="Bottom" />
-        </Button>
+            </Button>
 
-        <!-- Borrar -->
-        <Button x:Name="btnBorrar" Click="btnBorrar_Click" 
+            <!-- Borrar -->
+            <Button x:Name="btnBorrar" Click="btnBorrar_Click" 
                  Width="50" Height="40" 
-                ToolTip="Borrar" Canvas.Left="202" Canvas.Top="205" Grid.Column="1" Margin="176,0,0,39" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-            <Image x:Name="btnBorrar_png"  
+                ToolTip="Borrar" Canvas.Left="202" Canvas.Top="205" Grid.Column="1" Margin="174,0,0,39" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                <Image x:Name="btnBorrar_png"  
                    Source="pack://siteoforigin:,,,/Resources/Borrar.png" 
                    Height="32" Width="32" 
                    ToolTip="Borrar" 
                    Style="{StaticResource ImageEnabled}"
                    IsEnabled="{Binding IsEnabled, ElementName=btnBorrar}" VerticalAlignment="Bottom"/>
-        </Button>
+            </Button>
 
-        <!-- Salir -->
-        <Button x:Name="btnSalir" 
+            <!-- Salir -->
+            <Button x:Name="btnSalir" 
                  Width="50" Height="40" 
                 ToolTip="Salir" Click="btnSalir_Click"
-                Canvas.Left="267" Canvas.Top="205" Grid.Column="1" Margin="0,193,11,38" HorizontalAlignment="Right" >
+                Canvas.Left="267" Canvas.Top="205" Grid.Column="1" Margin="0,192,75,39" HorizontalAlignment="Right" >
 
-            <Image x:Name="btnSalir_png" ToolTip="Salir" 
+                <Image x:Name="btnSalir_png" ToolTip="Salir" 
                    Source="pack://siteoforigin:,,,/Resources/Salir.png" 
                    Height="32" Width="32" 
                    Style="{StaticResource ImageEnabled}"
                    IsEnabled="{Binding IsEnabled, ElementName=btnSalir}"/>
-        </Button>
+            </Button>
 
 
-    </Grid>
-        </Canvas>
+        </Grid>
+    </Canvas>
 </Window>

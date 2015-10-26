@@ -10,91 +10,91 @@
     <Grid Margin="0,0,737,0">
         <Canvas Margin="0,10,10,0" HorizontalAlignment="Left">
             <!--Codigo -->
-            <Label x:Name="lblCodigo" Content="Codigo" VerticalAlignment="Top" Canvas.Left="52" Canvas.Top="30" HorizontalAlignment="Left"/>
-            <TextBox x:Name="txtidVehiculo" Height="23" Canvas.Left="134" TextWrapping="Wrap" Canvas.Top="30" Width="39" TabIndex="1" KeyDown="txtidVehiculo_KeyDown" LostFocus="txtidVehiculo_LostFocus" HorizontalAlignment="Left"/>
+            <Label x:Name="lblCodigo" Content="Codigo" VerticalAlignment="Top" Canvas.Left="91" Canvas.Top="54" HorizontalAlignment="Left"/>
+            <TextBox x:Name="txtidVehiculo" Height="23" Canvas.Left="173" TextWrapping="Wrap" Canvas.Top="57" Width="39" TabIndex="1" KeyDown="txtidVehiculo_KeyDown" LostFocus="txtidVehiculo_LostFocus" HorizontalAlignment="Left"/>
             <!--Buscar-->
             <Button x:Name="btnbuscar" Grid.Column="1" Height="23" HorizontalAlignment="Right" Width="31" 
-                VerticalAlignment="Bottom" ToolTip="Consultar Libro Direcciones" Content="..." Canvas.Left="175" Canvas.Top="30" Click="btnbuscar_Click" />
+                VerticalAlignment="Bottom" ToolTip="Consultar Libro Direcciones" Content="..." Canvas.Left="213" Canvas.Top="57" Click="btnbuscar_Click" />
 
 
             <!---Ficha -->
-            <Label x:Name="lblFicha" Content="Ficha" VerticalAlignment="Top" Canvas.Left="54" Canvas.Top="56" HorizontalAlignment="Left"/>
-            <TextBox x:Name="txtFicha" Height="23" Canvas.Left="134" TextWrapping="Wrap" Canvas.Top="58" Width="74" TabIndex="2" LostFocus="txtFicha_LostFocus" KeyDown="txtFicha_KeyDown" HorizontalAlignment="Left"/>
+            <Label x:Name="lblFicha" Content="Ficha" VerticalAlignment="Top" Canvas.Left="94" Canvas.Top="79" HorizontalAlignment="Left"/>
+            <TextBox x:Name="txtFicha" Height="23" Canvas.Left="173" TextWrapping="Wrap" Canvas.Top="81" Width="74" TabIndex="2" LostFocus="txtFicha_LostFocus" KeyDown="txtFicha_KeyDown" HorizontalAlignment="Left"/>
 
             <!---Descripcion-->
-            <Label x:Name="lblDescripcion" Content="Descripcion" VerticalAlignment="Top" Canvas.Left="54" Canvas.Top="88" HorizontalAlignment="Left"/>
-            <TextBox x:Name="txtDescripcion" Height="23" Canvas.Left="134" TextWrapping="Wrap" Canvas.Top="87" Width="191" TabIndex="3" HorizontalAlignment="Left"/>
+            <Label x:Name="lblDescripcion" Content="Descripcion" VerticalAlignment="Top" Canvas.Left="92" Canvas.Top="104" HorizontalAlignment="Left"/>
+            <TextBox x:Name="txtDescripcion" Height="23" Canvas.Left="173" TextWrapping="Wrap" Canvas.Top="105" Width="144" TabIndex="3" HorizontalAlignment="Left"/>
 
             <!---Marca-->
-            <Label x:Name="lblMarca" Content="Marca" VerticalAlignment="Top" Canvas.Left="55" Canvas.Top="115" HorizontalAlignment="Left"/>
-            <ComboBox x:Name="cbMarca" HorizontalAlignment="Left" VerticalAlignment="Top" Width="145" Canvas.Left="133" Canvas.Top="118" SelectionChanged="cbMarca_SelectionChanged"/>
+            <Label x:Name="lblMarca" Content="Marca" VerticalAlignment="Top" Canvas.Left="93" Canvas.Top="125" HorizontalAlignment="Left"/>
+            <ComboBox x:Name="cbMarca" HorizontalAlignment="Left" VerticalAlignment="Top" Width="146" Canvas.Left="172" Canvas.Top="129" SelectionChanged="cbMarca_SelectionChanged"/>
 
             <!---TVehiculo-->
-            <Label x:Name="lbltipoVehiculo" Content="TipoVehiculo" VerticalAlignment="Top" Canvas.Left="53" Canvas.Top="173" HorizontalAlignment="Left"/>
-            <ComboBox x:Name="cbidTipoVehiculo" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Canvas.Left="133" Canvas.Top="175" SelectionChanged="comboBox_SelectionChanged"/>
+            <Label x:Name="lbltipoVehiculo" Content="TipoVehiculo" VerticalAlignment="Top" Canvas.Left="91" Canvas.Top="150" HorizontalAlignment="Left"/>
+            <ComboBox x:Name="cbidTipoVehiculo" HorizontalAlignment="Left" VerticalAlignment="Top" Width="146" Canvas.Left="172" Canvas.Top="151" SelectionChanged="comboBox_SelectionChanged"/>
 
 
             <!--Placa-->
-            <Label x:Name="lblplaca" Content="Placa" VerticalAlignment="Top" Canvas.Left="56" Canvas.Top="203" HorizontalAlignment="Left"/>
-            <TextBox x:Name="txtPlaca" Height="23" Canvas.Left="134" TextWrapping="Wrap" Canvas.Top="202" Width="99" TabIndex="5" HorizontalAlignment="Left" ></TextBox>
+            <Label x:Name="lblplaca" Content="Placa" VerticalAlignment="Top" Canvas.Left="90" Canvas.Top="218" HorizontalAlignment="Left"/>
+            <TextBox x:Name="txtPlaca" Height="23" Canvas.Left="173" TextWrapping="Wrap" Canvas.Top="219" Width="99" TabIndex="5" HorizontalAlignment="Left" ></TextBox>
 
 
             <!--año-->
-            <Label x:Name="lblano" Content="Año" VerticalAlignment="Top" Canvas.Left="55" HorizontalAlignment="Left" Canvas.Top="232"/>
-            <TextBox x:Name="txtaño" Height="23" Canvas.Left="133" TextWrapping="Wrap" Width="99" TabIndex="7" HorizontalAlignment="Left" Canvas.Top="230" KeyUp="txtaño_KeyUp"  />
+            <Label x:Name="lblano" Content="Año" VerticalAlignment="Top" Canvas.Left="91" HorizontalAlignment="Left" Canvas.Top="242"/>
+            <TextBox x:Name="txtaño" Height="23" Canvas.Left="173" TextWrapping="Wrap" Width="99" TabIndex="7" HorizontalAlignment="Left" Canvas.Top="243" KeyUp="txtaño_KeyUp" />
 
 
 
             <!--chasis-->
-            <Label x:Name="lblchasis" Content="Chasis" VerticalAlignment="Top" Canvas.Left="55" Canvas.Top="262" HorizontalAlignment="Left"/>
-            <TextBox x:Name="txtchasis" Height="23" Canvas.Left="133" TextWrapping="Wrap" Canvas.Top="259" Width="99" TabIndex="8" HorizontalAlignment="Left" ></TextBox>
+            <Label x:Name="lblchasis" Content="Chasis" VerticalAlignment="Top" Canvas.Left="90" Canvas.Top="265" HorizontalAlignment="Left"/>
+            <TextBox x:Name="txtchasis" Height="23" Canvas.Left="173" TextWrapping="Wrap" Canvas.Top="267" Width="99" TabIndex="8" HorizontalAlignment="Left" ></TextBox>
 
 
             <!--Color-->
-            <Label x:Name="lblidColor" Content="Color" VerticalAlignment="Top" Canvas.Left="57" Canvas.Top="286" HorizontalAlignment="Left"/>
-            <ComboBox x:Name="cbColor" HorizontalAlignment="Left" VerticalAlignment="Top" Width="104" Canvas.Left="131" Canvas.Top="287" SelectionChanged="cbColor_SelectionChanged"/>
+            <Label x:Name="lblidColor" Content="Color" VerticalAlignment="Top" Canvas.Left="91" Canvas.Top="176" HorizontalAlignment="Left"/>
+            <ComboBox x:Name="cbColor" HorizontalAlignment="Left" VerticalAlignment="Top" Width="104" Canvas.Left="172" Canvas.Top="173" SelectionChanged="cbColor_SelectionChanged"/>
 
 
 
 
 
             <!--Llantas-->
-            <Label x:Name="lblidLlantas" Content="Llantas" VerticalAlignment="Top" Canvas.Left="343" Canvas.Top="37" HorizontalAlignment="Left"/>
-            <TextBox x:Name="txtidllantas" Height="23" Canvas.Left="415" TextWrapping="Wrap" Canvas.Top="38" Width="107" TabIndex="10" HorizontalAlignment="Left"  ></TextBox>
+            <Label x:Name="lblidLlantas" Content="Llantas" VerticalAlignment="Top" Canvas.Left="343" Canvas.Top="53" HorizontalAlignment="Left"/>
+            <TextBox x:Name="txtidllantas" Height="23" Canvas.Left="412" TextWrapping="Wrap" Canvas.Top="57" Width="107" TabIndex="10" HorizontalAlignment="Left" ></TextBox>
             <!--Buscar-->
             <Button x:Name="btnbuscarllan" Grid.Column="1" Height="23" HorizontalAlignment="Right" Width="31" 
-                VerticalAlignment="Bottom" ToolTip="Consultar Libro Direcciones" Content="..." Canvas.Left="523" Canvas.Top="38" Click="btnbuscarllan_Click" />
+                VerticalAlignment="Bottom" ToolTip="Consultar Libro Direcciones" Content="..." Canvas.Left="520" Canvas.Top="57" Click="btnbuscarllan_Click" />
 
 
             <!--Aceite-->
-            <Label x:Name="lblidAceite" Content="Aceite" VerticalAlignment="Top" Canvas.Left="342" Canvas.Top="62" HorizontalAlignment="Left"/>
-            <TextBox x:Name="txtidAceite" Height="23" Canvas.Left="414" TextWrapping="Wrap" Canvas.Top="66" Width="108" TabIndex="11" HorizontalAlignment="Left" ></TextBox>
+            <Label x:Name="lblidAceite" Content="Aceite" VerticalAlignment="Top" Canvas.Left="341" Canvas.Top="77" HorizontalAlignment="Left"/>
+            <TextBox x:Name="txtidAceite" Height="23" Canvas.Left="412" TextWrapping="Wrap" Canvas.Top="81" Width="108" TabIndex="11" HorizontalAlignment="Left" ></TextBox>
             <!--Buscar-->
             <Button x:Name="btnbuscarAceit" Grid.Column="1" Height="23" HorizontalAlignment="Right" Width="31" 
-                VerticalAlignment="Bottom" ToolTip="Consultar Libro Direcciones" Content="..." Canvas.Left="523" Canvas.Top="66" Click="btnbuscarAceit_Click" />
+                VerticalAlignment="Bottom" ToolTip="Consultar Libro Direcciones" Content="..." Canvas.Left="521" Canvas.Top="81" Click="btnbuscarAceit_Click" />
 
 
             <!--Estado-->
-            <Label x:Name="lblidEstado" Content="Estado" VerticalAlignment="Top" Canvas.Left="342" Canvas.Top="95" HorizontalAlignment="Left"/>
-            <ComboBox x:Name="cbEstado" VerticalAlignment="Top" Canvas.Left="414" Canvas.Top="94" Width="140" TabIndex="12" HorizontalAlignment="Left" SelectionChanged="cbEstado_SelectionChanged" />
+            <Label x:Name="lblidEstado" Content="Estado" VerticalAlignment="Top" Canvas.Left="340" Canvas.Top="104" HorizontalAlignment="Left"/>
+            <ComboBox x:Name="cbEstado" VerticalAlignment="Top" Canvas.Left="411" Canvas.Top="105" Width="140" TabIndex="12" HorizontalAlignment="Left" SelectionChanged="cbEstado_SelectionChanged" />
 
             <!--SegVence-->
-            <Label x:Name="lblsegurovence" Content="SegVence" VerticalAlignment="Top" Canvas.Left="342" Canvas.Top="123" HorizontalAlignment="Left"/>
-            <DatePicker x:Name="segVence" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Canvas.Left="414" Canvas.Top="119"/>
+            <Label x:Name="lblsegurovence" Content="SegVence" VerticalAlignment="Top" Canvas.Left="340" Canvas.Top="128" HorizontalAlignment="Left"/>
+            <DatePicker x:Name="segVence" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Canvas.Left="411" Canvas.Top="127"/>
 
             <!--ulMant-->
-            <Label x:Name="lblultMant" Content="ultMant" VerticalAlignment="Top" Canvas.Left="343" Canvas.Top="150" HorizontalAlignment="Left"/>
-            <DatePicker x:Name="ultmant" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Canvas.Left="414" Canvas.Top="149"/>
+            <Label x:Name="lblultMant" Content="ultMant" VerticalAlignment="Top" Canvas.Left="341" Canvas.Top="152" HorizontalAlignment="Left"/>
+            <DatePicker x:Name="ultmant" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Canvas.Left="411" Canvas.Top="152"/>
 
 
             <!--kilometraje-->
-            <Label x:Name="lblkilometraje" Content="kilometraje" VerticalAlignment="Top" Canvas.Left="342" Canvas.Top="182" HorizontalAlignment="Left"/>
-            <TextBox x:Name="txtkilometraj" Height="23" Canvas.Left="414" TextWrapping="Wrap" Canvas.Top="184" Width="140" TabIndex="14" HorizontalAlignment="Left" />
+            <Label x:Name="lblkilometraje" Content="kilometraje" VerticalAlignment="Top" Canvas.Left="340" Canvas.Top="178" HorizontalAlignment="Left"/>
+            <TextBox x:Name="txtkilometraj" Height="23" Canvas.Left="412" TextWrapping="Wrap" Canvas.Top="178" Width="140" TabIndex="14" HorizontalAlignment="Left"/>
 
 
             <!---sueldo-->
-            <Label x:Name="lblmodelo" Content="Modelo" VerticalAlignment="Top" Canvas.Left="54" Canvas.Top="145" HorizontalAlignment="Left"/>
-            <TextBox x:Name="txtmodelo" Height="23" Canvas.Left="134" TextWrapping="Wrap" Canvas.Top="144" Width="98" TabIndex="4" HorizontalAlignment="Left"/>
+            <Label x:Name="lblmodelo" Content="Modelo" VerticalAlignment="Top" Canvas.Left="90" Canvas.Top="196" HorizontalAlignment="Left"/>
+            <TextBox x:Name="txtmodelo" Height="23" Canvas.Left="173" TextWrapping="Wrap" Canvas.Top="195" Width="98" TabIndex="4" HorizontalAlignment="Left"/>
 
 
 
@@ -103,7 +103,7 @@
             <Button x:Name="btnCancelar" 
     		Width="50" Height="40" 
     		ToolTip="Cancelar" 
-    		Canvas.Left="179" Canvas.Top="344"
+    		Canvas.Left="231" Canvas.Top="339"
     		IsEnabled="{Binding !Visibility, ElementName=btnNuevo}" Click="btnCancelar_Click" VerticalAlignment="Center" >
                 <Image x:Name="Cancelar_png" Height="32" 
     	    Source="pack://siteoforigin:,,,/Resources/Cancel.png" Width="32" 
@@ -115,7 +115,7 @@
             Width="50"  Height="40"
             RenderTransformOrigin="-0.333,0.727"
             VerticalContentAlignment="Center" 
-    		FontFamily="Verdana" ToolTip="Nuevo"  Canvas.Left="179" Canvas.Top="344" Click="btnNuevo_Click" VerticalAlignment="Center" >
+    		FontFamily="Verdana" ToolTip="Nuevo"  Canvas.Left="231" Canvas.Top="339" Click="btnNuevo_Click" VerticalAlignment="Center" >
                 <Image x:Name="btnNuevo_png" Height="32" 
             Source="../Resources/Create.png" Stretch="Fill" Width="32" ToolTip="Nuevo"
             Style="{StaticResource ImageEnabled}"
@@ -125,7 +125,7 @@
 
             <!-- Guardar y Modificar -->
             <Button x:Name="btnGuardar" Height="40" 
-    		ToolTip="Guardar" Canvas.Left="232" Canvas.Top="343"
+    		ToolTip="Guardar" Canvas.Left="282" Canvas.Top="339"
     		IsEnabled="{Binding !Visibility, ElementName=btnModificar}" Width="50" Click="btnGuardar_Click" VerticalAlignment="Center" >
                 <Image x:Name="btnGuardar_png" ToolTip="Guardar" 
     	     Width="32" Height="32" 
@@ -136,7 +136,7 @@
 
             <Button x:Name="btnModificar" 
     		Width="50" 
-    		ToolTip="Modificar" Canvas.Left="232" Canvas.Top="343" Height="40" Click="btnModificar_Click" VerticalAlignment="Center">
+    		ToolTip="Modificar" Canvas.Left="282" Canvas.Top="339" Height="40" Click="btnModificar_Click" VerticalAlignment="Center">
                 <Image x:Name="btnModificar_png" 
             ToolTip="Modificar" Width="32"  Height="32"
     	    Source="pack://siteoforigin:,,,/Resources/EditNote.png" 
@@ -149,7 +149,7 @@
             <!-- Borrar -->
             <Button x:Name="btnBorrar"  
              Width="50" Height="40" 
-             ToolTip="Borrar" Canvas.Left="286" Canvas.Top="343" Grid.Column="1" Click="btnBorrar_Click" VerticalAlignment="Center">
+             ToolTip="Borrar" Canvas.Left="333" Canvas.Top="339" Grid.Column="1" Click="btnBorrar_Click" VerticalAlignment="Center">
                 <Image x:Name="btnBorrar_png"  Source="pack://siteoforigin:,,,/Resources/Borrar.png" 
               Height="32" Width="32"  ToolTip="Borrar" 
               Style="{StaticResource ImageEnabled}"
@@ -161,7 +161,7 @@
             <!-- Salir -->
             <Button x:Name="btnSalir" 
              Width="50" Height="40" 
-             ToolTip="Salir" Canvas.Left="345" Canvas.Top="343" Click="btnSalir_Click" VerticalAlignment="Center">
+             ToolTip="Salir" Canvas.Left="395" Canvas.Top="339" Click="btnSalir_Click" VerticalAlignment="Center">
                 <Image x:Name="btnSalir_png" ToolTip="Salir" 
              Source="pack://siteoforigin:,,,/Resources/Salir.png" 
               Height="32" Width="32"  Style="{StaticResource ImageEnabled}"

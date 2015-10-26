@@ -266,6 +266,8 @@ namespace CrtProduccion.vistas
             txtDescripcion.Text = registro.fld_Descripcion;
             TxtidVehiculo_M.Text = Convert.ToInt16(registro.fld_idMacarV).ToString();
         }
+
+       
     }
 }
 

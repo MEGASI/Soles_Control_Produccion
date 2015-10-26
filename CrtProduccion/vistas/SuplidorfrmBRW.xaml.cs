@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace CrtProduccion.vistas
 {
@@ -46,20 +48,21 @@ namespace CrtProduccion.vistas
         public void llenaGrid()
         {
             dsGrid.Clear();
+            dsGrid = datamanager.ConsultaDatos(" Select idLD,Nombres  from LibroDirecciones where esProveedor  = 'true'");
 
-            dsGrid = datamanager.ConsultaDatos("Select vp.idSuplidor, LD.Nombres from "+
-                                                "  Vehiculo_Partes vp"+
-                                                " inner join LibroDirecciones LD  on vp.idSuplidor = Ld.idLD ");
+            //dsGrid = datamanager.ConsultaDatos("Select vp.idSuplidor, LD.Nombres from "+
+            //                                    "  Vehiculo_Partes vp"+
+            //                                    " inner join LibroDirecciones LD  on vp.idSuplidor = Ld.idLD ");
 
             DataG.ItemsSource = dsGrid.Tables[0].DefaultView;
 
             DataG.CanUserAddRows = false;
             DataG.Columns[0].Width = 175;
             DataG.Columns[0].IsReadOnly = true;
-            DataG.Columns[0].Header = "idParte";
+            DataG.Columns[0].Header = "Codigo";
             DataG.Columns[0].CanUserResize = false;
 
-            
+
             DataG.Columns[1].IsReadOnly = true;
             DataG.Columns[1].Width = 125;
             DataG.Columns[1].Header = "Suplidor";
@@ -75,15 +78,18 @@ namespace CrtProduccion.vistas
             string sidSuplidor = (DataG.SelectedCells[0].Column.GetCellContent(item1) as TextBlock).Text;
             nombre = (DataG.SelectedCells[1].Column.GetCellContent(item1) as TextBlock).Text;
 
-            if (!Int32.TryParse(sidSuplidor, out idSuplidor))
+        
+         
+             if (!Int32.TryParse(sidSuplidor, out idSuplidor))
             {
-                idSuplidor  = 0;
+                idSuplidor = 0;
             }
             else
             {
                 btnAceptar.IsEnabled = true;
                 btnAceptar_png.IsEnabled = true;
             }
+            
         }
         private void DataG_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -96,6 +102,32 @@ namespace CrtProduccion.vistas
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             llenaGrid();
+        }
+
+        private void txtCampo_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dsGrid.Clear();
+            if (cbFiltro.Text == "Codigo")
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter(" Select vp.idSuplidor, LD.Nombres from " +
+                                                            " Vehiculo_Partes vp" +
+                                                            " inner join LibroDirecciones LD  on vp.idSuplidor = Ld.idLD"+
+                                                            " where vp.idSuplidor Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+
+            }
+            else if (cbFiltro.Text == "NombreS")
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter(" Select vp.idSuplidor, LD.Nombres from " +
+                                                           " Vehiculo_Partes vp" +
+                                                           " inner join LibroDirecciones LD  on vp.idSuplidor = Ld.idLD" +
+                                                           " where LD.Nombres Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+            }
         }
     }
 }

@@ -195,14 +195,11 @@ namespace CrtProduccion.vistas
             TxtNombre.Focus();
         }
 
-
         // Click boton Salir
         private void btnSalir_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-
-
         // Click Boton Buscar
         private void btnbuscar_Click(object sender, RoutedEventArgs e)
         {
@@ -314,6 +311,7 @@ namespace CrtProduccion.vistas
         #endregion
 
         #region Valores extraidos de la BD
+
         /// <summary>
         /// Muestra los valores que se traen desde la base de datos.
         /// Asignando el campo equivalente de cada control en el formulario.

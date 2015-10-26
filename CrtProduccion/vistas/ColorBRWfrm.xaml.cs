@@ -11,7 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.Data.SqlClient;
+using System.Data;
 namespace CrtProduccion.vistas
 {
     /// <summary>
@@ -19,6 +20,8 @@ namespace CrtProduccion.vistas
     /// </summary>
     public partial class ColorBRWfrm : Window
     {
+
+        #region Metodos
         public int idColor = 0;
         System.Data.DataSet dsGrid = new System.Data.DataSet();
         public ColorBRWfrm()
@@ -36,10 +39,15 @@ namespace CrtProduccion.vistas
         }
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-              this.idColor = 0;
+            this.idColor = 0;
             this.DialogResult = false;
         }
-       
+
+        #endregion
+
+
+        #region LlenandoGrid
+
         public void llenaGrid()
         {
             dsGrid.Clear();
@@ -89,5 +97,33 @@ namespace CrtProduccion.vistas
                 this.DialogResult = true;
             }
         }
+#endregion
+
+
+        #region Busqueda Incrementada
+        private void txtCampo_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dsGrid.Clear();
+            if (cbFiltro.Text == "Descripcion")
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter(" select * from Color  where Descripcion Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+
+            }
+            else if (cbFiltro.Text == "ValorRGB")
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter(" select * from Color  where ValorRGB Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+
+            }
+        }
     }
 }
+
+#endregion

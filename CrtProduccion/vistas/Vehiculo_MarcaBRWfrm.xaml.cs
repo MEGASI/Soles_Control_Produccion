@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace CrtProduccion.vistas
 {
@@ -85,6 +87,33 @@ namespace CrtProduccion.vistas
                 this.DialogResult = true;
             }
 
-        } 
+        }
+
+        private void txtCampo_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            dsGrid.Clear();
+            if (cbFiltro.Text == "Codigo")
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter(" select * from Vehiculo_Marca  where idMarca Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+
+            }
+            else if (cbFiltro.Text == "Descripcion")
+            {
+
+                SqlDataAdapter adapter = new SqlDataAdapter(" select * from Vehiculo_Marca  where Descripcion Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+
+            }
+
+
+        }
     }
 }

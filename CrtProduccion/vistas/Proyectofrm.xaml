@@ -22,27 +22,27 @@
             	FontWeight="Black" Height="27" Canvas.Left="22" Canvas.Top="10"/>
 
             <!-- Código-->
-            <Label x:Name="lblCodigo" Content="Código" Canvas.Left="86" Canvas.Top="62"/>
-            <TextBox x:Name="txtidProyecto" Height="23" Canvas.Left="188" TextWrapping="Wrap" Canvas.Top="65" Width="120" KeyDown="txtidProyecto_KeyDown" LostFocus="txtidProyecto_LostFocus"/>
+            <Label x:Name="lblCodigo" Content="Código" Canvas.Left="86" Canvas.Top="73"/>
+            <TextBox x:Name="txtidProyecto" Height="23" Canvas.Left="188" TextWrapping="Wrap" Canvas.Top="76" Width="72" KeyDown="txtidProyecto_KeyDown" LostFocus="txtidProyecto_LostFocus"/>
 
             <!-- Descripción -->
             <Label x:Name="lblDescripcion" Content="Descripción" Canvas.Left="86" Canvas.Top="97"/>
-            <TextBox x:Name="txtNombre" Height="23" Canvas.Left="188" TextWrapping="Wrap" Canvas.Top="100" Width="195"/>
+            <TextBox x:Name="txtNombre" Height="23" Canvas.Left="188" TextWrapping="Wrap" Canvas.Top="100" Width="195" />
 
 
 
             <!--Buscar-->
             <Button x:Name="btnbuscar" Grid.Column="1" Height="23" HorizontalAlignment="Right" Width="31" 
-                VerticalAlignment="Bottom" ToolTip="Consultar Cargos" Content="..." Canvas.Left="311" Canvas.Top="65" Click="btnbuscar_Click_1"/>
+                VerticalAlignment="Bottom" ToolTip="Consultar Cargos" Content="..." Canvas.Left="261" Canvas.Top="76" Click="btnbuscar_Click_1"/>
 
             <!-- Proyecto Control-->
-            <Label x:Name="lblProyectoControl" Content="Proyecto Contro" Canvas.Left="86" Canvas.Top="140"/>
+            <Label x:Name="lblProyectoControl" Content="Proyecto Contro" Canvas.Left="86" Canvas.Top="124"/>
 
             <ComboBox x:Name="CbidProyectoCTRL" 
-                      Canvas.Left="188"
-                      Canvas.Top="138"
+                      Canvas.Left="187"
+                      Canvas.Top="125"
                   FontFamily="Verdana" ForceCursor="True" 
-                  Height="24" Width="200" FontSize="13" Loaded="CbidProyectoCTRL_Loaded" SelectionChanged="CbidProyectoCTRL_SelectionChanged"/>
+                  Height="24" Width="196" FontSize="13" Loaded="CbidProyectoCTRL_Loaded" SelectionChanged="CbidProyectoCTRL_SelectionChanged"/>
 
 
 
@@ -52,7 +52,7 @@
             <Button x:Name="btnCancelar" 
     		Width="50" Height="40" 
     		ToolTip="Cancelar" 
-    		Canvas.Left="82" Canvas.Top="194"
+    		Canvas.Left="147" Canvas.Top="194"
     		IsEnabled="{Binding !Visibility, ElementName=btnNuevo}" Grid.Column="1" HorizontalAlignment="Left" Click="btnCancelar_Click_1">
                 <Image x:Name="Cancelar_png" Height="32" 
     			Source="pack://siteoforigin:,,,/Resources/Cancel.png" Width="32" 
@@ -67,7 +67,7 @@
             RenderTransformOrigin="-0.333,0.727"
             VerticalContentAlignment="Center" 
     		FontFamily="Verdana" ToolTip="Nuevo" Grid.Column="1"
-    		 Canvas.Left="82" Canvas.Top="194" 
+    		 Canvas.Left="147" Canvas.Top="194" 
                     Click="btnNuevo_Click_1">
                 <Image x:Name="btnNuevo_png" Height="32" 
     			Source="../Resources/Create.png" Stretch="Fill" Width="32" ToolTip="Nuevo"
@@ -80,7 +80,7 @@
             <Button x:Name="btnGuardar" Height="40" 
     		Click="btnGuardar_Click" 
     		ToolTip="Guardar" 
-    		Canvas.Left="135" Canvas.Top="194"
+    		Canvas.Left="199" Canvas.Top="194"
     		IsEnabled="{Binding !Visibility, ElementName=btnModificar}" 
             Grid.Column="1" HorizontalAlignment="Left" Width="50">
                 <Image x:Name="btnGuardar_png" ToolTip="Guardar" 
@@ -93,7 +93,7 @@
     		Width="50" Height="40" 
     		ToolTip="Modificar" 
     		Click="btnModificar_Click" 
-    		Canvas.Left="135" Canvas.Top="194"
+    		Canvas.Left="199" Canvas.Top="194"
              Grid.Column="1" HorizontalAlignment="Left">
                 <Image x:Name="btnModificar_png" 
                    ToolTip="Modificar" 
@@ -106,7 +106,7 @@
             <!-- Borrar -->
             <Button x:Name="btnBorrar" 
                  Width="50" Height="40" 
-                ToolTip="Borrar" Canvas.Left="190" Canvas.Top="194" Grid.Column="1" HorizontalAlignment="Left" Click="btnBorrar_Click_">
+                ToolTip="Borrar" Canvas.Left="252" Canvas.Top="194" Grid.Column="1" HorizontalAlignment="Left" Click="btnBorrar_Click_">
                 <Image x:Name="btnBorrar_png"  
                    Source="pack://siteoforigin:,,,/Resources/Borrar.png" 
                    Height="32" Width="32" 
@@ -119,7 +119,7 @@
             <Button x:Name="btnSalir" 
                  Width="50" Height="40" 
                 ToolTip="Salir"
-                Canvas.Left="279" Canvas.Top="194" Grid.Column="1" HorizontalAlignment="Right" Click="btnSalir_Click_1" >
+                Canvas.Left="323" Canvas.Top="194" Grid.Column="1" HorizontalAlignment="Right" Click="btnSalir_Click_1" >
 
                 <Image x:Name="btnSalir_png" ToolTip="Salir" 
                    Source="pack://siteoforigin:,,,/Resources/Salir.png" 

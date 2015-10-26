@@ -92,12 +92,11 @@ namespace CrtProduccion.entidades
                 // Preparamos consulta para la actualización
                 SqlCommand cmd = new SqlCommand("Insert into Vehiculo_Partes(referencia,descripcion,idSuplidor,precio,existencia)" +
                                                 " output INSERTED.idParte" +
-                                                " Values(@Referencia,@descripcion,@idSuplidor,@precio,@existencia)", datamanager.ConexionSQL);
+                                                " Values(@referencia,@descripcion,@idSuplidor,@precio,@existencia)", datamanager.ConexionSQL);
 
                 // Ponemos valores a los Parametros incluidos en la consulta de actualización
                 cmd.Parameters.AddWithValue("@referencia", fld_Referencia);
                 cmd.Parameters.AddWithValue("@descripcion", fld_Descripcion);
-                
                 cmd.Parameters.AddWithValue("@idSuplidor",Convert.ToInt32(fld_idSuplidor));
                 cmd.Parameters.AddWithValue("@precio", Convert.ToDouble(fld_Precio));
                 cmd.Parameters.AddWithValue("@existencia",Convert.ToDouble( fld_Existencia));
@@ -145,11 +144,9 @@ namespace CrtProduccion.entidades
             {
                 if (asignar) limpiar();
             }
-
             return encontrado;
+
         }
-
-
         /// <summary>
         ///  Buscar en la tabla de Vehiculo_Partes por el Nombre del parte.
         /// </summary>
@@ -159,14 +156,14 @@ namespace CrtProduccion.entidades
         public bool buscar(String PNParte, bool asignar)
         {
 
-            // var dr = datamanager.ConsultaLeer("select referencia from  Vehiculo_Partes where idParte =" + PNParte.ToString());
-            var dr = datamanager.ConsultaLeer("SELECT vp.idParte, vp.referencia, vp.descripcion, " +
-                "vp.idSuplidor, LD.Nombres as Suplidor," +
-                " vp.precio, vp.existencia  " +
-                " FROM  Vehiculo_Partes AS vp " +
-                " INNER JOIN LibroDirecciones " +
-                " AS LD ON vp.idSuplidor = LD.idLD " +
-                " where vp.idParte = " + PNParte.ToString());
+            
+            var dr = datamanager.ConsultaLeer(" SELECT vp.idParte, vp.referencia, vp.descripcion, " +
+                                              " vp.idSuplidor, LD.Nombres as Suplidor," +
+                                              " vp.precio, vp.existencia  " +
+                                              " FROM  Vehiculo_Partes AS vp " +
+                                              " INNER JOIN LibroDirecciones " +
+                                              " AS LD ON vp.idSuplidor = LD.idLD " +
+                                              " where vp.referencia = '" + PNParte+ "'");
             return leerDatos(dr, asignar);
         }
         /// <summary>
@@ -177,15 +174,15 @@ namespace CrtProduccion.entidades
         /// <returns>true : si lo encuentra y false cuando no lo encuentra.</returns>
         public bool buscar(int idParte, bool asignar)
         {
-            //            var dr = datamanager.ConsultaLeer("selec  idParte ,Referencia from  Vehiculo_Partes where  idParte =" + idParte.ToString());
+            
 
-            var dr = datamanager.ConsultaLeer("SELECT vp.idParte, vp.referencia, vp.descripcion, " +
-                "vp.idSuplidor, LD.Nombres as Suplidor, " +
-                " vp.precio, vp.existencia  " +
-                " FROM  Vehiculo_Partes AS vp " +
-                " INNER JOIN LibroDirecciones " +
-                " AS LD ON vp.idSuplidor = LD.idLD " +
-                " where vp.idParte = " + idParte.ToString());
+            var dr = datamanager.ConsultaLeer(" SELECT vp.idParte, vp.referencia, vp.descripcion, " +
+                                              " vp.idSuplidor, LD.Nombres as Suplidor, " +
+                                              " vp.precio, vp.existencia  " +
+                                              " FROM  Vehiculo_Partes AS vp " +
+                                              " INNER JOIN LibroDirecciones " +
+                                              " AS LD ON vp.idSuplidor = LD.idLD " +
+                                              " where vp.idParte = " + idParte.ToString());
 
             return leerDatos(dr, asignar);
         }
@@ -197,7 +194,10 @@ namespace CrtProduccion.entidades
         {
 
            // var dr = datamanager.ConsultaLeer(" select idParte ,Referencia from Vehiculo_Partes ");
-             var dr = datamanager.ConsultaLeer(" SELECT  top  1 vp.idParte, vp.referencia, vp.descripcion ,vp.idSuplidor, LD.Nombres as suplidor,vp.precio, vp.existencia FROM  Vehiculo_Partes as vp INNER JOIN LibroDirecciones AS LD ON vp.idSuplidor = LD.idLD order by vp.idParte desc ");
+             var dr = datamanager.ConsultaLeer(" SELECT  top  1 vp.idParte, vp.referencia, vp.descripcion, "+
+                                               " vp.idSuplidor, LD.Nombres as suplidor,vp.precio, "+ 
+                                               " vp.existencia FROM  Vehiculo_Partes as vp INNER JOIN "+ 
+                                               " LibroDirecciones AS LD ON vp.idSuplidor = LD.idLD order by vp.idParte desc ");
             return leerDatos(dr, true);
         }
 
@@ -215,9 +215,9 @@ namespace CrtProduccion.entidades
 
                 // Preparamos consulta pra la actualización
                 //SqlCommand cmd = new SqlCommand("update Vehiculo_Partes Set Referencia =@Referencia where idParte = @idPartes");
-                SqlCommand cmd = new SqlCommand("update Vehiculo_Partes" +
-                                                " Set Referencia = @Referencia,descripcion=@descripcion," +
-                                                "idSuplidor=@idSuplidor,precio=@Precio,existencia=@existencia" +
+                SqlCommand cmd = new SqlCommand(" update Vehiculo_Partes" +
+                                                " Set referencia = @referencia,descripcion=@descripcion," +
+                                                " idSuplidor=@idSuplidor,precio=@Precio,existencia=@existencia" +
                                                 " Where idParte = @idParte ", datamanager.ConexionSQL);
 
                 // Ponemos valores a los Parametros incluidos en la consulta de actualización
@@ -244,9 +244,9 @@ namespace CrtProduccion.entidades
         public bool borrarDatos(int pidParte)
         {
             // Intentamos Borrarlo
-            bool lret = datamanager.ConsultaNodata("delete " +
-                                               " from Vehiculo_Partes" +
-                                               " where idParte = " + pidParte.ToString());
+            bool lret = datamanager.ConsultaNodata(" delete " +
+                                                   " from Vehiculo_Partes" +
+                                                   " where idParte = " + pidParte.ToString());
             // Si logramos borrarlo limpiamos 
             if (lret) limpiar();
             // Retornamos true si lo Borra y false de No poder hacerlo.

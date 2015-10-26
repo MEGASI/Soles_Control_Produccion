@@ -14,14 +14,13 @@
 
             <Label x:Name="lblTitulo" Content="Color" HorizontalAlignment="Left" Margin="73,25,0,0" VerticalAlignment="Top" FontSize="18.667"/>
             <Label x:Name="lblCodigo" Content="Código" HorizontalAlignment="Left" Margin="73,76,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="TxtidColor" Height="23" Margin="145,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalAlignment="Left" LostFocus="TxtidColor_LostFocus" KeyDown="TxtidColor_KeyDown" />
+            <TextBox x:Name="TxtidColor" Height="23" Margin="145,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" HorizontalAlignment="Left" LostFocus="TxtidColor_LostFocus" KeyDown="TxtidColor_KeyDown"/>
             <Label x:Name="lblDescripcion" Content="Descripcion" HorizontalAlignment="Left" Margin="72,109,0,0" VerticalAlignment="Top"/>
             <TextBox x:Name="txtDescripcion" Height="23" TextWrapping="Wrap" Width="224" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="145,111,0,165" LostFocus="txtDescripcion_LostFocus" KeyDown="txtDescripcion_KeyDown" />
-            <Label x:Name="lblvalor" Content="ValorRGB" HorizontalAlignment="Left" Margin="73,144,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtvalor" Height="23" TextWrapping="Wrap" Width="224" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="145,144,0,132" PreviewTextInput="txtvalor_PreviewTextInput" />
+            <Label x:Name="lblvalor" Content="ValorRGB" HorizontalAlignment="Left" Margin="73,133,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtvalor" Height="23" TextWrapping="Wrap" Width="90" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="145,136,0,140" PreviewTextInput="txtvalor_PreviewTextInput" />
             <!--  Buscar-->
-            <Button x:Name="btnbuscar" Margin="0,0,135,198" Height="23" HorizontalAlignment="Right" Width="31" 
-                VerticalAlignment="Bottom" ToolTip="Consultar  Departamentos" Content="..." Click="btnbuscar_Click" />
+            <Button x:Name="btnbuscar" Margin="0,85,169,191" HorizontalAlignment="Right" Width="31" ToolTip="Consultar  Departamentos" Content="..." Click="btnbuscar_Click" />
 
 
 

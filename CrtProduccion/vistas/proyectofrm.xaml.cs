@@ -69,6 +69,8 @@ namespace CrtProduccion.vistas
             }
         }
         #endregion
+
+
         #region Constructor y Loader
         //   Constructor del Fromulario
         public Proyectofrm()
@@ -104,6 +106,8 @@ namespace CrtProduccion.vistas
                 modalidad = "CONSULTAR";
         }
         #endregion
+
+
         #region Funcionalidades de los Botones
 
         // Click del boton Nuevo
@@ -207,6 +211,8 @@ namespace CrtProduccion.vistas
         }
         #endregion
 
+
+
         #region Validaciones
 
      private void txtidProyecto_KeyDown(object sender, KeyEventArgs e)
@@ -267,6 +273,9 @@ namespace CrtProduccion.vistas
         }
         #endregion
 
+
+
+
         #region Valores Extraidos de la BD
 
         /// <summary>
@@ -296,6 +305,11 @@ namespace CrtProduccion.vistas
             }
         }
         #endregion
+
+
+        #region Llenando Cb
+
+
         private void CbidProyectoCTRL_Loaded(object sender, RoutedEventArgs e)
         {
             llenaCbIdProyectoCTRL();
@@ -335,3 +349,4 @@ namespace CrtProduccion.vistas
 
     }
 }
+#endregion

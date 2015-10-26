@@ -69,6 +69,10 @@ namespace CrtProduccion.vistas
 
         }
         #endregion
+
+
+
+
         #region Constructor y Loader
         //   Constructor del Fromulario
         public Cargofrm()
@@ -102,6 +106,9 @@ namespace CrtProduccion.vistas
                 modalidad = "CONSULTAR";
         }
         #endregion
+
+
+
         #region Funcionalidades de los Botones
 
         // Click del boton Nuevo
@@ -200,6 +207,8 @@ namespace CrtProduccion.vistas
         }
         #endregion
          
+
+
         #region Validaciones
         private void txtidCargo_KeyDown(object sender, KeyEventArgs e)
         {
@@ -259,6 +268,9 @@ namespace CrtProduccion.vistas
         }
         #endregion
 
+
+
+
         #region Valores Extraidos de la BD
 
         /// <summary>
@@ -277,6 +289,7 @@ namespace CrtProduccion.vistas
                 txtidCargo_LostFocus(sender, e);
             }
         }
-        #endregion    
+        
     }
 }
+#endregion

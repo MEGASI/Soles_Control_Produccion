@@ -21,6 +21,11 @@ namespace CrtProduccion.vistas
     /// </summary>
     public partial class proyectoBRWfrm : Window
     {
+
+        #region Metodos
+
+
+
         public int idProyecto = 0;
         System.Data.DataSet dsGrid = new System.Data.DataSet();
         public proyectoBRWfrm()
@@ -43,6 +48,11 @@ namespace CrtProduccion.vistas
             this.idProyecto = 0;
             this.DialogResult = false;
         }
+        #endregion
+
+
+        #region LlenandoGrid
+
 
         public void llenaGrid()
         {
@@ -93,11 +103,16 @@ namespace CrtProduccion.vistas
                 this.DialogResult = true;
             }
         }
+        #endregion
+
+
+        #region Busqueda Incrementada
+
 
         private void txtCampo_TextChanged(object sender, TextChangedEventArgs e)
         {
             dsGrid.Clear();
-            if (cbFiltro.Text == "idProyecto")
+            if (cbFiltro.Text == "Codigo")
             {
                 SqlDataAdapter adapter = new SqlDataAdapter(" select * from Proyecto  where idProyecto Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
 
@@ -122,3 +137,4 @@ namespace CrtProduccion.vistas
 
     }
 }
+#endregion

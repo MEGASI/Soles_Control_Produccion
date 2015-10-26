@@ -23,5 +23,7 @@ namespace CrtProduccion.vistas
         {
             InitializeComponent();
         }
+
+       
     }
 }

@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace CrtProduccion.vistas
 {
@@ -19,8 +21,9 @@ namespace CrtProduccion.vistas
     /// </summary>
     public partial class LibroDBRWfrm : Window
     {
+        #region Metodos
         public int idLD = 0;
-       
+
         System.Data.DataSet dsGrid = new System.Data.DataSet();
 
         public LibroDBRWfrm()
@@ -44,13 +47,23 @@ namespace CrtProduccion.vistas
             this.DialogResult = false;
         }
 
+        #endregion
+
+
+        #region LlenandoGrid
+
         public void llenaGrid()
         {
 
             dsGrid.Clear();
 
-           dsGrid = datamanager.ConsultaDatos("select * from  LibroDirecciones order by cedulaRNC");
-            //dsGrid = datamanager.ConsultaDatos("select  idLD, cedulaRNC,Nombres,Apellidos,esCliente,esEmpleado,esProveedor,idCargo,idDpto,sueldo,estado from  LibroDirecciones");
+            dsGrid = datamanager.ConsultaDatos(" select ld.idLD, ld.cedulaRNC, ld.Nombres, ld.Apellidos, ld.esCliente," +
+                                               " ld.esEmpleado, ld.esProveedor, ld.idCargo," +
+                                               " C.descripcion as Cargo, ld.idDpto, D.Descripcion as Departamento, " +
+                                               " ld.sueldo,ld.estado, ld.photo from LibroDirecciones ld" +
+                                               " LEFT OUTER JOIN cargo as C on ld.idCargo = C.idCargo" +
+                                               " LEFT OUTER JOIN departamento as D on ld.idDpto = D.idDpto order by ld.idLD");
+
 
             DataG.ItemsSource = dsGrid.Tables[0].DefaultView;
 
@@ -96,21 +109,39 @@ namespace CrtProduccion.vistas
             DataG.Columns[7].CanUserResize = false;
 
             DataG.Columns[8].IsReadOnly = true;
-            DataG.Columns[8].Width = 50;
-            DataG.Columns[8].Header = "idDpto";
+            DataG.Columns[8].Width = 100;
+            DataG.Columns[8].Header = "Cargo";
             DataG.Columns[8].CanUserResize = false;
 
             DataG.Columns[9].IsReadOnly = true;
-            DataG.Columns[9].Width = 200;
-            DataG.Columns[9].Header = "Sueldo";
+            DataG.Columns[9].Width = 50;
+            DataG.Columns[9].Header = "idDpto";
             DataG.Columns[9].CanUserResize = false;
 
             DataG.Columns[10].IsReadOnly = true;
-            DataG.Columns[10].Width = 10;
-            DataG.Columns[10].Header = "Estado";
+            DataG.Columns[10].Width = 100;
+            DataG.Columns[10].Header = "Departamento";
             DataG.Columns[10].CanUserResize = false;
 
-            
+
+            DataG.Columns[11].IsReadOnly = true;
+            DataG.Columns[11].Width = 60;
+            DataG.Columns[11].Header = "Sueldo";
+            DataG.Columns[11].CanUserResize = false;
+
+
+            DataG.Columns[12].IsReadOnly = true;
+            DataG.Columns[12].Width = 90;
+            DataG.Columns[12].Header = "Estado";
+            DataG.Columns[12].CanUserResize = false;
+
+
+
+            //DataG.Columns[12].IsReadOnly = true;
+            //DataG.Columns[12].Width = 10;
+            //DataG.Columns[12].Header = "Estado";
+            //DataG.Columns[12].CanUserResize = false;
+
 
             datamanager.ConexionCerrar();
 
@@ -122,7 +153,7 @@ namespace CrtProduccion.vistas
             object item1 = DataG.SelectedItem;
 
             string siupLB = (DataG.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-            
+
 
 
             if (!Int32.TryParse(siupLB, out idLD))
@@ -139,11 +170,108 @@ namespace CrtProduccion.vistas
 
         private void DataG_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-             if (sender != null)
+            if (sender != null)
             {
                 DataGridRow dgr = sender as DataGridRow;
                 this.DialogResult = true;
             }
         }
+        #endregion
+
+        #region Busqueda Incrementada
+
+        private void txtCampo_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dsGrid.Clear();
+            if (cbFiltro.Text == "CedulaRNC")
+            {
+
+                SqlDataAdapter adapter = new SqlDataAdapter(" select ld.idLD, ld.cedulaRNC, ld.Nombres, ld.Apellidos, ld.esCliente," +
+                                                            " ld.esEmpleado, ld.esProveedor, ld.idCargo," +
+                                                            " C.descripcion as Cargo, ld.idDpto, D.Descripcion as Departamento, " +
+                                                            " ld.sueldo,ld.estado, ld.photo from LibroDirecciones ld" +
+                                                            " LEFT OUTER JOIN cargo as C on ld.idCargo = C.idCargo" +
+                                                            " LEFT OUTER JOIN departamento as D on ld.idDpto = D.idDpto " +
+                                                            " where CedulaRNC Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+
+                //  SqlDataAdapter adapter = new SqlDataAdapter(" select * from cargo  where idCargo Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+
+            }
+            else if (cbFiltro.Text == "Nombres")
+            {
+
+
+                SqlDataAdapter adapter = new SqlDataAdapter(" select ld.idLD, ld.cedulaRNC, ld.Nombres, ld.Apellidos, ld.esCliente," +
+                                                            " ld.esEmpleado, ld.esProveedor, ld.idCargo," +
+                                                            " C.descripcion as Cargo, ld.idDpto, D.Descripcion as Departamento, " +
+                                                            " ld.sueldo,ld.estado, ld.photo from LibroDirecciones ld" +
+                                                            " LEFT OUTER JOIN cargo as C on ld.idCargo = C.idCargo" +
+                                                            " LEFT OUTER JOIN departamento as D on ld.idDpto = D.idDpto " +
+                                                            " where Nombres Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+
+
+            }
+            else if (cbFiltro.Text == "Apellidos")
+            {
+
+
+                SqlDataAdapter adapter = new SqlDataAdapter(" select ld.idLD, ld.cedulaRNC, ld.Nombres, ld.Apellidos, ld.esCliente," +
+                                                            " ld.esEmpleado, ld.esProveedor, ld.idCargo," +
+                                                            " C.descripcion as Cargo, ld.idDpto, D.Descripcion as Departamento, " +
+                                                            " ld.sueldo,ld.estado, ld.photo from LibroDirecciones ld" +
+                                                            " LEFT OUTER JOIN cargo as C on ld.idCargo = C.idCargo" +
+                                                            " LEFT OUTER JOIN departamento as D on ld.idDpto = D.idDpto " +
+                                                            " where Apellidos Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+            }
+
+            else if (cbFiltro.Text == "Departamento")
+            {
+
+
+                SqlDataAdapter adapter = new SqlDataAdapter(" select ld.idLD, ld.cedulaRNC, ld.Nombres, ld.Apellidos, ld.esCliente," +
+                                                            " ld.esEmpleado, ld.esProveedor, ld.idCargo," +
+                                                            " C.descripcion as Cargo, ld.idDpto, D.Descripcion as Departamento, " +
+                                                            " ld.sueldo,ld.estado, ld.photo from LibroDirecciones ld" +
+                                                            " LEFT OUTER JOIN cargo as C on ld.idCargo = C.idCargo" +
+                                                            " LEFT OUTER JOIN departamento as D on ld.idDpto = D.idDpto " +
+                                                            " where D.Descripcion Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+            }
+
+
+            else if (cbFiltro.Text == "Cargo")
+            {
+
+
+                SqlDataAdapter adapter = new SqlDataAdapter(" select ld.idLD, ld.cedulaRNC, ld.Nombres, ld.Apellidos, ld.esCliente," +
+                                                            " ld.esEmpleado, ld.esProveedor, ld.idCargo," +
+                                                            " C.descripcion as Cargo, ld.idDpto, D.Descripcion as Departamento, " +
+                                                            " ld.sueldo,ld.estado, ld.photo from LibroDirecciones ld" +
+                                                            " LEFT OUTER JOIN cargo as C on ld.idCargo = C.idCargo" +
+                                                            " LEFT OUTER JOIN departamento as D on ld.idDpto = D.idDpto " +
+                                                            " where C.descripcion  Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+            }
+        }
+
     }
 }
+#endregion

@@ -62,6 +62,8 @@ namespace CrtProduccion
         }
         #endregion
 
+
+        #region Cargando Permisos
         // Constructor del Formulario
         public segUsuariofrm()
         {
@@ -97,6 +99,8 @@ namespace CrtProduccion
             else
                 modalidad = "CONSULTAR";
         }
+#endregion
+
 
         #region Funcionalidades de los botones
 
@@ -251,10 +255,15 @@ namespace CrtProduccion
 
         #endregion
 
+        #region Valores Extraidos de La BD
+
         /// <summary>
         /// Muestra los valores que se traen desde la base de datos
         /// Asignando el campo equivalente de cada control en el formulario.
         /// </summary>
+        /// 
+
+
         private void mostrar()
         {
 
@@ -271,3 +280,4 @@ namespace CrtProduccion
     }
 }
 
+#endregion

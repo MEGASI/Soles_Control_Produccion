@@ -11,6 +11,7 @@ namespace CrtProduccion
     /// </summary>
     public partial class segGrupoAsignafrm : Window
     {
+        #region Cargando ItemSeg y Permisos
 
         string idSegItem = "HS0103";
 
@@ -29,12 +30,18 @@ namespace CrtProduccion
             InitializeComponent();
 
         }
- 
-       private void btnAceptar_Click(object sender, RoutedEventArgs e)
+        
+
+
+        private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
 
             this.guardar();     
         }
+
+        #endregion
+
+        #region Llenando ComboBox
 
 
         private void cbGrupo_Loaded(object sender, RoutedEventArgs e)
@@ -89,6 +96,11 @@ namespace CrtProduccion
             btnAceptar_png.IsEnabled = false;
         }
 
+        #endregion
+
+
+        #region Metodo Guardar
+
         private void guardar()
         {
 
@@ -142,11 +154,13 @@ namespace CrtProduccion
             
         }
 
-
         private void btnSalir_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
+
+        
+
 
         private void dataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
@@ -155,3 +169,4 @@ namespace CrtProduccion
         }
     }
 }
+#endregion

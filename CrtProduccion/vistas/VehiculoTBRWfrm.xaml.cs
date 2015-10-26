@@ -11,7 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.Data;
+using System.Data.SqlClient;
 namespace CrtProduccion.vistas
 {
     /// <summary>
@@ -19,6 +20,9 @@ namespace CrtProduccion.vistas
     /// </summary>
     public partial class VehiculoTBRWfrm : Window
     {
+
+        #region Metodos 
+
         public Byte idVehiculo = 0;
         System.Data.DataSet dsGrid = new System.Data.DataSet();
         public VehiculoTBRWfrm()
@@ -36,6 +40,11 @@ namespace CrtProduccion.vistas
             this.idVehiculo = 0;
             this.DialogResult = false;
         }
+        #endregion
+
+
+        #region LlenandoGrid
+
 
         public void llenaGrid()
         {
@@ -95,5 +104,37 @@ namespace CrtProduccion.vistas
         {
             llenaGrid();
         }
+
+        #endregion
+
+
+        #region Busqueda Incrementada
+
+
+        private void txtCampo_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dsGrid.Clear();
+            if (cbFiltro.Text == "Codigo")
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter(" select * from Vehiculo_Tipo  where idTipoVehiculo Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+
+            }
+            else if (cbFiltro.Text == "Descripcion")
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter(" select * from Vehiculo_Tipo  where Descripcion Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+
+            }
+
+
+        }
     }
 }
+#endregion

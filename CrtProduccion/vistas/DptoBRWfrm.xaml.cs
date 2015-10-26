@@ -11,7 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.Data;
+using System.Data.SqlClient;
 namespace CrtProduccion.vistas
 {
     /// <summary>
@@ -19,6 +20,8 @@ namespace CrtProduccion.vistas
     /// </summary>
     public partial class DptoBRWfrm : Window
     {
+        #region Metodos
+
         public int idDpto = 0;
         System.Data.DataSet dsGrid = new System.Data.DataSet();
         public DptoBRWfrm()
@@ -26,7 +29,7 @@ namespace CrtProduccion.vistas
             InitializeComponent();
         }
 
-
+        
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -46,6 +49,10 @@ namespace CrtProduccion.vistas
             this.idDpto = 0;
             this.DialogResult = false;
         }
+        #endregion
+
+
+        #region LlenandoGrid
 
         public void llenaGrid()
         {
@@ -70,8 +77,10 @@ namespace CrtProduccion.vistas
             datamanager.ConexionCerrar();
 
         }
+        #endregion
 
 
+        #region DataSelecion
 
         private void DataG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -107,5 +116,36 @@ namespace CrtProduccion.vistas
         {
             this.DialogResult = true;
         }
+
+#endregion
+
+
+        #region  Busqueda incrementada
+
+        private void txtCampo_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dsGrid.Clear();
+            if (cbFiltro.Text == "Codigo")
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter(" select * from Departamento  where idDpto Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+
+            }
+            else if (cbFiltro.Text == "Descripcion")
+            {
+
+                SqlDataAdapter adapter = new SqlDataAdapter(" select * from Departamento  where Descripcion Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+
+            }
+
+        }
     }
 }
+#endregion

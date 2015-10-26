@@ -9,40 +9,40 @@
         
         Title="Vehiculo Partes" Height="476" Width="519" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Canvas>
-        <Grid Height="455" Width="512" Canvas.Left="-1">
+        <Grid Height="455" Width="512" Canvas.Left="-1" Canvas.Top="-3">
             <!--Codigo,Refencia,Descripcion,idSuplidor,Precio,Existencia-->
 
             <Label x:Name="lblTitulo" Content="Vehículos Partes" HorizontalAlignment="Left" Margin="104,62,0,0" VerticalAlignment="Top" FontSize="18.667"/>
-            <Label x:Name="lblidVehiculoT" Content="Código" HorizontalAlignment="Left" Margin="104,113,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="TxtidVehiculo_M" Height="23" Margin="177,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="76" HorizontalAlignment="Left" LostFocus="TxtidVehiculo_M_LostFocus" KeyDown="TxtidVehiculo_M_KeyDown" />
+            <Label x:Name="lblidVehiculoT" Content="Código" HorizontalAlignment="Left" Margin="104,131,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="TxtidVehiculo_M" Height="23" Margin="177,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="76" HorizontalAlignment="Left" LostFocus="TxtidVehiculo_M_LostFocus" KeyDown="TxtidVehiculo_M_KeyDown" />
             <!--  Buscar-->
-            <Button x:Name="btnbuscar" Margin="258,116,0,0" Height="23" HorizontalAlignment="Left" Width="31" 
+            <Button x:Name="btnbuscar" Margin="254,132,0,0" Height="23" HorizontalAlignment="Left" Width="31" 
                     
                 VerticalAlignment="Top" ToolTip="Consultar  Partes" Content="..." Click="btnbuscar_Click" />
 
             <Label x:Name="lblRefencia" Content="Referencia" HorizontalAlignment="Left" Margin="104,155,0,0" VerticalAlignment="Top"/>
             <TextBox x:Name="txtReferencia" Height="23" TextWrapping="Wrap" Width="224" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="177,158,0,0" VerticalAlignment="Top" LostFocus="txtReferencia_LostFocus"  />
-            <Label x:Name="lblDescripcion" Content="Descripción" HorizontalAlignment="Left" Margin="104,193,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtDescripcion" Height="23" TextWrapping="Wrap" Width="224" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="177,196,0,0" VerticalAlignment="Top" />
+            <Label x:Name="lblDescripcion" Content="Descripción" HorizontalAlignment="Left" Margin="104,183,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtDescripcion" Height="23" TextWrapping="Wrap" Width="224" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="177,184,0,0" VerticalAlignment="Top" />
 
             <!--  Buscar-->
-            <Button x:Name="btnSuplidor" Margin="311,235,0,0" Height="23" HorizontalAlignment="Left" Width="31" 
+            <Button x:Name="btnSuplidor" Margin="308,210,0,0" Height="23" HorizontalAlignment="Left" Width="31" 
                     
             VerticalAlignment="Top" ToolTip="Consultar  Suplidor" Content="..." Click="btnSuplidor_Click"/>
-            <Label x:Name="lblidSuplidor" Content="Suplidor" HorizontalAlignment="Left" Margin="104,235,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="lblidSuplidor" Content="Suplidor" HorizontalAlignment="Left" Margin="104,210,0,0" VerticalAlignment="Top"/>
 
 
 
 
 
-            <TextBox x:Name="txtidSuplidor" Height="23" TextWrapping="Wrap" Width="129" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="177,235,0,0" VerticalAlignment="Top" IsReadOnly="True" />
-            <Label x:Name="lblPrecio" Content="Precio" HorizontalAlignment="Left" Margin="105,266,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtPrecio" Height="23" TextWrapping="Wrap" Width="129" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="177,269,0,0" VerticalAlignment="Top" KeyUp="txtPrecio_KeyUp" />
+            <TextBox x:Name="txtidSuplidor" Height="23" TextWrapping="Wrap" Width="129" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="177,210,0,0" VerticalAlignment="Top" IsReadOnly="True" />
+            <Label x:Name="lblPrecio" Content="Precio" HorizontalAlignment="Left" Margin="104,236,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtPrecio" Height="23" TextWrapping="Wrap" Width="129" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="176,237,0,0" VerticalAlignment="Top" KeyUp="txtPrecio_KeyUp" />
 
 
 
-            <Label x:Name="lblexistenci" Content="Existencia" HorizontalAlignment="Left" Margin="107,309,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtexistencia" Height="23" TextWrapping="Wrap" Width="129" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="177,309,0,0" VerticalAlignment="Top" />
+            <Label x:Name="lblexistenci" Content="Existencia" HorizontalAlignment="Left" Margin="106,261,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtexistencia" Height="23" TextWrapping="Wrap" Width="76" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="176,263,0,0" VerticalAlignment="Top" />
 
 
 
@@ -82,7 +82,7 @@
     		ToolTip="Cancelar" 
     		Canvas.Left="93" Canvas.Top="205"
     		IsEnabled="{Binding !Visibility, ElementName=btnNuevo}"
-    		Margin="143,355,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnCancelar_Click" >
+    		Margin="141,313,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnCancelar_Click" >
                 <Image x:Name="Cancelar_png" Height="32" 
     			Source="pack://siteoforigin:,,,/Resources/Cancel.png" Width="32" 
     			ToolTip="Cancelar"
@@ -90,7 +90,7 @@
                 IsEnabled="{Binding IsEnabled, ElementName=btnCancelar}"/>
             </Button>
             <Button x:Name="btnNuevo" 
-    		HorizontalAlignment="Left" Margin="143,355,0,0"
+    		HorizontalAlignment="Left" Margin="141,313,0,0"
     		VerticalAlignment="Top" 
             Width="50"  Height="40"
             RenderTransformOrigin="-0.333,0.727"
@@ -105,7 +105,7 @@
             <Button x:Name="btnGuardar" Height="40" 
     		ToolTip="Guardar" 
     		Canvas.Left="148" Canvas.Top="205"
-    		IsEnabled="{Binding !Visibility, ElementName=btnModificar}" Margin="196,355,0,0" HorizontalAlignment="Left" Width="50" VerticalAlignment="Top" Click="btnGuardar_Click" >
+    		IsEnabled="{Binding !Visibility, ElementName=btnModificar}" Margin="193,313,0,0" HorizontalAlignment="Left" Width="50" VerticalAlignment="Top" Click="btnGuardar_Click" >
                 <Image x:Name="btnGuardar_png" ToolTip="Guardar" 
     			Width="32" Height="32" 
     			Source="pack://siteoforigin:,,,/Resources/Guardar.png"
@@ -115,7 +115,7 @@
             <Button x:Name="btnModificar" 
     		Width="50" 
     		ToolTip="Modificar" 
-    		Canvas.Left="148" Canvas.Top="180" Margin="196,355,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Click="btnModificar_Click" >
+    		Canvas.Left="148" Canvas.Top="180" Margin="193,313,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Click="btnModificar_Click" >
                 <Image x:Name="btnModificar_png" 
                    ToolTip="Modificar" 
     			Width="32"  Height="32"
@@ -127,7 +127,7 @@
             <!-- Borrar -->
             <Button x:Name="btnBorrar" 
                  Width="50" Height="40" 
-                ToolTip="Borrar" Canvas.Left="202" Canvas.Top="205" Margin="249,355,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnBorrar_Click" >
+                ToolTip="Borrar" Canvas.Left="202" Canvas.Top="205" Margin="245,313,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnBorrar_Click" >
                 <Image x:Name="btnBorrar_png"  
                    Source="pack://siteoforigin:,,,/Resources/Borrar.png" 
                    Height="32" Width="32" 
@@ -139,7 +139,7 @@
             <Button x:Name="btnSalir" 
                  Width="50" Height="40" 
                 ToolTip="Salir"
-                Canvas.Left="267" Canvas.Top="205" Margin="334,355,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnSalir_Click" >
+                Canvas.Left="267" Canvas.Top="205" Margin="315,313,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnSalir_Click" >
 
                 <Image x:Name="btnSalir_png" ToolTip="Salir" 
                    Source="pack://siteoforigin:,,,/Resources/Salir.png" 

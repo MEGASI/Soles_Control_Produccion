@@ -16,8 +16,8 @@
     <Grid>
         <!--Campo y Filtro Para busqueda Incrementada-->
         <Label x:Name="lblcbFiltro" Content="Buscar Por" HorizontalAlignment="Left" Margin="42,39,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <TextBox x:Name="txtCampo" HorizontalAlignment="Left" Height="24" Margin="117,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" TextChanged="TextBox_TextChanged"/>
-        <Label x:Name="lblTxtCampo" Content="Campo" HorizontalAlignment="Left" Margin="42,68,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBox x:Name="txtCampo" HorizontalAlignment="Left" Height="24" Margin="117,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" TextChanged="TextBox_TextChanged"/>
+        <Label x:Name="lblTxtCampo" Content="Campo" HorizontalAlignment="Left" Margin="50,59,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <ComboBox x:Name="cbFiltro" HorizontalAlignment="Left" Margin="117,39,0,0" VerticalAlignment="Top" Width="145" >
             <ComboBoxItem Content="Llanta"/>
             <ComboBoxItem Content="FiltroAceite"/>

@@ -150,7 +150,7 @@ namespace CrtProduccion.vistas
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
 
-            try {
+        
                 // Asignar los valores de los conroles del formulario a los campos.
                 registro.fld_Ced_Rnc = txtCedRNC.Text.Trim();
                 registro.fld_Nombres = txtNombre.Text.Trim();
@@ -181,10 +181,8 @@ namespace CrtProduccion.vistas
                 else
                     MessageBox.Show(registro.errormsg, "Error", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            catch { MessageBox.Show(" Solo  Admiten Numeros"); }
-        }
-
-
+            
+      
         // Click Boton Borrar
         private void btnBorrar_Click(object sender, RoutedEventArgs e)
         {
@@ -401,8 +399,7 @@ namespace CrtProduccion.vistas
                 // conversión a entero lanza una excepcion 
                 // la aprovechamos para asignar el valor nulo.
                 col1 = dr["Descripcion"].ToString();
-
-                
+ 
                 try { col2 = (int?)dr["idDpto"]; }
                 catch (Exception) { col2 = null; }
 
@@ -450,8 +447,7 @@ namespace CrtProduccion.vistas
                     registro.fld_estado = selectedValue;
                 }
             }
-
-     
+    
         private void txtsueldo_KeyUp(object sender, KeyEventArgs e)
         {
             //Metodo que reciba el String y el KeyEventsArgs
@@ -463,9 +459,8 @@ namespace CrtProduccion.vistas
             //Metodo que reciba el String y el KeyEventsArgs
             comunes.libreria.SoloLetra(txtNombre.Text, e);
         }
-
-        
+       
     }
-        }   
+}   
 #endregion
 

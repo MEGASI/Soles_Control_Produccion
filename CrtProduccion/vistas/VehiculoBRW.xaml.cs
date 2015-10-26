@@ -21,7 +21,9 @@ namespace CrtProduccion.vistas
     /// </summary>
     public partial class VehiculoBRW : Window
     {
-        
+        #region  Metodos
+
+
         public int idvehiculos = 0;
         System.Data.DataSet dsGrid = new System.Data.DataSet();
         
@@ -45,6 +47,15 @@ namespace CrtProduccion.vistas
             this.idvehiculos = 0;
             this.DialogResult = false;
         }
+
+        #endregion
+
+
+        #region LlenarGrid
+
+
+
+
         public void llenaGrid()
         {
             dsGrid.Clear();
@@ -175,6 +186,8 @@ namespace CrtProduccion.vistas
 
             datamanager.ConexionCerrar();
         }
+        
+
         private void DataG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             object item = DataG.SelectedItem;
@@ -191,6 +204,13 @@ namespace CrtProduccion.vistas
                 btnAceptar_png.IsEnabled = true;
             }
         }
+
+
+        #endregion
+
+
+
+
         #region  Busqueda Incrementada
         private void textBox_TextChanged(object sender, TextChangedEventArgs e)
         {

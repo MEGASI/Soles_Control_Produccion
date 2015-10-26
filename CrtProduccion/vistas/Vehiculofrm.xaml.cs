@@ -329,6 +329,7 @@ namespace CrtProduccion.vistas
 
 
         #region Valores extraidos de la BD
+
         /// <summary>
         /// Muestra los valores que se traen desde la base de datos.
         /// Asignando el campo equivalente de cada control en el formulario.
@@ -393,6 +394,7 @@ namespace CrtProduccion.vistas
 
 
         #region Llenando CB
+
         // ComboBox Estado
         public void llenarcbEstado()
         {
@@ -479,7 +481,6 @@ namespace CrtProduccion.vistas
             
             datamanager.ConexionCerrar();
         }
-
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbidTipoVehiculo.SelectedValue != null)
@@ -511,8 +512,6 @@ namespace CrtProduccion.vistas
             }
             datamanager.ConexionCerrar();
         }
-
-
         private void cbColor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbColor.SelectedValue != null)
@@ -521,14 +520,13 @@ namespace CrtProduccion.vistas
                 registro.fld_idColor = Convert.ToInt32(selectedValue);
             }
         }
-
         private void txtaño_KeyUp(object sender, KeyEventArgs e)
         {
             //Validando Solo numero
             comunes.libreria.soloNumero(txtaño.Text,e);
         }
 
-        
+       
     }
     
 }

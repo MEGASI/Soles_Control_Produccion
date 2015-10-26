@@ -8,10 +8,10 @@ namespace CrtProduccion
     /// </summary>
     public partial class iniciofrm : Window
     {
+        #region Acceso
 
         public iniciofrm()
         {
-
             // Controla el acceso al sistema.
             segLoginfrm dlg = new segLoginfrm();
             dlg.ShowDialog();
@@ -35,15 +35,20 @@ namespace CrtProduccion
             }
 
         }
+        #endregion
+
+        #region Opciones  de Estado
         private void opcionesEstado()
         {
-
 
             mainArchivo.IsEnabled = datamanager.probarPermiso("A", "acceso");
             mainHerramientas.IsEnabled = datamanager.probarPermiso("H", "acceso");
             herCambioClave.IsEnabled = datamanager.probarPermiso("H00", "acceso");
 
-            #region Heramientas de Seguridad
+            #endregion
+
+
+       #region Heramientas de Seguridad
             // Opcion de Herramienta - Seguridad
             herSeguridad.IsEnabled = datamanager.probarPermiso("HS01", "acceso");
                 
@@ -59,10 +64,11 @@ namespace CrtProduccion
             SegCargo.IsEnabled = datamanager.probarPermiso ("AD0103", "acceso");           
             
 
-            #endregion
+            
         }
-
-
+        #endregion
+      
+        
         #region Opciones de Seguridad
         private void segUsuario_Click(object sender, RoutedEventArgs e)
         {
@@ -109,7 +115,8 @@ namespace CrtProduccion
         }
         #endregion
 
-       
+
+        #region FormulariosDiag
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -166,11 +173,6 @@ namespace CrtProduccion
             dlg.ShowDialog();
         }
 
-        private void MenuItem_Click_9(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
         private void MenuItem_Click_10(object sender, RoutedEventArgs e)
         {
             vistas.Actividafrm dlg = new vistas.Actividafrm();
@@ -178,5 +180,5 @@ namespace CrtProduccion
         }
     }
 }
-
+#endregion
 

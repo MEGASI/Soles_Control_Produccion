@@ -21,6 +21,7 @@ namespace CrtProduccion.vistas
     /// </summary>
     public partial class LlantasBRW : Window
     {
+        #region Metodos
         public int idLlantas = 0;
         public string NombreL = "";
         public int idfiltro = 0;
@@ -54,6 +55,11 @@ namespace CrtProduccion.vistas
             this.idfiltro = 0;
             this.DialogResult = false;
         }
+        #endregion
+
+        #region LlenandoGrid
+
+
         public void llenaGrid()
         {
             dsGrid.Clear();
@@ -127,6 +133,10 @@ namespace CrtProduccion.vistas
                 this.seleccion();
             }
         }
+
+        #endregion
+
+
         #region  Busqueda Incrementada
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)

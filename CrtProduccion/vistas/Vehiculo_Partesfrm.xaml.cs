@@ -122,7 +122,7 @@ namespace CrtProduccion.vistas
             registro.limpiar();
             mostrar();
             modalidad = "CREAR";
-            txtReferencia.Focus();
+            TxtidVehiculo_M.Focus();
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -130,7 +130,7 @@ namespace CrtProduccion.vistas
             registro.buscar(registro.fld_idParte, true);
             mostrar();
             modalidad = "CONSULTAR";
-            txtReferencia.Focus();
+            TxtidVehiculo_M.Focus();
         }
 
         private void btnModificar_Click(object sender, RoutedEventArgs e)
@@ -143,7 +143,7 @@ namespace CrtProduccion.vistas
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             // Asignar los valores de los conroles del formulario a los campos.
-            registro.fld_Referencia = txtexistencia.Text;
+            registro.fld_Referencia = txtReferencia.Text;
             registro.fld_Descripcion = txtDescripcion.Text;
             registro.fld_suplidor = txtidSuplidor.Text;
             registro.fld_Precio = Convert.ToDouble(txtPrecio.Text);

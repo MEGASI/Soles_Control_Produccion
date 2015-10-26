@@ -15,32 +15,32 @@ Title="Partidas" Height="371" Width="499" WindowStyle="ToolWindow" WindowStartup
             <!--Codigo y Descripcion-->
 
             <Label x:Name="lblTitulo" Content="Partidas" HorizontalAlignment="Left" Margin="73,25,0,0" VerticalAlignment="Top" FontSize="18.667"/>
-            <Label x:Name="lblCodigo" Content="Código" HorizontalAlignment="Left" Margin="73,76,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="lblCodigo" Content="Código" HorizontalAlignment="Left" Margin="79,99,0,0" VerticalAlignment="Top"/>
 
-            <TextBox x:Name="TxtidCodigo" Height="23" Margin="154,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="66" HorizontalAlignment="Left" />
+            <TextBox x:Name="TxtidCodigo" Height="23" Margin="153,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="66" HorizontalAlignment="Left" />
 
             <!--Tipo Partida-->
-            <Label x:Name="lblidPartida" Content="Tipo Partida" HorizontalAlignment="Left" Margin="73,107,0,0" VerticalAlignment="Top"/>
-            <ComboBox x:Name="cbTipoPartida" HorizontalAlignment="Left" Margin="152,114,0,0" VerticalAlignment="Top" Width="171"/>
+            <Label x:Name="lblidPartida" Content="Tipo Partida" HorizontalAlignment="Left" Margin="78,122,0,0" VerticalAlignment="Top"/>
+            <ComboBox x:Name="cbTipoPartida" HorizontalAlignment="Left" Margin="152,126,0,0" VerticalAlignment="Top" Width="171"/>
 
 
 
 
             <!---Descripcion-->
-            <Label x:Name="lblDescripcion" Content="Descripcion" HorizontalAlignment="Left" Margin="73,138,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtDescripcion" TextWrapping="Wrap" Width="170" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="154,141,0,0" Height="23" VerticalAlignment="Top"/>
+            <Label x:Name="lblDescripcion" Content="Descripcion" HorizontalAlignment="Left" Margin="78,147,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtDescripcion" TextWrapping="Wrap" Width="170" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="154,149,0,0" Height="23" VerticalAlignment="Top"/>
 
             <!--Medida-->
-            <Label x:Name="lblidmedida" Content="idMedida" HorizontalAlignment="Left" Margin="73,169,0,0" VerticalAlignment="Top"/>
-            <ComboBox x:Name="cbMedida" HorizontalAlignment="Left" Margin="152,173,0,0" VerticalAlignment="Top" Width="171"/>
+            <Label x:Name="lblidmedida" Content="Medida" HorizontalAlignment="Left" Margin="78,172,0,0" VerticalAlignment="Top"/>
+            <ComboBox x:Name="cbMedida" HorizontalAlignment="Left" Margin="153,173,0,0" VerticalAlignment="Top" Width="171"/>
 
             <!--Precio-->
-            <Label x:Name="lblPrecio" Content="Precio" HorizontalAlignment="Left" Margin="79,200,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtPrecio" TextWrapping="Wrap" Width="170" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="154,203,0,0" Height="23" VerticalAlignment="Top"/>
+            <Label x:Name="lblPrecio" Content="Precio" HorizontalAlignment="Left" Margin="81,196,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtPrecio" TextWrapping="Wrap" Width="170" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="154,196,0,0" Height="23" VerticalAlignment="Top"/>
 
 
             <!--  Buscar-->
-            <Button x:Name="btnbuscar" Margin="225,79,0,0" Height="23" HorizontalAlignment="Left" Width="31" 
+            <Button x:Name="btnbuscar" Margin="220,102,0,0" Height="23" HorizontalAlignment="Left" Width="31" 
                 VerticalAlignment="Top" ToolTip="Consultar  Departamentos" Content="..." />
 
 

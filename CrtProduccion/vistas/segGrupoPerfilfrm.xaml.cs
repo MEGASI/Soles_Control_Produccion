@@ -11,6 +11,7 @@ namespace CrtProduccion
     /// </summary>
     public partial class segGrupoPerfilfrm : Window
     {
+        #region Cargando ItemSeg 
         string idSegItem = "HS0104";
 
         bool permiteModificar = false;
@@ -45,8 +46,11 @@ namespace CrtProduccion
         {
             this.guardarPG();
         }
-        
 
+        #endregion
+
+
+        #region  Select CB
         private void CbGrupo_Loaded(object sender, RoutedEventArgs e)
         {
            SqlDataReader reader =
@@ -60,8 +64,9 @@ namespace CrtProduccion
             CbGrupo.SelectedIndex = 0;
             datamanager.ConexionCerrar();
         }
+        #endregion
 
-
+        #region LlenandoGrid
 
         public void llenaGridPG()
         {
@@ -100,6 +105,10 @@ namespace CrtProduccion
                 btnAceptar_png.IsEnabled = false;
             }
         }
+        #endregion
+
+        #region MetodoGuardar
+
         private void guardarPG()
         {
             try
@@ -174,3 +183,4 @@ namespace CrtProduccion
        
     }
 }
+#endregion

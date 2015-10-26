@@ -67,9 +67,9 @@ namespace CrtProduccion.entidades
             fld_Nombres = "";
             fld_Apellidos = "";
             fld_estado = "";
-            fld_escliente = false;
-            fld_esEmpleado = false;
-            fld_esProovedor = false;
+            fld_escliente = true;
+            fld_esEmpleado = true;
+            fld_esProovedor = true;
             fld_sueldo = 0; 
         }
         /// <summary>
@@ -105,17 +105,21 @@ namespace CrtProduccion.entidades
             if (datamanager.ConexionAbrir())
             {
                 // Preparamos consulta pra la actualización
-                SqlCommand cmd = new SqlCommand("Insert into LibroDirecciones(cedulaRNC, Nombres,Apellidos,esCliente,esEmpleado,esProveedor,idCargo,idDpto,sueldo)" +
-                                                 " output INSERTED.idLD" +
-                                                 " Values(@cedulaRNC,@Nombres,@Apellidos,@esCliente,@esEmpleado,@esProveedor,@idCargo,@idDpto,@sueldo)", datamanager.ConexionSQL);
+              SqlCommand cmd = new SqlCommand(" Insert into LibroDirecciones(cedulaRNC, Nombres,"+
+                                              " Apellidos,esCliente,esEmpleado,esProveedor,"+ 
+                                              " idCargo,idDpto,sueldo)" +
+                                              " output INSERTED.idLD" +
+                                              " Values(@cedulaRNC,@Nombres,@Apellidos,"+
+                                              " @esCliente,@esEmpleado,@esProveedor,"+
+                                              " @idCargo,@idDpto,@sueldo)", datamanager.ConexionSQL);
 
                 // Ponemos valores a los Parametros incluidos en la consulta de actualización
                 cmd.Parameters.AddWithValue("@cedulaRNC", fld_Ced_Rnc);
                 cmd.Parameters.AddWithValue("@Nombres",fld_Nombres);
                 cmd.Parameters.AddWithValue("@Apellidos", fld_Apellidos);
-                cmd.Parameters.AddWithValue("@esCliente", fld_escliente);
-                cmd.Parameters.AddWithValue("@esEmpleado", fld_esEmpleado);
-                cmd.Parameters.AddWithValue("@esProveedor", fld_esProovedor);
+                cmd.Parameters.AddWithValue("@esCliente",( fld_escliente)).Value = false;
+                cmd.Parameters.AddWithValue("@esEmpleado", fld_esEmpleado).Value = false;
+                cmd.Parameters.AddWithValue("@esProveedor",fld_esProovedor).Value =false;
                 cmd.Parameters.AddWithValue("@idCargo", Convert.ToInt32(fld_idCargo));
                 cmd.Parameters.AddWithValue("@idDpto", Convert.ToInt32(fld_idDpto));
                 cmd.Parameters.AddWithValue("@sueldo", Convert.ToDouble(fld_sueldo));
@@ -187,10 +191,10 @@ namespace CrtProduccion.entidades
         /// <returns>true : si lo encuentra y false cuando no lo encuentra.</returns>
         public bool buscar(String pcedulaRNC, bool asignar)
         {
-            var dr = datamanager.ConsultaLeer("select idLD, cedulaRNC,Nombres,Apellidos,"+
-                "esCliente,esEmpleado,esProveedor,idCargo,idDpto,sueldo,estado,photo" +
-                " from LibroDirecciones" +
-                " where cedulaRNC = '" + pcedulaRNC + "'");
+            var dr = datamanager.ConsultaLeer(" select idLD, cedulaRNC,Nombres,Apellidos,"+
+                                              " esCliente,esEmpleado,esProveedor,idCargo,idDpto,sueldo,estado,photo" +
+                                              " from LibroDirecciones" +
+                                              " where cedulaRNC = '" + pcedulaRNC + "'");
             return leerDatos(dr, asignar);
         }
         /// <summary>
@@ -201,11 +205,11 @@ namespace CrtProduccion.entidades
         /// <returns>true : si lo encuentra y false cuando no lo encuentra.</returns>
         public bool buscar(int idLD, bool asignar)
         {
-            var dr = datamanager.ConsultaLeer("select idLD, cedulaRNC,Nombres,Apellidos,"+
-                "esCliente,esEmpleado,esProveedor,idCargo,"+
-                "idDpto,sueldo,estado,photo" +
-                 " from LibroDirecciones" +
-                    " where idLD = " + idLD.ToString());
+            var dr = datamanager.ConsultaLeer(" select idLD, cedulaRNC,Nombres,Apellidos,"+
+                                              " esCliente,esEmpleado,esProveedor,idCargo,"+
+                                              " idDpto,sueldo,estado,photo" +
+                                              " from LibroDirecciones" +
+                                              " where idLD = " + idLD.ToString());
             return leerDatos(dr, asignar);
         }
 
@@ -215,10 +219,12 @@ namespace CrtProduccion.entidades
         /// <returns>true cuando existe por lo menos un registro en la tabla segGrupo</returns>
         public bool buscarUltimo()
         {
-            var dr = datamanager.ConsultaLeer("select top 1 idLD, cedulaRNC,Nombres,Apellidos,esCliente,"+
-                "esEmpleado,EsProveedor,idCargo,idDpto,sueldo,estado" +
-                                               " from LibroDirecciones" +
-                                               " order by idLD desc ");
+            var dr = datamanager.ConsultaLeer(" Select top 1 idLD, cedulaRNC,Nombres,"+
+                                              " Apellidos,esCliente,"+
+                                              " esEmpleado,EsProveedor,idCargo,idDpto,"+
+                                              " sueldo,estado" +
+                                              " from LibroDirecciones" +
+                                              " order by idLD desc ");
             return leerDatos(dr, true);
         }
 
@@ -235,13 +241,13 @@ namespace CrtProduccion.entidades
             {
 
                 // Preparamos consulta pra la actualización
-                SqlCommand cmd = new SqlCommand("update LibroDirecciones" +
-                                                  " Set cedulaRNC = @cedulaRNC," +
-                                                  "Nombres = @Nombres,Apellidos=@Apellidos,"+
-                                                  "esCliente=@esCliente,esEmpleado=@esEmpleado,"+
-                                                  "esProveedor=@esProveedor,idCargo=@idCargo,"+
-                                                  "idDpto=@idDpto,sueldo=@sueldo,estado=@estado" +
-                                                  " Where idLD = @idLD ", datamanager.ConexionSQL);
+                SqlCommand cmd = new SqlCommand(" update LibroDirecciones" +
+                                                " Set cedulaRNC = @cedulaRNC," +
+                                                " Nombres = @Nombres,Apellidos=@Apellidos,"+
+                                                " esCliente=@esCliente,esEmpleado=@esEmpleado,"+
+                                                " esProveedor=@esProveedor,idCargo=@idCargo,"+
+                                                " idDpto=@idDpto,sueldo=@sueldo,estado=@estado" +
+                                                " Where idLD = @idLD ", datamanager.ConexionSQL);
 
                 // Ponemos valores a los Parametros incluidos en la consulta de actualización
                 cmd.Parameters.AddWithValue("@idLD", fld_idLD);
@@ -265,8 +271,6 @@ namespace CrtProduccion.entidades
                     cmd.Parameters.AddWithValue("@idDpto", DBNull.Value);
 
 
-
-
                 // Ejecutamos consulta de Actualización
                 lRet = cmd.ExecuteNonQuery();
 
@@ -284,8 +288,8 @@ namespace CrtProduccion.entidades
         public bool borrarDatos(int pidLD)
         {
             // Intentamos Borrarlo
-            bool lret = datamanager.ConsultaNodata("delete from libroDirecciones" +
-                                               " where idLD = " + pidLD.ToString());
+            bool lret = datamanager.ConsultaNodata(" delete from libroDirecciones" +
+                                                   " where idLD = " + pidLD.ToString());
 
             // Si logramos borrarlo limpiamos 
             if (lret) limpiar();

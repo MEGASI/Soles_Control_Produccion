@@ -22,6 +22,8 @@ namespace CrtProduccion
     public partial class segGrupoBRWfrm : Window
     {
 
+        #region Metodos
+
         public int idGrupo = 0;
         System.Data.DataSet dsGrid = new System.Data.DataSet();
 
@@ -46,6 +48,11 @@ namespace CrtProduccion
             this.idGrupo = 0;
             this.DialogResult = false;
         }
+
+
+        #endregion
+
+        #region LlenandoGrid
 
         public void llenaGrid()
         {
@@ -98,6 +105,33 @@ namespace CrtProduccion
                 this.DialogResult = true;
             }
         }
+        #endregion
 
+
+        #region Busqueda Incrementada
+
+        private void txtCampo_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dsGrid.Clear();
+            if (cbFiltro.Text == "Codigo")
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter(" select * from segGrupo  where idGrupo Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+
+            }
+            else if (cbFiltro.Text == "NombreG")
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter(" select * from segGrupo  where Nombre Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+
+            }
+        }
     }
 }
+#endregion

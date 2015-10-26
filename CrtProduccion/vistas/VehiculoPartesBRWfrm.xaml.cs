@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace CrtProduccion.vistas
 {
@@ -19,6 +21,8 @@ namespace CrtProduccion.vistas
     /// </summary>
     public partial class VehiculoPartesBRWfrm : Window
     {
+
+        #region Metodos
         public int idParte = 0;
         System.Data.DataSet dsGrid = new System.Data.DataSet();
 
@@ -43,7 +47,9 @@ namespace CrtProduccion.vistas
             this.DialogResult = false;
         }
 
+        #endregion
 
+        #region llenandoGrid
         public void llenaGrid()
         {
 
@@ -89,9 +95,14 @@ namespace CrtProduccion.vistas
             DataG.Columns[6].Width = 50;
             DataG.Columns[6].Header = "Existencia";
             DataG.Columns[6].CanUserResize = false;
-        
+
             datamanager.ConexionCerrar();
         }
+
+        #endregion
+
+        #region  DataSelecion
+
         private void DataG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             object item = DataG.SelectedItem;
@@ -117,5 +128,65 @@ namespace CrtProduccion.vistas
                 this.DialogResult = true;
             }
         }
+
+
+        #endregion
+
+        #region  Busqueda incrementada
+        private void txtCampo_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dsGrid.Clear();
+            if (cbFiltro.Text == "Codigo")
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter(" SELECT   vp.idParte, vp.referencia, vp.descripcion, " +
+                                                            " vp.idSuplidor, LD.Nombres as suplidor, vp.precio, vp.existencia" +
+                                                            " FROM  Vehiculo_Partes AS vp INNER JOIN LibroDirecciones AS LD ON vp.idSuplidor = LD.idLD  " +
+                                                            " where vp.idParte Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+
+            }
+            else if (cbFiltro.Text == "Referencia")
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter(" SELECT   vp.idParte, vp.referencia, vp.descripcion, " +
+                                                            " vp.idSuplidor, LD.Nombres as suplidor, vp.precio, vp.existencia" +
+                                                            " FROM  Vehiculo_Partes AS vp INNER JOIN LibroDirecciones AS LD ON vp.idSuplidor = LD.idLD " +
+                                                            " where vp.referencia Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+
+            }
+            else if (cbFiltro.Text == "Descripcion")
+            {
+
+
+                SqlDataAdapter adapter = new SqlDataAdapter(" SELECT   vp.idParte, vp.referencia, vp.descripcion, " +
+                                                            " vp.idSuplidor, LD.Nombres as suplidor, vp.precio, vp.existencia" +
+                                                            " FROM  Vehiculo_Partes AS vp INNER JOIN LibroDirecciones AS LD ON vp.idSuplidor = LD.idLD " +
+                                                            " where vp.descripcion Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+
+
+            }
+            else if (cbFiltro.Text == "Suplidor")
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter(" SELECT   vp.idParte, vp.referencia, vp.descripcion, " +
+                                                            " vp.idSuplidor, LD.Nombres as suplidor, vp.precio, vp.existencia" +
+                                                            " FROM  Vehiculo_Partes AS vp INNER JOIN LibroDirecciones AS LD ON vp.idSuplidor = LD.idLD " +
+                                                            " where LD.Nombres Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                DataG.ItemsSource = dt.DefaultView;
+
+            }
+
+        }
     }
 }
+#endregion

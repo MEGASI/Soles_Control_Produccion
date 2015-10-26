@@ -13,7 +13,7 @@
             <Button x:Name="btnCancelar" 
         		Width="50" Height="40" 
         		ToolTip="Cancelar" 
-        		Canvas.Left="117" Canvas.Top="359"
+        		Canvas.Left="120" Canvas.Top="359"
         		IsEnabled="{Binding !Visibility, ElementName=btnNuevo}" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnCancelar_Click" >
                 <Image x:Name="Cancelar_png" Height="32" 
         			Source="pack://siteoforigin:,,,/Resources/Cancel.png" Width="32" 
@@ -22,46 +22,46 @@
         			IsEnabled="{Binding !IsEnabled, ElementName=btnCancelar}"/>
             </Button>
             <!--Codigo -->
-            <Label x:Name="lblCodigo" Content="Codigo" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="78" Canvas.Top="53"/>
-            <TextBox x:Name="txtidLD" Height="23" Canvas.Left="149" TextWrapping="Wrap" Canvas.Top="56" Width="73" KeyDown="txtidLD_KeyDown" LostFocus="txtidLD_LostFocus" />
+            <Label x:Name="lblCodigo" Content="Codigo" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="78" Canvas.Top="100"/>
+            <TextBox x:Name="txtidLD" Height="23" Canvas.Left="149" TextWrapping="Wrap" Canvas.Top="99" Width="73" KeyDown="txtidLD_KeyDown" LostFocus="txtidLD_LostFocus" />
             <!--Buscar-->
             <Button x:Name="btnbuscar" Grid.Column="1" Height="23" HorizontalAlignment="Right" Width="31" 
-                VerticalAlignment="Bottom" ToolTip="Consultar Libro Direcciones" Content="..." Canvas.Left="227" Canvas.Top="56" Click="btnbuscar_Click" />
+                VerticalAlignment="Bottom" ToolTip="Consultar Libro Direcciones" Content="..." Canvas.Left="223" Canvas.Top="99" Click="btnbuscar_Click" />
 
 
             <!---Ced O RNC-->
-            <Label x:Name="lblCedRNC" Content="Ced  o RNC" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="78" Canvas.Top="86"/>
-            <TextBox x:Name="txtCedRNC" Height="23" Canvas.Left="149" TextWrapping="Wrap" Canvas.Top="90" Width="157" LostFocus="txtCedRNC_LostFocus" KeyDown="txtCedRNC_KeyDown"/>
+            <Label x:Name="lblCedRNC" Content="Ced  o RNC" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="78" Canvas.Top="125"/>
+            <TextBox x:Name="txtCedRNC" Height="23" Canvas.Left="149" TextWrapping="Wrap" Canvas.Top="123" Width="157" LostFocus="txtCedRNC_LostFocus" KeyDown="txtCedRNC_KeyDown"/>
 
             <!---Nombres-->
-            <Label x:Name="lblNombre" Content="Nombres" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="78" Canvas.Top="122"/>
-            <TextBox x:Name="txtNombre" Height="23" Canvas.Left="149" TextWrapping="Wrap" Canvas.Top="125" Width="157"/>
+            <Label x:Name="lblNombre" Content="Nombres" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="78" Canvas.Top="148"/>
+            <TextBox x:Name="txtNombre" Height="23" Canvas.Left="149" TextWrapping="Wrap" Canvas.Top="147" Width="157"/>
 
             <!---Apellidos-->
-            <Label x:Name="lblApellido" Content="Apellidos" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="78" Canvas.Top="162"/>
-            <TextBox x:Name="txtApellido" Height="23" Canvas.Left="149" TextWrapping="Wrap" Canvas.Top="162" Width="157"/>
+            <Label x:Name="lblApellido" Content="Apellidos" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="78" Canvas.Top="174"/>
+            <TextBox x:Name="txtApellido" Height="23" Canvas.Left="149" TextWrapping="Wrap" Canvas.Top="171" Width="157"/>
 
             <!---CheckBoxs-->
-            <CheckBox x:Name="checkCliente" Content="es Cliente" Canvas.Left="87" Canvas.Top="229" />
-            <CheckBox x:Name="checkEmpleado" Content="es Empleado" Canvas.Left="160" Canvas.Top="229"/>
-            <CheckBox x:Name="checkProveedor" Content="esProveedor" Canvas.Left="250" Canvas.Top="229" />
+            <CheckBox x:Name="checkCliente" Content="es Cliente" Canvas.Left="307" Canvas.Top="125" />
+            <CheckBox x:Name="checkEmpleado" Content="es Empleado" Canvas.Left="307" Canvas.Top="141"/>
+            <CheckBox x:Name="checkProveedor" Content="esProveedor" Canvas.Left="307" Canvas.Top="158" />
 
 
 
             <!--Combobox-->
-            <Label x:Name="lblidCargo" Content="Cargo" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="96" Canvas.Top="255"/>
-            <ComboBox x:Name="cbidCargo" Canvas.Left="149" Canvas.Top="258" Width="157" SelectionChanged="cbidCargo_SelectionChanged" />
-            <Label x:Name="lblidDpto" Content="Dpto" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="99" Canvas.Top="281"/>
-            <ComboBox x:Name="cbidDpto" Canvas.Left="149" Canvas.Top="285" Width="157"  SelectionChanged="cbidDpto_SelectionChanged"/>
+            <Label x:Name="lblidCargo" Content="Cargo" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="84" Canvas.Top="224"/>
+            <ComboBox x:Name="cbidCargo" Canvas.Left="149" Canvas.Top="221" Width="157" SelectionChanged="cbidCargo_SelectionChanged" />
+            <Label x:Name="lblidDpto" Content="Dpto" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="87" Canvas.Top="244"/>
+            <ComboBox x:Name="cbidDpto" Canvas.Left="149" Canvas.Top="244" Width="157"  SelectionChanged="cbidDpto_SelectionChanged"/>
 
 
             <!---sueldo-->
-            <Label x:Name="lblsueldo" Content="sueldo" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="87" Canvas.Top="193"/>
+            <Label x:Name="lblsueldo" Content="Sueldo" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="82" Canvas.Top="193"/>
             <TextBox x:Name="txtsueldo" Height="23" Canvas.Left="149" TextWrapping="Wrap" Canvas.Top="196" Width="73" KeyUp="txtsueldo_KeyUp" />
 
             <!--Combobox-->
-            <Label x:Name="lblestado" Content="Estado" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="99" Canvas.Top="308"/>
-            <ComboBox x:Name="cbestado" Canvas.Left="149" Canvas.Top="312" Width="157"  SelectionChanged="cbestado_SelectionChanged" />
+            <Label x:Name="lblestado" Content="Estado" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="86" Canvas.Top="267"/>
+            <ComboBox x:Name="cbestado" Canvas.Left="149" Canvas.Top="267" Width="157"  SelectionChanged="cbestado_SelectionChanged" />
 
             <Button x:Name="btnNuevo" 
     		HorizontalAlignment="Left"
@@ -69,7 +69,7 @@
             Width="50"  Height="40"
             RenderTransformOrigin="0.48,0.5"
             VerticalContentAlignment="Center" 
-    		FontFamily="Verdana" ToolTip="Nuevo"  Canvas.Left="117" Canvas.Top="359" Click="btnNuevo_Click">
+    		FontFamily="Verdana" ToolTip="Nuevo"  Canvas.Left="120" Canvas.Top="359" Click="btnNuevo_Click">
                 <Image x:Name="btnNuevo_png" Height="32" 
     			Source="../Resources/Create.png" Stretch="Fill" Width="32" ToolTip="Nuevo"
                 Style="{StaticResource ImageEnabled}"
@@ -123,7 +123,7 @@
             <Button x:Name="btnSalir" 
                  Width="50" Height="40" 
                 ToolTip="Salir"
-                Canvas.Left="303" Canvas.Top="359" HorizontalAlignment="Right" Click="btnSalir_Click_1" >
+                Canvas.Left="298" Canvas.Top="359" HorizontalAlignment="Right" Click="btnSalir_Click_1" >
                 <Image x:Name="btnSalir_png" ToolTip="Salir" 
                    Source="pack://siteoforigin:,,,/Resources/Salir.png" 
                    Height="32" Width="32" 
