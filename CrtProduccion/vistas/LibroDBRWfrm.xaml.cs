@@ -137,10 +137,7 @@ namespace CrtProduccion.vistas
 
 
 
-            //DataG.Columns[12].IsReadOnly = true;
-            //DataG.Columns[12].Width = 10;
-            //DataG.Columns[12].Header = "Estado";
-            //DataG.Columns[12].CanUserResize = false;
+         
 
 
             datamanager.ConexionCerrar();
@@ -177,6 +174,8 @@ namespace CrtProduccion.vistas
             }
         }
         #endregion
+
+
 
         #region Busqueda Incrementada
 
@@ -272,6 +271,7 @@ namespace CrtProduccion.vistas
             }
         }
 
+       
     }
 }
 #endregion

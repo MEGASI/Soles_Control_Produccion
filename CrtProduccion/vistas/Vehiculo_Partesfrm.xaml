@@ -9,7 +9,7 @@
         
         Title="Vehiculo Partes" Height="476" Width="519" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Canvas>
-        <Grid Height="455" Width="512" Canvas.Left="-1" Canvas.Top="-3">
+        <Grid Height="455" Width="512" Canvas.Left="-2" Canvas.Top="-3">
             <!--Codigo,Refencia,Descripcion,idSuplidor,Precio,Existencia-->
 
             <Label x:Name="lblTitulo" Content="Vehículos Partes" HorizontalAlignment="Left" Margin="104,62,0,0" VerticalAlignment="Top" FontSize="18.667"/>
@@ -26,7 +26,7 @@
             <TextBox x:Name="txtDescripcion" Height="23" TextWrapping="Wrap" Width="224" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="177,184,0,0" VerticalAlignment="Top" />
 
             <!--  Buscar-->
-            <Button x:Name="btnSuplidor" Margin="308,210,0,0" Height="23" HorizontalAlignment="Left" Width="31" 
+            <Button x:Name="btnSuplidor" Margin="307,210,0,0" Height="23" HorizontalAlignment="Left" Width="31" 
                     
             VerticalAlignment="Top" ToolTip="Consultar  Suplidor" Content="..." Click="btnSuplidor_Click"/>
             <Label x:Name="lblidSuplidor" Content="Suplidor" HorizontalAlignment="Left" Margin="104,210,0,0" VerticalAlignment="Top"/>

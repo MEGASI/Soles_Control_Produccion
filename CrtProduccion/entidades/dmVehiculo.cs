@@ -33,7 +33,11 @@ namespace CrtProduccion.entidades
 
 
         #endregion
+
+
         #region Constructores
+
+
         public dmVehiculo()
         {
             limpiar();
@@ -58,7 +62,7 @@ namespace CrtProduccion.entidades
             DateTime pfld_ulMant,
             Double pfld_kilometraje
             )
-        #endregion
+        
 
         {
             fld_idVehiculo = pfld_idVehiculo;
@@ -82,11 +86,18 @@ namespace CrtProduccion.entidades
 
 
         }
-  #region Métodos y funciones
 
-            /// <summary>
-            /// <para>Inicializa cada una de las propiedades de la clase.</para>
-            /// </summary>
+
+
+#endregion
+
+
+
+        #region Métodos y funciones
+
+        /// <summary>
+        /// <para>Inicializa cada una de las propiedades de la clase.</para>
+        /// </summary>
         public void limpiar()
         {
             fld_idVehiculo = 0;
@@ -102,6 +113,7 @@ namespace CrtProduccion.entidades
             fld_idEstado = "";
             fld_idTipoVehiculo = 0;
             fld_idColor = 0;
+            fld_Kilometraje = 0;
 
         }
 
@@ -227,10 +239,7 @@ namespace CrtProduccion.entidades
                     catch (Exception) { fld_idTipoVehiculo = 0; }
                     try{ fld_idMarca = (int)dr["idMarca"];}
                     catch (Exception){fld_idMarca = 0;}
-
-
                 }
-
             }
             else
             {
@@ -264,10 +273,7 @@ namespace CrtProduccion.entidades
             
          
             
-            //var dr = datamanager.ConsultaLeer("select idVehiculo, Ficha,Descripcion,idMarca,Modelo,"+
-            //                                  " idTipoVehiculo,Placa,ano,chasis,idColor,idLlantas,"+
-            //                                  " idFiltAceite,idEstado,seguroVence,ultMantenim,kilometraje,Photo" +
-            //                                  " from Vehiculo where Descripcion = '" + pNombre + "'");
+            
             return leerDatos(dr, asignar);
         }
         /// <summary>
@@ -292,10 +298,7 @@ namespace CrtProduccion.entidades
                                             " LEFT OUTER JOIN color AS vc ON v.idColor =vc.idColor" +
                                             " Where v.idVehiculo =" + idVehiculo.ToString());
 
-            //var dr = datamanager.ConsultaLeer("select idVehiculo, Ficha,Descripcion,idMarca,Modelo,"+
-            //                                 " idTipoVehiculo,Placa,ano,chasis,idColor,idLlantas,"+
-            //                                 " idFiltAceite,idEstado,seguroVence,ultMantenim,kilometraje" +
-            //                                 " from Vehiculo where idVehiculo = " + idVehiculo.ToString());
+            
             return leerDatos(dr, asignar);
         }
 
@@ -321,28 +324,6 @@ namespace CrtProduccion.entidades
                                             " LEFT OUTER JOIN color AS vc ON v.idColor =vc.idColor" +
                                             " Order by v.idVehiculo desc "); 
 
-
-
-
-
-
-
-
-
-
-            /*var dr = datamanager.ConsultaLeer("select  top 1 v.idVehiculo,v.Ficha," +
-                   " v.descripcion, v.idMarca, v.modelo, v.idTipoVehiculo," +
-                   " v.placa, v.ano, v.chasis, v.idColor, v.idllantas," +
-                   " v.idFiltAceite, v.idEstado," +
-                   " v.seguroVence, v.ultMantenim, v.kilometraje, vp.Descripcion as DescripcionLlanta   from Vehiculo v" +
-                    " left join Vehiculo_Partes vp on v.idllantas = vp.idParte  order by idvehiculo desc ");
-
-
-    */
-            //var dr = datamanager.ConsultaLeer("select top 1 idVehiculo,Ficha, Descripcion,idMarca,Modelo," +
-            //                                 " idTipoVehiculo,Placa,ano,chasis,idColor,idLlantas,idFiltAceite," +
-            //                                 " idEstado,seguroVence,ultMantenim,kilometraje" +
-            //                                 " from Vehiculo order by idVehiculo desc ");
             return leerDatos(dr, true);
         }
 
@@ -386,11 +367,6 @@ namespace CrtProduccion.entidades
                 cmd.Parameters.AddWithValue("@kilometraje", fld_Kilometraje);
                 // cmd.Parameters.AddWithValue("@photo", Convert.ToByte(fld_Photo));
 
-
-                
-
-
-
                 // Ejecutamos consulta de Actualización
                 lRet = cmd.ExecuteNonQuery();
 
@@ -419,8 +395,8 @@ namespace CrtProduccion.entidades
             return lret;
         }
 
-        #endregion
+        
     }
 }
-
+#endregion
 

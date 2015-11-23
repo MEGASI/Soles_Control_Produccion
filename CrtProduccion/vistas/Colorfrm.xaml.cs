@@ -11,6 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Drawing;
+
+
+
 
 namespace CrtProduccion.vistas
 {
@@ -76,7 +80,7 @@ namespace CrtProduccion.vistas
         //   Constructor del Formulario
         public Colorfrm()
         {
-            // Cargar los permisos del Cargo para este formulario.
+            // Cargar los permisos del Color para este formulario.
             permiteModificar = datamanager.probarPermiso(idSegItem, "modificar");
             permiteCrear = datamanager.probarPermiso(idSegItem, "crear");
             permiteBorrar = datamanager.probarPermiso(idSegItem, "borrar");
@@ -91,6 +95,7 @@ namespace CrtProduccion.vistas
         {
             registro = new entidades.dmColor();
             registro.buscarUltimo();
+           // txtDescripcion.Text = Convert.ToString(Colorpick.Foreground.GetType());
 
             //DataContext = registro;
             mostrar();
@@ -144,9 +149,6 @@ namespace CrtProduccion.vistas
             TxtidColor.Focus();
 
         }
-
-
-
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
 
@@ -210,7 +212,7 @@ namespace CrtProduccion.vistas
                 // Si el Usuario presiona Aceptar
                 if (!registro.buscar(dlgfrm.idColor, true))
                 {
-                    MessageBox.Show("Descripcion de Color no existe", "Cargo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Descripcion de Color no existe", "Color", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
@@ -268,7 +270,7 @@ namespace CrtProduccion.vistas
                 if (modalidad.Equals("CONSULTAR"))
                 {
                     if (!found)
-                        MessageBox.Show("Nombre de Cargo no existe", "Cargo", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Descripcion de Color no existe", "Color", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     mostrar();
                     txtDescripcion.Focus();
@@ -277,7 +279,7 @@ namespace CrtProduccion.vistas
                 {
                     if (found)
                     {
-                        MessageBox.Show("Cargo ya existe.", "Cargo", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Color ya existe.", "Color", MessageBoxButton.OK, MessageBoxImage.Information);
                         txtDescripcion.Text = "";
                         txtDescripcion.Focus();
                     }
@@ -295,8 +297,7 @@ namespace CrtProduccion.vistas
         }
         #endregion
 
-
-
+       
 
         #region Valores Extraidos de la BD
 
@@ -310,19 +311,46 @@ namespace CrtProduccion.vistas
             TxtidColor.Text = Convert.ToString((registro.fld_idColor).ToString());
             txtvalor.Text = Convert.ToString((registro.fld_ValorRGB).ToString());
         }
-
         private void txtvalor_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            int ascci = Convert.ToInt32(Convert.ToChar(e.Text));
-            if (ascci >= 65 && ascci <= 90 || ascci >= 97 && ascci <= 122)
-                e.Handled = false;
-            else
+            //int ascci = Convert.ToInt32(Convert.ToChar(e.Text));
+            //if (ascci >= 65 && ascci <= 90 || ascci >= 97 && ascci <= 122)
+            //    e.Handled = false;
+            //else
 
-                e.Handled = true;
+            //    e.Handled = true;
         }
+        private void txtDescripcion_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //txtDescripcion.Text = Convert.ToString(Colorpick.Foreground.GetType());
+        } 
+        private void txtvalor_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //System.Drawing.Color col = System.Drawing.ColorTranslator.FromHtml("#FFCC66");
+            //System.Windows.Media.Color color = (System.Windows.Media.Color) System.Windows.Media.ColorConverter.ConvertFromString("#FFDFD991");
 
-       
+
+
+            //txtvalor.Text = Convert.ToString(Colorpick.set());
+            //txtvalor.Text = Convert.ToString(Colorpick.SetValue.Triggers());            
+        }
+        private void Colorpick_Drop(object sender, DragEventArgs e)
+        {
+
+        }
+        public static DependencyProperty Color = DependencyProperty.Register("Name", typeof(String), typeof(String));
+        public String Name
+        {
+            set { SetValue(Color, value); }
+            get { return (String)GetValue(Color); }
+           
     }
-}
 
+        private void btnscar_Click(object sender, RoutedEventArgs e)
+        {
+            vistas.Colordiag dlg = new vistas.Colordiag();
+            dlg.ShowDialog();
+        }
+    }
+    }
 #endregion

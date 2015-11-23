@@ -78,6 +78,8 @@ namespace CrtProduccion.vistas
 
         #endregion
 
+
+
         #region Constructor y Loader
         //   Constructor del Formulario
         public Vehiculofrm()
@@ -251,8 +253,6 @@ namespace CrtProduccion.vistas
             }
         }
         #endregion
-
-
 
         #region Validaciones
 

@@ -76,7 +76,7 @@ namespace CrtProduccion.vistas
 
 
         #region Constructor y Loader
-        //   Constructor del Fromulario
+        //   Constructor del Formulario
         public dptofrm()
         {
             // Cargar los permisos del departamento para este formulario.

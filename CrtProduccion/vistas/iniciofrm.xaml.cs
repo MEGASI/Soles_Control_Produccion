@@ -61,7 +61,8 @@ namespace CrtProduccion
             segPerfilUsuario.IsEnabled = datamanager.probarPermiso("HS0105", "acceso");
             SegLibrodirecciones.IsEnabled = datamanager.probarPermiso("AD0101", "acceso");
             SegDepartemento.IsEnabled = datamanager.probarPermiso("AD0102", "acceso");
-            SegCargo.IsEnabled = datamanager.probarPermiso ("AD0103", "acceso");           
+            SegCargo.IsEnabled = datamanager.probarPermiso ("AD0103", "acceso");
+            herCambioClave.IsEnabled = datamanager.probarPermiso("Ch", "acceso");           
             
 
             
@@ -176,6 +177,25 @@ namespace CrtProduccion
         private void MenuItem_Click_10(object sender, RoutedEventArgs e)
         {
             vistas.Actividafrm dlg = new vistas.Actividafrm();
+            dlg.ShowDialog();
+        }
+
+        private void herCambioClave_Click(object sender, RoutedEventArgs e)
+        {
+            vistas.Pswfrm dlg = new vistas.Pswfrm();
+            //segUsuariofrm dlg = new segUsuariofrm();
+            dlg.ShowDialog();
+        }
+
+        private void MenuItem_Click_9(object sender, RoutedEventArgs e)
+        {
+            vistas.Partidafrm dlg = new vistas.Partidafrm();
+            dlg.ShowDialog();
+        }
+
+        private void MenuItem_Click_11(object sender, RoutedEventArgs e)
+        {
+           vistas.Brigadafrm dlg = new vistas.Brigadafrm();
             dlg.ShowDialog();
         }
     }

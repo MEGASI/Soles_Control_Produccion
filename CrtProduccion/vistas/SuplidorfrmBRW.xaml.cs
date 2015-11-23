@@ -50,9 +50,7 @@ namespace CrtProduccion.vistas
             dsGrid.Clear();
             dsGrid = datamanager.ConsultaDatos(" Select idLD,Nombres  from LibroDirecciones where esProveedor  = 'true'");
 
-            //dsGrid = datamanager.ConsultaDatos("Select vp.idSuplidor, LD.Nombres from "+
-            //                                    "  Vehiculo_Partes vp"+
-            //                                    " inner join LibroDirecciones LD  on vp.idSuplidor = Ld.idLD ");
+            
 
             DataG.ItemsSource = dsGrid.Tables[0].DefaultView;
 

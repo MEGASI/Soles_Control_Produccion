@@ -75,6 +75,8 @@ namespace CrtProduccion.vistas
 
             datamanager.ConexionCerrar();
 
+            
+
         }
         private void DataG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -133,8 +135,10 @@ namespace CrtProduccion.vistas
                 DataG.ItemsSource = dt.DefaultView;
 
             }
+            
         }
 
+       
     }
 }
 #endregion

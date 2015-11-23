@@ -5,7 +5,7 @@ using System.Windows.Media;
 using System.Data;
 using System.Data.SqlClient;
 
- namespace CrtProduccion.comunes
+namespace CrtProduccion.comunes
 {
     class libreria
     {
@@ -34,12 +34,14 @@ using System.Data.SqlClient;
             PasswordBox pb = obj as PasswordBox;
             ComboBox cb = obj as ComboBox;
             CheckBox ch = obj as CheckBox;
+            DataGrid Dg = obj as DataGrid;
 
             if (tb != null) tb.IsEnabled = isenabled;
             if (rb != null) rb.IsEnabled = isenabled;
             if (pb != null) pb.IsEnabled = isenabled;
             if (cb != null) cb.IsEnabled = isenabled;
             if (ch != null) ch.IsEnabled = isenabled;
+            if (Dg != null) Dg.IsEnabled = isenabled;
 
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj as DependencyObject); i++)
                 estadoControles(VisualTreeHelper.GetChild(obj, i), isenabled);
@@ -89,7 +91,7 @@ using System.Data.SqlClient;
             return ret;
         }
 
-        public static  DataTable ObtenerItems()
+        public static DataTable ObtenerItems()
 
         {
             SqlConnection cnn = new SqlConnection();
@@ -107,6 +109,29 @@ using System.Data.SqlClient;
             }
 
         }
-    }         
+
+        public static bool ValidarPsw(string NClave, string Rclave)
+        {
+            bool ret = false;
+            if (NClave != Rclave)
+
+            {
+                ret = true;  
+               
+            }
+
+            else
+            {
+                ret = false;
+                
+            }
+            return ret;
+
+        }
     }
+}
+
+
+         
+  
 

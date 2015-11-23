@@ -39,7 +39,7 @@
                     <MenuItem   Header ="Proyecto">
                         
                         <MenuItem Header="Proyectos" Click="MenuItem_Click_2"/>
-                        <MenuItem Header="Partida" />
+                        <MenuItem Header="Partida" Click="MenuItem_Click_9" />
                         <MenuItem Header="Materiales" />
                         <MenuItem Header="Unidad de Medidas" /> 
                         
@@ -56,7 +56,7 @@
                     </MenuItem>
 
                 <MenuItem Header="Proceso" FontFamily="Verdana" FontSize="14">
-                    <MenuItem Header="NominaDieta" FontSize="14"/>
+                    <MenuItem Header="Formacion de Brigadas" FontSize="14" Click="MenuItem_Click_11"/>
                     <MenuItem Header="Entrada Combustible" FontSize="14"/>
                     <MenuItem Header="Salida Combustible" FontSize="14"/>
                     <MenuItem Header="Entrada Taller" FontSize="14"/>
@@ -65,7 +65,7 @@
                 </MenuItem>
 
                 <MenuItem x:Name="mainHerramientas" Header="Herramientas" FontFamily="Verdana" FontSize="14">
-                    <MenuItem x:Name="herCambioClave" Header="Cambiar Contraseña" FontSize="14"/>
+                    <MenuItem x:Name="herCambioClave" Header="Cambiar Contraseña" FontSize="14" Click="herCambioClave_Click"/>
                     <MenuItem x:Name="herSeguridad" Header="Seguridad">
                         <MenuItem x:Name="segUsuario" Header="Usuario" FontSize="14" Click="segUsuario_Click"/>
                         <MenuItem x:Name="segGrupo" Header="GrupoUsuario" FontSize="14" Click="segGrupo_Click"/>

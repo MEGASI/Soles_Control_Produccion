@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Data;
 namespace CrtProduccion.entidades
 {
     class dmLibroDirecciones
@@ -22,7 +23,12 @@ namespace CrtProduccion.entidades
         public string errormsg = "";
 
         #endregion
+
+
+
         #region Constructores
+
+
         public dmLibroDirecciones()
         {
             limpiar();
@@ -54,7 +60,11 @@ namespace CrtProduccion.entidades
             fld_estado = Pfld_estado;       
         }
         #endregion
+
+
+
         #region Métodos y funciones
+       
         /// <summary>
         /// <para>Inicializa cada una de las propiedades de la clase.</para>
         /// </summary>
@@ -95,7 +105,7 @@ namespace CrtProduccion.entidades
         }
         /// <summary>
         /// <para>CRUD  -- C = Create</para> 
-        /// <para>Método que inserta los datos en la tabla segGrupo</para>
+        /// <para>Método que inserta los datos en la tabla LD</para>
         /// </summary>
         /// <returns>El Numero de identificación generado, cero cuando no logra insertar el registro.</returns>
         public int crearDatos()
@@ -117,9 +127,9 @@ namespace CrtProduccion.entidades
                 cmd.Parameters.AddWithValue("@cedulaRNC", fld_Ced_Rnc);
                 cmd.Parameters.AddWithValue("@Nombres",fld_Nombres);
                 cmd.Parameters.AddWithValue("@Apellidos", fld_Apellidos);
-                cmd.Parameters.AddWithValue("@esCliente",( fld_escliente)).Value = false;
-                cmd.Parameters.AddWithValue("@esEmpleado", fld_esEmpleado).Value = false;
-                cmd.Parameters.AddWithValue("@esProveedor",fld_esProovedor).Value =false;
+                cmd.Parameters.AddWithValue("@esCliente", SqlDbType.Bit).Value = false;
+                cmd.Parameters.AddWithValue("@esEmpleado", SqlDbType.Bit).Value = false;
+                cmd.Parameters.AddWithValue("@esProveedor", SqlDbType.Bit).Value =false;
                 cmd.Parameters.AddWithValue("@idCargo", Convert.ToInt32(fld_idCargo));
                 cmd.Parameters.AddWithValue("@idDpto", Convert.ToInt32(fld_idDpto));
                 cmd.Parameters.AddWithValue("@sueldo", Convert.ToDouble(fld_sueldo));
@@ -134,12 +144,12 @@ namespace CrtProduccion.entidades
                 datamanager.ConexionCerrar();
 
             }
-            // si no logra insertar nada el idCargo Retornado es Cero
+            // si no logra insertar nada el idLd Retornado es Cero
             return fld_idLD;
         }
         /// <summary>
         /// <para>CRUD  -- R = Read</para>
-        ///  Lee los datos extraido de la tabla segGrupo.
+        ///  Lee los datos extraido de la tabla LD.
         /// </summary>
         /// <param name="dr">Objeto SqlDataReader que contiene los datos extraido de la tabla.</param>
         /// <param name="asignar">true para asignar los campos del registro leido a las propiedades.</param>
@@ -184,7 +194,7 @@ namespace CrtProduccion.entidades
                 return encontrado;      
             }
         /// <summary>
-        ///  Buscar en la tabla de segGrupo por el Nombre del usuario.
+        ///  Buscar en la tabla de LD por el Nombre del usuario.
         /// </summary>
         /// <param name="pNombre"> Nombre único que identifica el grupo.</param>
         /// <param name="asignar"> true = Asigna los campos de la tabla a las propiedadades, false = no los asigna.</param>
@@ -198,7 +208,7 @@ namespace CrtProduccion.entidades
             return leerDatos(dr, asignar);
         }
         /// <summary>
-        ///  Buscar en la tabla de segGrupo por el idCargo
+        ///  Buscar en la tabla de LD por el idCargo
         /// </summary>
         /// <param name="idCargo"> código único que identifica el grupo.</param>
         /// <param name="asignar"> true = Asigna los campos de la tabla a las propiedadades, false = no los asigna.</param>
@@ -214,9 +224,9 @@ namespace CrtProduccion.entidades
         }
 
         /// <summary>
-        /// Lee el último registro insertado en la tabla segGrupo.
+        /// Lee el último registro insertado en la tabla LD.
         /// </summary>
-        /// <returns>true cuando existe por lo menos un registro en la tabla segGrupo</returns>
+        /// <returns>true cuando existe por lo menos un registro en la tabla LD</returns>
         public bool buscarUltimo()
         {
             var dr = datamanager.ConsultaLeer(" Select top 1 idLD, cedulaRNC,Nombres,"+
@@ -230,7 +240,7 @@ namespace CrtProduccion.entidades
 
         /// <summary>
         /// <para>CRUD  -- U = Update</para> 
-        /// <para>Método que actualiza los datos de la tabla segGrupo</para>
+        /// <para>Método que actualiza los datos de la tabla LD</para>
         /// </summary>
         /// <returns>True cuando logra actualizar los datos.</returns>
         public bool actualizarDatos()
@@ -254,9 +264,9 @@ namespace CrtProduccion.entidades
                 cmd.Parameters.AddWithValue("@cedulaRNC", fld_Ced_Rnc);
                 cmd.Parameters.AddWithValue("@Nombres", fld_Nombres);
                 cmd.Parameters.AddWithValue("@Apellidos", fld_Apellidos);
-                cmd.Parameters.AddWithValue("@esCliente", fld_escliente);
-                cmd.Parameters.AddWithValue("@esEmpleado", fld_esEmpleado);
-                cmd.Parameters.AddWithValue("@esProveedor", fld_esProovedor);
+                cmd.Parameters.AddWithValue("@esCliente", SqlDbType.Bit).Value = false;
+                cmd.Parameters.AddWithValue("@esEmpleado", SqlDbType.Bit).Value =false;
+                cmd.Parameters.AddWithValue("@esProveedor", SqlDbType.Bit).Value =false;
                 cmd.Parameters.AddWithValue("@sueldo", fld_sueldo);
                 cmd.Parameters.AddWithValue("@estado", fld_estado);
 
@@ -276,7 +286,6 @@ namespace CrtProduccion.entidades
 
                 // Cerramos conexión.
                 datamanager.ConexionCerrar();
-
             }
             return lRet > 0;
         }
@@ -296,8 +305,6 @@ namespace CrtProduccion.entidades
             // Retornamos true si lo Borra y false de No poder hacerlo.
             return lret;
         }
-
-        
     }
 }
 #endregion

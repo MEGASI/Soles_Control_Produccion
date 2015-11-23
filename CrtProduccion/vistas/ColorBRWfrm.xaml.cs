@@ -57,15 +57,21 @@ namespace CrtProduccion.vistas
             DataG.ItemsSource = dsGrid.Tables[0].DefaultView;
 
             DataG.CanUserAddRows = false;
-            DataG.Columns[0].Width = 175;
+            DataG.Columns[0].Width = 60;
             DataG.Columns[0].IsReadOnly = true;
-            DataG.Columns[0].Header = "Cargo";
+            DataG.Columns[0].Header = "Codigo ";
             DataG.Columns[0].CanUserResize = false;
 
             DataG.Columns[1].IsReadOnly = true;
-            DataG.Columns[1].Width = 58;
-            DataG.Columns[1].Header = "Número";
+            DataG.Columns[1].Width = 90;
+            DataG.Columns[1].Header = "Decripcion";
             DataG.Columns[1].CanUserResize = false;
+
+
+            DataG.Columns[2].IsReadOnly = true;
+            DataG.Columns[2].Width = 90;
+            DataG.Columns[2].Header = "ValorRBG";
+            DataG.Columns[2].CanUserResize = false;
 
             datamanager.ConexionCerrar();
 
@@ -101,6 +107,8 @@ namespace CrtProduccion.vistas
 
 
         #region Busqueda Incrementada
+
+
         private void txtCampo_TextChanged(object sender, TextChangedEventArgs e)
         {
             dsGrid.Clear();

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CrtProduccion.vistas"
         mc:Ignorable="d"
-         Title="Consultar Cargos" 
+         Title="Consultar Color" 
         Loaded="Window_Loaded" 
         ShowInTaskbar="False" 
         WindowStartupLocation="CenterScreen" 

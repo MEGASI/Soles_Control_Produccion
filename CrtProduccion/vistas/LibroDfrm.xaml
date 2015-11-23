@@ -103,7 +103,7 @@
             <!-- Borrar -->
             <Button x:Name="btnBorrar"  
                  Width="50" Height="40" 
-                ToolTip="Borrar" Canvas.Left="227" Canvas.Top="359" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="btnBorrar_Click">
+                ToolTip="Borrar" Canvas.Left="224" Canvas.Top="359" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="btnBorrar_Click">
                 <Image x:Name="btnBorrar_png"  
                    Source="pack://siteoforigin:,,,/Resources/Borrar.png" 
                    Height="32" Width="32" 

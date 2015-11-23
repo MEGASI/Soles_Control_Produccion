@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 
 namespace CrtProduccion.entidades
 {
-    class dmUsuario
+    class dmpssw
     {
         #region Atributos
 
@@ -42,17 +42,17 @@ namespace CrtProduccion.entidades
             get { return Clave; }
             set { Clave = value; }
         }
-
         #endregion
+
 
         #region Constructores
 
-        public dmUsuario()
+        public dmpssw()
         {
             limpiar();
         }
 
-        public dmUsuario(int PID_Usuario, String PNombre, String PClave)
+        public dmpssw(int PID_Usuario, String PNombre, String PClave)
         {
             fld_idusuario = PID_Usuario;
             fld_nombre = PNombre;
@@ -89,7 +89,7 @@ namespace CrtProduccion.entidades
         public bool validar()
         {
             bool lret = true;
-          
+
             if (lret && fld_nombre.Equals(""))
             {
                 errormsg = "Nombre de usuario no puede estar vacío.";
@@ -167,7 +167,8 @@ namespace CrtProduccion.entidades
                     fld_cambiopsw = false;
                 }
             }
-            else {
+            else
+            {
                 if (asignar) limpiar();
             }
 
@@ -201,7 +202,7 @@ namespace CrtProduccion.entidades
             return leerDatos(dr, asignar);
         }
 
-        
+
         /// <summary>
         /// Lee el último registro insertado en la tabla segUsuario.
         /// </summary>
@@ -214,7 +215,7 @@ namespace CrtProduccion.entidades
             return leerDatos(dr, true);
         }
 
-      
+
         /// <summary>
         /// <para>CRUD  -- U = Update</para> 
         /// <para>Método que actualiza los datos de la tabla segUsuario</para>
@@ -229,7 +230,7 @@ namespace CrtProduccion.entidades
                 if (fld_cambiopsw)
                 {
                     string encriptClave = datamanager.md5(fld_nombre.Trim() + fld_clave.Trim());
-                    
+
                     fld_clave = encriptClave;
                     fld_cambiopsw = false;
 
@@ -255,9 +256,6 @@ namespace CrtProduccion.entidades
             return lRet > 0;
         }
 
-
-
-
         /// <summary>
         /// <para>CRUD -- D = Delete</para> 
         /// <para>Método que elimina un registro de la tabla segUsuario</para>
@@ -276,10 +274,9 @@ namespace CrtProduccion.entidades
             // Retornamos true si lo Borra y false de No poder hacerlo.
             return lret;
         }
-
-        
-
     }
 
 }
 #endregion
+
+

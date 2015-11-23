@@ -72,6 +72,8 @@ namespace CrtProduccion.vistas
 
         #endregion
 
+
+
         #region Constructor y Loader
         //   Constructor del Formulario
         public LibroDfrm()
@@ -120,6 +122,8 @@ namespace CrtProduccion.vistas
         }
         #endregion
 
+
+
         #region Funcionalidades de los Botones
         //Boton Nuevo
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
@@ -156,12 +160,14 @@ namespace CrtProduccion.vistas
                 registro.fld_Nombres = txtNombre.Text.Trim();
                 registro.fld_Apellidos = txtApellido.Text.Trim();
                 registro.fld_sueldo = Convert.ToDouble(txtsueldo.Text.Trim());
-                registro.fld_escliente = checkCliente.IsEnabled;
-                registro.fld_esEmpleado = checkEmpleado.IsEnabled;
-                registro.fld_esProovedor = checkProveedor.IsEnabled;
+                registro.fld_escliente = Convert.ToBoolean(checkCliente.IsChecked);
+                registro.fld_esEmpleado =Convert.ToBoolean(checkEmpleado.IsChecked);
+                registro.fld_esProovedor = Convert.ToBoolean(checkProveedor.IsChecked);
 
-                // Validar los valores asignados.
-                bool lret = registro.validar();
+            
+
+            // Validar los valores asignados.
+            bool lret = registro.validar();
                 if (lret && this.modalidad == "CREAR")
                 {
                     lret = registro.crearDatos() > 0;
@@ -340,7 +346,6 @@ namespace CrtProduccion.vistas
         #endregion
 
 
-
         #region  Llenando Los Combobox
 
         private void llenaCbidCargo()
@@ -356,11 +361,7 @@ namespace CrtProduccion.vistas
             int? col2 = null;
             while (dr != null && dr.Read())
             {
-                // Esta es la descripción que mostrará el combobox.
-                // col2 es entero y es lo que se almacenará
-                // Estamos usando valores nulos, por eso en la 
-                // conversión a entero lanza una excepcion 
-                // la aprovechamos para asignar el valor nulo.
+               
                 col1 = dr["Descripcion"].ToString();
 
               
@@ -369,8 +370,7 @@ namespace CrtProduccion.vistas
 
                 cbidCargo.Items.Add(new CBoxNullItem(col1, col2));
             }
-            // Cuando se carga del load esta linea genera un error.
-            // cbidCargo.SelectedIndex = 0;
+          
             datamanager.ConexionCerrar();
         }
         private void cbidCargo_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -126,7 +126,7 @@ namespace CrtProduccion
 
                     SqlCommand Cmd1 = new SqlCommand();
 
-                    // Conectar a SQL y preparar la ejecuci'on del procedimiento SQL
+                    // Conectar a SQL y preparar la ejecucion del procedimiento SQL
                     Cmd1.Connection = datamanager.ConexionSQL;
                     Cmd1.CommandText = "dbo.segPerfilUsuarioRUD";
                     Cmd1.CommandType = CommandType.StoredProcedure;
@@ -198,6 +198,8 @@ namespace CrtProduccion
             btnAceptar.IsEnabled = permiteModificar;
             btnAceptar_png.IsEnabled = btnAceptar.IsEnabled;
         }
+
+        
     }
  }
 

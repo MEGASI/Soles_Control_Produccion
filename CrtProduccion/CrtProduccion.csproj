@@ -53,10 +53,12 @@
     <StartupObject>CrtProduccion.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mindscape.WpfElements, Version=7.0.34.23280, Culture=neutral, PublicKeyToken=0a92c4b7d9c14aa4, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -70,6 +72,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit">
+      <HintPath>..\..\..\..\Desktop\Nueva carpeta (3)\WPFToolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="vistas\App.xaml">
@@ -78,8 +83,10 @@
     </ApplicationDefinition>
     <Compile Include="comunes\libreria.cs" />
     <Compile Include="entidades\dmActividad.cs" />
+    <Compile Include="entidades\dmBrigada.cs" />
     <Compile Include="entidades\dmColor.cs" />
     <Compile Include="entidades\dmPartidas.cs" />
+    <Compile Include="entidades\dmpssw.cs" />
     <Compile Include="entidades\dmVehiculo.cs" />
     <Compile Include="entidades\dmVehiculoMarca.cs" />
     <Compile Include="entidades\dmVehiculoP.cs" />
@@ -103,11 +110,20 @@
     <Compile Include="vistas\Actividafrm.xaml.cs">
       <DependentUpon>Actividafrm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="vistas\BrigadaBRW.xaml.cs">
+      <DependentUpon>BrigadaBRW.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\Brigadafrm.xaml.cs">
+      <DependentUpon>Brigadafrm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="vistas\CargoBRWf.xaml.cs">
       <DependentUpon>CargoBRWf.xaml</DependentUpon>
     </Compile>
     <Compile Include="vistas\ColorBRWfrm.xaml.cs">
       <DependentUpon>ColorBRWfrm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\Colordiag.xaml.cs">
+      <DependentUpon>Colordiag.xaml</DependentUpon>
     </Compile>
     <Compile Include="vistas\Colorfrm.xaml.cs">
       <DependentUpon>Colorfrm.xaml</DependentUpon>
@@ -127,6 +143,9 @@
     <Compile Include="vistas\LlantasBRW.xaml.cs">
       <DependentUpon>LlantasBRW.xaml</DependentUpon>
     </Compile>
+    <Compile Include="vistas\PartidaBRWfrm.xaml.cs">
+      <DependentUpon>PartidaBRWfrm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="vistas\Partidafrm.xaml.cs">
       <DependentUpon>Partidafrm.xaml</DependentUpon>
     </Compile>
@@ -135,6 +154,9 @@
     </Compile>
     <Compile Include="vistas\Proyectofrm.xaml.cs">
       <DependentUpon>Proyectofrm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\Pswfrm.xaml.cs">
+      <DependentUpon>Pswfrm.xaml</DependentUpon>
     </Compile>
     <Compile Include="vistas\segGrupoAsignafrm.xaml.cs">
       <DependentUpon>segGrupoAsignafrm.xaml</DependentUpon>
@@ -198,6 +220,9 @@
     <Compile Include="vistas\Vehiculo_Tipofrm.xaml.cs">
       <DependentUpon>Vehiculo_Tipofrm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="vistas\vldBrwfrm.xaml.cs">
+      <DependentUpon>vldBrwfrm.xaml</DependentUpon>
+    </Compile>
     <Page Include="Resources\estiloBase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -210,11 +235,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="vistas\BrigadaBRW.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\Brigadafrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="vistas\CargoBRWf.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="vistas\ColorBRWfrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\Colordiag.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -242,6 +279,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="vistas\PartidaBRWfrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="vistas\Partidafrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -251,6 +292,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="vistas\Proyectofrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\Pswfrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -330,6 +375,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="vistas\vldBrwfrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -347,6 +396,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </Content>
     <Resource Include="Resources\auto.ico" />
+    <Resource Include="Resources\Agregar+.png" />
     <Content Include="Resources\Cancelar02.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -599,6 +649,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Licenses.licx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

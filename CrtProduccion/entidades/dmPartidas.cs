@@ -7,13 +7,12 @@ namespace CrtProduccion.entidades
     class dmPartidas
     {
         
-        
             #region Atributos
 
             public int fld_oldidPartida = 0;
             public int fld_idpartida { get; set; }
             public string fld_codigo { get; set; }
-            public int fld_idPartidaTipo { get; set; }
+            public int? fld_idPartidaTipo { get; set; }
             public string fld_descripcion { get; set; }
             public string fld_medida { get; set; }
             public Double fld_Precio { get; set; }
@@ -46,10 +45,9 @@ namespace CrtProduccion.entidades
                 fld_Precio = pPrecio;
 
             }
-
         #endregion
 
-        #region Métodos y funciones
+            #region Métodos y funciones
 
         /// <summary>
         /// <para>Inicializa cada una de las propiedades de la clase.</para>
@@ -58,6 +56,9 @@ namespace CrtProduccion.entidades
         {
             fld_idpartida = 0;
             fld_codigo = "";
+            fld_idPartidaTipo = null;
+            fld_descripcion = "";
+            fld_Precio = 0;
 
         }
 
@@ -70,7 +71,7 @@ namespace CrtProduccion.entidades
         {
             bool lret = true;
 
-            if (lret && fld_codigo.Equals(""))
+            if (lret && fld_descripcion.Equals(""))
             {
                 errormsg = "Nombre de Codigo no puede estar vacío.";
                 lret = false;
@@ -94,14 +95,19 @@ namespace CrtProduccion.entidades
                 SqlCommand cmd = new SqlCommand(" Insert into Partida(Codigo,idPartidaTipo,"+
                                                 " Descripcion,idMedida,precio)" +
                                                 " output INSERTED.idPartida" +
-                                                " Values(@Codigo,@Descripcion,"+
-                                                " @idPartidaTipo,@Descripcion,"+
-                                                " @idMedida,@precio)", datamanager.ConexionSQL);
+                                                " Values(@Codigo,@idPartidaTipo,"+
+                                                " @Descripcion,@idMedida,"+
+                                                " @Precio)", datamanager.ConexionSQL);
 
 
                 // Ponemos valores a los Parametros incluidos en la consulta de actualización
+
+                if (fld_idPartidaTipo != null)
+                    cmd.Parameters.AddWithValue("@idPartidaTipo", fld_idPartidaTipo);
+                else
+                    cmd.Parameters.AddWithValue("@idPartidaTipo", DBNull.Value);
+
                 cmd.Parameters.AddWithValue("@Codigo", fld_codigo);
-                cmd.Parameters.AddWithValue("@idPartidaTipo", fld_idPartidaTipo);
                 cmd.Parameters.AddWithValue("@Descripcion", fld_descripcion);
                 cmd.Parameters.AddWithValue("@idMedida", fld_medida);
                 cmd.Parameters.AddWithValue("@precio", fld_Precio);
@@ -114,11 +120,9 @@ namespace CrtProduccion.entidades
                 datamanager.ConexionCerrar();
 
             }
-            // si no logra insertar nada el idGrupo Retornado es Cero
+            // si no logra insertar nada el idPartida Retornado es Cero
             return fld_idpartida;
         }
-
-
         /// <summary>
         /// <para>CRUD  -- R = Read</para>
         ///  Lee los datos extraido de la tabla Partida.
@@ -135,17 +139,23 @@ namespace CrtProduccion.entidades
                 encontrado = true;
                 if (asignar)
                 {
-                    //precio
+
                     fld_idpartida = (int)dr["idPartida"];
                     fld_codigo = dr["Codigo"].ToString();
-                    fld_idPartidaTipo = (int)dr["idPartidaTipo"];
                     fld_descripcion = dr["descripcion"].ToString();
-
                     fld_medida = dr["idMedida"].ToString();
-
                     fld_Precio = Convert.ToDouble(dr["precio"].ToString());
+                    try
+                    {
+                        fld_idPartidaTipo = (int?)dr["idPartidaTipo"];
 
-                }
+                    }
+                    catch (Exception)
+
+                    {
+                        fld_idPartidaTipo = null;
+                     } 
+             }   
             }
             else
             {
@@ -154,7 +164,6 @@ namespace CrtProduccion.entidades
 
             return encontrado;
         }
-
         /// <summary>
         ///  Buscar en la tabla de Partida por el Nombre del usuario.
         /// </summary>
@@ -165,7 +174,7 @@ namespace CrtProduccion.entidades
         {
             var dr = datamanager.ConsultaLeer(" Select idPartida,Codigo,"+
                                               " idPartidaTipo,Descripcion,"+
-                                              " idMedida from Partida,Precio"+
+                                              " idMedida,Precio from Partida"+
                                               " where Descripcion = '" + pNombre + "'");
             return leerDatos(dr, asignar);
         }
@@ -179,8 +188,8 @@ namespace CrtProduccion.entidades
         {
             var dr = datamanager.ConsultaLeer(" Select idPartida,"+
                                               " Codigo,idPartidaTipo,"+
-                                              " Descripcion,idMedida" +
-                                              " from Partida,Precio" +
+                                              " Descripcion,idMedida," +
+                                              " Precio from Partida" +
                                               " where idPartida = " + idPartida.ToString());
             return leerDatos(dr, asignar);
         }
@@ -193,8 +202,8 @@ namespace CrtProduccion.entidades
         {
             var dr = datamanager.ConsultaLeer(" Select top 1 idPartida,"+
                                               " Codigo,idPartidaTipo,"+
-                                              " Descripcion,idMedida"+ 
-                                              " from Partida,Precio"+
+                                              " Descripcion,idMedida,"+
+                                              " Precio from Partida"+
                                               " order by idPartida desc");
             return leerDatos(dr, true);
         }
@@ -215,18 +224,24 @@ namespace CrtProduccion.entidades
                 SqlCommand cmd = new SqlCommand(" update Partida" +
                                                 " Set Codigo=@Codigo,"+
                                                 " idPartidaTipo=@idPartidaTipo,"+
-                                                " Descripcion=@Descripcion"+
-                                                " idMedida=@idMedida" +
+                                                " Descripcion=@Descripcion,"+
+                                                " idMedida=@idMedida," +
                                                 " Precio=@Precio"+
                                                 " Where idPartida = @idPartida ", datamanager.ConexionSQL);
 
                 // Ponemos valores a los Parametros incluidos en la consulta de actualización
                 cmd.Parameters.AddWithValue("@idPartida", fld_idpartida);
                 cmd.Parameters.AddWithValue("@codigo", fld_codigo);
-                cmd.Parameters.AddWithValue("@idPartidaTipo", fld_idPartidaTipo);
                 cmd.Parameters.AddWithValue("@Descripcion", fld_descripcion);
                 cmd.Parameters.AddWithValue("@idMedida", fld_medida);
                 cmd.Parameters.AddWithValue("@Precio", fld_Precio);
+
+
+                if (fld_idPartidaTipo != null)
+                    cmd.Parameters.AddWithValue("@idPartidaTipo", fld_idPartidaTipo);
+                else
+                    cmd.Parameters.AddWithValue("@idPartidaTipo", DBNull.Value);
+
 
                 // Ejecutamos consulta de Actualización
                 lRet = cmd.ExecuteNonQuery();
@@ -249,17 +264,14 @@ namespace CrtProduccion.entidades
             bool lret = datamanager.ConsultaNodata(" Delete " +
                                                    " from Partida" +
                                                    " where idPartida = " + pidPartida.ToString());
-
             // Si logramos borrarlo limpiamos 
             if (lret) limpiar();
             // Retornamos true si lo Borra y false de No poder hacerlo.
             return lret;
-        }
-
-        #endregion
+        }  
     }
 }
-
+#endregion
 
 
 

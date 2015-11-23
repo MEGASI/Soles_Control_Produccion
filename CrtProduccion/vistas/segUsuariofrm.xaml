@@ -1,4 +1,4 @@
-﻿<Window x:Name="FrmEditUsuarios1" x:Class="CrtProduccion.segUsuariofrm"
+﻿<Window x:Name="segUsuario" x:Class="CrtProduccion.segUsuariofrm"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -13,7 +13,7 @@
 
 
     <Canvas>
-    
+
         <Label x:Name="lblTitulo" Content="Usuarios" 
                VerticalAlignment="Top" 
                FontFamily="Ve" 
@@ -30,7 +30,7 @@
                  Width="120" Height="23"
                  KeyDown="txtNombre_KeyDown" 
                  LostFocus="txtNombre_LostFocus" 
-                 Canvas.Left="156" Canvas.Top="100"/>
+                 Canvas.Left="156" Canvas.Top="100" />
 
         <Button x:Name="btnBuscar" Content="..." 
                 HorizontalAlignment="Right" 
@@ -48,8 +48,8 @@
                      PasswordChanged="txtClave_PasswordChanged" 
                      IsEnabled="False" 
                      Canvas.Left="156" Canvas.Top="137"/>
-              
-        
+
+
         <!-- Botones de Mantenimiento o CRUD -->
         <Button x:Name="btnCancelar" 
                  Width="50" Height="40" 
@@ -96,7 +96,7 @@
                    Source="pack://siteoforigin:,,,/Resources/EditNote.png" 
                    Style="{StaticResource ImageEnabled}"
                    IsEnabled="{Binding IsEnabled, ElementName=btnModificar}"/>
-        </Button>    
+        </Button>
 
 
         <Button x:Name="btnBorrar" Click="btnBorrar_Click" 
@@ -110,7 +110,7 @@
                    IsEnabled="{Binding IsEnabled, ElementName=btnBorrar}"/>
         </Button>
 
-         <!-- Boton Salir -->   
+        <!-- Boton Salir -->
         <Button x:Name="btnSalir" 
                  Width="50" Height="40" 
                 ToolTip="Salir" Click="btnSalir_Click"

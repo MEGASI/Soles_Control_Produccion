@@ -22,6 +22,8 @@ namespace CrtProduccion.vistas
     public partial class LlantasBRW : Window
     {
         #region Metodos
+
+
         public int idLlantas = 0;
         public string NombreL = "";
         public int idfiltro = 0;
@@ -42,12 +44,9 @@ namespace CrtProduccion.vistas
         {
             this.DialogResult = true;
         }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             llenaGrid();
-          
-
         }
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
@@ -56,6 +55,7 @@ namespace CrtProduccion.vistas
             this.DialogResult = false;
         }
         #endregion
+
 
         #region LlenandoGrid
 
@@ -106,15 +106,17 @@ namespace CrtProduccion.vistas
 
         private void DataG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            object item1 = DataG.SelectedItem;
-
-            string sidLlantas = (DataG.SelectedCells[0].Column.GetCellContent(item1) as TextBlock).Text;
-            string sidAceite = (DataG.SelectedCells[2].Column.GetCellContent(item1) as TextBlock).Text;
-            NombreL = (DataG.SelectedCells[1].Column.GetCellContent(item1) as TextBlock).Text;
-           
-            FiltroN = (DataG.SelectedCells[3].Column.GetCellContent(item1) as TextBlock).Text;
+            object item = DataG.SelectedItem;
+        
+       
+            string sidLlantas = (DataG.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+            string sidAceite = (DataG.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
+            NombreL = (DataG.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+            FiltroN = (DataG.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
 
             if (!Int32.TryParse(sidLlantas, out idLlantas )|| ( !Int32.TryParse(sidAceite, out idfiltro)))
+
+            
             {
                 idLlantas = 0;
                 idfiltro = 0;

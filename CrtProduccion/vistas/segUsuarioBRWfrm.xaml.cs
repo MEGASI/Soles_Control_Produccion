@@ -19,6 +19,10 @@ namespace CrtProduccion.vistas
     /// <summary>
     /// Interaction logic for segUsuarioBRWfrm.xaml
     /// </summary>
+    /// 
+
+    #region Metodos Funciones y  Botones 
+
     public partial class segUsuarioBRWfrm : Window
     {
         public int idUsuario = 0;
@@ -37,6 +41,14 @@ namespace CrtProduccion.vistas
         {
             this.DialogResult = true;
         }
+
+
+        #endregion
+
+
+        #region LlenandoGrid
+
+
         public void llenaGrid()
         {
 
@@ -89,6 +101,11 @@ namespace CrtProduccion.vistas
                 this.DialogResult = true;
             }
         }
+        #endregion
+
+
+        #region  LlenandoCB
+
 
         private void txtCampo_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -116,3 +133,4 @@ namespace CrtProduccion.vistas
     }
 }
 
+#endregion
