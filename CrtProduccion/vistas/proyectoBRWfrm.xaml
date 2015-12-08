@@ -9,7 +9,7 @@
         ShowInTaskbar="False" 
         WindowStartupLocation="CenterScreen" 
         Background="{StaticResource fondoClaro}"
-        WindowStyle="ToolWindow" Height="423.907" Width="483.959" Loaded="Window_Loaded">
+        WindowStyle="ToolWindow" Height="385.988" Width="483.959" Loaded="Window_Loaded">
 
 
     <Grid Margin="0,-5,0,5">
@@ -23,11 +23,10 @@
             <ComboBoxItem Content="Proyecto"/>
 
         </ComboBox>
-        <StackPanel x:Name="main" Orientation="Vertical" Height="237"  >
+        <StackPanel x:Name="main" Orientation="Vertical" Margin="0,91,0,0"  >
 
             <StackPanel  x:Name="sp1" Orientation="Vertical"
                      Margin="10,10,10,0">
-
                 <DataGrid x:Name="DataG" 
                   Height="167" 
                   

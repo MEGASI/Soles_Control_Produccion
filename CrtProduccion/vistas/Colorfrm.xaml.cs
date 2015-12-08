@@ -338,13 +338,13 @@ namespace CrtProduccion.vistas
         {
 
         }
-        public static DependencyProperty Color = DependencyProperty.Register("Name", typeof(String), typeof(String));
-        public String Name
-        {
-            set { SetValue(Color, value); }
-            get { return (String)GetValue(Color); }
+        //public static DependencyProperty Color = DependencyProperty.Register("Name", typeof(String), typeof(String));
+        //public String Name
+        //{
+        //    set { SetValue(Color, value); }
+        //    get { return (String)GetValue(Color); }
            
-    }
+    
 
         private void btnscar_Click(object sender, RoutedEventArgs e)
         {

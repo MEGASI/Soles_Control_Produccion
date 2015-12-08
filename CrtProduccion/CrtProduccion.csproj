@@ -134,6 +134,12 @@
     <Compile Include="vistas\dptofrm.xaml.cs">
       <DependentUpon>dptofrm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="vistas\frmdiasferiados.xaml.cs">
+      <DependentUpon>frmdiasferiados.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\IDPfrm.xaml.cs">
+      <DependentUpon>IDPfrm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="vistas\LibroDBRWfrm.xaml.cs">
       <DependentUpon>LibroDBRWfrm.xaml</DependentUpon>
     </Compile>
@@ -264,6 +270,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="vistas\dptofrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\frmdiasferiados.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\IDPfrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

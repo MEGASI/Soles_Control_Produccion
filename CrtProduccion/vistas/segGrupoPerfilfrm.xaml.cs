@@ -9,9 +9,14 @@ namespace CrtProduccion
     /// <summary>
     /// Interaction logic for segGrupoPerfilfrm.xaml
     /// </summary>
+    /// 
+    #region Cargando ItemSeg 
+
     public partial class segGrupoPerfilfrm : Window
     {
-        #region Cargando ItemSeg 
+        
+
+
         string idSegItem = "HS0104";
 
         bool permiteModificar = false;
@@ -51,6 +56,7 @@ namespace CrtProduccion
 
 
         #region  Select CB
+
         private void CbGrupo_Loaded(object sender, RoutedEventArgs e)
         {
            SqlDataReader reader =
@@ -106,6 +112,8 @@ namespace CrtProduccion
             }
         }
         #endregion
+
+
 
         #region Metodo Guardar
 

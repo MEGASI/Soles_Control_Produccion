@@ -11,10 +11,10 @@
         ShowInTaskbar="False" 
         WindowStartupLocation="CenterScreen" 
         Background="{StaticResource fondoClaro}"
-        WindowStyle="ToolWindow" Height="425.997" Width="708.998" Loaded="Window_Loaded">
+        WindowStyle="ToolWindow" Height="425.997" Width="634" Loaded="Window_Loaded">
 
     <Grid>
-        <StackPanel x:Name="main" Orientation="Vertical" Height="314" Margin="0,67,0,0" VerticalAlignment="Top"  >
+        <StackPanel x:Name="main" Orientation="Vertical" Height="329" Margin="0,72,0,0" VerticalAlignment="Top"  >
 
             <StackPanel  x:Name="sp1" Orientation="Vertical"
                      Margin="10,10,10,0">

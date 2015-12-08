@@ -9,80 +9,101 @@
         Background="{StaticResource fondoOscuro}"
 
 
-      Title="Formacion de Brigadas" Height="672" Width="595" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded"  >
-    <Canvas Margin="1,1,-1,-1">
-        <TextBox x:Name="txt_id" TextWrapping="Wrap" Width="77" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Canvas.Left="236" Canvas.Top="241"/>
-        <TextBox x:Name="txt_Secuencia" TextWrapping="Wrap" Width="77" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Canvas.Left="450" Canvas.Top="252"/>
+      Title="Formacion de Brigadas" Height="657" Width="595" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded"  >
+    <Canvas Margin="1,1,-1,-5">
+        <TextBox x:Name="txt_id" TextWrapping="Wrap" Width="47" Height="12" VerticalAlignment="Top" Canvas.Left="153" Canvas.Top="307" HorizontalAlignment="Left"/>
+        <TextBox x:Name="txt_Secuencia" TextWrapping="Wrap" Width="47" Height="13" VerticalAlignment="Top" Canvas.Left="153" Canvas.Top="306" HorizontalAlignment="Left"/>
 
 
-        <Grid x:Name="dataGrid" RenderTransformOrigin="0.453,0.482" Width="587" Height="647">
+        <Grid x:Name="dataGrid" RenderTransformOrigin="0.453,0.482" Width="584" Height="636" HorizontalAlignment="Right" VerticalAlignment="Top" Canvas.Top="-1">
 
 
 
-
-            <!-- Botons de funcionalidades  -->
             <!--Codigo y Descripcion-->
 
-            <Label x:Name="lblTitulo" Content="Formación Brigada" HorizontalAlignment="Left" Margin="89,35,0,0" VerticalAlignment="Top" FontSize="18.667"/>
-            <Label x:Name="lblCodigo" Content="Código" HorizontalAlignment="Left" Margin="155,94,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="TxtidCodigo" Height="23" Margin="224,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="66" HorizontalAlignment="Left" />
+            <Label x:Name="lblTitulo" Content="Formación Brigada" HorizontalAlignment="Left" Margin="79,35,0,0" VerticalAlignment="Top" FontSize="18.667"/>
+            <Label x:Name="lblCodigo" Content="Código" HorizontalAlignment="Left" Margin="159,94,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="TxtidCodigo" Height="23" Margin="224,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="66" HorizontalAlignment="Left"/>
             <!--  BuscarBrigada-->
             <Button x:Name="btnbuscar" Margin="291,97,0,0" Height="23" HorizontalAlignment="Left" Width="31" 
 				VerticalAlignment="Top" ToolTip="Consultar  Departamentos" Content="..." Click="btnbuscar_Click"/>
 
 
             <!--Vehiculo-->
-            <Label x:Name="lblidVehiculo" Content="Vehículo" HorizontalAlignment="Left" Margin="155,117,0,0" VerticalAlignment="Top"/>
-            <ComboBox x:Name="cbidVehiculo" HorizontalAlignment="Left" Margin="222,124,0,0" VerticalAlignment="Top" Width="171" SelectionChanged="cbidVehiculo_SelectionChanged" />
+            <Label x:Name="lblidVehiculo" Content="Vehículo" HorizontalAlignment="Left" Margin="159,117,0,0" VerticalAlignment="Top"/>
+            <ComboBox x:Name="cbidVehiculo" Margin="222,124,0,0" VerticalAlignment="Top" Width="171" SelectionChanged="cbidVehiculo_SelectionChanged" HorizontalAlignment="Left" />
 
 
 
 
             <!---Fecha-->
-            <Label x:Name="lblFecha" Content="Fecha" HorizontalAlignment="Left" Margin="161,154,0,0" VerticalAlignment="Top"/>
-            <DatePicker x:Name="Fecha" HorizontalAlignment="Left" VerticalAlignment="Top" Width="171" Canvas.Left="411" Canvas.Top="159" Margin="222,153,0,0"/>
+            <Label x:Name="lblFecha" Content="Fecha" HorizontalAlignment="Left" Margin="159,154,0,0" VerticalAlignment="Top"/>
+            <DatePicker x:Name="Fecha" VerticalAlignment="Top" Width="171" Canvas.Left="411" Canvas.Top="159" Margin="222,153,0,0" HorizontalAlignment="Left"/>
 
 
             <!--Chofer-->
-            <Label x:Name="lblChofer" Content="Chofer" HorizontalAlignment="Left" Margin="157,185,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtChofer" TextWrapping="Wrap" Width="170" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="224,185,0,0" Height="23" VerticalAlignment="Top" IsEnabled="False" IsReadOnly="True"/>
+            <Label x:Name="lblChofer" Content="Chofer" HorizontalAlignment="Left" Margin="159,185,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtChofer" TextWrapping="Wrap" Width="170" Canvas.Left="171" Canvas.Top="113" Margin="223,185,0,0" Height="23" VerticalAlignment="Top" IsEnabled="False" IsReadOnly="True" HorizontalAlignment="Left"/>
             <Button x:Name="btnbuscarChofer" Margin="395,185,0,0" Height="23" HorizontalAlignment="Left" Width="31" 
 				VerticalAlignment="Top" ToolTip="Buscar Chofer" Content="..." Click="btnbuscarChofer_Click"/>
 
             <!--Supervisor-->
-            <Label x:Name="lblSupervisor" Content="Supervisor" HorizontalAlignment="Left" Margin="155,210,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtSupervisor" TextWrapping="Wrap" Width="170" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="223,212,0,0" Height="23" VerticalAlignment="Top" IsEnabled="False" IsReadOnly="True"/>
+            <Label x:Name="lblSupervisor" Content="Supervisor" HorizontalAlignment="Left" Margin="159,210,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtSupervisor" TextWrapping="Wrap" Width="170" Canvas.Left="171" Canvas.Top="113" Margin="223,212,0,0" Height="23" VerticalAlignment="Top" IsEnabled="False" IsReadOnly="True" HorizontalAlignment="Left"/>
             <Button x:Name="btnbuscarSupervisor" Margin="395,211,0,0" Height="23" HorizontalAlignment="Left" Width="31" 
 				VerticalAlignment="Top" ToolTip="Buscar Supervisor" Content="..." Click="btnbuscarSupervisor_Click" />
 
             <!--Brigadista-->
-            <Label x:Name="lblBrigadista" Content="Brigadista" HorizontalAlignment="Left" Margin="157,238,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="lblBrigadista" Content="Brigadista" HorizontalAlignment="Left" Margin="78,304,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
 
             <!--Estado-->
 
-            <Label x:Name="lblEstado" Content="Estado" HorizontalAlignment="Left" Margin="163,268,0,0" VerticalAlignment="Top"/>
-            <CheckBox x:Name="Activa" Content="Activa" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="230,274,0,0" />
+            <Label x:Name="lblEstado" Content="Estado" HorizontalAlignment="Left" Margin="159,240,0,0" VerticalAlignment="Top"/>
+            <CheckBox x:Name="Activa" Content="Activa" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="222,246,0,0" />
+            <TextBox x:Name="txtBrigadista" TextWrapping="Wrap" Width="267" Canvas.Left="171" Canvas.Top="113" Margin="148,306,0,0" Height="23" VerticalAlignment="Top" IsReadOnly="True" HorizontalAlignment="Left" />
 
 
-            <Button x:Name="btnAceptar" Margin="452,300,104,0" ToolTip="Insertar" Click="btnAceptar_Click" Height="23" VerticalAlignment="Top" >
+            <Button x:Name="btnAceptar" Margin="446,306,110,0" ToolTip="Insertar" Click="btnAceptar_Click" Height="23" VerticalAlignment="Top" >
                 <Image x:Name="btnAceptar_png" Height="18" 
                        Source="../Resources/Check.png" 
                        Stretch="Fill" Width="17" IsEnabled="True"
                        Style="{StaticResource ImageEnabled}"/>
             </Button>
 
-            <Button x:Name="btnCanceB" Margin="419,300,137,0" ToolTip="Borrar"  Height="23" VerticalAlignment="Top" Click="btnCanceB_Click" >
+            <Button x:Name="btnCanceB" Margin="417,306,139,0" ToolTip="Borrar"  Height="23" VerticalAlignment="Top" Click="btnCanceB_Click" >
                 <Image x:Name="btnCancelar_png" Height="18" 
                        Source="../Resources/Cancelar02.png" 
                        Stretch="Fill" Width="17" IsEnabled="True"
                        Style="{StaticResource ImageEnabled}"/>
             </Button>
 
-            <Button x:Name="BuscarBrigadista" Margin="484,300,0,0" Height="23" HorizontalAlignment="Left" Width="31" 
+            <Button x:Name="BuscarBrigadista" Margin="475,306,0,0" Height="23" HorizontalAlignment="Left" Width="31" 
 				VerticalAlignment="Top" ToolTip="Buscar Brigadista" Content="..." Click="BuscarBrigadista_Click"/>
 
 
             <!--BGRID-->
+
+
+
+            <Border CornerRadius="10" BorderBrush="Gray" BorderThickness="1" Margin="96,345,72,0" Height="170" VerticalAlignment="Top" >
+                <Border.BitmapEffect>
+                    <DropShadowBitmapEffect></DropShadowBitmapEffect>
+                </Border.BitmapEffect>
+                <Grid Height="180" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="435" Margin="-12,-5,-40,-7">
+                    <Border x:Name="BDRounded" BorderThickness="1" BorderBrush="Gray" Background="White" CornerRadius="10" Margin="10,0,15,-5"/>
+                    <DataGrid x:Name="dgBrigada" ItemsSource="{Binding List}"  AutoGenerateColumns="True" IsReadOnly="True" Height="207" VerticalAlignment="Top"  Margin="7,-10,3,-17" >
+                        <DataGrid.OpacityMask>
+                            <VisualBrush Visual="{Binding ElementName=BDRounded}"></VisualBrush>
+                        </DataGrid.OpacityMask>
+                        <DataGrid.Columns>
+
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+
+
 
 
 
@@ -98,15 +119,15 @@
 				ToolTip="Cancelar"
 				Canvas.Left="93" Canvas.Top="205"
 				IsEnabled="{Binding !Visibility, ElementName=btnNuevo}"
-				Margin="164,557,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnCancelar_Click" >
+				Margin="164,554,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnCancelar_Click" >
                 <Image x:Name="Cancelar_png" Height="32"
-					Source="pack://siteoforigin:,,,/Resources/Cancel.png" Width="32"
-					ToolTip="Cancelar"
-					Style="{StaticResource ImageEnabled}"
-					IsEnabled="{Binding IsEnabled, ElementName=btnCancelar}"/>
+			    Source="pack://siteoforigin:,,,/Resources/Cancel.png" Width="32"
+			    ToolTip="Cancelar"
+			    Style="{StaticResource ImageEnabled}"
+				IsEnabled="{Binding IsEnabled, ElementName=btnCancelar}"/>
             </Button>
             <Button x:Name="btnNuevo"
-				HorizontalAlignment="Left" Margin="164,557,0,0"
+				HorizontalAlignment="Left" Margin="164,554,0,0"
 				VerticalAlignment="Top"
 				Width="50"  Height="40"
 				RenderTransformOrigin="-0.333,0.727"
@@ -121,7 +142,7 @@
             <Button x:Name="btnGuardar" Height="40"
 				ToolTip="Guardar"
 				Canvas.Left="148" Canvas.Top="205"
-				IsEnabled="{Binding !Visibility, ElementName=btnModificar}" Margin="217,557,0,0" HorizontalAlignment="Left" Width="50" VerticalAlignment="Top" Click="btnGuardar_Click" >
+				IsEnabled="{Binding !Visibility, ElementName=btnModificar}" Margin="217,554,0,0" HorizontalAlignment="Left" Width="50" VerticalAlignment="Top" Click="btnGuardar_Click" >
                 <Image x:Name="btnGuardar_png" ToolTip="Guardar"
 					Width="32" Height="32"
 					Source="pack://siteoforigin:,,,/Resources/Guardar.png"
@@ -131,7 +152,7 @@
             <Button x:Name="btnModificar"
 				Width="50"
 				ToolTip="Modificar"
-				Canvas.Left="148" Canvas.Top="180" Margin="217,557,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Click="btnModificar_Click" >
+				Canvas.Left="148" Canvas.Top="180" Margin="217,554,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Click="btnModificar_Click" >
                 <Image x:Name="btnModificar_png"
 					ToolTip="Modificar"
 					Width="32"  Height="32"
@@ -143,7 +164,7 @@
             <!-- Borrar -->
             <Button x:Name="btnBorrar"
 				Width="50" Height="40"
-				ToolTip="Borrar" Canvas.Left="202" Canvas.Top="205" Margin="270,557,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnBorrar_Click"  >
+				ToolTip="Borrar" Canvas.Left="202" Canvas.Top="205" Margin="270,554,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnBorrar_Click"  >
                 <Image x:Name="btnBorrar_png"
 					Source="pack://siteoforigin:,,,/Resources/Borrar.png"
 					Height="32" Width="32"
@@ -155,7 +176,7 @@
             <Button x:Name="btnSalir"
 				Width="50" Height="40"
 				ToolTip="Salir"
-				Canvas.Left="267" Canvas.Top="205" Margin="338,557,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnSalir_Click">
+				Canvas.Left="267" Canvas.Top="205" Margin="331,554,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnSalir_Click">
 
                 <Image x:Name="btnSalir_png" ToolTip="Salir"
 					Source="pack://siteoforigin:,,,/Resources/Salir.png"
@@ -163,8 +184,8 @@
 					Style="{StaticResource ImageEnabled}"
 					IsEnabled="{Binding IsEnabled, ElementName=btnSalir}"/>
             </Button>
-            <DataGrid x:Name="dgBrigada" HorizontalAlignment="Left" Margin="60,328,0,0" VerticalAlignment="Top" Height="197" Width="455" SelectionChanged="DataGrid_SelectionChanged"/>
-            <TextBox x:Name="txtBrigadista" TextWrapping="Wrap" Width="170" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="223,241,0,0" Height="23" VerticalAlignment="Top" IsReadOnly="True" />
+
+
 
 
 

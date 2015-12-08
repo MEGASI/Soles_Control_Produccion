@@ -304,11 +304,7 @@ namespace CrtProduccion.vistas
 
                 registro.fld_idSuplidor = dlgfrm.idSuplidor;
                 registro.fld_suplidor = dlgfrm.nombre;
-                
-
-                   mostrar();
-                 
-               
+                   mostrar();   
             }
         }
 

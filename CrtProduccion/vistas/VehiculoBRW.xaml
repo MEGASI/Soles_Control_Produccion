@@ -36,7 +36,7 @@
                   Height="167" 
                  
                   
-                   IsReadOnly="True" SelectionChanged="DataG_SelectionChanged" />
+                   IsReadOnly="True" SelectionChanged="DataG_SelectionChanged" MouseDoubleClick="DataG_MouseDoubleClick" />
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" 

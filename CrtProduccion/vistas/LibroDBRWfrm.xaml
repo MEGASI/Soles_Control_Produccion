@@ -10,7 +10,7 @@
         ShowInTaskbar="False" 
         WindowStartupLocation="CenterScreen" 
         Background="{StaticResource fondoClaro}"
-        WindowStyle="ToolWindow" Height="541" Width="1044">
+        WindowStyle="ToolWindow" Height="411" Width="679">
 
     <Grid>
 
@@ -29,13 +29,13 @@
 
 
 
-        <StackPanel x:Name="main" Orientation="Vertical" Height="237"  >
+        <StackPanel x:Name="main" Orientation="Vertical" Margin="0,110,0,0"  >
 
             <StackPanel  x:Name="sp1" Orientation="Vertical"
                      Margin="10,10,10,0">
                 <!---DataGridView-->
                 <DataGrid x:Name="DataG" 
-                  Height="167" 
+                  Height="192" 
                   
                    IsReadOnly="True" SelectionChanged="DataG_SelectionChanged" MouseDoubleClick="DataG_MouseDoubleClick" />
             </StackPanel>

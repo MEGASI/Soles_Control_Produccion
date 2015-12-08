@@ -323,12 +323,12 @@ namespace CrtProduccion.vistas
         }
 
 
-        #endregion
+     
 
        
     }
 }
 
-
+#endregion
 
 

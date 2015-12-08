@@ -19,6 +19,7 @@ namespace CrtProduccion.entidades
         public string fld_Brigadista { get; set; }
         public int fld_idBrigadista { get; set; }
         public string errormsg = "";
+     
 
         #endregion
 
@@ -38,6 +39,9 @@ namespace CrtProduccion.entidades
 
         }
 
+
+
+
         #endregion
 
         #region Metodos y Funciones
@@ -50,6 +54,9 @@ namespace CrtProduccion.entidades
             fld_idSupervisor = 0;
             fld_idChofer = 0;
             fld_activa = false;
+            fld_Chofer = "";
+            fld_Supervisor = "";
+            
 
         }
         public bool validar()
@@ -59,6 +66,19 @@ namespace CrtProduccion.entidades
             if (lret && fld_idVehiculo.Equals(""))
             {
                 errormsg = "Descripcion de Vehiculo no puede estar vacío.";
+                lret = false;
+            }
+
+
+            if (lret && fld_Chofer.Equals(""))
+            {
+                errormsg = "Chofer no puede estar vacío.";
+                lret = false;
+            }
+
+            if (lret && fld_Supervisor.Equals(""))
+            {
+                errormsg = "Supervisor  no puede estar vacío.";
                 lret = false;
             }
 

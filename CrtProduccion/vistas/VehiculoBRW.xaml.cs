@@ -48,6 +48,19 @@ namespace CrtProduccion.vistas
             this.DialogResult = false;
         }
 
+
+        private void DataG_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+            if (sender != null)
+            {
+                DataGridRow dgr = sender as DataGridRow;
+                this.DialogResult = true;
+            }
+
+        }
+
+
         #endregion
 
 
@@ -212,6 +225,8 @@ namespace CrtProduccion.vistas
 
 
         #region  Busqueda Incrementada
+
+
         private void textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
            
@@ -240,6 +255,9 @@ namespace CrtProduccion.vistas
                 DataG.ItemsSource = dt.DefaultView;
             }        
         }
+
+      
     }
-}
+  }
+
 #endregion

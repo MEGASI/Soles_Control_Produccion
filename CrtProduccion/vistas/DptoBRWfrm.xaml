@@ -10,11 +10,11 @@
         
         
     Title="Consultar Departamentos" Height="375" Width="404" Loaded="Window_Loaded" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen">
-    <Grid Margin="0,-22,0,32" Height="343" VerticalAlignment="Bottom">
+    <Grid Margin="0,-19,0,-1" Height="370" VerticalAlignment="Bottom">
 
         <!--Campo y Filtro Para busqueda Incrementada-->
         <Label x:Name="lblcbFiltro" Content="Buscar Por" HorizontalAlignment="Left" Margin="43,61,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <TextBox x:Name="txtCampo" HorizontalAlignment="Left" Height="24" Margin="123,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" TextChanged="txtCampo_TextChanged" />
+        <TextBox x:Name="txtCampo" HorizontalAlignment="Left" Height="24" Margin="123,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" TextChanged="txtCampo_TextChanged" />
         <Label x:Name="lblTxtCampo" Content="Campo" HorizontalAlignment="Left" Margin="43,90,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <ComboBox x:Name="cbFiltro" HorizontalAlignment="Left" Margin="123,62,0,0" VerticalAlignment="Top" Width="145" >
             <ComboBoxItem Content="Codigo"/>
@@ -22,7 +22,7 @@
         </ComboBox>
 
 
-        <StackPanel x:Name="main" Orientation="Vertical" Margin="0,107,2,0" Height="231" VerticalAlignment="Top"  >
+        <StackPanel x:Name="main" Orientation="Vertical" Margin="0,121,2,0"  >
 
             <StackPanel  x:Name="sp1" Orientation="Vertical"
                      Margin="23,10,0,0" HorizontalAlignment="Left" Width="250">

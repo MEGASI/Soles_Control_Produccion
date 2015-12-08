@@ -16,8 +16,8 @@ Title="Actividades" Height="396" Width="529" WindowStyle="ToolWindow" WindowStar
             <!--Titulo y Actividad-->
 
             <Label x:Name="lblTitulo" Content="Actividades" HorizontalAlignment="Left" Margin="73,25,0,0" VerticalAlignment="Top" FontSize="18.667"/>
-            <Label x:Name="lblidActividad" Content="idActividad" HorizontalAlignment="Left" Margin="85,85,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="TxtidActividad" Height="23" Margin="165,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalAlignment="Left" LostFocus="TxtidActividad_LostFocus" KeyDown="TxtidActividad_KeyDown" />
+            <Label x:Name="lblidActividad" Content="id-Actividad" HorizontalAlignment="Left" Margin="85,85,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="TxtidActividad" Height="23" Margin="165,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalAlignment="Left" LostFocus="TxtidActividad_LostFocus" KeyDown="TxtidActividad_KeyDown"/>
             <!--  Buscar-->
             <Button x:Name="btnbuscar" Margin="290,0,0,265" Height="23" HorizontalAlignment="Left" Width="31" 
                 VerticalAlignment="Bottom" ToolTip="Consultar  Departamentos" Content="..." />

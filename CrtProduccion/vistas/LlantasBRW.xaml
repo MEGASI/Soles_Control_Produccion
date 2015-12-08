@@ -11,7 +11,7 @@
         ShowInTaskbar="False" 
         WindowStartupLocation="CenterScreen" 
         Background="{StaticResource fondoClaro}"
-        WindowStyle="ToolWindow" Height="450.954" Width="578.979" Loaded="Window_Loaded">
+        WindowStyle="ToolWindow" Height="370.994" Width="578.979" Loaded="Window_Loaded">
 
     <Grid>
         <!--Campo y Filtro Para busqueda Incrementada-->
@@ -21,14 +21,13 @@
         <ComboBox x:Name="cbFiltro" HorizontalAlignment="Left" Margin="117,39,0,0" VerticalAlignment="Top" Width="145" >
             <ComboBoxItem Content="Llanta"/>
             <ComboBoxItem Content="FiltroAceite"/>
-             </ComboBox>
+        </ComboBox>
 
 
-        <StackPanel x:Name="main" Orientation="Vertical" Height="237"  >
+        <StackPanel x:Name="main" Orientation="Vertical" Margin="0,96,0,0"  >
 
             <StackPanel  x:Name="sp1" Orientation="Vertical"
                      Margin="10,10,10,0">
-
                 <DataGrid x:Name="DataG" 
                   Height="167" 
                  

@@ -10,9 +10,9 @@
         ShowInTaskbar="False" 
         WindowStartupLocation="CenterScreen" 
         Background="{StaticResource fondoClaro}"
-        WindowStyle="ToolWindow" Height="396.997" Width="408.994">
+        WindowStyle="ToolWindow" Height="366.998" Width="408.994">
 
-    <Grid Margin="0,1,0,-1" Height="372" VerticalAlignment="Top">
+    <Grid Margin="0,1,0,0" Height="341" VerticalAlignment="Top">
 
         <!--Campo y Filtro Para busqueda Incrementada-->
         <Label x:Name="lblcbFiltro" Content="Buscar Por" HorizontalAlignment="Left" Margin="42,45,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
@@ -24,13 +24,12 @@
         </ComboBox>
 
 
-        <StackPanel x:Name="main" Orientation="Vertical" Height="237" Margin="0,94,0,41" HorizontalAlignment="Right" Width="401"  >
+        <StackPanel x:Name="main" Orientation="Vertical" Margin="0,94,0,0" HorizontalAlignment="Right" Width="401"  >
 
             <StackPanel  x:Name="sp1" Orientation="Vertical"
                      Margin="10,10,10,0">
-
                 <DataGrid x:Name="DataG" 
-                  Height="167" 
+                  Height="151" 
                   SelectionChanged="DataG_SelectionChanged"
                   MouseDoubleClick="DataG_MouseDoubleClick"
                    IsReadOnly="True" />
@@ -38,7 +37,7 @@
 
             <StackPanel Orientation="Horizontal" 
                     HorizontalAlignment="Center" Margin="96,10,97,10">
-                <Button x:Name="btnAceptar" Margin="2,0,2,0" Width="100"  
+                <Button x:Name="btnAceptar" Margin="2,0,2,0" Width="62"  
                     Height="38" ToolTip="Aceptar" Click="btnAceptar_Click" IsEnabled="False">
                     <Image x:Name="btnAceptar_png" Height="32" 
                        Source="../Resources/Check.png" 
@@ -46,7 +45,7 @@
                        Style="{StaticResource ImageEnabled}"/>
                 </Button>
 
-                <Button x:Name="btnCancelar" Margin="2,0,2,0" Width="100"  Height="38" ToolTip="Cancelar" Click="btnCancelar_Click">
+                <Button x:Name="btnCancelar" Margin="2,0,2,0" Width="66"  Height="38" ToolTip="Cancelar" Click="btnCancelar_Click">
                     <Image x:Name="Cancelar_png" Height="32" Source="../Resources/Cancelar02.png" 
                        Stretch="Fill" Width="32" />
                 </Button>

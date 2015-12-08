@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CrtProduccion.vistas"
         mc:Ignorable="d"
-        Title="Consulta de Usuarios" Height="360.954" Width="468.952" 
+        Title="Consulta de Usuarios" Height="305.988" Width="443.976" 
         WindowStartupLocation="CenterScreen" 
         Loaded="Window_Loaded" 
         ShowInTaskbar="False" 
@@ -29,25 +29,25 @@
         </ComboBox>
 
 
-        <StackPanel  Orientation="Vertical" Margin="0,87,10,0" Height="210" VerticalAlignment="Top" HorizontalAlignment="Right" Width="441"  >
+        <StackPanel  Orientation="Vertical" Margin="0,87,0,0" Height="194" VerticalAlignment="Top" HorizontalAlignment="Right" Width="436"  >
             <StackPanel  x:Name="sp1" Orientation="Vertical" HorizontalAlignment="Center"
     		Margin="70,10,71,0" Width="300" Height="120">
                 <DataGrid x:Name="dataGrid" 
-    			Height="120"
+    			Height="118"
     			SelectionChanged="dataGrid_SelectionChanged" 
     			MouseDoubleClick="DataGrid_MouseDoubleClick"
-    			IsReadOnly="True" HorizontalAlignment="Right" Width="300" />
+    			IsReadOnly="True" />
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="116,10,117,10">
-                <Button x:Name="btnAceptar" Margin="2,0,2,0" Width="100"  
+                <Button x:Name="btnAceptar" Margin="2,0,2,0" Width="68"  
         		Height="38" ToolTip="Aceptar" Click="btnAceptar_Click" IsEnabled="False">
                     <Image x:Name="btnAceptar_png" Height="32" 
         			Source="../Resources/Check.png" 
         			Stretch="Fill" Width="32" IsEnabled="False"
         			Style="{StaticResource ImageEnabled}"/>
                 </Button>
-                <Button x:Name="btnCancelar" Margin="2,0,2,0" Width="100"  Height="38" ToolTip="Cancelar" Click="btnCancelar_Click">
+                <Button x:Name="btnCancelar" Margin="2,0,2,0" Width="62"  Height="38" ToolTip="Cancelar" Click="btnCancelar_Click">
                     <Image x:Name="Cancelar_png" Height="32" Source="../Resources/Cancelar02.png" 
         			Stretch="Fill" Width="32" />
                 </Button>

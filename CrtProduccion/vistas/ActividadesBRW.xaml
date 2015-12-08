@@ -14,7 +14,7 @@
         WindowStyle="ToolWindow" Height="365.907" Width="408.958">
 
     <Grid>
-        <StackPanel x:Name="main" Orientation="Vertical" Height="237"  >
+        <StackPanel x:Name="main" Orientation="Vertical" Margin="0,55,0,0"  >
 
             <StackPanel  x:Name="sp1" Orientation="Vertical"
                      Margin="10,10,10,0">

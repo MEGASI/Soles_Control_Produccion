@@ -75,6 +75,7 @@ namespace CrtProduccion.vistas
 
 
         #region Constructor y Loader
+
         //   Constructor del formulario 
 
         public Actividafrm()
@@ -112,6 +113,7 @@ namespace CrtProduccion.vistas
         #endregion
 
         #region Funcionalidades de los Botones
+
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
             registro.fld_oldidActividad = registro.fld_idActividad;
@@ -282,6 +284,7 @@ namespace CrtProduccion.vistas
 
         #endregion
 
+
         #region Llenando ComboB
 
 
@@ -320,7 +323,7 @@ namespace CrtProduccion.vistas
                 registro.fld_idMedida = selectedValue;
             }
         }
-
+      
     }
 }
 

@@ -57,6 +57,7 @@
 
                 <MenuItem Header="Proceso" FontFamily="Verdana" FontSize="14">
                     <MenuItem Header="Formacion de Brigadas" FontSize="14" Click="MenuItem_Click_11"/>
+                    <MenuItem Header="Informe Diario  Producción" FontSize="14" Click="MenuItem_Click_12"/>
                     <MenuItem Header="Entrada Combustible" FontSize="14"/>
                     <MenuItem Header="Salida Combustible" FontSize="14"/>
                     <MenuItem Header="Entrada Taller" FontSize="14"/>

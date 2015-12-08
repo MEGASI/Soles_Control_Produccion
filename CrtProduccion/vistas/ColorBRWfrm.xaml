@@ -10,7 +10,7 @@
         ShowInTaskbar="False" 
         WindowStartupLocation="CenterScreen" 
         Background="{StaticResource fondoClaro}"
-        WindowStyle="ToolWindow" Height="460.953" Width="478.979">
+        WindowStyle="ToolWindow" Height="380.976" Width="478.979">
 
 
     <Grid>
@@ -25,7 +25,7 @@
         </ComboBox>
 
 
-        <StackPanel x:Name="main" Orientation="Vertical" Height="237"  >
+        <StackPanel x:Name="main" Orientation="Vertical" Margin="0,100,0,0"  >
 
             <StackPanel  x:Name="sp1" Orientation="Vertical"
                      Margin="10,10,10,0">

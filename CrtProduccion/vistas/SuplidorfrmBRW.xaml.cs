@@ -55,14 +55,14 @@ namespace CrtProduccion.vistas
             DataG.ItemsSource = dsGrid.Tables[0].DefaultView;
 
             DataG.CanUserAddRows = false;
-            DataG.Columns[0].Width = 175;
+            DataG.Columns[0].Width = 50;
             DataG.Columns[0].IsReadOnly = true;
             DataG.Columns[0].Header = "Codigo";
             DataG.Columns[0].CanUserResize = false;
 
 
             DataG.Columns[1].IsReadOnly = true;
-            DataG.Columns[1].Width = 125;
+            DataG.Columns[1].Width = 175;
             DataG.Columns[1].Header = "Suplidor";
             DataG.Columns[1].CanUserResize = false;
 
@@ -107,7 +107,7 @@ namespace CrtProduccion.vistas
             dsGrid.Clear();
             if (cbFiltro.Text == "Codigo")
             {
-                SqlDataAdapter adapter = new SqlDataAdapter(" Select vp.idSuplidor, LD.Nombres from " +
+                SqlDataAdapter adapter = new SqlDataAdapter(" Select vp.idSuplidor, LD.Nombres as Suplidor from " +
                                                             " Vehiculo_Partes vp" +
                                                             " inner join LibroDirecciones LD  on vp.idSuplidor = Ld.idLD"+
                                                             " where vp.idSuplidor Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
@@ -118,10 +118,10 @@ namespace CrtProduccion.vistas
             }
             else if (cbFiltro.Text == "NombreS")
             {
-                SqlDataAdapter adapter = new SqlDataAdapter(" Select vp.idSuplidor, LD.Nombres from " +
-                                                           " Vehiculo_Partes vp" +
-                                                           " inner join LibroDirecciones LD  on vp.idSuplidor = Ld.idLD" +
-                                                           " where LD.Nombres Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
+                SqlDataAdapter adapter = new SqlDataAdapter(" Select vp.idSuplidor, LD.Nombres as Suplidor from " +
+                                                            " Vehiculo_Partes vp" +
+                                                            " inner join LibroDirecciones LD  on vp.idSuplidor = Ld.idLD" +
+                                                            " where LD.Nombres Like '" + txtCampo.Text + "%'", datamanager.cadenadeconexion);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 DataG.ItemsSource = dt.DefaultView;

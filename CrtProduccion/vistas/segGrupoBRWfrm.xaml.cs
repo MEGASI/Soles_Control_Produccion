@@ -103,7 +103,10 @@ namespace CrtProduccion
             {
                 DataGridRow dgr = sender as DataGridRow;
                 this.DialogResult = true;
+
             }
+
+
         }
         #endregion
 
