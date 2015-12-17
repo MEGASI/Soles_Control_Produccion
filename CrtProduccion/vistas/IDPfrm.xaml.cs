@@ -92,8 +92,7 @@ namespace CrtProduccion.vistas
                         btnModificar.Visibility = Visibility.Visible;
 
                         comunes.libreria.estadoControles(this, false);
-                        //TxtidCodigo.IsEnabled = true;
-                        //Activa.IsEnabled = true;
+                      
 
                     }
                 }
@@ -181,11 +180,11 @@ namespace CrtProduccion.vistas
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             // Asignar los valores de los conroles del formulario a los campos.
-            //registro.fld_idBrigada = Convert.ToInt32(TxtidCodigo.Text);
-            //registro.fld_Fecha = Convert.ToDateTime(Fecha.Text);
-            //registro.fld_activa = Convert.ToBoolean(Activa.IsChecked);
-            //txtChofer.Text = registro.fld_Chofer;
-            //txtSupervisor.Text = registro.fld_Supervisor;
+            
+            registro.fld_idp = Convert.ToInt32(Txtidp.Text);
+            registro.fld_Fecha = Convert.ToDateTime(txtFecha.Text);
+            registro.fld_circuito = TxtNoCircuito.Text.Trim();
+            registro.fld_Observacion = txtObservación.Text.Trim();
 
 
 
@@ -518,8 +517,8 @@ namespace CrtProduccion.vistas
         {
 
 
-            //try
-            //{
+            try
+            {
 
                 int Contar = int.Parse(Txsecuencia.Text);
                 int contar1 = Contar + 1;
@@ -535,7 +534,7 @@ namespace CrtProduccion.vistas
                     Costo = Convert.ToDouble(TxCost.Text),
                     Direccion = TxDireccion.Text,
                     Noposte = TxNPost.Text,
-                    //id = Convert.ToInt32(Txtid.Text),
+                    id = Convert.ToInt32(Txtid.Text),
                     Secuencia = Convert.ToInt32(Txsecuencia.Text),
                     idPartida = Convert.ToInt32(TxidPartida.Text)
 
@@ -551,18 +550,18 @@ namespace CrtProduccion.vistas
                 TxNPost.Text = "";
 
 
-           }
-        //    catch { MessageBox.Show("Error"); }
+        }
+            catch { MessageBox.Show("Error"); }
 
-        //}
+}
 
-        #endregion
-
-
-        #region CreandoGrid
+#endregion
 
 
-        public void Creargrid()
+#region CreandoGrid
+
+
+public void Creargrid()
         {
 
             DataGridTextColumn textColumn = new DataGridTextColumn();
@@ -616,7 +615,7 @@ namespace CrtProduccion.vistas
             DataGridTextColumn c7 = new DataGridTextColumn();
             c7.Header = "No. Poste";
             c7.Binding = new Binding("Noposte");
-            c7.Width = 70;
+            c7.Width = 85;
             //c4.Visibility = Visibility.Hidden;
             DG_IDP.Columns.Add(c7);
 
@@ -704,6 +703,8 @@ namespace CrtProduccion.vistas
                 TxCost.Text = Result.ToString();
             }
         }
+
+      
     }
     }
     

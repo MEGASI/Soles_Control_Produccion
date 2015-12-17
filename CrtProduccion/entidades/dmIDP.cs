@@ -179,10 +179,6 @@ namespace CrtProduccion.entidades
                     fld_Observacion = dr["Observacion"].ToString();
                     
 
-
-
-
-
                 }
             }
             else
