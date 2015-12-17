@@ -144,6 +144,9 @@
     <Compile Include="vistas\IDPfrm.xaml.cs">
       <DependentUpon>IDPfrm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="vistas\IDPfrmBRW.xaml.cs">
+      <DependentUpon>IDPfrmBRW.xaml</DependentUpon>
+    </Compile>
     <Compile Include="vistas\idppartidaBRW.xaml.cs">
       <DependentUpon>idppartidaBRW.xaml</DependentUpon>
     </Compile>
@@ -292,6 +295,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="vistas\IDPfrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\IDPfrmBRW.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

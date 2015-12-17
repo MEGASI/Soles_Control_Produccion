@@ -44,13 +44,14 @@ Title="Informe Diario Producción" Height="626" Width="1009" WindowStyle="ToolWi
             <Label x:Name="lblPrecio" Content="Precio" HorizontalAlignment="Left" Margin="421,175,0,0" VerticalAlignment="Top"/>
             <Label x:Name="lblNposte" Content="No.Poste" HorizontalAlignment="Left" Margin="823,177,0,0" VerticalAlignment="Top"/>
             <Label x:Name="lblcos" Content="Costo" HorizontalAlignment="Left" Margin="577,175,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="TxCodIDP" Height="23" Margin="65,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" HorizontalAlignment="Left" IsReadOnly="True" />
+            <TextBox x:Name="TxCodIDP" Height="23" Margin="65,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" HorizontalAlignment="Left" IsReadOnly="True" MouseDoubleClick="TxCodIDP_MouseDoubleClick" />
             <TextBox x:Name="TxDesc" Height="23" Margin="140,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="270" HorizontalAlignment="Left" IsReadOnly="True" />
             <TextBox x:Name="TxPreci" Height="23" Margin="411,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" HorizontalAlignment="Left" IsReadOnly="True" />
             <TextBox x:Name="TxCantidad" Height="23" Margin="487,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" HorizontalAlignment="Left" KeyUp="TxCantidad_KeyUp" KeyDown="TxCantidad_KeyDown" />
             <TextBox x:Name="TxCost" Height="23" Margin="563,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" HorizontalAlignment="Left" IsReadOnly="True" />
             <TextBox x:Name="TxDireccion" Height="23" Margin="639,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" HorizontalAlignment="Left" />
             <TextBox x:Name="TxNPost" Height="23" Margin="823,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="64" HorizontalAlignment="Left" />
+            <CheckBox x:Name="Feriachk" Content="Feriado" HorizontalAlignment="Left" Margin="659,114,0,0" VerticalAlignment="Top"/>
 
             <DataGrid x:Name="DG_IDP" HorizontalAlignment="Left" Margin="65,221,0,0" VerticalAlignment="Top" Width="846" Height="142" HorizontalScrollBarVisibility="Disabled"/>
 
@@ -167,6 +168,9 @@ Title="Informe Diario Producción" Height="626" Width="1009" WindowStyle="ToolWi
         			IsEnabled="{Binding IsEnabled, ElementName=btnSalir}"/>
             </Button>
             <DatePicker x:Name="txtFecha" HorizontalAlignment="Left" Margin="145,106,0,0" VerticalAlignment="Top" Width="152"/>
+            <Button x:Name="button" Content="guardar" HorizontalAlignment="Left" Margin="562,520,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
+            
+
 
 
 

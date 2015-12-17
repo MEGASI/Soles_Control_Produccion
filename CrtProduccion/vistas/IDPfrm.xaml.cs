@@ -125,6 +125,7 @@ namespace CrtProduccion.vistas
             LlenandoSuperEdes();
             Creargrid();
             Txsecuencia.Text = "0";
+            btnbuscarB.Visibility = Visibility.Hidden;
 
 
             //DataContext = registro;
@@ -185,6 +186,7 @@ namespace CrtProduccion.vistas
             registro.fld_Fecha = Convert.ToDateTime(txtFecha.Text);
             registro.fld_circuito = TxtNoCircuito.Text.Trim();
             registro.fld_Observacion = txtObservación.Text.Trim();
+            registro.fld_diaferiado = Convert.ToBoolean(Feriachk.IsEnabled);
 
 
 
@@ -209,7 +211,7 @@ namespace CrtProduccion.vistas
 
                 modalidad = "CONSULTAR";
                 MessageBox.Show("Información del la  Partida fue almacenada.", "Guardar", MessageBoxButton.OK, MessageBoxImage.Information);
-
+                this.GuardarGRID(registro.fld_id);
 
             }
             else
@@ -236,7 +238,6 @@ namespace CrtProduccion.vistas
             }
 
         }
-
         private void btnSalir_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -244,9 +245,23 @@ namespace CrtProduccion.vistas
 
         private void btnbuscar_Click(object sender, RoutedEventArgs e)
         {
+            vistas.IDPfrmBRW dlgfrm = new vistas.IDPfrmBRW();
+            dlgfrm.ShowDialog();
 
+            if (dlgfrm.DialogResult.HasValue && dlgfrm.DialogResult.Value)
+            {
+                // Si el Usuario presiona Aceptar
+                if (!registro.buscar(dlgfrm.idIDP, true))
+                {
+                    MessageBox.Show(" IDP existe", "Informe Diario Producción", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    mostrar();
+                    
+                }
+            }
         }
-
         private void btnbuscarB_Click(object sender, RoutedEventArgs e)
         {
 
@@ -264,9 +279,7 @@ namespace CrtProduccion.vistas
 
 
         }
-    
-
-
+  
     #endregion
 
 
@@ -279,9 +292,6 @@ namespace CrtProduccion.vistas
     /// </summary>
     private void mostrar()
         {
-
-
-
             Txtid.Text = Convert.ToString(registro.fld_id);
             Txtidp.Text = Convert.ToString(registro.fld_idp);
             txtFecha.Text = Convert.ToDateTime(registro.fld_Fecha).ToString();
@@ -292,10 +302,6 @@ namespace CrtProduccion.vistas
             TxDesc.Text = registro.fld_descripcion;
             TxPreci.Text = registro.fld_precio;
            
-
-
-
-
             foreach (CBoxNullItem lobj in cbProyecto.Items)
                 if ((int)lobj.Value == registro.fld_idProyecto)
                 {
@@ -318,10 +324,6 @@ namespace CrtProduccion.vistas
 
 
         }
-
-
-
-
 
 
         #endregion
@@ -438,7 +440,7 @@ namespace CrtProduccion.vistas
         #region  Metodo  GuardarGrid
 
 
-        public void GuardarGRID(int pidBrigada)
+        public void GuardarGRID(int pid)
         {
             // Recorriendo el DgGrid y  Guardando y 
             if (datamanager.ConexionAbrir())
@@ -448,13 +450,18 @@ namespace CrtProduccion.vistas
 
                 // Conectar a SQL y preparar la ejecucion del procedimiento SQL
                 Cmd1.Connection = datamanager.ConexionSQL;
-                Cmd1.CommandText = "dbo.insert_GridBrigadas_D";
+                Cmd1.CommandText = "dbo.IDP_DC";
                 Cmd1.CommandType = CommandType.StoredProcedure;
 
                 // Creando los parametros en el mismo orden que estan en el procedure
-                Cmd1.Parameters.Add("@idBrigada", SqlDbType.Int).Value = 0;
-                Cmd1.Parameters.Add("@idLD", SqlDbType.Int).Value = 0;
+                Cmd1.Parameters.Add("@id", SqlDbType.Int).Value = 0;
                 Cmd1.Parameters.Add("@secuencia", SqlDbType.Int).Value = 0;
+                Cmd1.Parameters.Add("@idPartida", SqlDbType.Int).Value = 0;
+                Cmd1.Parameters.Add("@cantidad", SqlDbType.Money).Value = 0;
+                Cmd1.Parameters.Add("@direccion", SqlDbType.VarChar).Value = "";
+                Cmd1.Parameters.Add("@numPoste", SqlDbType.VarChar).Value = "";
+                Cmd1.Parameters.Add("@precio", SqlDbType.Money).Value = 0;
+                Cmd1.Parameters.Add("@efecto", SqlDbType.Money).Value = 0;
 
 
 
@@ -463,17 +470,29 @@ namespace CrtProduccion.vistas
                 {
 
                     // Extrarer valor de cada fila (celda) del datagrid y ponerlo en una variable
-                    int idBrigada = pidBrigada;//(DG_IDP.Items[i] as dgFila).idBrigada;
-                                               // int idLD = (DG_IDP.Items[i] as dgBFila).id;
+
+                    //(DG_IDP.Items[i] as dgFila).idBrigada;
+                    int id = pid;
                     int secuencia = (DG_IDP.Items[i] as dgBFila).Secuencia;
+                    int idPartida = (DG_IDP.Items[i] as dgBFila).idPartida;
+                    double cantidad = (DG_IDP.Items[i] as dgBFila).cantidad;
+                    string Direccion = (DG_IDP.Items[i] as dgBFila).Direccion;
+                    string Noposte = (DG_IDP.Items[i] as dgBFila).Noposte;
+                    double Precio = (DG_IDP.Items[i] as dgBFila).Precio;
+                    double efecto = (DG_IDP.Items[i] as dgBFila).efecto;
 
 
 
-                    Cmd1.Parameters["@idBrigada"].Value = Convert.ToInt32(idBrigada);
-                    // Cmd1.Parameters["@idLD"].Value = Convert.ToInt32(idLD);
+                    Cmd1.Parameters["@id"].Value = Convert.ToInt32(id);
+                    Cmd1.Parameters["@idPartida"].Value = Convert.ToInt32(idPartida);
                     Cmd1.Parameters["@secuencia"].Value = Convert.ToInt32(secuencia);
+                    Cmd1.Parameters["@cantidad"].Value = Convert.ToDouble(cantidad);
+                    Cmd1.Parameters["@direccion"].Value = (Direccion);
+                    Cmd1.Parameters["@numPoste"].Value = (Noposte);
+                    Cmd1.Parameters["@Precio"].Value = Convert.ToDouble(Precio);
+                    Cmd1.Parameters["@efecto"].Value = Convert.ToDouble(efecto);
 
-                    Cmd1.ExecuteNonQuery();
+                    registro.fld_id = (int)Cmd1.ExecuteScalar();
                 }
                 datamanager.ConexionCerrar();
 
@@ -499,11 +518,11 @@ namespace CrtProduccion.vistas
                         mygrid.Items.Remove(grid.SelectedItems[i]);
                     };
 
-                    //int Contar = int.Parse(Txt_Secuencia.Text);
-                    //int contar1 = Contar - 1;
+                    int Contar = int.Parse(Txsecuencia.Text);
+                    int contar1 = Contar - 1;
 
-                    //Contar--;
-                    //txt_Secuencia.Text = contar1.ToString();
+                    Contar--;
+                    Txsecuencia.Text = contar1.ToString();
 
                 }
             }
@@ -558,89 +577,89 @@ namespace CrtProduccion.vistas
 #endregion
 
 
-#region CreandoGrid
+                #region CreandoGrid
 
 
-public void Creargrid()
-        {
+                public void Creargrid()
+                        {
 
-            DataGridTextColumn textColumn = new DataGridTextColumn();
+                            DataGridTextColumn textColumn = new DataGridTextColumn();
 
-            DataGridTextColumn c1 = new DataGridTextColumn();
-            c1.Header = "Codigo";
-            c1.Binding = new Binding("Codigo");
-            //c1.Visibility = Visibility.Hidden;
-            c1.Width = 73;
-            DG_IDP.Columns.Add(c1);
+                            DataGridTextColumn c1 = new DataGridTextColumn();
+                            c1.Header = "Codigo";
+                            c1.Binding = new Binding("Codigo");
+                            //c1.Visibility = Visibility.Hidden;
+                            c1.Width = 73;
+                            DG_IDP.Columns.Add(c1);
 
-            DataGridTextColumn c2 = new DataGridTextColumn();
-            c2.Header = "Descripcion";
-            c2.Binding = new Binding("Descripcion ");
-            c2.Width = 270;
+                            DataGridTextColumn c2 = new DataGridTextColumn();
+                            c2.Header = "Descripcion";
+                            c2.Binding = new Binding("Descripcion ");
+                            c2.Width = 270;
 
-            DG_IDP.Columns.Add(c2);
+                            DG_IDP.Columns.Add(c2);
 
-            DataGridTextColumn c3 = new DataGridTextColumn();
-            c3.Header = "Precio";
-            c3.Binding = new Binding("Precio");
-            c3.Width = 75;
-            // c3.Visibility = Visibility.Hidden;
-            DG_IDP.Columns.Add(c3);
-
-
-            DataGridTextColumn c4 = new DataGridTextColumn();
-            c4.Header = "Cantidad";
-            c4.Binding = new Binding("cantidad");
-            c4.Width = 75;
-            //c4.Visibility = Visibility.Hidden;
-            DG_IDP.Columns.Add(c4);
+                            DataGridTextColumn c3 = new DataGridTextColumn();
+                            c3.Header = "Precio";
+                            c3.Binding = new Binding("Precio");
+                            c3.Width = 75;
+                            // c3.Visibility = Visibility.Hidden;
+                            DG_IDP.Columns.Add(c3);
 
 
-
-            DataGridTextColumn c5 = new DataGridTextColumn();
-            c5.Header = "Costo";
-            c5.Binding = new Binding("Costo");
-            c5.Width = 76;
-            //c4.Visibility = Visibility.Hidden;
-            DG_IDP.Columns.Add(c5);
-
-            DataGridTextColumn c6 = new DataGridTextColumn();
-            c6.Header = "Direccion";
-            c6.Binding = new Binding("Direccion");
-            c6.Width = 185;
-            //c4.Visibility = Visibility.Hidden;
-            DG_IDP.Columns.Add(c6);
+                            DataGridTextColumn c4 = new DataGridTextColumn();
+                            c4.Header = "Cantidad";
+                            c4.Binding = new Binding("cantidad");
+                            c4.Width = 75;
+                            //c4.Visibility = Visibility.Hidden;
+                            DG_IDP.Columns.Add(c4);
 
 
-            DataGridTextColumn c7 = new DataGridTextColumn();
-            c7.Header = "No. Poste";
-            c7.Binding = new Binding("Noposte");
-            c7.Width = 85;
-            //c4.Visibility = Visibility.Hidden;
-            DG_IDP.Columns.Add(c7);
+
+                            DataGridTextColumn c5 = new DataGridTextColumn();
+                            c5.Header = "Costo";
+                            c5.Binding = new Binding("Costo");
+                            c5.Width = 76;
+                            //c4.Visibility = Visibility.Hidden;
+                            DG_IDP.Columns.Add(c5);
+
+                            DataGridTextColumn c6 = new DataGridTextColumn();
+                            c6.Header = "Direccion";
+                            c6.Binding = new Binding("Direccion");
+                            c6.Width = 185;
+                            //c4.Visibility = Visibility.Hidden;
+                            DG_IDP.Columns.Add(c6);
 
 
-            DataGridTextColumn c8 = new DataGridTextColumn();
-            c8.Header = "secuencia";
-            c8.Binding = new Binding("Secuencia");
-            c8.Width = 70;
-            //c4.Visibility = Visibility.Hidden;
-            DG_IDP.Columns.Add(c8);
+                            DataGridTextColumn c7 = new DataGridTextColumn();
+                            c7.Header = "No. Poste";
+                            c7.Binding = new Binding("Noposte");
+                            c7.Width = 85;
+                            //c4.Visibility = Visibility.Hidden;
+                            DG_IDP.Columns.Add(c7);
 
 
-            DataGridTextColumn c9 = new DataGridTextColumn();
-            c9.Header = "id";
-            c9.Binding = new Binding("id");
-            c9.Width = 70;
-            //c4.Visibility = Visibility.Hidden;
-            DG_IDP.Columns.Add(c9);
+                            DataGridTextColumn c8 = new DataGridTextColumn();
+                            c8.Header = "secuencia";
+                            c8.Binding = new Binding("Secuencia");
+                            c8.Width = 70;
+                            //c4.Visibility = Visibility.Hidden;
+                            DG_IDP.Columns.Add(c8);
 
-            DataGridTextColumn c10 = new DataGridTextColumn();
-            c10.Header = "idPartida";
-            c10.Binding = new Binding("idPartida");
-            c10.Width = 70;
-            //c4.Visibility = Visibility.Hidden;
-            DG_IDP.Columns.Add(c10);
+
+                            DataGridTextColumn c9 = new DataGridTextColumn();
+                            c9.Header = "id";
+                            c9.Binding = new Binding("id");
+                            c9.Width = 70;
+                            //c4.Visibility = Visibility.Hidden;
+                            DG_IDP.Columns.Add(c9);
+
+                            DataGridTextColumn c10 = new DataGridTextColumn();
+                            c10.Header = "idPartida";
+                            c10.Binding = new Binding("idPartida");
+                            c10.Width = 70;
+                            //c4.Visibility = Visibility.Hidden;
+                            DG_IDP.Columns.Add(c10);
 
 
 
@@ -696,15 +715,41 @@ public void Creargrid()
 
         private void TxCantidad_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == System.Windows.Input.Key.Tab)
-            {
-                double Result = Double.Parse(TxPreci.Text) * Double.Parse(TxCantidad.Text);
+            try {
+                if (e.Key == System.Windows.Input.Key.Tab)
+                {
+                    double Result = Double.Parse(TxPreci.Text) * Double.Parse(TxCantidad.Text);
 
-                TxCost.Text = Result.ToString();
+                    TxCost.Text = Result.ToString();
+                }
             }
+            catch { MessageBox.Show("Verifique  la Cantidad"); }
+            
         }
 
-      
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            this.GuardarGRID( registro.fld_id);
+        }
+
+        private void TxCodIDP_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender != null)
+            {
+                vistas.partidasIDPBRW dlgfrm = new vistas.partidasIDPBRW();
+                dlgfrm.ShowDialog();
+
+                registro.fld_idPartida = dlgfrm.partida;
+                registro.fld_codigo = dlgfrm.codigo;
+                registro.fld_descripcion = dlgfrm.Descripcion;
+                registro.fld_precio = dlgfrm.Precio;
+
+
+                mostrar();
+                TxCantidad.Focus();
+
+            }
+        }
     }
     }
     
