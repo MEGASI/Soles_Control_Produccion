@@ -203,8 +203,8 @@ namespace CrtProduccion
 
         private void MenuItem_Click_12(object sender, RoutedEventArgs e)
         {
-            //vistas.idpfrm dlg = new vistas.IDPfrm();
-            //dlg.ShowDialog();
+            vistas.IDPfrm dlg = new vistas.IDPfrm();
+            dlg.ShowDialog();
         }
     }
 }

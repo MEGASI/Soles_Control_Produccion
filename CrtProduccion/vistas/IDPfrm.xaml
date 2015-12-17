@@ -10,24 +10,47 @@
 
 
 
-Title="Plantilla Ejemplo" Height="626" Width="984" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen"  >
+Title="Informe Diario Producción" Height="626" Width="1229" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded"  >
     <Canvas>
-        <Grid Height="601" Width="976" HorizontalAlignment="Left">
+        <Grid Height="601" Width="1220" HorizontalAlignment="Left" Canvas.Left="1">
+            <!--Codigo y Descripcion-->
+
+            <TextBox x:Name="Txtid" Height="12" Margin="160,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="57" HorizontalAlignment="Left"/>
             <!--Codigo y Descripcion-->
 
             <Label x:Name="lblTitulo" Content="Informe Diario de Producción" HorizontalAlignment="Left" Margin="73,25,0,0" VerticalAlignment="Top" FontSize="18.667"/>
             <Label x:Name="lblidp" Content="No. IDP" HorizontalAlignment="Left" Margin="73,76,0,0" VerticalAlignment="Top" Width="54"/>
-            <TextBox x:Name="Txtidp" Height="23" Margin="145,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalAlignment="Left" />
+            <TextBox x:Name="Txtidp" Height="23" Margin="146,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" HorizontalAlignment="Left"/>
             <Label x:Name="lblFecha" Content="Fecha" HorizontalAlignment="Left" Margin="73,102,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="lblproyecto" Content="Proyecto" HorizontalAlignment="Left" Margin="375,76,0,0" VerticalAlignment="Top"/>
-            <ComboBox x:Name="cbProyecto" HorizontalAlignment="Left" Margin="448,79,0,0" VerticalAlignment="Top" Width="162"/>
+            <Label x:Name="lblproyecto" Content="Proyecto" HorizontalAlignment="Left" Margin="371,76,0,0" VerticalAlignment="Top"/>
+            <ComboBox x:Name="cbProyecto" HorizontalAlignment="Left" Margin="448,79,0,0" VerticalAlignment="Top" Width="162" SelectionChanged="cbProyecto_SelectionChanged"/>
             <Label x:Name="lblNoCircuito" Content="No. Circuito" HorizontalAlignment="Left" Margin="370,106,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="TxtNoCircuito" Height="23" Margin="448,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="102" HorizontalAlignment="Left" />
-            <Label x:Name="lblBrigadas" Content="BRIGADAS" HorizontalAlignment="Left" Margin="665,32,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="13.333"/>
-            <TextBox x:Name="TxtB1" Height="23" Margin="665,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" HorizontalAlignment="Left" />
-            <TextBox x:Name="TxtB2" Height="23" Margin="735,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" HorizontalAlignment="Left" />
-            <TextBox x:Name="TxtB3" Height="23" Margin="805,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" HorizontalAlignment="Left" />
-            <Label x:Name="lblcod" Content="Código" HorizontalAlignment="Left" Margin="179,249,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="TxtNoCircuito" Height="23" Margin="450,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="102" HorizontalAlignment="Left" />
+            <Label x:Name="lblBrigadas" Content="BRIGADAS" HorizontalAlignment="Left" Margin="715,36,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="13.333"/>
+            <TextBox x:Name="TxtB1" Height="23" Margin="653,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" HorizontalAlignment="Left" />
+            <TextBox x:Name="TxtB2" Height="23" Margin="723,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" HorizontalAlignment="Left" />
+            <TextBox x:Name="TxtB3" Height="23" Margin="793,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" HorizontalAlignment="Left" />
+            <Label x:Name="lblcod" Content="Código" HorizontalAlignment="Left" Margin="73,172,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="lbldes" Content="Descripción" HorizontalAlignment="Left" Margin="170,176,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="lbldirec" Content="Dirección" HorizontalAlignment="Left" Margin="695,177,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="lblcant" Content="Cantidad" HorizontalAlignment="Left" Margin="490,176,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="lblPrecio" Content="Precio" HorizontalAlignment="Left" Margin="421,175,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="lblNposte" Content="No.Poste" HorizontalAlignment="Left" Margin="823,177,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="lblcos" Content="Costo" HorizontalAlignment="Left" Margin="577,175,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="TxCodIDP" Height="23" Margin="65,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" HorizontalAlignment="Left" IsReadOnly="True" />
+            <TextBox x:Name="TxDesc" Height="23" Margin="140,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="270" HorizontalAlignment="Left" IsReadOnly="True" />
+            <TextBox x:Name="TxPreci" Height="23" Margin="411,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" HorizontalAlignment="Left" IsReadOnly="True" />
+            <TextBox x:Name="TxCantidad" Height="23" Margin="487,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" HorizontalAlignment="Left" KeyUp="TxCantidad_KeyUp" KeyDown="TxCantidad_KeyDown" />
+            <TextBox x:Name="TxCost" Height="23" Margin="563,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" HorizontalAlignment="Left" IsReadOnly="True" />
+            <TextBox x:Name="TxDireccion" Height="23" Margin="639,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" HorizontalAlignment="Left" />
+            <TextBox x:Name="TxNPost" Height="23" Margin="823,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="64" HorizontalAlignment="Left" />
+            <TextBox x:Name="Txsecuencia" Height="27" Margin="132,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="64" HorizontalAlignment="Left"/>
+            <TextBox x:Name="TxidPartida" Height="28" Margin="63,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="64" HorizontalAlignment="Left"/>
+
+            <DataGrid x:Name="DG_IDP" HorizontalAlignment="Left" Margin="65,221,0,0" VerticalAlignment="Top" Width="1089" Height="142"/>
+
+            <Button x:Name="btnbuscarB" Margin="41,197,0,0" Height="23" HorizontalAlignment="Left" Width="22" 
+        		VerticalAlignment="Top" ToolTip="Consultar  Departamentos" Content="..." Click="btnbuscarB_Click" />
 
 
 
@@ -38,90 +61,109 @@ Title="Plantilla Ejemplo" Height="626" Width="984" WindowStyle="ToolWindow" Wind
 
 
 
-            <Label x:Name="lblSuperLcal" Content="Supervisor Local" HorizontalAlignment="Left" Margin="104,377,0,0" VerticalAlignment="Top"/>
-            <ComboBox x:Name="cbSuplcal" HorizontalAlignment="Left" Margin="205,380,0,0" VerticalAlignment="Top" Width="162"/>
-            <TextBox x:Name="txtObservación" Height="55" TextWrapping="Wrap" Width="224" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="616,395,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="lblObser" Content="Observación" HorizontalAlignment="Left" Margin="616,364,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="13.333"/>
+
+
+            <Label x:Name="lblSuperLcal" Content="Supervisor Local" HorizontalAlignment="Left" Margin="99,399,0,0" VerticalAlignment="Top"/>
+            <ComboBox x:Name="cbSuplcal" HorizontalAlignment="Left" Margin="208,400,0,0" VerticalAlignment="Top" Width="162" SelectionChanged="cbSuplcal_SelectionChanged"/>
+            <Label x:Name="lblSuperEde" Content="SupervisorEdeeste" HorizontalAlignment="Left" Margin="99,427,0,0" VerticalAlignment="Top"/>
+            <ComboBox x:Name="cbSupEde" HorizontalAlignment="Left" Margin="209,427,0,0" VerticalAlignment="Top" Width="162" SelectionChanged="cbSupEde_SelectionChanged"/>
+            <TextBox x:Name="txtObservación" Height="55" TextWrapping="Wrap" Width="224" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="425,398,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="lblObser" Content="Observación" HorizontalAlignment="Left" Margin="426,369,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="13.333"/>
             <!--  Buscar-->
-            <Button x:Name="btnbuscar" Margin="269,79,0,0" Height="23" HorizontalAlignment="Left" Width="31" 
-                VerticalAlignment="Top" ToolTip="Consultar  Departamentos" Content="..." />
+            <Button x:Name="btnbuscar" Margin="266,82,0,0" Height="23" HorizontalAlignment="Left" Width="31" 
+        		VerticalAlignment="Top" ToolTip="Consultar  Departamentos" Content="..." Click="btnbuscar_Click" />
 
 
 
+            <Button x:Name="btnAceptar" Margin="888,198,0,0" ToolTip="Insertar" Click="btnAceptar_Click" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="28" >
+                <Image x:Name="btnAceptar_png" Height="18" 
+        			Source="../Resources/Check.png" 
+        			Stretch="Fill" Width="17" IsEnabled="True"
+        			Style="{StaticResource ImageEnabled}"/>
+            </Button>
 
-            <!-- Botons de funcionalidades  -->
+            <Button x:Name="btnCanceB" Margin="916,198,0,0" ToolTip="Borrar"  Height="23" VerticalAlignment="Top" Click="btnCanceB_Click" HorizontalAlignment="Left" Width="31" >
+                <Image x:Name="btnCancelar_png" Height="18" 
+        			Source="../Resources/Cancelar02.png" 
+        			Stretch="Fill" Width="17" IsEnabled="True"
+        			Style="{StaticResource ImageEnabled}"/>
+            </Button>
+
+
+
             <!-- Cancelar y nuevo -->
             <Button x:Name="btnCancelar" 
-    		Width="50" Height="40" 
-    		ToolTip="Cancelar" 
-    		Canvas.Left="93" Canvas.Top="205"
-    		IsEnabled="{Binding !Visibility, ElementName=btnNuevo}"
-    		Margin="125,490,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" >
+        		Width="50" Height="40" 
+        		ToolTip="Cancelar" 
+        		Canvas.Left="93" Canvas.Top="205"
+        		IsEnabled="{Binding !Visibility, ElementName=btnNuevo}"
+        		Margin="124,498,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnCancelar_Click" >
                 <Image x:Name="Cancelar_png" Height="32" 
-    			Source="pack://siteoforigin:,,,/Resources/Cancel.png" Width="32" 
-    			ToolTip="Cancelar"
-                Style="{StaticResource ImageEnabled}"
-                IsEnabled="{Binding IsEnabled, ElementName=btnCancelar}"/>
+        			Source="pack://siteoforigin:,,,/Resources/Cancel.png" Width="32" 
+        			ToolTip="Cancelar"
+        			Style="{StaticResource ImageEnabled}"
+        			IsEnabled="{Binding IsEnabled, ElementName=btnCancelar}"/>
             </Button>
             <Button x:Name="btnNuevo" 
-    		HorizontalAlignment="Left" Margin="125,490,0,0"
-    		VerticalAlignment="Top" 
-            Width="50"  Height="40"
-            RenderTransformOrigin="-0.333,0.727"
-            VerticalContentAlignment="Center" 
-    		FontFamily="Verdana" ToolTip="Nuevo" >
+        		HorizontalAlignment="Left" Margin="124,498,0,0"
+        		VerticalAlignment="Top" 
+        		Width="50"  Height="40"
+        		RenderTransformOrigin="-0.333,0.727"
+        		VerticalContentAlignment="Center" 
+        		FontFamily="Verdana" ToolTip="Nuevo" Click="btnNuevo_Click" >
                 <Image x:Name="btnNuevo_png" Height="32" 
-    			Source="../Resources/Create.png" Stretch="Fill" Width="32" ToolTip="Nuevo"
-                Style="{StaticResource ImageEnabled}"
-                IsEnabled="{Binding IsEnabled, ElementName=btnNuevo}"/>
+        			Source="../Resources/Create.png" Stretch="Fill" Width="32" ToolTip="Nuevo"
+        			Style="{StaticResource ImageEnabled}"
+        			IsEnabled="{Binding IsEnabled, ElementName=btnNuevo}"/>
             </Button>
             <!-- Guardar y Modificar -->
             <Button x:Name="btnGuardar" Height="40" 
-    		ToolTip="Guardar" 
-    		Canvas.Left="148" Canvas.Top="205"
-    		IsEnabled="{Binding !Visibility, ElementName=btnModificar}" Margin="180,490,0,0" HorizontalAlignment="Left" Width="50" VerticalAlignment="Top" >
+        		ToolTip="Guardar" 
+        		Canvas.Left="148" Canvas.Top="205"
+        		IsEnabled="{Binding !Visibility, ElementName=btnModificar}" Margin="179,498,0,0" HorizontalAlignment="Left" Width="50" VerticalAlignment="Top" Click="btnGuardar_Click" >
                 <Image x:Name="btnGuardar_png" ToolTip="Guardar" 
-    			Width="32" Height="32" 
-    			Source="pack://siteoforigin:,,,/Resources/Guardar.png"
-                Style="{StaticResource ImageEnabled}"
-                IsEnabled="{Binding IsEnabled, ElementName=btnGuardar}"/>
+        			Width="32" Height="32" 
+        			Source="pack://siteoforigin:,,,/Resources/Guardar.png"
+        			Style="{StaticResource ImageEnabled}"
+        			IsEnabled="{Binding IsEnabled, ElementName=btnGuardar}"/>
             </Button>
             <Button x:Name="btnModificar" 
-    		Width="50" 
-    		ToolTip="Modificar" 
-    		Canvas.Left="148" Canvas.Top="180" Margin="179,490,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"  >
+        		Width="50" 
+        		ToolTip="Modificar" 
+        		Canvas.Left="148" Canvas.Top="180" Margin="179,498,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Click="btnModificar_Click"  >
                 <Image x:Name="btnModificar_png" 
-                   ToolTip="Modificar" 
-    			Width="32"  Height="32"
-    			Source="pack://siteoforigin:,,,/Resources/EditNote.png" 
-                Style="{StaticResource ImageEnabled}"   
-                IsEnabled="{Binding IsEnabled, ElementName=btnGuardar}" />
+        			ToolTip="Modificar" 
+        			Width="32"  Height="32"
+        			Source="pack://siteoforigin:,,,/Resources/EditNote.png" 
+        			Style="{StaticResource ImageEnabled}"   
+        			IsEnabled="{Binding IsEnabled, ElementName=btnGuardar}" />
             </Button>
 
             <!-- Borrar -->
             <Button x:Name="btnBorrar" 
-                 Width="50" Height="40" 
-                ToolTip="Borrar" Canvas.Left="202" Canvas.Top="205" Margin="235,490,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"  >
+        		Width="50" Height="40" 
+        		ToolTip="Borrar" Canvas.Left="202" Canvas.Top="205" Margin="234,498,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnBorrar_Click"  >
                 <Image x:Name="btnBorrar_png"  
-                   Source="pack://siteoforigin:,,,/Resources/Borrar.png" 
-                   Height="32" Width="32" 
-                   ToolTip="Borrar" 
-                   Style="{StaticResource ImageEnabled}"
-                   IsEnabled="{Binding IsEnabled, ElementName=btnBorrar}"/>
+        			Source="pack://siteoforigin:,,,/Resources/Borrar.png" 
+        			Height="32" Width="32" 
+        			ToolTip="Borrar" 
+        			Style="{StaticResource ImageEnabled}"
+        			IsEnabled="{Binding IsEnabled, ElementName=btnBorrar}"/>
             </Button>
             <!-- Salir -->
             <Button x:Name="btnSalir" 
-                 Width="50" Height="40" 
-                ToolTip="Salir"
-                Canvas.Left="267" Canvas.Top="205" Margin="290,490,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+        		Width="50" Height="40" 
+        		ToolTip="Salir"
+        		Canvas.Left="267" Canvas.Top="205" Margin="289,498,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnSalir_Click">
 
                 <Image x:Name="btnSalir_png" ToolTip="Salir" 
-                   Source="pack://siteoforigin:,,,/Resources/Salir.png" 
-                   Height="32" Width="32" 
-                   Style="{StaticResource ImageEnabled}"
-                   IsEnabled="{Binding IsEnabled, ElementName=btnSalir}"/>
+        			Source="pack://siteoforigin:,,,/Resources/Salir.png" 
+        			Height="32" Width="32" 
+        			Style="{StaticResource ImageEnabled}"
+        			IsEnabled="{Binding IsEnabled, ElementName=btnSalir}"/>
             </Button>
-            <DatePicker HorizontalAlignment="Left" Margin="145,105,0,0" VerticalAlignment="Top" Width="120"/>
+            <DatePicker x:Name="txtFecha" HorizontalAlignment="Left" Margin="145,106,0,0" VerticalAlignment="Top" Width="152"/>
+
 
 
 

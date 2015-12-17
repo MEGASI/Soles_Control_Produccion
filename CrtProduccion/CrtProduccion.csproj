@@ -162,6 +162,9 @@
     <Compile Include="vistas\Partidafrm.xaml.cs">
       <DependentUpon>Partidafrm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="vistas\partidasIDPBRW.xaml.cs">
+      <DependentUpon>partidasIDPBRW.xaml</DependentUpon>
+    </Compile>
     <Compile Include="vistas\proyectoBRWfrm.xaml.cs">
       <DependentUpon>proyectoBRWfrm.xaml</DependentUpon>
     </Compile>
@@ -313,6 +316,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="vistas\Partidafrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\partidasIDPBRW.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

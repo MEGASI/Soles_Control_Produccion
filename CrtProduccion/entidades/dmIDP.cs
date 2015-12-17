@@ -29,7 +29,8 @@ namespace CrtProduccion.entidades
         public string fld_idCodigoac { get; set; }
         public string  fld_precio { get; set; }
         public int fld_idBrigada { get; set; }
-        
+        public string fld_idPartida { get; set; }
+
 
 
 
@@ -60,6 +61,7 @@ namespace CrtProduccion.entidades
             string pfld_estado = fld_estado;
             string pfld_circuito = fld_circuito;
             int pfld_idBrigada = fld_idBrigada;
+            string pfld_idPartida = fld_idPartida;
 
 
         }
@@ -91,6 +93,7 @@ namespace CrtProduccion.entidades
             fld_cantidad = "";
             fld_precio = "";
             fld_idBrigada = 0;
+            fld_idPartida = "";
             
            
 
