@@ -85,6 +85,7 @@
     <Compile Include="entidades\dmActividad.cs" />
     <Compile Include="entidades\dmBrigada.cs" />
     <Compile Include="entidades\dmColor.cs" />
+    <Compile Include="entidades\dmIDP.cs" />
     <Compile Include="entidades\dmPartidas.cs" />
     <Compile Include="entidades\dmpssw.cs" />
     <Compile Include="entidades\dmVehiculo.cs" />
@@ -110,11 +111,11 @@
     <Compile Include="vistas\Actividafrm.xaml.cs">
       <DependentUpon>Actividafrm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="vistas\BrigadaBRW.xaml.cs">
-      <DependentUpon>BrigadaBRW.xaml</DependentUpon>
-    </Compile>
     <Compile Include="vistas\Brigadafrm.xaml.cs">
       <DependentUpon>Brigadafrm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\BrigformadasBRW.xaml.cs">
+      <DependentUpon>BrigformadasBRW.xaml</DependentUpon>
     </Compile>
     <Compile Include="vistas\CargoBRWf.xaml.cs">
       <DependentUpon>CargoBRWf.xaml</DependentUpon>
@@ -137,8 +138,14 @@
     <Compile Include="vistas\frmdiasferiados.xaml.cs">
       <DependentUpon>frmdiasferiados.xaml</DependentUpon>
     </Compile>
+    <Compile Include="vistas\idpBRW.xaml.cs">
+      <DependentUpon>idpBRW.xaml</DependentUpon>
+    </Compile>
     <Compile Include="vistas\IDPfrm.xaml.cs">
       <DependentUpon>IDPfrm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\idppartidaBRW.xaml.cs">
+      <DependentUpon>idppartidaBRW.xaml</DependentUpon>
     </Compile>
     <Compile Include="vistas\LibroDBRWfrm.xaml.cs">
       <DependentUpon>LibroDBRWfrm.xaml</DependentUpon>
@@ -241,11 +248,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="vistas\BrigadaBRW.xaml">
+    <Page Include="vistas\Brigadafrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="vistas\Brigadafrm.xaml">
+    <Page Include="vistas\BrigformadasBRW.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -277,7 +284,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="vistas\idpBRW.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="vistas\IDPfrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\idppartidaBRW.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

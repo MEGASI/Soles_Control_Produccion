@@ -198,14 +198,13 @@ namespace CrtProduccion
           
                 vistas.Brigadafrm dlg = new vistas.Brigadafrm();
                 dlg.ShowDialog();
-        
-                  
+             
         }
 
         private void MenuItem_Click_12(object sender, RoutedEventArgs e)
         {
-            vistas.IDPfrm dlg = new vistas.IDPfrm();
-            dlg.ShowDialog();
+            //vistas.idpfrm dlg = new vistas.IDPfrm();
+            //dlg.ShowDialog();
         }
     }
 }

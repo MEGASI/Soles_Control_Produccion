@@ -31,7 +31,7 @@
                     Height="38" ToolTip="Aceptar" Click="btnAceptar_Click" >
                     <Image x:Name="btnAceptar_png" Height="32" 
                        Source="../Resources/Check.png" 
-                       Stretch="Fill" Width="32" IsEnabled="False"
+                       Stretch="Fill" Width="32" IsEnabled="True"
                        Style="{StaticResource ImageEnabled}"/>
                 </Button>
 
@@ -48,7 +48,7 @@
         <TextBox x:Name="txtCampo" HorizontalAlignment="Left" Height="24" Margin="117,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" TextChanged="txtCampo_TextChanged" />
         <Label x:Name="lblTxtCampo" Content="Campo" HorizontalAlignment="Left" Margin="42,68,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <ComboBox x:Name="cbFiltro" HorizontalAlignment="Left" Margin="117,39,0,0" VerticalAlignment="Top" Width="145"  >
-            <ComboBoxItem Content="id"/>
+            <ComboBoxItem Content="Codigo"/>
             <ComboBoxItem Content="PartidaTipo"/>
             <ComboBoxItem Content="Medida"/>
             <ComboBoxItem Content="Precio"/>

@@ -207,6 +207,7 @@ namespace CrtProduccion.vistas
             object item1 = DataG.SelectedItem;
        
             string sidVehiculo = (DataG.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+
             if (!Int32.TryParse(sidVehiculo, out idvehiculos))
             {
                 idvehiculos = 0;
@@ -220,8 +221,6 @@ namespace CrtProduccion.vistas
 
 
         #endregion
-
-
 
 
         #region  Busqueda Incrementada

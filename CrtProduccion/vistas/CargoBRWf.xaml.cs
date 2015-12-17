@@ -82,10 +82,10 @@ namespace CrtProduccion.vistas
             object item = DataG.SelectedItem;
             object item1 = DataG.SelectedItem;
 
-            string sidUGrupo = (DataG.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+            string sidCargo = (DataG.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
 
 
-            if (!Int32.TryParse(sidUGrupo, out idCargo))
+            if (!Int32.TryParse(sidCargo, out idCargo))
             {
                 idCargo = 0;
             }
