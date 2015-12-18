@@ -9,6 +9,7 @@ namespace CrtProduccion.entidades
         #region Atributos
 
         public int fld_olid = 0;
+        public int fld_oldBrigada = 0;
         public int fld_id { get; set; }
         public int fld_idp;
         public DateTime fld_Fecha { get; set; }
@@ -30,6 +31,7 @@ namespace CrtProduccion.entidades
         public string  fld_precio { get; set; }
         public int fld_idBrigada { get; set; }
         public string fld_idPartida { get; set; }
+        public int fld_secuencia { get; set; }
 
 
 
@@ -309,10 +311,70 @@ namespace CrtProduccion.entidades
             return lret;
         }
 
-        #endregion
+
+        public int crearDatos1()
+        {
+            fld_idBrigada = 0;
+
+            if (datamanager.ConexionAbrir())
+            {
+                // Preparamos consulta para la actualización
+                SqlCommand cmd = new SqlCommand(" Insert into IDP_Brigada(id,secuencia)" +
+                                                " output INSERTED.idBrigada" +
+                                                " Values(@id,@secuencia)", datamanager.ConexionSQL);
+
+
+
+
+                // Ponemos valores a los Parametros incluidos en la consulta de actualización
+                cmd.Parameters.AddWithValue("@id", fld_id);
+                cmd.Parameters.AddWithValue("@secuencia", fld_secuencia);
+           
+
+
+                // Ejecutamos consulta de Actualización
+                // y Retornamos el idBrigada Insertado.
+                fld_idBrigada = (int)cmd.ExecuteScalar();
+
+                // Cerramos conexión.
+                datamanager.ConexionCerrar();
+
+            }
+            // si no logra insertar nada el idBrigada Retornado es Cero
+            return fld_id;
+        }
+        public bool actualizarDatos1()
+        {
+            int lRet = 0;
+
+            if (datamanager.ConexionAbrir())
+            {
+
+                // Preparamos consulta pra la actualización
+
+                SqlCommand cmd = new SqlCommand(" update IDP_Brigada" +
+                                                " set id=@id," +
+                                                " secuencia=@secuencia" +
+                                                " Where idBrigada = @idBrigada ", datamanager.ConexionSQL);
+
+                // Ponemos valores a los Parametros incluidos en la consulta de actualización
+
+                cmd.Parameters.AddWithValue("@id", fld_id);
+                cmd.Parameters.AddWithValue("@secuencia", fld_secuencia);
+               
+
+                // Ejecutamos consulta de Actualización
+                lRet = cmd.ExecuteNonQuery();
+
+                // Cerramos conexión.
+                datamanager.ConexionCerrar();
+            }
+            return lRet > 0;
+        }
     }
 }
 
+#endregion
 
 
 

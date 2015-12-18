@@ -76,7 +76,7 @@ namespace CrtProduccion.vistas
             dataGrid.Columns[0].IsReadOnly = true;
             dataGrid.Columns[0].Header = "id";
             dataGrid.Columns[0].CanUserResize = false;
-            dataGrid.Columns[0].Visibility = Visibility.Hidden;
+           // dataGrid.Columns[0].Visibility = Visibility.Hidden;
 
 
             dataGrid.Columns[1].IsReadOnly = true;
@@ -150,7 +150,7 @@ namespace CrtProduccion.vistas
         {
             object item = dataGrid.SelectedItem;
  
-            string sidIDP = (dataGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+           string sidIDP = (dataGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
 
             if (!Int32.TryParse(sidIDP, out idIDP))
             {
@@ -172,9 +172,9 @@ namespace CrtProduccion.vistas
                 DataGridRow dgr = sender as DataGridRow;
                 this.DialogResult = true;
             }
-
-
         }
-        #endregion
+       
     }
 }
+
+#endregion

@@ -51,6 +51,8 @@ Title="Informe Diario Producción" Height="626" Width="1009" WindowStyle="ToolWi
             <TextBox x:Name="TxCost" Height="23" Margin="563,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" HorizontalAlignment="Left" IsReadOnly="True" />
             <TextBox x:Name="TxDireccion" Height="23" Margin="639,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" HorizontalAlignment="Left" />
             <TextBox x:Name="TxNPost" Height="23" Margin="823,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="64" HorizontalAlignment="Left" />
+            <TextBox x:Name="TxtidBrigada" Height="23" Margin="832,412,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="37" HorizontalAlignment="Left" />
+            
             <CheckBox x:Name="Feriachk" Content="Feriado" HorizontalAlignment="Left" Margin="659,114,0,0" VerticalAlignment="Top"/>
 
             <DataGrid x:Name="DG_IDP" HorizontalAlignment="Left" Margin="65,221,0,0" VerticalAlignment="Top" Width="846" Height="142" HorizontalScrollBarVisibility="Disabled"/>
@@ -169,7 +171,8 @@ Title="Informe Diario Producción" Height="626" Width="1009" WindowStyle="ToolWi
             </Button>
             <DatePicker x:Name="txtFecha" HorizontalAlignment="Left" Margin="145,106,0,0" VerticalAlignment="Top" Width="152"/>
             <Button x:Name="button" Content="guardar" HorizontalAlignment="Left" Margin="562,520,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
-            
+            <Button x:Name="button1" Content="GuardarB" HorizontalAlignment="Left" Margin="814,135,0,0" VerticalAlignment="Top" Width="85" Click="button1_Click_1"/>
+
 
 
 

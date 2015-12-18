@@ -86,6 +86,7 @@
     <Compile Include="entidades\dmBrigada.cs" />
     <Compile Include="entidades\dmColor.cs" />
     <Compile Include="entidades\dmIDP.cs" />
+    <Compile Include="entidades\dmIDP_Brigada.cs" />
     <Compile Include="entidades\dmPartidas.cs" />
     <Compile Include="entidades\dmpssw.cs" />
     <Compile Include="entidades\dmVehiculo.cs" />
@@ -137,6 +138,9 @@
     </Compile>
     <Compile Include="vistas\frmdiasferiados.xaml.cs">
       <DependentUpon>frmdiasferiados.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\IDGfrn.xaml.cs">
+      <DependentUpon>IDGfrn.xaml</DependentUpon>
     </Compile>
     <Compile Include="vistas\idpBRW.xaml.cs">
       <DependentUpon>idpBRW.xaml</DependentUpon>
@@ -287,6 +291,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="vistas\frmdiasferiados.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\IDGfrn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

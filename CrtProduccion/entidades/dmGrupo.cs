@@ -15,7 +15,8 @@ namespace CrtProduccion.entidades
         #endregion
 
         #region Constructores
-        public dmGrupo() {
+        public dmGrupo()
+        {
             limpiar();
         }
 
