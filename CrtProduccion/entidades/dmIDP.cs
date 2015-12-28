@@ -11,7 +11,7 @@ namespace CrtProduccion.entidades
         public int fld_olid = 0;
         public int fld_oldBrigada = 0;
         public int fld_id { get; set; }
-        public int fld_idp;
+        public int fld_idp = 0;
         public DateTime fld_Fecha { get; set; }
         public int fld_idProyecto{ get; set; }
         public int fld_idSupervisorLocal { get; set; }
@@ -32,6 +32,8 @@ namespace CrtProduccion.entidades
         public int fld_idBrigada { get; set; }
         public string fld_idPartida { get; set; }
         public int fld_secuencia { get; set; }
+        public int fld_idB2 { get; set; }
+        
 
 
 
@@ -79,7 +81,6 @@ namespace CrtProduccion.entidades
         public void limpiar()
         {
             fld_id= 0;
-            fld_idp = 0;
             fld_idProyecto = 0;
             fld_idSupervisorLocal = 0;
             fld_idSupervisorEdeste = 0;
@@ -96,10 +97,7 @@ namespace CrtProduccion.entidades
             fld_precio = "";
             fld_idBrigada = 0;
             fld_idPartida = "";
-            
-           
-
-
+            fld_idp = 0;             
         }
 
         public bool validar()
@@ -111,7 +109,13 @@ namespace CrtProduccion.entidades
                 errormsg = "IDP no puede estar vacio";
                 lret = false;
             }
-          
+
+            if (lret && fld_Fecha.Equals(""))
+            {
+                errormsg = "Fecha no  puede estar vacia";
+                lret = false;
+            }
+
             return lret;
         }
 
@@ -131,7 +135,6 @@ namespace CrtProduccion.entidades
                                                 " @idSuperEde,@observacion)", datamanager.ConexionSQL);
 
                 // Ponemos valores a los Parametros incluidos en la consulta de actualización
-                cmd.Parameters.AddWithValue("@id", fld_id);
                 cmd.Parameters.AddWithValue("@idp", fld_idp);
                 cmd.Parameters.AddWithValue("@Fecha", fld_Fecha);
                 cmd.Parameters.AddWithValue("@feriado", fld_diaferiado);
@@ -140,13 +143,15 @@ namespace CrtProduccion.entidades
                 cmd.Parameters.AddWithValue("@idSuperLocal", fld_idSupervisorLocal);
                 cmd.Parameters.AddWithValue("@idSuperEde", fld_idSupervisorEdeste);
                 cmd.Parameters.AddWithValue("@Observacion",fld_Observacion);
-               // cmd.Parameters.AddWithValue("@estado", fld_estado);
+
+                 
+                // cmd.Parameters.AddWithValue("@estado", fld_estado);
 
 
                 // Ejecutamos consulta de Actualización
                 // y Retornamos el idBrigada Insertado.
                 fld_id = (int)cmd.ExecuteScalar();
-
+              
                 // Cerramos conexión.
                 datamanager.ConexionCerrar();
 
@@ -156,7 +161,7 @@ namespace CrtProduccion.entidades
         }
         /// <summary>
         /// <para>CRUD  -- R = Read</para>
-        ///  Lee los datos extraido de la tabla BrigadaH.
+        ///  Lee los datos extraido de la tabla IDP_H.
         /// </summary>
         /// <param name="dr">Objeto SqlDataReader que contiene los datos extraido de la tabla.</param>
         /// <param name="asignar">true para asignar los campos del registro leido a las propiedades.</param>
@@ -179,8 +184,7 @@ namespace CrtProduccion.entidades
                     fld_idSupervisorLocal = (int)dr["idSuperLocal"];
                     fld_idSupervisorEdeste = (int)dr["idSuperEde"];
                     fld_Observacion = dr["Observacion"].ToString();
-                    
-
+                   
                 }
             }
             else
@@ -191,7 +195,7 @@ namespace CrtProduccion.entidades
 
         }
         /// <summary>
-        ///  Buscar en la tabla de BrigadaH por el Nombre del parte.
+        ///  Buscar en la tabla de IDP_H.
         /// </summary>
         /// <param name="pNombre"> Nombre único que identifica la parte.</param>
         /// <param name="asignar"> true = Asigna los campos de la tabla a las propiedadades, false = no los asigna.</param>
@@ -230,9 +234,9 @@ namespace CrtProduccion.entidades
             return leerDatos(dr, asignar);
         }
         /// <summary>
-        /// Lee el último registro insertado en la tabla BrigadaH.
+        /// Lee el último registro insertado en la tabla IDP_H.
         /// </summary>
-        /// <returns>true cuando existe por lo menos un registro en la tabla BrigadaH</returns>
+        /// <returns>true cuando existe por lo menos un registro en la tabla IDP_H</returns>
         public bool buscarUltimo()
         {
 
@@ -249,7 +253,7 @@ namespace CrtProduccion.entidades
 
         /// <summary>
         /// <para>CRUD  -- U = Update</para> 
-        /// <para>Método que actualiza los datos de la tabla BrigadaH</para>
+        /// <para>Método que actualiza los datos de la tabla IDP_H</para>
         /// </summary>
         /// <returns>True cuando logra actualizar los datos.</returns>
         public bool actualizarDatos()
@@ -270,7 +274,6 @@ namespace CrtProduccion.entidades
                                                 " idSuperLocal=@idSuperLocal," +
                                                 " idSuperEde=@idSuperEde," +
                                                 " observacion=@observacion" +
-                                              
                                                 " Where id = @id ", datamanager.ConexionSQL);
 
                 // Ponemos valores a los Parametros incluidos en la consulta de actualización
@@ -296,7 +299,7 @@ namespace CrtProduccion.entidades
         }
         /// <summary>
         /// <para>CRUD -- D = Delete</para> 
-        /// <para>Método que elimina un registro de la tabla BrigadaH</para>
+        /// <para>Método que elimina un registro de la tabla IDP_H</para>
         /// </summary>
         /// <returns>True cuando logra eliminar el registro.</returns>
         public bool borrarDatos(int pid)
@@ -319,15 +322,16 @@ namespace CrtProduccion.entidades
             if (datamanager.ConexionAbrir())
             {
                 // Preparamos consulta para la actualización
-                SqlCommand cmd = new SqlCommand(" Insert into IDP_Brigada(id,secuencia)" +
+                SqlCommand cmd = new SqlCommand(" Insert into IDP_Brigada(id,idBrigada,secuencia)" +
                                                 " output INSERTED.idBrigada" +
-                                                " Values(@id,@secuencia)", datamanager.ConexionSQL);
+                                                " Values(@id,@idBrigada,@secuencia)", datamanager.ConexionSQL);
 
 
 
 
                 // Ponemos valores a los Parametros incluidos en la consulta de actualización
                 cmd.Parameters.AddWithValue("@id", fld_id);
+                cmd.Parameters.AddWithValue("@idBrigada", fld_idBrigada);
                 cmd.Parameters.AddWithValue("@secuencia", fld_secuencia);
            
 
@@ -354,12 +358,14 @@ namespace CrtProduccion.entidades
 
                 SqlCommand cmd = new SqlCommand(" update IDP_Brigada" +
                                                 " set id=@id," +
+                                                " idBrigada=@idBrigada," +
                                                 " secuencia=@secuencia" +
-                                                " Where idBrigada = @idBrigada ", datamanager.ConexionSQL);
+                                                " Where id = @id ", datamanager.ConexionSQL);
 
                 // Ponemos valores a los Parametros incluidos en la consulta de actualización
 
                 cmd.Parameters.AddWithValue("@id", fld_id);
+                cmd.Parameters.AddWithValue("@idBrigada", fld_idBrigada);
                 cmd.Parameters.AddWithValue("@secuencia", fld_secuencia);
                
 

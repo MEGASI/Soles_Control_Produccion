@@ -56,7 +56,7 @@ namespace CrtProduccion.vistas
 
             DataG.Columns[1].IsReadOnly = true;
             DataG.Columns[1].Width = 58;
-            DataG.Columns[1].Header = "Número";
+            DataG.Columns[1].Header = "Código";
             DataG.Columns[1].CanUserResize = false;
 
             datamanager.ConexionCerrar();

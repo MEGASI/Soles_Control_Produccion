@@ -126,6 +126,8 @@ namespace CrtProduccion.vistas
             Creargrid();
             Txsecuencia.Text = "0";
             btnbuscarB.Visibility = Visibility.Hidden;
+            button.Visibility = Visibility.Hidden;
+           // button1.Visibility = Visibility.Hidden;
 
 
             //DataContext = registro;
@@ -149,7 +151,6 @@ namespace CrtProduccion.vistas
         #endregion
 
 
-
         #region Funciones y Botones
 
 
@@ -160,8 +161,10 @@ namespace CrtProduccion.vistas
             registro.limpiar();
             mostrar();
             modalidad = "CREAR";
-
+            Txtidp.Focus();
             registro.limpiar();
+            txtFecha.Text = string.Empty;
+      
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -169,6 +172,7 @@ namespace CrtProduccion.vistas
             registro.buscar(registro.fld_id, true);
             mostrar();
             modalidad = "CONSULTAR";
+            txtFecha.Text = string.Empty;
 
         }
 
@@ -182,6 +186,7 @@ namespace CrtProduccion.vistas
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
+
             // Asignar los valores de los conroles del formulario a los campos.
 
             registro.fld_idp = Convert.ToInt32(Txtidp.Text);
@@ -189,7 +194,7 @@ namespace CrtProduccion.vistas
             registro.fld_circuito = TxtNoCircuito.Text.Trim();
             registro.fld_Observacion = txtObservación.Text.Trim();
             registro.fld_diaferiado = Convert.ToBoolean(Feriachk.IsEnabled);
-            // registro.fld_id = Convert.ToInt32(Txtid.Text);
+            
 
 
 
@@ -201,25 +206,24 @@ namespace CrtProduccion.vistas
 
             if (lret && this.modalidad == "CREAR")
             {
-                lret = registro.crearDatos() > 0 || (lret = registro.crearDatos1() > 0);
+                lret = registro.crearDatos() > 0;
                 if (lret)
                 {
                     Txtid.Text = registro.fld_id.ToString();
-                    TxtidBrigada.Text = registro.fld_idBrigada.ToString();
+                   
                 }
             }
 
             if (lret && this.modalidad == "MODIFICAR")
-                lret = registro.actualizarDatos() || (lret = registro.actualizarDatos1());
+                lret = registro.actualizarDatos();
             if (lret)
             {
 
                 modalidad = "CONSULTAR";
-                MessageBox.Show("Información del la  Partida fue almacenada.", "Guardar", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Información del  Informe Diario de Producción fue almacenada.", "Guardar", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                this.GuardarBrigada();
+               this.GuardarBrigada();
                 this.GuardarGRID(registro.fld_id);
-
 
             }
             else
@@ -288,8 +292,134 @@ namespace CrtProduccion.vistas
 
         }
 
-        #endregion
 
+        private void TxCantidad_KeyUp(object sender, KeyEventArgs e)
+        {
+            comunes.libreria.soloNumero(TxCantidad.Text, e);
+        }
+
+        private void TxCantidad_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.Key == System.Windows.Input.Key.Tab)
+                {
+                    double Result = Double.Parse(TxPreci.Text) * Double.Parse(TxCantidad.Text);
+
+                    TxCost.Text = Result.ToString();
+                }
+            }
+            catch { MessageBox.Show("Verifique  la Cantidad"); }
+
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            txtFecha.Text = string.Empty;
+            this.GuardarGRID(registro.fld_id);
+        }
+
+        private void TxCodIDP_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender != null)
+            {
+                vistas.partidasIDPBRW dlgfrm = new vistas.partidasIDPBRW();
+                dlgfrm.ShowDialog();
+
+                registro.fld_idPartida = dlgfrm.partida;
+                registro.fld_codigo = dlgfrm.codigo;
+                registro.fld_descripcion = dlgfrm.Descripcion;
+                registro.fld_precio = dlgfrm.Precio;
+                MostrarPartidas();
+                TxCantidad.Focus();
+
+            }
+
+        }
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            registro.fld_id = Convert.ToInt32(Txtid.Text);
+            registro.fld_secuencia = Convert.ToInt32(Txsecuencia.Text);
+
+            // Validar los valores asignados.
+            bool lret = registro.validar();
+
+
+            if (lret && this.modalidad == "CREAR")
+            {
+                lret = registro.crearDatos1() > 0;
+                if (lret)
+                {
+
+                    TxtidBrigada.Text = registro.fld_idBrigada.ToString();
+                }
+            }
+
+            if (lret && this.modalidad == "MODIFICAR")
+                lret = registro.actualizarDatos1();
+            if (lret)
+            {
+
+                modalidad = "CONSULTAR";
+                MessageBox.Show("Información del la  Partida fue almacenada.", "Guardar", MessageBoxButton.OK, MessageBoxImage.Information);
+                //this.GuardarGRID(registro.fld_id);
+
+            }
+            else
+                MessageBox.Show(registro.errormsg, "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+
+        public void GuardarBrigada()
+        {
+            registro.fld_id = Convert.ToInt32(Txtid.Text);
+            registro.fld_idBrigada = Convert.ToInt32(TxtB2.Text);
+            registro.fld_secuencia = Convert.ToInt32(Txsecuencia.Text);
+
+
+            // Validar los valores asignados.
+            bool lret = registro.validar();
+
+
+            if (lret && this.modalidad == "CREAR")
+            {
+                lret = registro.crearDatos1() > 0;
+                if (lret)
+                {
+
+                    TxtidBrigada.Text = registro.fld_idBrigada.ToString();
+                }
+            }
+
+            if (lret && this.modalidad == "MODIFICAR")
+                lret = registro.actualizarDatos1();
+            if (lret)
+            {
+
+                modalidad = "CONSULTAR";
+                MessageBox.Show("Información del la  Partida fue almacenada.", "Guardar", MessageBoxButton.OK, MessageBoxImage.Information);
+
+
+            }
+            else
+                MessageBox.Show(registro.errormsg, "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+
+        }
+        private void btnbuscarBrigada_Click(object sender, RoutedEventArgs e)
+        {
+            vistas.brigadaBRW dlgfrm = new vistas.brigadaBRW();
+            dlgfrm.ShowDialog();
+            registro.fld_idB2 = dlgfrm.idBrigada;
+            MostrarBrigada();
+
+        }
+
+        private void button1_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.GuardarBrigada();
+        }
+
+        #endregion
 
         #region Metodo Mostrar
 
@@ -300,7 +430,7 @@ namespace CrtProduccion.vistas
         /// </summary>
         private void mostrar()
         {
-            Txtid.Text = Convert.ToString(registro.fld_id);
+            Txtid.Text = Convert.ToString(registro.fld_id);            
             Txtidp.Text = Convert.ToString(registro.fld_idp);
             txtFecha.Text = Convert.ToDateTime(registro.fld_Fecha).ToString();
             TxtNoCircuito.Text = registro.fld_circuito;
@@ -309,6 +439,8 @@ namespace CrtProduccion.vistas
             TxCodIDP.Text = Convert.ToString(registro.fld_codigo);
             TxDesc.Text = registro.fld_descripcion;
             TxPreci.Text = registro.fld_precio;
+            TxtB2.Text = Convert.ToString(registro.fld_idB2);
+
 
             foreach (CBoxNullItem lobj in cbProyecto.Items)
                 if ((int)lobj.Value == registro.fld_idProyecto)
@@ -331,12 +463,37 @@ namespace CrtProduccion.vistas
                 }
 
 
-        }
 
+            
+        }
+        #endregion
+
+        #region MostrarPardidas
+
+        public void MostrarPartidas()
+        {
+
+            TxidPartida.Text = Convert.ToString(registro.fld_idPartida);
+            TxCodIDP.Text = Convert.ToString(registro.fld_codigo);
+            TxDesc.Text = registro.fld_descripcion;
+            TxPreci.Text = registro.fld_precio;
+
+        }
 
         #endregion
 
 
+        #region  MostrarBrigada
+
+         public void MostrarBrigada()
+        {
+
+          TxtB2.Text = Convert.ToString(registro.fld_idB2);
+            // registro.fld_idB2 = dlgfrm.idBrigada;
+
+        }
+
+        #endregion
 
         #region Llenando CB
 
@@ -405,9 +562,6 @@ namespace CrtProduccion.vistas
                 registro.fld_idSupervisorLocal = selectedValue;
             }
         }
-
-
-
         public void LlenandoSuperEdes()
         {
             cbSupEde.Items.Clear();
@@ -479,33 +633,36 @@ namespace CrtProduccion.vistas
 
                     // Extrarer valor de cada fila (celda) del datagrid y ponerlo en una variable
 
-                    //(DG_IDP.Items[i] as dgFila).idBrigada;
-                    int id = pid;
-                    int secuencia = (DG_IDP.Items[i] as dgBFila).Secuencia;
-                    int idPartida = (DG_IDP.Items[i] as dgBFila).idPartida;
-                    double cantidad = (DG_IDP.Items[i] as dgBFila).cantidad;
-                    string Direccion = (DG_IDP.Items[i] as dgBFila).Direccion;
-                    string Noposte = (DG_IDP.Items[i] as dgBFila).Noposte;
-                    double Precio = (DG_IDP.Items[i] as dgBFila).Precio;
-                    double efecto = (DG_IDP.Items[i] as dgBFila).efecto;
+                    try
+                    {
+
+                        int id = pid;
+                        int secuencia = (DG_IDP.Items[i] as dgBFila).Secuencia;
+                        int idPartida = (DG_IDP.Items[i] as dgBFila).idPartida;
+                        double cantidad = (DG_IDP.Items[i] as dgBFila).cantidad;
+                        string Direccion = (DG_IDP.Items[i] as dgBFila).Direccion;
+                        string Noposte = (DG_IDP.Items[i] as dgBFila).Noposte;
+                        double Precio = (DG_IDP.Items[i] as dgBFila).Precio;
+                        double efecto = (DG_IDP.Items[i] as dgBFila).efecto;
 
 
 
-                    Cmd1.Parameters["@id"].Value = Convert.ToInt32(id);
-                    Cmd1.Parameters["@idPartida"].Value = Convert.ToInt32(idPartida);
-                    Cmd1.Parameters["@secuencia"].Value = Convert.ToInt32(secuencia);
-                    Cmd1.Parameters["@cantidad"].Value = Convert.ToDouble(cantidad);
-                    Cmd1.Parameters["@direccion"].Value = (Direccion);
-                    Cmd1.Parameters["@numPoste"].Value = (Noposte);
-                    Cmd1.Parameters["@Precio"].Value = Convert.ToDouble(Precio);
-                    Cmd1.Parameters["@efecto"].Value = Convert.ToDouble(efecto);
+                        Cmd1.Parameters["@id"].Value = Convert.ToInt32(id);
+                        Cmd1.Parameters["@idPartida"].Value = Convert.ToInt32(idPartida);
+                        Cmd1.Parameters["@secuencia"].Value = Convert.ToInt32(secuencia);
+                        Cmd1.Parameters["@cantidad"].Value = Convert.ToDouble(cantidad);
+                        Cmd1.Parameters["@direccion"].Value = (Direccion);
+                        Cmd1.Parameters["@numPoste"].Value = (Noposte);
+                        Cmd1.Parameters["@Precio"].Value = Convert.ToDouble(Precio);
+                        Cmd1.Parameters["@efecto"].Value = Convert.ToDouble(efecto);
 
-                    registro.fld_id = (int)Cmd1.ExecuteScalar();
-                }
+                        Cmd1.ExecuteScalar();
+                    }
+                    catch (Exception)
+                    { }
+                    }
                 datamanager.ConexionCerrar();
-
             }
-
         }
         #endregion
 
@@ -578,7 +735,9 @@ namespace CrtProduccion.vistas
 
 
             }
-            catch { MessageBox.Show("Error"); }
+            catch (Exception)
+            {
+            }
 
         }
 
@@ -594,21 +753,21 @@ namespace CrtProduccion.vistas
             DataGridTextColumn textColumn = new DataGridTextColumn();
 
             DataGridTextColumn c1 = new DataGridTextColumn();
-            c1.Header = "Codigo";
+          //  c1.Header = "Codigo";
             c1.Binding = new Binding("Codigo");
             //c1.Visibility = Visibility.Hidden;
             c1.Width = 73;
             DG_IDP.Columns.Add(c1);
 
             DataGridTextColumn c2 = new DataGridTextColumn();
-            c2.Header = "Descripcion";
+         //   c2.Header = "Descripcion";
             c2.Binding = new Binding("Descripcion ");
             c2.Width = 270;
 
             DG_IDP.Columns.Add(c2);
 
             DataGridTextColumn c3 = new DataGridTextColumn();
-            c3.Header = "Precio";
+          //  c3.Header = "Precio";
             c3.Binding = new Binding("Precio");
             c3.Width = 75;
             // c3.Visibility = Visibility.Hidden;
@@ -616,7 +775,7 @@ namespace CrtProduccion.vistas
 
 
             DataGridTextColumn c4 = new DataGridTextColumn();
-            c4.Header = "Cantidad";
+          //  c4.Header = "Cantidad";
             c4.Binding = new Binding("cantidad");
             c4.Width = 75;
             //c4.Visibility = Visibility.Hidden;
@@ -625,14 +784,14 @@ namespace CrtProduccion.vistas
 
 
             DataGridTextColumn c5 = new DataGridTextColumn();
-            c5.Header = "Costo";
+         //   c5.Header = "Costo";
             c5.Binding = new Binding("Costo");
             c5.Width = 76;
             //c4.Visibility = Visibility.Hidden;
             DG_IDP.Columns.Add(c5);
 
             DataGridTextColumn c6 = new DataGridTextColumn();
-            c6.Header = "Direccion";
+         //   c6.Header = "Direccion";
             c6.Binding = new Binding("Direccion");
             c6.Width = 185;
             //c4.Visibility = Visibility.Hidden;
@@ -640,7 +799,7 @@ namespace CrtProduccion.vistas
 
 
             DataGridTextColumn c7 = new DataGridTextColumn();
-            c7.Header = "No. Poste";
+        //    c7.Header = "No. Poste";
             c7.Binding = new Binding("Noposte");
             c7.Width = 85;
             //c4.Visibility = Visibility.Hidden;
@@ -648,7 +807,7 @@ namespace CrtProduccion.vistas
 
 
             DataGridTextColumn c8 = new DataGridTextColumn();
-            c8.Header = "secuencia";
+         //   c8.Header = "secuencia";
             c8.Binding = new Binding("Secuencia");
             c8.Width = 70;
             //c4.Visibility = Visibility.Hidden;
@@ -656,14 +815,14 @@ namespace CrtProduccion.vistas
 
 
             DataGridTextColumn c9 = new DataGridTextColumn();
-            c9.Header = "id";
+        //    c9.Header = "id";
             c9.Binding = new Binding("id");
             c9.Width = 70;
             //c4.Visibility = Visibility.Hidden;
             DG_IDP.Columns.Add(c9);
 
             DataGridTextColumn c10 = new DataGridTextColumn();
-            c10.Header = "idPartida";
+            //c10.Header = "idPartida";
             c10.Binding = new Binding("idPartida");
             c10.Width = 70;
             //c4.Visibility = Visibility.Hidden;
@@ -716,141 +875,8 @@ namespace CrtProduccion.vistas
 
         }
 
-        private void TxCantidad_KeyUp(object sender, KeyEventArgs e)
-        {
-            comunes.libreria.soloNumero(TxCantidad.Text, e);
-        }
-
-        private void TxCantidad_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.Key == System.Windows.Input.Key.Tab)
-                {
-                    double Result = Double.Parse(TxPreci.Text) * Double.Parse(TxCantidad.Text);
-
-                    TxCost.Text = Result.ToString();
-                }
-            }
-            catch { MessageBox.Show("Verifique  la Cantidad"); }
-
-        }
-
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            this.GuardarGRID(registro.fld_id);
-        }
-
-        private void TxCodIDP_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (sender != null)
-            {
-                vistas.partidasIDPBRW dlgfrm = new vistas.partidasIDPBRW();
-                dlgfrm.ShowDialog();
-
-                registro.fld_idPartida = dlgfrm.partida;
-                registro.fld_codigo = dlgfrm.codigo;
-                registro.fld_descripcion = dlgfrm.Descripcion;
-                registro.fld_precio = dlgfrm.Precio;
-
-
-                mostrar();
-                TxCantidad.Focus();
-
-            }
-        }
-
-        private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            registro.fld_id = Convert.ToInt32(Txtid.Text);
-            registro.fld_secuencia = Convert.ToInt32(Txsecuencia.Text);
-
-
-
-
-
-            // Validar los valores asignados.
-            bool lret = registro.validar();
-
-
-            if (lret && this.modalidad == "CREAR")
-            {
-                lret = registro.crearDatos1() > 0;
-                if (lret)
-                {
-
-                    TxtidBrigada.Text = registro.fld_idBrigada.ToString();
-                }
-            }
-
-            if (lret && this.modalidad == "MODIFICAR")
-                lret = registro.actualizarDatos1();
-            if (lret)
-            {
-
-                modalidad = "CONSULTAR";
-                MessageBox.Show("Información del la  Partida fue almacenada.", "Guardar", MessageBoxButton.OK, MessageBoxImage.Information);
-                //this.GuardarGRID(registro.fld_id);
-
-            }
-            else
-                MessageBox.Show(registro.errormsg, "Error", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-        private void TxNPost_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void TxtidBrigada_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void button1_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        public void GuardarBrigada()
-        {
-
-
-            registro.fld_id = Convert.ToInt32(Txtid.Text);
-            registro.fld_secuencia = Convert.ToInt32(Txsecuencia.Text);
-
-
-            // Validar los valores asignados.
-            bool lret = registro.validar();
-
-
-            if (lret && this.modalidad == "CREAR")
-            {
-                lret = registro.crearDatos1() > 0;
-                if (lret)
-                {
-
-                    TxtidBrigada.Text = registro.fld_idBrigada.ToString();
-                }
-            }
-
-            if (lret && this.modalidad == "MODIFICAR")
-                lret = registro.actualizarDatos1();
-            if (lret)
-            {
-
-                modalidad = "CONSULTAR";
-                MessageBox.Show("Información del la  Partida fue almacenada.", "Guardar", MessageBoxButton.OK, MessageBoxImage.Information);
-                //this.GuardarGRID(registro.fld_id);
-
-            }
-            else
-                MessageBox.Show(registro.errormsg, "Error", MessageBoxButton.OK, MessageBoxImage.Information);
-
-        }
-
       
     }
-
 }
-    #endregion
+
+#endregion

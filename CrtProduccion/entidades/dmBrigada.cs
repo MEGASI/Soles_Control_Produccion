@@ -94,20 +94,30 @@ namespace CrtProduccion.entidades
             if (datamanager.ConexionAbrir())
             {
                 // Preparamos consulta para la actualización
-                SqlCommand cmd = new SqlCommand("Insert into BrigadaH(idVehiculo,Fecha,idturno,idChofer,idSupervisor,Activa)" +
+                SqlCommand cmd = new SqlCommand("Insert into BrigadaH(idVehiculo,Fecha,idChofer,idSupervisor,Activa)" +
                                                 " output INSERTED.idBrigada" +
-                                                " Values(@idVehiculo,@Fecha,@idturno,@idChofer,@idSupervisor,@activa)", datamanager.ConexionSQL);
+                                                " Values(@idVehiculo,@Fecha,@idChofer,@idSupervisor,@activa)", datamanager.ConexionSQL);
 
                 // Ponemos valores a los Parametros incluidos en la consulta de actualización
-                cmd.Parameters.AddWithValue("@idVehiculo", fld_idVehiculo);
+//                cmd.Parameters.AddWithValue("@idVehiculo", fld_idVehiculo);
                 cmd.Parameters.AddWithValue("@Fecha", fld_Fecha);
-                cmd.Parameters.AddWithValue("@idturno", fld_idturno);
                 cmd.Parameters.AddWithValue("@idChofer", Convert.ToInt32(fld_idChofer));
                 cmd.Parameters.AddWithValue("@idSupervisor", Convert.ToDouble(fld_idSupervisor));
                 cmd.Parameters.AddWithValue("@Activa",fld_activa);
 
+
+
+                if (fld_idVehiculo != 0)
+                    cmd.Parameters.AddWithValue("@idVehiculo", fld_idVehiculo);
+                else
+                    cmd.Parameters.AddWithValue("@idVehiculo", DBNull.Value);
+
+
+
+
                 // Ejecutamos consulta de Actualización
                 // y Retornamos el idBrigada Insertado.
+
 
 
                 fld_idBrigada = (int)cmd.ExecuteScalar();
@@ -136,14 +146,27 @@ namespace CrtProduccion.entidades
                 if (asignar)
                 {
                     fld_idBrigada = (int)dr["idBrigada"];
-                    fld_idVehiculo = (int)dr["idVehiculo"];
+                   // fld_idVehiculo = (int)dr["idVehiculo"];
                     fld_Fecha =Convert.ToDateTime( dr["Fecha"].ToString());
-                    fld_idturno = (int)dr["idturno"];
+                   // fld_idturno = (int)dr["idturno"];
                     fld_Chofer = dr["Chofer"].ToString();
                     fld_Supervisor = dr["Supervisor"].ToString();
                     fld_idChofer = (int)dr["idChofer"];
                     fld_idSupervisor = (int)dr["idSupervisor"];
                     fld_activa = Convert.ToBoolean((dr["activa"]));
+
+
+                    try
+                    {
+                        fld_idVehiculo = (int)dr["idVehiculo"];
+
+                    }
+                    catch (Exception)
+
+                    {
+                        fld_idVehiculo = 0;
+                    }
+
                 }
             }
             else
@@ -164,7 +187,7 @@ namespace CrtProduccion.entidades
 
 
             var dr = datamanager.ConsultaLeer(" Select B.idBrigada,B.idVehiculo, V.Modelo as Vehiculo," +
-                                              " B.Fecha,B.idTurno, B.idChofer, L.Nombres as Chofer, B.idSupervisor, LL.Nombres as Supervisor," +
+                                              " B.Fecha, B.idChofer, L.Nombres as Chofer, B.idSupervisor, LL.Nombres as Supervisor," +
                                               " B.Activa from brigadaH B left outer join Vehiculo  V on B.idVehiculo = V.idVehiculo" +
                                               " left outer join  LibroDirecciones L on L.idLD = B.idChofer" +
                                               " left outer join  LibroDirecciones LL on LL.idLD = B.idSupervisor" +
@@ -182,7 +205,7 @@ namespace CrtProduccion.entidades
 
 
             var dr = datamanager.ConsultaLeer(" Select B.idBrigada,B.idVehiculo, V.Modelo as Vehiculo," +
-                                              " B.Fecha, B.idturno,B.idChofer, L.Nombres as Chofer, B.idSupervisor, LL.Nombres as Supervisor," +
+                                              " B.Fecha, B.idChofer, L.Nombres as Chofer, B.idSupervisor, LL.Nombres as Supervisor," +
                                               " B.Activa from brigadaH B left outer join Vehiculo  V on B.idVehiculo = V.idVehiculo" +
                                               " left outer join  LibroDirecciones L on L.idLD = B.idChofer" +
                                               " left outer join  LibroDirecciones LL on LL.idLD = B.idSupervisor" +
@@ -199,7 +222,7 @@ namespace CrtProduccion.entidades
 
             // var dr = datamanager.ConsultaLeer(" select idBrigada ,Referencia from BrigadaH ");
             var dr = datamanager.ConsultaLeer(" Select top 1 B.idBrigada,B.idVehiculo, V.Modelo as Vehiculo,"+
-                                              " B.Fecha,B.idturno, B.idChofer, L.Nombres as Chofer, B.idSupervisor, LL.Nombres as Supervisor,"+
+                                              " B.Fecha, B.idChofer, L.Nombres as Chofer, B.idSupervisor, LL.Nombres as Supervisor,"+
                                               " B.Activa from brigadaH B left outer join Vehiculo  V on B.idVehiculo = V.idVehiculo"+
                                               " left outer join  LibroDirecciones L on L.idLD = B.idChofer"+
                                               " left outer join  LibroDirecciones LL on LL.idLD = B.idSupervisor"+
@@ -224,7 +247,6 @@ namespace CrtProduccion.entidades
                 SqlCommand cmd = new SqlCommand(" update BrigadaH" +
                                                 " Set idVehiculo = @idVehiculo,"+
                                                 " Fecha=@Fecha," +
-                                                " idTurno=@idturno,"+
                                                 " idChofer=@idChofer,"+
                                                 " idSupervisor=@idSupervisor,"+
                                                 " Activa=@Activa" +
@@ -232,12 +254,17 @@ namespace CrtProduccion.entidades
 
                 // Ponemos valores a los Parametros incluidos en la consulta de actualización
                 cmd.Parameters.AddWithValue("@idBrigada", fld_idBrigada);
-                cmd.Parameters.AddWithValue("@idVehiculo", fld_idVehiculo);
                 cmd.Parameters.AddWithValue("@Fecha", fld_Fecha);
-                cmd.Parameters.AddWithValue("@idturno", fld_idturno);
                 cmd.Parameters.AddWithValue("@idChofer",Convert.ToInt32(fld_idChofer));
                 cmd.Parameters.AddWithValue("@idSupervisor", Convert.ToInt32(fld_idSupervisor));
                 cmd.Parameters.AddWithValue("@Activa",fld_activa);
+
+
+
+                if (fld_idVehiculo != 0)
+                    cmd.Parameters.AddWithValue("@idVehiculo", fld_idVehiculo);
+                else
+                    cmd.Parameters.AddWithValue("@idVehiculo", DBNull.Value);
 
                 // Ejecutamos consulta de Actualización
                 lRet = cmd.ExecuteNonQuery();
@@ -264,10 +291,11 @@ namespace CrtProduccion.entidades
             return lret;
         }
 
-        #endregion
+
     }
 }
 
+#endregion
 
 
 

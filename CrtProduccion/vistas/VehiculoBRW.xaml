@@ -11,13 +11,13 @@
         ShowInTaskbar="False" 
         WindowStartupLocation="CenterScreen" 
         Background="{StaticResource fondoClaro}"
-        WindowStyle="ToolWindow" Height="545.954" Width="808.98" Loaded="Window_Loaded">
+        WindowStyle="ToolWindow" Height="571" Width="808.98" Loaded="Window_Loaded">
 
-    
-    
+
+
     <Grid>
         <!--- Cb y Txt Busqueda incrementada -->
-            <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" Margin="110,88,0,0" TextChanged="textBox_TextChanged" />
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" Margin="110,88,0,0" TextChanged="textBox_TextChanged" />
         <ComboBox x:Name="cbFiltro" HorizontalAlignment="Left" Margin="108,59,0,0" VerticalAlignment="Top" Width="145">
             <ComboBoxItem Content="Ficha"/>
             <ComboBoxItem Content="Descripcion"/>
@@ -27,17 +27,10 @@
         </ComboBox>
         <Label x:Name="lblBuscarPor" Content="Buscar Por:" HorizontalAlignment="Left" Margin="37,61,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
 
-        <StackPanel x:Name="main" Orientation="Vertical" Height="237"  >
+        <StackPanel x:Name="main" Orientation="Vertical" Margin="-10,436,10,0"  >
 
             <StackPanel  x:Name="sp1" Orientation="Vertical"
-                     Margin="10,10,10,0">
-
-                <DataGrid x:Name="DataG" 
-                  Height="167" 
-                 
-                  
-                   IsReadOnly="True" SelectionChanged="DataG_SelectionChanged" MouseDoubleClick="DataG_MouseDoubleClick" />
-            </StackPanel>
+                     Margin="10,10,10,0"/>
 
             <StackPanel Orientation="Horizontal" 
                     HorizontalAlignment="Center" Margin="10">
@@ -55,7 +48,8 @@
                 </Button>
             </StackPanel>
         </StackPanel>
-        
+        <DataGrid x:Name="DataG" HorizontalAlignment="Left" Margin="0,130,0,0" VerticalAlignment="Top" Height="301" Width="801" MouseDoubleClick="dataGrid_MouseDoubleClick" SelectionChanged="dataGrid_SelectionChanged"/>
+
 
 
 

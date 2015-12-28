@@ -163,8 +163,6 @@ namespace CrtProduccion.entidades
                     if (asignar)
                     {
                         fld_idLD = (int)dr["idLD"];
-                        fld_idCargo = (int?)dr["idCargo"];
-                        fld_idDpto = (int?)dr["idDpto"];
                         fld_Ced_Rnc = dr["cedulaRNC"].ToString();
                         fld_Nombres = dr["Nombres"].ToString();
                         fld_Apellidos = dr["Apellidos"].ToString();

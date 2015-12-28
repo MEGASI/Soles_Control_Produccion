@@ -11,7 +11,7 @@
         ShowInTaskbar="False" 
         WindowStartupLocation="CenterScreen" 
         Background="{StaticResource fondoClaro}"
-        WindowStyle="ToolWindow" Height="370.988" Width="483.979" Loaded="Window_Loaded">
+        WindowStyle="ToolWindow" Height="565.999" Width="904.999" Loaded="Window_Loaded">
 
     <Grid Margin="1,0,-1,0">
         <StackPanel x:Name="main" Orientation="Vertical" Margin="0,99,0,0"  >
@@ -19,7 +19,7 @@
             <StackPanel  x:Name="sp1" Orientation="Vertical"
                      Margin="10,10,10,0">
                 <DataGrid x:Name="dataGrid" 
-            		Height="167" 
+            		Height="324" 
                  
                   
             		IsReadOnly="True" SelectionChanged="DataG_SelectionChanged" MouseDoubleClick="dataGrid_MouseDoubleClick" />
@@ -48,10 +48,9 @@
         <TextBox x:Name="txtCampo" HorizontalAlignment="Left" Height="24" Margin="117,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" TextChanged="txtCampo_TextChanged" />
         <Label x:Name="lblTxtCampo" Content="Campo" HorizontalAlignment="Left" Margin="42,68,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <ComboBox x:Name="cbFiltro" HorizontalAlignment="Left" Margin="117,39,0,0" VerticalAlignment="Top" Width="145"  >
-            <ComboBoxItem Content="Codigo"/>
-            <ComboBoxItem Content="PartidaTipo"/>
-            <ComboBoxItem Content="Medida"/>
-            <ComboBoxItem Content="Precio"/>
+            <ComboBoxItem Content="Código"/>
+            <ComboBoxItem Content="Descripción"/>
+          
 
 
         </ComboBox>

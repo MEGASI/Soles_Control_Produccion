@@ -114,6 +114,8 @@ namespace CrtProduccion.entidades
             fld_idTipoVehiculo = 0;
             fld_idColor = 0;
             fld_Kilometraje = 0;
+            fld_Llantas = "";
+            fld_FiltAceite = "";
 
         }
 

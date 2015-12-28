@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CrtProduccion.vistas"
         mc:Ignorable="d"
-     Title="Consulta Informe Produccion Diario" 
+     Title="Consulta  Partidas  Producción Diario" 
         
         
         ShowInTaskbar="False" 
@@ -39,20 +39,16 @@
 
         <!--Campo y Filtro Para busqueda Incrementada-->
         <Label x:Name="lblcbFiltro" Content="Buscar Por" HorizontalAlignment="Left" Margin="72,30,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <TextBox x:Name="txtCampo" HorizontalAlignment="Left" Height="24" Margin="151,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" />
+        <TextBox x:Name="txtCampo" HorizontalAlignment="Left" Height="24" Margin="151,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" TextChanged="txtCampo_TextChanged" />
         <Label x:Name="lblTxtCampo" Content="Campo" HorizontalAlignment="Left" Margin="74,55,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <ComboBox x:Name="cbFiltro" HorizontalAlignment="Left" Margin="150,33,0,0" VerticalAlignment="Top" Width="145" >
-            <ComboBoxItem Content="Vehiculo"/>
-            <ComboBoxItem Content="Chofer"/>
-            <ComboBoxItem Content="Supervisor"/>
+        <ComboBox x:Name="cbFiltro" HorizontalAlignment="Left" Margin="150,33,0,0" VerticalAlignment="Top" Width="145">
+            <ComboBoxItem Content="Código"/>
+            <ComboBoxItem Content="Descripción"/>
         </ComboBox>
         <StackPanel Margin="75,92,84,106" Orientation="Vertical">
             <DataGrid x:Name="DataG" VerticalAlignment="Top" Height="273" SelectionChanged="DataG_SelectionChanged_1" MouseDoubleClick="DataG_MouseDoubleClick_1" Margin="0,0,1,0"/>
 
-
-
-
-
+            
         </StackPanel>
 
 

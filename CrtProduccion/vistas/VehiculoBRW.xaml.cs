@@ -49,8 +49,10 @@ namespace CrtProduccion.vistas
         }
 
 
-        private void DataG_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void dataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+
+        
 
             if (sender != null)
             {
@@ -89,9 +91,9 @@ namespace CrtProduccion.vistas
             DataG.ItemsSource = dsGrid.Tables[0].DefaultView;
 
             DataG.CanUserAddRows = false;
-            DataG.Columns[0].Width = 175;
+            DataG.Columns[0].Width = 50;
             DataG.Columns[0].IsReadOnly = true;
-            DataG.Columns[0].Header = "Codigo";
+            DataG.Columns[0].Header = "Código";
             DataG.Columns[0].CanUserResize = false;
 
             DataG.Columns[1].IsReadOnly = true;
@@ -101,7 +103,7 @@ namespace CrtProduccion.vistas
 
 
             DataG.Columns[2].IsReadOnly = true;
-            DataG.Columns[2].Width = 100;
+            DataG.Columns[2].Width = 120;
             DataG.Columns[2].Header = "Descripcion";
             DataG.Columns[2].CanUserResize = false;
 
@@ -112,12 +114,12 @@ namespace CrtProduccion.vistas
             DataG.Columns[3].CanUserResize = false;
 
             DataG.Columns[4].IsReadOnly = true;
-            DataG.Columns[4].Width = 100;
+            DataG.Columns[4].Width = 120;
             DataG.Columns[4].Header = "Marca";
             DataG.Columns[4].CanUserResize = false;
 
             DataG.Columns[5].IsReadOnly = true;
-            DataG.Columns[5].Width = 100;
+            DataG.Columns[5].Width = 120;
             DataG.Columns[5].Header = "Modelo";
             DataG.Columns[5].CanUserResize = false;
 
@@ -127,7 +129,7 @@ namespace CrtProduccion.vistas
             DataG.Columns[6].CanUserResize = false;
 
             DataG.Columns[7].IsReadOnly = true;
-            DataG.Columns[7].Width = 58;
+            DataG.Columns[7].Width = 100;
             DataG.Columns[7].Header = "TipoVehiculo";
             DataG.Columns[7].CanUserResize = false;
 
@@ -168,7 +170,7 @@ namespace CrtProduccion.vistas
             DataG.Columns[14].CanUserResize = false;
 
             DataG.Columns[15].IsReadOnly = true;
-            DataG.Columns[15].Width = 75;
+            DataG.Columns[15].Width = 100;
             DataG.Columns[15].Header = "idFiltaceite";
             DataG.Columns[15].CanUserResize = false;
 
@@ -178,17 +180,17 @@ namespace CrtProduccion.vistas
             DataG.Columns[16].CanUserResize = false;
 
             DataG.Columns[17].IsReadOnly = true;
-            DataG.Columns[17].Width = 100;
-            DataG.Columns[17].Header = "IdEstado";
+            DataG.Columns[17].Width = 70;
+            DataG.Columns[17].Header = "Estado";
             DataG.Columns[17].CanUserResize = false;
 
             DataG.Columns[18].IsReadOnly = true;
-            DataG.Columns[18].Width = 100;
+            DataG.Columns[18].Width = 66;
             DataG.Columns[18].Header = "SegVence";
             DataG.Columns[18].CanUserResize = false;
 
             DataG.Columns[19].IsReadOnly = true;
-            DataG.Columns[19].Width = 100;
+            DataG.Columns[19].Width = 66;
             DataG.Columns[19].Header = "Ultmant";
             DataG.Columns[19].CanUserResize = false;
 
@@ -199,11 +201,13 @@ namespace CrtProduccion.vistas
 
             datamanager.ConexionCerrar();
         }
-        
 
-        private void DataG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            object item = DataG.SelectedItem;
+
+        
+        object item = DataG.SelectedItem;
             object item1 = DataG.SelectedItem;
        
             string sidVehiculo = (DataG.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;

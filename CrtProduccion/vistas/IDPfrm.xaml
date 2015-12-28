@@ -15,27 +15,30 @@ Title="Informe Diario Producción" Height="626" Width="1009" WindowStyle="ToolWi
         <Grid Height="601" Width="1000" HorizontalAlignment="Left" Canvas.Left="1">
             <!--Codigo y Descripcion-->
 
+            <TextBox x:Name="TxtidBrigada" Height="23" Margin="515,412,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="37" HorizontalAlignment="Left" />
+
+            <!--Codigo y Descripcion-->
+
             <TextBox x:Name="Txsecuencia" Height="23" Margin="539,412,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="64" HorizontalAlignment="Left"/>
 
             <TextBox x:Name="TxidPartida" Height="23" Margin="470,412,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="64" HorizontalAlignment="Left"/>
 
-            <TextBox x:Name="txtObservación" Height="55" TextWrapping="Wrap" Width="224" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="425,398,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtObservación" Height="55" TextWrapping="Wrap" Width="224" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="435,394,0,0" VerticalAlignment="Top"/>
             <!--Codigo y Descripcion-->
 
-            <TextBox x:Name="Txtid" Height="12" Margin="160,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="57" HorizontalAlignment="Left"/>
+            <TextBox x:Name="Txtid" Height="22" Margin="649,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="66" HorizontalAlignment="Left"/>
             <!--Codigo y Descripcion-->
 
             <Label x:Name="lblTitulo" Content="Informe Diario de Producción" HorizontalAlignment="Left" Margin="73,25,0,0" VerticalAlignment="Top" FontSize="18.667"/>
             <Label x:Name="lblidp" Content="No. IDP" HorizontalAlignment="Left" Margin="73,76,0,0" VerticalAlignment="Top" Width="54"/>
-            <TextBox x:Name="Txtidp" Height="23" Margin="146,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" HorizontalAlignment="Left"/>
+            <TextBox x:Name="Txtidp" Height="23" Margin="145,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" HorizontalAlignment="Left" />
             <Label x:Name="lblFecha" Content="Fecha" HorizontalAlignment="Left" Margin="73,102,0,0" VerticalAlignment="Top"/>
             <Label x:Name="lblproyecto" Content="Proyecto" HorizontalAlignment="Left" Margin="371,76,0,0" VerticalAlignment="Top"/>
             <ComboBox x:Name="cbProyecto" HorizontalAlignment="Left" Margin="448,79,0,0" VerticalAlignment="Top" Width="162" SelectionChanged="cbProyecto_SelectionChanged"/>
             <Label x:Name="lblNoCircuito" Content="No. Circuito" HorizontalAlignment="Left" Margin="370,106,0,0" VerticalAlignment="Top"/>
             <TextBox x:Name="TxtNoCircuito" Height="23" Margin="450,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="102" HorizontalAlignment="Left" />
             <Label x:Name="lblBrigadas" Content="BRIGADAS" HorizontalAlignment="Left" Margin="715,36,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="13.333"/>
-            <TextBox x:Name="TxtB1" Height="23" Margin="653,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" HorizontalAlignment="Left" />
-            <TextBox x:Name="TxtB2" Height="23" Margin="723,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" HorizontalAlignment="Left" />
+            <TextBox x:Name="TxtB2" Height="23" Margin="723,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" HorizontalAlignment="Left"/>
             <TextBox x:Name="TxtB3" Height="23" Margin="793,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" HorizontalAlignment="Left" />
             <Label x:Name="lblcod" Content="Código" HorizontalAlignment="Left" Margin="73,172,0,0" VerticalAlignment="Top"/>
             <Label x:Name="lbldes" Content="Descripción" HorizontalAlignment="Left" Margin="170,176,0,0" VerticalAlignment="Top"/>
@@ -51,14 +54,16 @@ Title="Informe Diario Producción" Height="626" Width="1009" WindowStyle="ToolWi
             <TextBox x:Name="TxCost" Height="23" Margin="563,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" HorizontalAlignment="Left" IsReadOnly="True" />
             <TextBox x:Name="TxDireccion" Height="23" Margin="639,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" HorizontalAlignment="Left" />
             <TextBox x:Name="TxNPost" Height="23" Margin="823,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="64" HorizontalAlignment="Left" />
-            <TextBox x:Name="TxtidBrigada" Height="23" Margin="832,412,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="37" HorizontalAlignment="Left" />
-            
+
             <CheckBox x:Name="Feriachk" Content="Feriado" HorizontalAlignment="Left" Margin="659,114,0,0" VerticalAlignment="Top"/>
 
-            <DataGrid x:Name="DG_IDP" HorizontalAlignment="Left" Margin="65,221,0,0" VerticalAlignment="Top" Width="846" Height="142" HorizontalScrollBarVisibility="Disabled"/>
+            <DataGrid x:Name="DG_IDP" HorizontalAlignment="Left" Margin="65,221,0,0" VerticalAlignment="Top" Width="846" Height="142" HorizontalScrollBarVisibility="Disabled" />
 
-            <Button x:Name="btnbuscarB" Margin="41,197,0,0" Height="23" HorizontalAlignment="Left" Width="22" 
+            <Button x:Name="btnbuscarB" Margin="19,155,0,0" Height="23" HorizontalAlignment="Left" Width="22" 
         		VerticalAlignment="Top" ToolTip="Consultar  Departamentos" Content="..." Click="btnbuscarB_Click" />
+
+            <Button x:Name="btnbuscarBrigada" Margin="860,79,0,0" Height="23" HorizontalAlignment="Left" Width="22" 
+        		VerticalAlignment="Top" ToolTip="Consultar  " Content="..." Click="btnbuscarBrigada_Click"/>
 
 
 
@@ -169,9 +174,9 @@ Title="Informe Diario Producción" Height="626" Width="1009" WindowStyle="ToolWi
         			Style="{StaticResource ImageEnabled}"
         			IsEnabled="{Binding IsEnabled, ElementName=btnSalir}"/>
             </Button>
-            <DatePicker x:Name="txtFecha" HorizontalAlignment="Left" Margin="145,106,0,0" VerticalAlignment="Top" Width="152"/>
-            <Button x:Name="button" Content="guardar" HorizontalAlignment="Left" Margin="562,520,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
-            <Button x:Name="button1" Content="GuardarB" HorizontalAlignment="Left" Margin="814,135,0,0" VerticalAlignment="Top" Width="85" Click="button1_Click_1"/>
+            <DatePicker x:Name="txtFecha" HorizontalAlignment="Left" Margin="144,106,0,0" VerticalAlignment="Top" Width="150"/>
+            <Button x:Name="button" Content="guardar" HorizontalAlignment="Left" Margin="836,135,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
+            <Button x:Name="button1" Content="GuardarB" HorizontalAlignment="Left" Margin="715,135,0,0" VerticalAlignment="Top" Width="85" Click="button1_Click_1" />
 
 
 

@@ -1,17 +1,17 @@
-﻿<Window x:Class="CrtProduccion.vistas.BrigformadasBRW"
+﻿<Window x:Class="CrtProduccion.vistas.BFBRW"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CrtProduccion.vistas"
         mc:Ignorable="d"
-      Title="Consultar Brigadas Formadas" 
+     Title=" Brigadas Formadas" 
         
         
         ShowInTaskbar="False" 
         WindowStartupLocation="CenterScreen" 
         Background="{StaticResource fondoClaro}"
-        WindowStyle="ToolWindow" Height="525.998" Width="794.998" Loaded="Window_Loaded">
+        WindowStyle="ToolWindow" Height="451" Width="604.999" Loaded="Window_Loaded">
 
     <Grid Margin="1,0,-1,0">
         <StackPanel x:Name="main" Orientation="Vertical" Margin="0,99,0,0"  >
@@ -19,23 +19,23 @@
             <StackPanel  x:Name="sp1" Orientation="Vertical"
                      Margin="10,10,10,0">
                 <DataGrid x:Name="dataGrid" 
-            		Height="294" 
+            		Height="236" 
                  
                   
-            		IsReadOnly="True" SelectionChanged="DataG_SelectionChanged" MouseDoubleClick="dataGrid_MouseDoubleClick" />
+            		IsReadOnly="True" MouseDoubleClick="dataGrid_MouseDoubleClick" SelectionChanged="dataGrid_SelectionChanged"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" 
                     HorizontalAlignment="Center" Margin="10">
                 <Button x:Name="btnAceptar" Margin="2,0,2,0" Width="100"  
-                    Height="38" ToolTip="Aceptar" Click="btnAceptar_Click" >
+                    Height="38" ToolTip="Aceptar" Click="btnAceptar_Click">
                     <Image x:Name="btnAceptar_png" Height="32" 
                        Source="../Resources/Check.png" 
                        Stretch="Fill" Width="32" IsEnabled="False"
                        Style="{StaticResource ImageEnabled}"/>
                 </Button>
 
-                <Button x:Name="btnCancelar" Margin="2,0,2,0" Width="100"  Height="38" ToolTip="Cancelar" Click="btnCancelar_Click">
+                <Button x:Name="btnCancelar" Margin="2,0,2,0" Width="100"  Height="38" ToolTip="Cancelar">
                     <Image x:Name="Cancelar_png" Height="32" Source="../Resources/Cancelar02.png" 
                        Stretch="Fill" Width="32" />
                 </Button>
@@ -51,12 +51,11 @@
             <ComboBoxItem Content="Codigo"/>
             <ComboBoxItem Content="Chofer"/>
             <ComboBoxItem Content="Supervisor"/>
-            
+
 
 
         </ComboBox>
 
 
     </Grid>
-
 </Window>

@@ -112,6 +112,12 @@
     <Compile Include="vistas\Actividafrm.xaml.cs">
       <DependentUpon>Actividafrm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="vistas\BFBRW.xaml.cs">
+      <DependentUpon>BFBRW.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\brigadaBRW.xaml.cs">
+      <DependentUpon>brigadaBRW.xaml</DependentUpon>
+    </Compile>
     <Compile Include="vistas\Brigadafrm.xaml.cs">
       <DependentUpon>Brigadafrm.xaml</DependentUpon>
     </Compile>
@@ -255,6 +261,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="vistas\Actividafrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\BFBRW.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="vistas\brigadaBRW.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

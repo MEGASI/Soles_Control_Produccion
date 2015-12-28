@@ -45,7 +45,7 @@
         <Label x:Name="lblcbFiltro" Content="Buscar Por" HorizontalAlignment="Left" Margin="37,30,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <TextBox x:Name="txtCampo" HorizontalAlignment="Left" Height="24" Margin="110,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" TextChanged="txtCampo_TextChanged" />
         <Label x:Name="lblTxtCampo" Content="Campo" HorizontalAlignment="Left" Margin="42,55,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <ComboBox x:Name="cbFiltro" HorizontalAlignment="Left" Margin="110,33,0,0" VerticalAlignment="Top" Width="150" SelectionChanged="cbFiltro_SelectionChanged" IsReadOnly="True" >
+        <ComboBox x:Name="cbFiltro" HorizontalAlignment="Left" Margin="110,33,0,0" VerticalAlignment="Top" Width="150" IsReadOnly="True" >
             <ComboBoxItem Content="nombres"/>
         </ComboBox>
 

@@ -12,7 +12,7 @@
 
 Title="Informe Diario Gastos" Height="531" Width="844" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen"  >
     <Canvas>
-        <Grid Height="506" Width="850" HorizontalAlignment="Left" Canvas.Left="1">
+        <Grid Height="506" Width="835" HorizontalAlignment="Left" Canvas.Left="1">
             <!--Codigo y Descripcion-->
 
             <TextBox x:Name="txtObservación" Height="55" TextWrapping="Wrap" Width="224" Canvas.Left="171" Canvas.Top="113" HorizontalAlignment="Left" Margin="565,72,0,0" VerticalAlignment="Top"/>
@@ -46,7 +46,7 @@ Title="Informe Diario Gastos" Height="531" Width="844" WindowStyle="ToolWindow" 
             <TextBox x:Name="Txhoraf" Height="23" Margin="676,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" HorizontalAlignment="Left" IsReadOnly="True" />
 
             <DataGrid x:Name="DG_IDP" HorizontalAlignment="Left" Margin="75,192,0,0" VerticalAlignment="Top" Width="676" Height="142" HorizontalScrollBarVisibility="Disabled"/>
-            <Button x:Name="btnbuscarB" Margin="577,361,0,0" Height="23" HorizontalAlignment="Left" Width="22" 
+            <Button x:Name="btnbuscarB" Margin="52,169,0,0" Height="23" HorizontalAlignment="Left" Width="22" 
         		VerticalAlignment="Top" ToolTip="Consultar  Departamentos" Content="..." />
             <Label x:Name="lblObser" Content="Observación" HorizontalAlignment="Left" Margin="580,39,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="13.333"/>
             <!--  Buscar-->
@@ -77,7 +77,7 @@ Title="Informe Diario Gastos" Height="531" Width="844" WindowStyle="ToolWindow" 
         		ToolTip="Cancelar" 
         		Canvas.Left="93" Canvas.Top="205"
         		IsEnabled="{Binding !Visibility, ElementName=btnNuevo}"
-        		Margin="123,349,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+        		Margin="77,347,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                 <Image x:Name="Cancelar_png" Height="32" 
         			Source="pack://siteoforigin:,,,/Resources/Cancel.png" Width="32" 
         			ToolTip="Cancelar"
@@ -85,7 +85,7 @@ Title="Informe Diario Gastos" Height="531" Width="844" WindowStyle="ToolWindow" 
         			IsEnabled="{Binding IsEnabled, ElementName=btnCancelar}"/>
             </Button>
             <Button x:Name="btnNuevo" 
-        		HorizontalAlignment="Left" Margin="123,349,0,0"
+        		HorizontalAlignment="Left" Margin="77,347,0,0"
         		VerticalAlignment="Top" 
         		Width="50"  Height="40"
         		RenderTransformOrigin="-0.333,0.727"
@@ -100,7 +100,7 @@ Title="Informe Diario Gastos" Height="531" Width="844" WindowStyle="ToolWindow" 
             <Button x:Name="btnGuardar" Height="40" 
         		ToolTip="Guardar" 
         		Canvas.Left="148" Canvas.Top="205"
-        		IsEnabled="{Binding !Visibility, ElementName=btnModificar}" Margin="175,349,0,0" HorizontalAlignment="Left" Width="50" VerticalAlignment="Top" >
+        		IsEnabled="{Binding !Visibility, ElementName=btnModificar}" Margin="129,347,0,0" HorizontalAlignment="Left" Width="50" VerticalAlignment="Top" >
                 <Image x:Name="btnGuardar_png" ToolTip="Guardar" 
         			Width="32" Height="32" 
         			Source="pack://siteoforigin:,,,/Resources/Guardar.png"
@@ -110,7 +110,7 @@ Title="Informe Diario Gastos" Height="531" Width="844" WindowStyle="ToolWindow" 
             <Button x:Name="btnModificar" 
         		Width="50" 
         		ToolTip="Modificar" 
-        		Canvas.Left="148" Canvas.Top="180" Margin="175,349,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" >
+        		Canvas.Left="148" Canvas.Top="180" Margin="129,347,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" >
                 <Image x:Name="btnModificar_png" 
         			ToolTip="Modificar" 
         			Width="32"  Height="32"
@@ -122,7 +122,7 @@ Title="Informe Diario Gastos" Height="531" Width="844" WindowStyle="ToolWindow" 
             <!-- Borrar -->
             <Button x:Name="btnBorrar" 
         		Width="50" Height="40" 
-        		ToolTip="Borrar" Canvas.Left="202" Canvas.Top="205" Margin="226,349,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+        		ToolTip="Borrar" Canvas.Left="202" Canvas.Top="205" Margin="180,347,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                 <Image x:Name="btnBorrar_png"  
         			Source="pack://siteoforigin:,,,/Resources/Borrar.png" 
         			Height="32" Width="32" 
@@ -134,7 +134,7 @@ Title="Informe Diario Gastos" Height="531" Width="844" WindowStyle="ToolWindow" 
             <Button x:Name="btnSalir" 
         		Width="50" Height="40" 
         		ToolTip="Salir"
-        		Canvas.Left="267" Canvas.Top="205" Margin="278,349,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" >
+        		Canvas.Left="267" Canvas.Top="205" Margin="232,347,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" >
 
                 <Image x:Name="btnSalir_png" ToolTip="Salir" 
         			Source="pack://siteoforigin:,,,/Resources/Salir.png" 
@@ -153,7 +153,7 @@ Title="Informe Diario Gastos" Height="531" Width="844" WindowStyle="ToolWindow" 
 
 
         </Grid>
-        <CheckBox x:Name="checkBox" Content="Aplicar Movimiento Por Ficha" Canvas.Left="87" Canvas.Top="405" FontWeight="Bold" FontSize="14.667"/>
+        <CheckBox x:Name="checkBox" Content="Aplicar Movimiento Por Ficha" Canvas.Left="80" Canvas.Top="417" FontWeight="Bold" FontSize="14.667"/>
 
     </Canvas>
 

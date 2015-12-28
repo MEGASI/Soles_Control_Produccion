@@ -18,13 +18,17 @@ namespace CrtProduccion.vistas
     /// <summary>
     /// Interaction logic for Vehiculofrm.xaml
     /// </summary>
+    /// 
+        #region Declaraciones de variables y Propiedades
+
+
     public partial class Vehiculofrm : Window
     {  
         
         
         
         
-        #region Declaraciones de variables y Propiedades
+        
 
         private entidades.dmVehiculo registro { get; set; }
 
@@ -103,6 +107,7 @@ namespace CrtProduccion.vistas
 
             //DataContext = registro;
             mostrar();
+            MostrarLlantas();
 
             // Operaciones permitidas en este formulario.
             // Implementación de la seguridad del formulario.
@@ -221,7 +226,7 @@ namespace CrtProduccion.vistas
 
                 registro.fld_idLllantas = dlgfrm.idLlantas;
                 registro.fld_Llantas = dlgfrm.NombreL;
-                mostrar();
+                MostrarLlantas();
             }
         }
         private void btnbuscarAceit_Click(object sender, RoutedEventArgs e)
@@ -231,7 +236,7 @@ namespace CrtProduccion.vistas
 
             registro.fld_idParte = dlgfrm.idfiltro;
             registro.fld_FiltAceite = dlgfrm.FiltroN;
-            mostrar();
+           MostrarLlantas();
         }
         private void btnbuscar_Click(object sender, RoutedEventArgs e)
         {
@@ -388,6 +393,14 @@ namespace CrtProduccion.vistas
 
             
         }
+
+        public void MostrarLlantas()
+        {
+
+            txtidllantas.Text = Convert.ToString((registro.fld_Llantas).ToString());
+            txtidAceite.Text = Convert.ToString(registro.fld_FiltAceite).ToString();
+        }
+
 
         #endregion
 

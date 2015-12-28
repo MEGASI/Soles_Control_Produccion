@@ -16,11 +16,13 @@ namespace CrtProduccion.comunes
             RadioButton rb = obj as RadioButton;
             PasswordBox pb = obj as PasswordBox;
             CheckBox ch = obj as CheckBox;
+            DatePicker dt = obj as DatePicker;
 
             if (tb != null) tb.Text = "";
             if (rb != null) rb.IsChecked = false;
             if (pb != null) pb.Password = "";
             if (ch != null) ch.IsEnabled = false;
+            if (dt != null) dt.Text = "";
 
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj as DependencyObject); i++)
                 limpiaControles(VisualTreeHelper.GetChild(obj, i));
@@ -35,6 +37,7 @@ namespace CrtProduccion.comunes
             ComboBox cb = obj as ComboBox;
             CheckBox ch = obj as CheckBox;
             DataGrid Dg = obj as DataGrid;
+            DatePicker dt = obj as DatePicker;
 
             if (tb != null) tb.IsEnabled = isenabled;
             if (rb != null) rb.IsEnabled = isenabled;
@@ -42,6 +45,7 @@ namespace CrtProduccion.comunes
             if (cb != null) cb.IsEnabled = isenabled;
             if (ch != null) ch.IsEnabled = isenabled;
             if (Dg != null) Dg.IsEnabled = isenabled;
+            if (dt != null) dt.IsEnabled = isenabled;
 
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj as DependencyObject); i++)
                 estadoControles(VisualTreeHelper.GetChild(obj, i), isenabled);
