@@ -250,21 +250,21 @@ namespace CrtProduccion.vistas
         }
         private void txtidLD_LostFocus(object sender, RoutedEventArgs e)
         {
-            int idGrupo = 0;
+            int iduser = 0;
 
-            if (!Int32.TryParse(txtidLD.Text, out idGrupo))
+            if (!Int32.TryParse(txtidLD.Text, out iduser))
             {
-                idGrupo = 0;
+                iduser = 0;
             }
-            if (idGrupo != registro.fld_idDpto)
+            if (iduser != registro.fld_idLD)
             {
-                registro.fld_idDpto = idGrupo;
-                bool found = registro.buscar(idGrupo, false);
+                registro.fld_idLD = iduser;
+                bool found = registro.buscar(iduser, false);
                 if (modalidad.Equals("CONSULTAR"))
                 {
                     if (!found)
-                        MessageBox.Show("Id del Libro no existe", "Grupo", MessageBoxButton.OK, MessageBoxImage.Information);
-                    else registro.buscar(idGrupo, true);
+                        MessageBox.Show("Id del Libro no existe", "Libro De Direcciones", MessageBoxButton.OK, MessageBoxImage.Information);
+                    else registro.buscar(iduser, true);
 
                     mostrar();
                     txtidLD.Focus();

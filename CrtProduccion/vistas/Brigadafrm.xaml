@@ -11,10 +11,10 @@
 
       Title="Formacion de Brigadas" Height="657" Width="595" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded"  >
     <Canvas Margin="1,1,-1,-5">
-        <TextBox x:Name="txt_id" TextWrapping="Wrap" Width="47" Height="12" VerticalAlignment="Top" Canvas.Left="153" Canvas.Top="307" HorizontalAlignment="Left"/>
-        <TextBox x:Name="txt_Secuencia" TextWrapping="Wrap" Width="47" Height="13" VerticalAlignment="Top" Canvas.Left="153" Canvas.Top="306" HorizontalAlignment="Left"/>
+        <TextBox x:Name="txt_Secuencia" TextWrapping="Wrap" Width="20" Height="13" VerticalAlignment="Top" Canvas.Left="143" Canvas.Top="305" HorizontalAlignment="Left"/>
 
 
+        <TextBox x:Name="txt_id" TextWrapping="Wrap" Width="37" Height="23" VerticalAlignment="Top" Canvas.Left="143" Canvas.Top="305" HorizontalAlignment="Left" KeyDown="txt_id_KeyDown" LostFocus="txt_id_LostFocus" />
         <Grid x:Name="dataGrid" RenderTransformOrigin="0.453,0.482" Width="584" Height="636" HorizontalAlignment="Right" VerticalAlignment="Top" Canvas.Top="-1">
 
 
@@ -23,7 +23,7 @@
 
             <Label x:Name="lblTitulo" Content="Formación Brigada" HorizontalAlignment="Left" Margin="79,35,0,0" VerticalAlignment="Top" FontSize="18.667"/>
             <Label x:Name="lblCodigo" Content="Código" HorizontalAlignment="Left" Margin="159,94,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="TxtidCodigo" Height="23" Margin="224,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="66" HorizontalAlignment="Left"/>
+            <TextBox x:Name="TxtidCodigo" Height="23" Margin="224,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="66" HorizontalAlignment="Left" KeyDown="TxtidCodigo_KeyDown" LostFocus="TxtidCodigo_LostFocus" />
             <!--  BuscarBrigada-->
             <Button x:Name="btnbuscar" Margin="291,97,0,0" Height="23" HorizontalAlignment="Left" Width="31" 
 				VerticalAlignment="Top" ToolTip="Consultar  Departamentos" Content="..." Click="btnbuscar_Click"/>
@@ -31,10 +31,7 @@
 
             <!--Vehiculo-->
             <Label x:Name="lblidVehiculo" Content="Vehículo" HorizontalAlignment="Left" Margin="159,124,0,0" VerticalAlignment="Top"/>
-            <ComboBox x:Name="cbidVehiculo" Margin="222,124,0,0" VerticalAlignment="Top" Width="171" SelectionChanged="cbidVehiculo_SelectionChanged" HorizontalAlignment="Left" />
-
-
-
+            <TextBox x:Name="txtVehiculo" TextWrapping="Wrap" Width="170" Canvas.Left="171" Canvas.Top="113" Margin="223,126,0,0" Height="23" VerticalAlignment="Top" IsEnabled="False" IsReadOnly="True" HorizontalAlignment="Left"/>
 
 
             <!---Fecha-->
@@ -61,57 +58,41 @@
 
             <Label x:Name="lblEstado" Content="Estado" HorizontalAlignment="Left" Margin="158,236,0,0" VerticalAlignment="Top"/>
             <CheckBox x:Name="Activa" Content="Activa" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="221,242,0,0" />
-            <TextBox x:Name="txtBrigadista" TextWrapping="Wrap" Width="267" Canvas.Left="171" Canvas.Top="113" Margin="148,306,0,0" Height="23" VerticalAlignment="Top" IsReadOnly="True" HorizontalAlignment="Left" />
+            <TextBox x:Name="txtBrigadista" TextWrapping="Wrap" Width="234" Canvas.Left="171" Canvas.Top="113" Margin="181,306,0,0" Height="23" VerticalAlignment="Top" IsReadOnly="True" HorizontalAlignment="Left"/>
 
 
-            <Button x:Name="btnAceptar" Margin="446,306,110,0" ToolTip="Insertar" Click="btnAceptar_Click" Height="23" VerticalAlignment="Top" >
+            <Button x:Name="btnAceptar" Margin="447,306,109,0" ToolTip="Insertar" Click="btnAceptar_Click" Height="23" VerticalAlignment="Top" >
                 <Image x:Name="btnAceptar_png" Height="18" 
                        Source="../Resources/Check.png" 
                        Stretch="Fill" Width="17" IsEnabled="True"
                        Style="{StaticResource ImageEnabled}"/>
             </Button>
 
-            <Button x:Name="btnCanceB" Margin="417,306,139,0" ToolTip="Borrar"  Height="23" VerticalAlignment="Top" Click="btnCanceB_Click" >
+            <Button x:Name="btnCanceB" Margin="475,306,81,0" ToolTip="Borrar"  Height="23" VerticalAlignment="Top" Click="btnCanceB_Click" >
                 <Image x:Name="btnCancelar_png" Height="18" 
                        Source="../Resources/Cancelar02.png" 
                        Stretch="Fill" Width="17" IsEnabled="True"
                        Style="{StaticResource ImageEnabled}"/>
             </Button>
 
-            <Button x:Name="BuscarBrigadista" Margin="475,306,0,0" Height="23" HorizontalAlignment="Left" Width="31" 
+            <Button x:Name="BuscarBrigadista" Margin="416,306,0,0" Height="23" HorizontalAlignment="Left" Width="31" 
 				VerticalAlignment="Top" ToolTip="Buscar Brigadista" Content="..." Click="BuscarBrigadista_Click"/>
-
 
             <!--BGRID-->
 
-
-
             <Border CornerRadius="10" BorderBrush="Gray" BorderThickness="1" Margin="96,345,72,0" Height="170" VerticalAlignment="Top" >
                 <Border.BitmapEffect>
-                    <DropShadowBitmapEffect></DropShadowBitmapEffect>
+                    <DropShadowBitmapEffect/>
                 </Border.BitmapEffect>
                 <Grid Height="180" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="435" Margin="-12,-5,-40,-7">
                     <Border x:Name="BDRounded" BorderThickness="1" BorderBrush="Gray" Background="White" CornerRadius="10" Margin="10,0,15,-5"/>
                     <DataGrid x:Name="dgBrigada" ItemsSource="{Binding List}"  AutoGenerateColumns="True" IsReadOnly="True" Height="207" VerticalAlignment="Top"  Margin="7,-10,3,-17">
                         <DataGrid.OpacityMask>
-                            <VisualBrush Visual="{Binding ElementName=BDRounded}"></VisualBrush>
+                            <VisualBrush Visual="{Binding ElementName=BDRounded}"/>
                         </DataGrid.OpacityMask>
-                        <DataGrid.Columns>
-
-
-                        </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
             </Border>
-
-
-
-
-
-
-
-
-
 
 
             <!-- Cancelar y nuevo -->

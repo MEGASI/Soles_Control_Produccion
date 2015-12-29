@@ -357,8 +357,8 @@ namespace CrtProduccion.entidades
                 // Preparamos consulta pra la actualización
 
                 SqlCommand cmd = new SqlCommand(" update IDP_Brigada" +
-                                                " set id=@id," +
-                                                " idBrigada=@idBrigada," +
+                                                //" set id=@id," +
+                                                " set idBrigada=@idBrigada," +
                                                 " secuencia=@secuencia" +
                                                 " Where id = @id ", datamanager.ConexionSQL);
 

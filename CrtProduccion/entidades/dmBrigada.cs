@@ -156,6 +156,8 @@ namespace CrtProduccion.entidades
                     fld_activa = Convert.ToBoolean((dr["activa"]));
 
 
+
+
                     try
                     {
                         fld_idVehiculo = (int)dr["idVehiculo"];
@@ -175,7 +177,52 @@ namespace CrtProduccion.entidades
             }
             return encontrado;
 
+
+
+
+
         }
+
+        public bool leerDatosB(SqlDataReader dr, bool asignar)
+        {
+
+            bool encontrado = false;
+            if (dr.Read())
+            {
+                encontrado = true;
+                if (asignar)
+                {
+                  
+                
+                    fld_Brigadista = dr["nombres"].ToString();
+
+
+                }
+            }
+            else
+            {
+                if (asignar) limpiar();
+            }
+            return encontrado;
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         /// <summary>
         ///  Buscar en la tabla de BrigadaH por el Nombre del parte.
         /// </summary>
@@ -213,6 +260,25 @@ namespace CrtProduccion.entidades
 
             return leerDatos(dr, asignar);
         }
+
+
+
+        public bool buscar1(int idBrigada, bool asignar1)
+        {
+
+
+            var dr = datamanager.ConsultaLeer(" select  idLD,nombres from vLD" +
+                                              " Where idLD =" + idBrigada.ToString());
+
+            return leerDatosB(dr, asignar1);
+        }
+
+
+
+
+
+
+
         /// <summary>
         /// Lee el último registro insertado en la tabla BrigadaH.
         /// </summary>

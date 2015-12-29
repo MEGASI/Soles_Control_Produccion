@@ -175,7 +175,6 @@ Title="Informe Diario Producción" Height="626" Width="1009" WindowStyle="ToolWi
         			IsEnabled="{Binding IsEnabled, ElementName=btnSalir}"/>
             </Button>
             <DatePicker x:Name="txtFecha" HorizontalAlignment="Left" Margin="144,106,0,0" VerticalAlignment="Top" Width="150"/>
-            <Button x:Name="button" Content="guardar" HorizontalAlignment="Left" Margin="836,135,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
             <Button x:Name="button1" Content="GuardarB" HorizontalAlignment="Left" Margin="715,135,0,0" VerticalAlignment="Top" Width="85" Click="button1_Click_1" />
 
 

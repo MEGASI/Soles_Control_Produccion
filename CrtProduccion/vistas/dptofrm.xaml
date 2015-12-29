@@ -14,7 +14,7 @@
 
             <Label x:Name="lblTitulo" Content="Código" HorizontalAlignment="Left" Margin="73,107,0,0" VerticalAlignment="Top"/>
             <Label x:Name="lbldepartamento" Content="Departamento" HorizontalAlignment="Left" Margin="73,133,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="TxtIdDpto" Height="23" Margin="161,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="71" HorizontalAlignment="Left" KeyDown="TxtIdDpto_KeyDown"/>
+            <TextBox x:Name="TxtIdDpto" Height="23" Margin="161,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="71" HorizontalAlignment="Left" KeyDown="TxtIdDpto_KeyDown" />
             <Label x:Name="lblidDpto" Content="Departamentos" HorizontalAlignment="Left" Margin="70,39,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
             <!-- Botons de funcionalidades  -->
             <!-- Cancelar y nuevo -->

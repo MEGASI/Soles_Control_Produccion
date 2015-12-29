@@ -102,6 +102,8 @@ namespace CrtProduccion.vistas
 
         #endregion
 
+
+
         #region Constructor y Loader
 
 
@@ -126,8 +128,8 @@ namespace CrtProduccion.vistas
             Creargrid();
             Txsecuencia.Text = "0";
             btnbuscarB.Visibility = Visibility.Hidden;
-            button.Visibility = Visibility.Hidden;
-           // button1.Visibility = Visibility.Hidden;
+            
+         
 
 
             //DataContext = registro;
@@ -222,7 +224,7 @@ namespace CrtProduccion.vistas
                 modalidad = "CONSULTAR";
                 MessageBox.Show("Información del  Informe Diario de Producción fue almacenada.", "Guardar", MessageBoxButton.OK, MessageBoxImage.Information);
 
-               this.GuardarBrigada();
+               this.GuardarBrigada(registro.fld_idBrigada);
                 this.GuardarGRID(registro.fld_id);
 
             }
@@ -340,6 +342,7 @@ namespace CrtProduccion.vistas
         {
             registro.fld_id = Convert.ToInt32(Txtid.Text);
             registro.fld_secuencia = Convert.ToInt32(Txsecuencia.Text);
+            registro.fld_idBrigada = Convert.ToInt32(TxtB2.Text);
 
             // Validar los valores asignados.
             bool lret = registro.validar();
@@ -351,7 +354,7 @@ namespace CrtProduccion.vistas
                 if (lret)
                 {
 
-                    TxtidBrigada.Text = registro.fld_idBrigada.ToString();
+                    TxtB2.Text = registro.fld_idBrigada.ToString();
                 }
             }
 
@@ -370,7 +373,7 @@ namespace CrtProduccion.vistas
         }
 
 
-        public void GuardarBrigada()
+        public void GuardarBrigada( int pidBrigada)
         {
             registro.fld_id = Convert.ToInt32(Txtid.Text);
             registro.fld_idBrigada = Convert.ToInt32(TxtB2.Text);
@@ -387,7 +390,7 @@ namespace CrtProduccion.vistas
                 if (lret)
                 {
 
-                    TxtidBrigada.Text = registro.fld_idBrigada.ToString();
+                    TxtB2.Text = registro.fld_idBrigada.ToString();
                 }
             }
 
@@ -416,7 +419,7 @@ namespace CrtProduccion.vistas
 
         private void button1_Click_1(object sender, RoutedEventArgs e)
         {
-            this.GuardarBrigada();
+            this.GuardarBrigada(registro.fld_idBrigada);
         }
 
         #endregion
@@ -439,7 +442,7 @@ namespace CrtProduccion.vistas
             TxCodIDP.Text = Convert.ToString(registro.fld_codigo);
             TxDesc.Text = registro.fld_descripcion;
             TxPreci.Text = registro.fld_precio;
-            TxtB2.Text = Convert.ToString(registro.fld_idB2);
+            TxtB2.Text = Convert.ToString(registro.fld_idBrigada);
 
 
             foreach (CBoxNullItem lobj in cbProyecto.Items)
@@ -489,7 +492,7 @@ namespace CrtProduccion.vistas
         {
 
           TxtB2.Text = Convert.ToString(registro.fld_idB2);
-            // registro.fld_idB2 = dlgfrm.idBrigada;
+            
 
         }
 

@@ -322,9 +322,6 @@ namespace CrtProduccion.vistas
             TxtIdDpto.Text = Convert.ToInt16(registro.fld_idDpto).ToString();
         }
 
-
-     
-
        
     }
 }
